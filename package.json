@@ -1,0 +1,43 @@
+{
+    "name": "todogether.com",
+    "version": "2.0",
+    "description": "Multiplayer-todo-lists",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "start-client": "react-scripts start",
+        "devfr": "cd frontend/; npm i; npm start; cd ../;",
+        "dev": "forever -c \"nodemon --exitcrash\" index.js",
+        "log": "heroku logs --tail",
+        "version": "heroku --version; git --version",
+        "buildfe": "cd frontend/; npm run build; cd ../; git add -A; git commit -a -m \"deploy frontend Build\"; git push;",
+        "deploy": "npm i; npm run buildfe; heroku git:remote -a todogether-cvs; git push heroku main",
+        "kill": "killall -9 node"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vanStaen/todogether.com.git"
+    },
+    "keywords": [
+        "todogether",
+        "todo",
+        "todoList"
+    ],
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1"
+    },
+    "devDependencies": {
+        "forever": "^4.0.1",
+        "lint": "^0.7.0",
+        "nodemon": "^2.0.4",
+        "prettier": "^2.2.1"
+    },
+    "author": "cvanstaen",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/vanStaen/todogether.com/issues"
+    },
+    "homepage": "https://github.com/vanStaen/todogether.com#readme"
+}
