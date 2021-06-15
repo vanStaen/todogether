@@ -1,5 +1,0 @@
-// .babelrc
-// TODO: Add preset for typescript
-{
-"presets": ["@babel/preset-react", "@babel/preset-env"]
-}
