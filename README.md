@@ -1,7 +1,9 @@
-# todogether.com
+# Todogether.com
 Multiplayer-todo-lists.
+http://todogether-cvs.herokuapp.com/
 
-## Requirement
+
+## Requirements
 
 1. Todo-task
    - Has an Id
@@ -58,3 +60,7 @@ Multiplayer-todo-lists.
     - Notification are sent when something happens 
       - Comment
       - New task
+      - Added to List
+      - Assigned to Task
+      - Task Owner: Task done by other 
+      - List Owner: Task added by other 
