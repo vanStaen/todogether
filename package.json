@@ -24,9 +24,21 @@
         "todoList"
     ],
     "dependencies": {
+        "aws-sdk": "^2.788.0",
+        "bcryptjs": "^2.4.3",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
-        "jsonwebtoken": "^8.5.1"
+        "express-graphql": "^0.11.0",
+        "graphql": "^15.3.0",
+        "jimp": "^0.16.1",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.29.1",
+        "mongodb": "^3.6.2",
+        "mongoose": "^5.10.8",
+        "multer": "^1.4.2",
+        "multer-s3": "^2.9.0",
+        "path": "^0.12.7",
+        "uuid": "^8.3.0"
     },
     "devDependencies": {
         "forever": "^4.0.1",
