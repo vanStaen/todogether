@@ -64,3 +64,5 @@ http://todogether-cvs.herokuapp.com/
       - Assigned to Task
       - Task Owner: Task done by other 
       - List Owner: Task added by other 
+      - Deadline is soonish
+      - Deadline is over
