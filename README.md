@@ -2,6 +2,9 @@
 Multiplayer-todo-lists.
 http://todogether-cvs.herokuapp.com/
 
+// TODO NODE.JS postgres ORM
+// class vorbereiten
+// Schema first
 
 ## Requirements
 
