@@ -1,5 +1,12 @@
+import React from 'react';
+// import './App.css';
+
 const App = () => {
-  return "Hello World!";
+  return (
+    <div className="App">
+      <div className="App__main">Hello World!</div>
+    </div>
+  );
 };
 
 export default App;
