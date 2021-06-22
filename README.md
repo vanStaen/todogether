@@ -2,7 +2,12 @@
 Multiplayer-todo-lists.
 http://todogether-cvs.herokuapp.com/
 
-// TODO NODE.JS postgres ORM
+// TODO 
+
+## Backend
+
+Object-Relational-Mapper for node.js & PostgresQL: sequelize
+TODO: https://medium.com/@ochieng.grace/sequelize-your-way-to-heroku-with-express-2c31be3752e0
 // class vorbereiten
 // Schema first
 
