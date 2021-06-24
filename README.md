@@ -7,9 +7,9 @@ http://todogether-cvs.herokuapp.com/
 ## Backend
 
 Object-Relational-Mapper for node.js & PostgresQL: sequelize
-TODO: https://medium.com/@ochieng.grace/sequelize-your-way-to-heroku-with-express-2c31be3752e0
 // class vorbereiten
-// Schema first
+// Schema incl in sequelize
+// write Resolvers for graphQL
 
 ## Requirements
 

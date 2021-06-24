@@ -20,15 +20,15 @@ const Task = sequelize.define(
   "Task",
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: false,
     },
     listId: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: false,
     },
     ownerId: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: false,
     },
     positionInList: {
@@ -43,10 +43,6 @@ const Task = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    comments: {
-      type: [DataTypes.STRING],
-      allowNull: true,
-    },
     subTaskIds: {
       type: [DataTypes.STRING],
       allowNull: true,
@@ -60,7 +56,7 @@ const Task = sequelize.define(
       allowNull: true,
     },
     categoryId: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: true,
     },
   },

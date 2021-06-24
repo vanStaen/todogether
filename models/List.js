@@ -20,11 +20,11 @@ const List = sequelize.define(
   "List",
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
       allowNull: false,
     },
-    owner: {
-      type: DataTypes.STRING,
+    ownerId: {
+      type: DataTypes.NUMBER,
       allowNull: false,
     },
     shareWith: {
