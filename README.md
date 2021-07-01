@@ -2,11 +2,9 @@
 Multiplayer-todo-lists.
 http://todogether-cvs.herokuapp.com/
 
-// TODO 
-
 ## Backend
 
-Object-Relational-Mapper for node.js & PostgresQL: sequelize
+Object-Relational-Mapper for node.js & PostgresQL:  
 // class vorbereiten
 // Schema incl in sequelize
 // write Resolvers for graphQL
