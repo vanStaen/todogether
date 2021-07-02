@@ -1,9 +1,12 @@
-const express = require("express");
+require("dotenv/config");
 const path = require("path");
 const PORT = process.env.PORT || 5012;
+const express = require("express");
+const { graphqlHTTP } = require("express-graphql");
 const db = require("./models");
-require("dotenv/config");
-require("./lib/connectToDb");
+const graphqlSchema = require("./graphql/schema");
+const graphqlResolver = require("./graphql/resolvers");
+
 
 // Init Express
 const app = express();
@@ -29,11 +32,27 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// Listen on a port
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// GraphQL
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: graphqlSchema,
+    rootValue: graphqlResolver,
+    graphiql: true,
+    customFormatErrorFn: (err) => {
+      const error = getErrorCode(err.message)
+      const message = error.message || "Something went wrong with GraphQL!";
+      const code = error.statusCode || 500;
+      return { message: message, status: code };
+    }
+  })
+);
 
 // Start DB
 db.sequelize.sync();
+
+// Listen on a port
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // Create all Table for the models
 // await sequelize.sync({force: true})
