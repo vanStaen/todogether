@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 5012;
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const db = require("./models");
-//const graphqlSchema = require("./graphql/schema");
-//const graphqlResolver = require("./graphql/resolvers");
+const graphqlSchema = require("./graphql/schemas/dummy");
+const graphqlResolver = require("./graphql/resolvers/dummy");
 
 
 // Init Express
@@ -37,20 +37,14 @@ db.sequelize.sync().then((req)=> {
 
   console.log('>>>> DB connection and sync was succesfull!')
   // GraphQL
-  /* app.use(
+  app.use(
     "/graphql",
     graphqlHTTP({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
-      graphiql: true,
-      customFormatErrorFn: (err) => {
-        const error = getErrorCode(err.message)
-        const message = error.message || "Something went wrong with GraphQL!";
-        const code = error.statusCode || 500;
-        return { message: message, status: code };
-      }
+      graphiql: true,      
     })
-  );*/
+  );
 });
 
 // Listen on a port
