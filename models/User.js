@@ -1,9 +1,14 @@
-const User = sequelize.define(
-  "User",
-  {
+const { Model } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    static associate(models){}
+  };
+  User.init({
     id: {
       type: DataTypes.NUMBER,
       allowNull: false,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -12,6 +17,7 @@ const User = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     avatar: {
       type: DataTypes.STRING,
@@ -31,9 +37,8 @@ const User = sequelize.define(
     },
   },
   {
-    // Other model options go here
-  }
-);
-
-// `sequelize.define` also returns the model
-console.log(User === sequelize.models.User);
+    sequelize,
+    modelName: 'User'
+  });
+  return User;
+};

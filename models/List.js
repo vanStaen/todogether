@@ -1,9 +1,14 @@
-const List = sequelize.define(
-  "List",
-  {
+const { Model } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => {
+  class List extends Model {
+    static associate(models){}
+  }
+  List.init({
     id: {
       type: DataTypes.NUMBER,
       allowNull: false,
+      primaryKey: true,
     },
     ownerId: {
       type: DataTypes.NUMBER,
@@ -23,9 +28,8 @@ const List = sequelize.define(
     },
   },
   {
-    // Other model options go here
-  }
-);
-
-// `sequelize.define` also returns the model
-console.log(List === sequelize.models.List);
+    sequelize,
+    modelName: 'List'
+  });
+  return List;
+}

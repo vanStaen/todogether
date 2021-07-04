@@ -1,9 +1,14 @@
-const Task = sequelize.define(
-  "Task",
-  {
+const { Model } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => {
+  class Task extends Model {
+    static associate(models){}
+  };
+  Task.init({
     id: {
       type: DataTypes.NUMBER,
       allowNull: false,
+      primaryKey: true,
     },
     listId: {
       type: DataTypes.NUMBER,
@@ -43,9 +48,8 @@ const Task = sequelize.define(
     },
   },
   {
-    // Other model options go here
-  }
-);
-
-// `sequelize.define` also returns the model
-console.log(Task === sequelize.models.Task);
+    sequelize,
+    modelName: 'Task'
+  });
+  return Task;
+}
