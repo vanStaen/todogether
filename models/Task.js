@@ -1,25 +1,20 @@
-const { Model } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  class Task extends Model {
-    static associate(models){}
-  };
-  Task.init({
+  const Task = sequelize.define("Task", {
     id: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
     listId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     ownerId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     positionInList: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     favorited: {
@@ -31,11 +26,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     subTaskIds: {
-      type: [DataTypes.STRING],
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     recurring: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     deadline: {
@@ -43,13 +38,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     categoryId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
-  },
-  {
-    sequelize,
-    modelName: 'Task'
   });
   return Task;
 }

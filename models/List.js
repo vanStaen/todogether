@@ -1,21 +1,16 @@
-const { Model } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  class List extends Model {
-    static associate(models){}
-  }
-  List.init({
+  const List = sequelize.define("List", {
     id: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
     ownerId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     shareWith: {
-      type: [DataTypes.STRING],
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     avatar: {
@@ -26,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },
-  {
-    sequelize,
-    modelName: 'List'
   });
   return List;
 }

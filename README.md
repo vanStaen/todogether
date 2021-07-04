@@ -5,7 +5,6 @@ http://todogether-cvs.herokuapp.com/
 ## Backend
 
 Object-Relational-Mapper for node.js & PostgresQL:  
-// class vorbereiten
 // Schema incl in sequelize
 // write Resolvers for graphQL
 

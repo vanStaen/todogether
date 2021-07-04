@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 5012;
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const db = require("./models");
-const graphqlSchema = require("./graphql/schema");
-const graphqlResolver = require("./graphql/resolvers");
+//const graphqlSchema = require("./graphql/schema");
+//const graphqlResolver = require("./graphql/resolvers");
 
 
 // Init Express
@@ -32,28 +32,25 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// GraphQL
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: graphqlSchema,
-    rootValue: graphqlResolver,
-    graphiql: true,
-    customFormatErrorFn: (err) => {
-      const error = getErrorCode(err.message)
-      const message = error.message || "Something went wrong with GraphQL!";
-      const code = error.statusCode || 500;
-      return { message: message, status: code };
-    }
-  })
-);
-
 // Start DB
-db.sequelize.sync();
+db.sequelize.sync().then((req)=> {
+  // GraphQL
+  /* app.use(
+    "/graphql",
+    graphqlHTTP({
+      schema: graphqlSchema,
+      rootValue: graphqlResolver,
+      graphiql: true,
+      customFormatErrorFn: (err) => {
+        const error = getErrorCode(err.message)
+        const message = error.message || "Something went wrong with GraphQL!";
+        const code = error.statusCode || 500;
+        return { message: message, status: code };
+      }
+    })
+  );*/
+  console.log('Sync succesfull')
+});
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-// Create all Table for the models
-// await sequelize.sync({force: true})
- 
