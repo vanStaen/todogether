@@ -8,6 +8,7 @@ export type Task = {
   comments?: Comment[];
   subTaskIds?: Task["id"][];
   recurring?: number; // In days 
+  dateCreated: string; // UTC
   deadline?: string; // UTC 
   categoryId: string; // CategoryId
 };
@@ -16,7 +17,7 @@ export type Comment = {
   id: number;
   userId: User["id"];
   comment: string;
-  date: string; // UTC
+  dateCreated: string; // UTC
 };
 
 export type List = {

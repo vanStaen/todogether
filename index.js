@@ -34,6 +34,8 @@ app.get("/", (req, res) => {
 
 // Start DB
 db.sequelize.sync().then((req)=> {
+
+  console.log('>>>> DB connection and sync was succesfull!')
   // GraphQL
   /* app.use(
     "/graphql",
@@ -49,7 +51,6 @@ db.sequelize.sync().then((req)=> {
       }
     })
   );*/
-  console.log('Sync succesfull')
 });
 
 // Listen on a port
