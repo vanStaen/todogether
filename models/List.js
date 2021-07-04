@@ -5,10 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
-    ownerId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     shareWith: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
@@ -22,5 +18,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
+
+  List.associate = (models) => {
+    List.belongsTo(models.User, {
+      foreignKey: {
+        name: 'userId',
+        field: 'userId'
+      }
+    })
+  }
+
   return List;
 }

@@ -5,18 +5,20 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     comment: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    dateCreated: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   });
+
+  Comment.associate = (models) => {
+    Comment.belongsTo(models.User, {
+      foreignKey: {
+        name: 'userId',
+        field: 'userId'
+      }
+    })
+  }
+
   return Comment;
 }

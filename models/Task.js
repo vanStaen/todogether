@@ -5,14 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
-    listId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    ownerId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     positionInList: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -37,14 +29,30 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    dateCreated: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     categoryId: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    assignedTo: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   });
+
+  Task.associate = (models) => {
+    Task.belongsTo(models.List, {
+      foreignKey: {
+        name: 'listId',
+        field: 'listId'
+      }
+    });
+    Task.belongsTo(models.User, {
+      foreignKey: {
+        name: 'userId',
+        field: 'userId'
+      }
+    });
+  }
+
   return Task;
 }

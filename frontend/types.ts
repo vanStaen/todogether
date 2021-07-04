@@ -1,30 +1,35 @@
 export type Task = {
   id: number;
   listId: List["id"];
-  ownerId: User["id"];
+  userId: User["id"];
   positionInList: number;
   favorited: boolean;
   archived: boolean;
   comments?: Comment[];
   subTaskIds?: Task["id"][];
   recurring?: number; // In days 
-  dateCreated: string; // UTC
+  createdAt: string; // UTC
+  udpatedAt: string; // UTC
   deadline?: string; // UTC 
   categoryId: string; // CategoryId
+  assignedTo?: string;
 };
 
 export type Comment = {
   id: number;
   userId: User["id"];
   comment: string;
-  dateCreated: string; // UTC
+  createdAt: string; // UTC
+  udpatedAt: string; // UTC
 };
 
 export type List = {
   id: number;
-  ownerId: User["id"];
+  userId: User["id"];
   sharedWith: Pick<User,'id'|'name'>[];
   avatar?: string; // S3 Url
+  createdAt: string; // UTC
+  udpatedAt: string; // UTC
   listType: "todoList" | "wishList" | "shoppingList" | "linkList" | "playList";
 };
 
@@ -34,6 +39,8 @@ export type User = {
   email: string;
   avatar?: string; // S3 Url
   categories: Category[];
+  createdAt: string; // UTC
+  udpatedAt: string; // UTC
   emailSettings: EmailSettings;
   displaySettings: DisplaySettings;
 };
