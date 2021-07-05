@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 5012;
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const db = require("./models");
-const graphqlSchema = require("./graphql/schemas/dummy");
-const graphqlResolver = require("./graphql/resolvers/dummy");
+const graphqlSchema = require("./graphql/schema");
+const graphqlResolver = require("./graphql/resolvers");
 
 
 // Init Express

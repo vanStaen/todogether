@@ -1,13 +1,13 @@
 const { buildSchema } = require("graphql");
 
-const dummySchemas = require("./schemas/dummy");
+const userSchemas = require("./schemas/user");
 
 module.exports = buildSchema(`
 
-    ${dummySchemas.Dummy}
+    ${userSchemas.User}
 
     type RootQuery {
-        ${dummySchemas.DummyQueries}
+        ${userSchemas.UserQueries}
     }
 
     schema {

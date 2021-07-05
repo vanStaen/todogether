@@ -1,5 +1,5 @@
-const dummyResolver = require("./resolvers/dummy");
+const userResolver = require("./resolvers/user");
 
 module.exports = {
-  ...dummyResolver.Dummy,
+  ...userResolver.User,
 };
