@@ -1,6 +1,6 @@
 exports.List = `
 type List {
-    id: Int! 
+    id: ID! 
     userId: Int!
     shareWith: [Int]
     avatar: String
