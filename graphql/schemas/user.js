@@ -1,6 +1,14 @@
 exports.User = `
 type User {
-    user: String
+    id: Int! 
+    name: String!
+    email: String!
+    avatar: String
+    categories: String
+    emailSettings: String!
+    displaySettings: String!
+    createdAt: String!
+    udpatedAt: String!
 }`;
 
 exports.UserQueries = `
