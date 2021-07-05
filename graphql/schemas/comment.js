@@ -1,6 +1,6 @@
 exports.Comment = `
 type Comment {
-    id: Int! 
+    id: ID! 
     userId: String!
     comment: String!
     createdAt: String!

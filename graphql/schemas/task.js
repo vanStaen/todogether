@@ -1,6 +1,6 @@
 exports.Task = `
 type Task {
-    id: Int! 
+    id: ID! 
     listId: Int!
     userId: Int!
     positionInList: Int!

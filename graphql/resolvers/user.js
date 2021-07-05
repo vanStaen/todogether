@@ -1,7 +1,8 @@
 exports.User = {
   user: (args, req) => {
-      return {
-        user: 'Noone'
-      };
+    console.log("arg", args);
+    return {
+      user: "Noone",
+    };
   },
 };
