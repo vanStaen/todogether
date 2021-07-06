@@ -12,5 +12,5 @@ type User {
 }`;
 
 exports.UserQueries = `
-    user: User
+    user(id: Int): User
 `;
