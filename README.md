@@ -4,9 +4,11 @@ http://todogether-cvs.herokuapp.com/
 
 ## Backend
 
-Object-Relational-Mapper for node.js & PostgresQL:  
+Sequelize as Object-Relational-Mapper for node.js & PostgresQL:  
 // Schema incl in sequelize
 // write Resolvers for graphQL
+// https://sequelize.org/master/manual/assocs.html#eager-loading-example
+// do notname file same (zb. CommentSchema vs CommentResolver vs CommentModels)
 
 ## Requirements
 
