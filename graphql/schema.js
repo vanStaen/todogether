@@ -1,9 +1,9 @@
 const { buildSchema } = require("graphql");
 
-const userSchemas = require("./schemas/user");
-const taskSchemas = require("./schemas/task");
-const listSchemas = require("./schemas/list");
-const commentSchemas = require("./schemas/comment");
+const userSchemas = require("./schemas/userSchema");
+const taskSchemas = require("./schemas/taskSchema");
+const listSchemas = require("./schemas/listSchema");
+const commentSchemas = require("./schemas/commentSchema");
 
 module.exports = buildSchema(`
 
@@ -19,20 +19,16 @@ module.exports = buildSchema(`
         ${commentSchemas.CommentQueries}
     }
 
+    type RootMutations {
+        ${userSchemas.UserMutations}
+        ${taskSchemas.TaskMutations}
+        ${listSchemas.ListMutations}
+        ${commentSchemas.CommentMutations}
+    }
+
     schema {
         query: RootQuery
+        mutation: RootMutations
     }
 
 `);
-
-
-/* 
-type RootMutations {
-    // stuff
-}
-
-schema {
-    query: RootQuery
-    mutation: RootMutations
-}
-*/

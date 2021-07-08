@@ -1,7 +1,7 @@
-const userResolver = require("./resolvers/user");
-const listResolver = require("./resolvers/list");
-const taskResolver = require("./resolvers/task");
-const commentResolver = require("./resolvers/comment");
+const userResolver = require("./resolvers/userResolver");
+const listResolver = require("./resolvers/listResolver");
+const taskResolver = require("./resolvers/taskResolver");
+const commentResolver = require("./resolvers/commentResolver");
 
 module.exports = {
   ...userResolver.User,
