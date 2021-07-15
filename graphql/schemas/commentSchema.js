@@ -13,7 +13,7 @@ input CommentInputData {
 }`;
 
 exports.CommentQueries = `
-    comment: Comment
+    getComment: Comment
 `;
 
 exports.CommentMutations = `

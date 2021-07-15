@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
-exports.User = {
-  async user(args, req) {
+exports.UserResolver = {
+  async getUser(args, req) {
     // const users = await User.find({ id: args.id });
     const users = await User.findAll();
     return users;

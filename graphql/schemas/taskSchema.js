@@ -29,7 +29,7 @@ input TaskInputData {
 }`;
 
 exports.TaskQueries = `
-    task: Task
+    getTask: Task
 `;
 
 exports.TaskMutations = `

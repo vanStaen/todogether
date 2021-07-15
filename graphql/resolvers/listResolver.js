@@ -1,9 +1,9 @@
 const List = require("../../models/List");
 
-exports.List = {
+exports.ListResolver = {
 
   //list
-  async list (args, req) {
+  async getList (args, req) {
     const lists = await List.findAll();
     return lists
   },

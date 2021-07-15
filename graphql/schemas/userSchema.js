@@ -24,7 +24,7 @@ input UserInputData {
 }`;
 
 exports.UserQueries = `
-    user(id: Int): User
+    getUser(id: Int): User
 `;
 
 exports.UserMutations = `

@@ -4,8 +4,8 @@ const taskResolver = require("./resolvers/taskResolver");
 const commentResolver = require("./resolvers/commentResolver");
 
 module.exports = {
-  ...userResolver.User,
-  ...listResolver.List,
-  ...taskResolver.Task,
-  ...commentResolver.Comment,
+  ...userResolver.UserResolver,
+  ...listResolver.ListResolver,
+  ...taskResolver.TaskResolver,
+  ...commentResolver.CommentResolver,
 };

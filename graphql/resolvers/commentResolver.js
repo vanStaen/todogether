@@ -1,9 +1,9 @@
 const Comment = require("../../models/Comment");
 
-exports.Comment = {
+exports.CommentResolver = {
 
   //commnent
-  async comment (args, req) {
+  async getComment (args, req) {
     const comments = await Comment.findAll();
     return comments
   },
