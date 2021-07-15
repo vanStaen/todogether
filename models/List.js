@@ -1,8 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const List = sequelize.define("List", {
-    id: {
+    _id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      field: "_id",
+      autoIncrement: !0,
       primaryKey: true,
     },
     shareWith: {

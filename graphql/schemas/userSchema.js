@@ -1,6 +1,6 @@
 exports.User = `
 type User {
-    id: ID! 
+    _id: ID! 
     name: String!
     email: String!
     password: String!
@@ -24,11 +24,11 @@ input UserInputData {
 }`;
 
 exports.UserQueries = `
-    getUser(id: Int): User
+    getUser(_id: Int): User
 `;
 
 exports.UserMutations = `
     addUser(userInput: UserInputData!): User!
-    updateUser(id: ID!, userInput: UserInputData!): User!
-    deleteUser(id: ID!): Boolean!
+    updateUser(_id: ID!, userInput: UserInputData!): User!
+    deleteUser(_id: ID!): Boolean!
 `;

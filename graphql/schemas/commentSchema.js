@@ -1,6 +1,6 @@
 exports.Comment = `
 type Comment {
-    id: ID! 
+    _id: ID! 
     userId: String!
     comment: String!
     createdAt: String!
@@ -18,5 +18,5 @@ exports.CommentQueries = `
 
 exports.CommentMutations = `
     addComment(commentInput: CommentInputData!): Comment!
-    deleteComment(id: ID!): Boolean!
+    deleteComment(_id: ID!): Boolean!
 `;

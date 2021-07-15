@@ -1,60 +1,91 @@
 const bcrypt = require("bcryptjs");
-const User = require("../../models/User");
+const Sequelize = require("sequelize");
+
+const sequelize = new Sequelize({
+  database: process.env.DATABASE_NAME,
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PWD,
+  host: process.env.DATABASE_HOST,
+  port: process.env.DATABASE_PORT,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
+
+const User = require("../../models/User")(sequelize, Sequelize.DataTypes);
 
 exports.userResolver = {
   async getUser(args, req) {
-    // const users = await User.find({ id: args.id });
+    // const users = await User.find({ _id: args._id });
     const users = await User.findAll();
+    console.log(users)
     return users;
   },
 
   // addUser(userInput: UserInputData!): User!
   async addUser(args, req) {
-
-    /*console.log("createdUser started");    
-    const foundUser = await User.findOne({ email: args.userInput.email });
+    /*const foundUser = await User.findOne({ email: args.userInput.email });
     if (foundUser) {
       throw new Error("This email is already associated with an account.");
-    } */
-    hashedPassword = await bcrypt.hash(args.userInput.password, 12);
-    const user = new User({
-      name: args.userInput.name,
-      email: args.userInput.email,
-      password: hashedPassword,
-      emailSettings: "[]",
-      displaySettings: "[]",
-    });
-    return result = user.save();
-    //return { ...result, password: null };
+    }*/
+    try {
+      hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+      const user = new User({
+        name: args.userInput.name,
+        email: args.userInput.email,
+        password: hashedPassword,
+        emailSettings: "[]",
+        displaySettings: "[]",
+      });
+      const result = await user.save();
+      console.log(result);
+      return { ...result, password: null };
+    } catch (err) {
+      console.log(err);
+    }
   },
 
-  // updateUser(id: ID!, userInput: UserInputData!): User!
+  // updateUser(_id: ID!, userInput: UserInputData!): User!
   async updateUser(args, req) {
     //if (!req.isAuth) {
     //  throw new Error(errorName.UNAUTHORIZED);
     //}
-    const updatableFields = ['password', 'name', 'avatar', 'categories', 'emailSettings', 'displaySettings'];
-    updatableFields.forEach(field => {
+    const updatableFields = [
+      "password",
+      "name",
+      "avatar",
+      "categories",
+      "emailSettings",
+      "displaySettings",
+    ];
+    updatableFields.forEach((field) => {
       if (field in args.userInput) {
         updateFields[field] = args.userInput[field];
       }
-    })
-    const updateField = {};
+    });
     if (args.userInput.password) {
       updateField.password = await bcrypt.hash(args.userInput.password, 12);
     }
-    const updatedUser = await User.updateOne(
-      { _id: args.id },
-      { $set: updateField }
-    );
-    return updatedUser;
+    try {
+      const updatedUser = await User.updateOne(
+        { _id: args._id },
+        { $set: updateField }
+      );
+      return updatedUser;
+    } catch (err) {
+      console.log(err);
+    }
   },
 
-  // deleteUser(id: ID!): Boolean!
+  // deleteUser(_id: ID!): Boolean!
   async deleteUser(rgs, req) {
     await User.destroy({
       where: {
-        id: args.id,
+        _id: args._id,
       },
     });
     return true;

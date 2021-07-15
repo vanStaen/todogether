@@ -1,6 +1,6 @@
 exports.Task = `
 type Task {
-    id: ID! 
+    _id: ID! 
     listId: Int!
     userId: Int!
     positionInList: Int!
@@ -34,6 +34,6 @@ exports.TaskQueries = `
 
 exports.TaskMutations = `
     addTask(taskInput: TaskInputData!): Task!
-    updateTask(id: ID!, taskInput: TaskInputData!): Task!
-    deleteTask(id: ID!): Boolean!
+    updateTask(_id: ID!, taskInput: TaskInputData!): Task!
+    deleteTask(_id: ID!): Boolean!
 `;

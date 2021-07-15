@@ -1,6 +1,6 @@
 exports.List = `
 type List {
-    id: ID! 
+    _id: ID! 
     userId: Int!
     shareWith: [Int]
     avatar: String
@@ -22,6 +22,6 @@ exports.ListQueries = `
 
 exports.ListMutations = `
     addList(listInput: ListInputData!): List!
-    updateList(id: ID!, listInput: ListInputData!): List!
-    deleteList(id: ID!): Boolean!
+    updateList(_id: ID!, listInput: ListInputData!): List!
+    deleteList(_id: ID!): Boolean!
 `;
