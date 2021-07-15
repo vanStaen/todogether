@@ -1,6 +1,6 @@
 const TAsk = require("../../models/Task");
 
-exports.TaskResolver = {
+exports.taskResolver = {
   //task
   async getTask (args, req) {
     const tasks = await Task.findAll();

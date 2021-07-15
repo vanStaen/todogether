@@ -1,6 +1,6 @@
 const Comment = require("../../models/Comment");
 
-exports.CommentResolver = {
+exports.commentResolver = {
 
   //commnent
   async getComment (args, req) {

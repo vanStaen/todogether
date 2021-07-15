@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
-exports.UserResolver = {
+exports.userResolver = {
   async getUser(args, req) {
     // const users = await User.find({ id: args.id });
     const users = await User.findAll();
@@ -25,7 +25,6 @@ exports.UserResolver = {
       displaySettings: "[]",
     });
     return result = user.save();
-    //console.log("result", result);
     //return { ...result, password: null };
   },
 

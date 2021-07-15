@@ -1,6 +1,6 @@
 const List = require("../../models/List");
 
-exports.ListResolver = {
+exports.listResolver = {
 
   //list
   async getList (args, req) {
