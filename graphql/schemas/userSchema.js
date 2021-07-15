@@ -3,6 +3,7 @@ type User {
     id: ID! 
     name: String!
     email: String!
+    password: String!
     avatar: String
     categories: String
     emailSettings: String!
@@ -15,6 +16,7 @@ exports.UserInputData = `
 type UserInputData {
     name: String!
     email: String!
+    password: String
     avatar: String
     categories: String
     emailSettings: String
