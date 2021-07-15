@@ -34,29 +34,15 @@ exports.User = {
     //if (!req.isAuth) {
     //  throw new Error(errorName.UNAUTHORIZED);
     //}
-
+    const updatableFields = ['password', 'name', 'avatar', 'categories', 'emailSettings', 'displaySettings'];
+    updatableFields.forEach(field => {
+      if (field in args.userInput) {
+        updateFields[field] = args.userInput[field];
+      }
+    })
     const updateField = {};
     if (args.userInput.password) {
       updateField.password = await bcrypt.hash(args.userInput.password, 12);
-    }
-
-    if (args.userInput.name) {
-      updateField.name = args.userInput.name;
-    }
-    if (args.userInput.email) {
-      updateField.email = args.userInput.email;
-    }
-    if (args.userInput.avatar) {
-      updateField.avatar = args.userInput.avatar;
-    }
-    if (args.userInput.categories) {
-      updateField.categories = args.userInput.categories;
-    }
-    if (args.userInput.emailSettings) {
-      updateField.emailSettings = args.userInput.emailSettings;
-    }
-    if (args.userInput.displaySettings) {
-      updateField.displaySettings = args.userInput.displaySettings;
     }
     const updatedUser = await User.updateOne(
       { _id: args.id },
