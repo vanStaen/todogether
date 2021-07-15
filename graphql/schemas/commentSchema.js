@@ -8,7 +8,7 @@ type Comment {
 }`;
 
 exports.CommentInputData = `
-type CommentInputData {
+input CommentInputData {
     comment: String!
 }`;
 

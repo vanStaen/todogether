@@ -2,14 +2,15 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
 exports.User = {
-  user: (args, req) => {
+  async user (args, req) {
     // const users = await User.find({ id: args.id });
     const users = await User.findAll();
     return users
   },
 
   // addUser(userInput: UserInputData!): User!
-  createUser: (args, req) => {
+  // rewrite with AWAITs
+  async createUser (args, req) {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
         if (user) {
@@ -36,10 +37,14 @@ exports.User = {
   },
 
   // updateUser(id: ID!, userInput: UserInputData!): User!
-  updateUser: async (args, req) => {
-    if (!req.isAuth) {
-      throw new Error(errorName.UNAUTHORIZED);
-    }
+  async updateUser (args, req) {
+    //if (!req.isAuth) {
+    //  throw new Error(errorName.UNAUTHORIZED);
+    //}
+
+    // prepare array of strings with new parameter
+    // go through for each array infos and see if 
+
     const updateField = {};
     if (args.userInput.name) {
       updateField.name = args.userInput.name;
@@ -54,13 +59,13 @@ exports.User = {
       updateField.avatar = args.userInput.avatar;
     }
     if (args.userInput.categories) {
-      updateField.avatar = args.userInput.categories;
+      updateField.categories = args.userInput.categories;
     }
     if (args.userInput.emailSettings) {
-      updateField.avatar = args.userInput.emailSettings;
+      updateField.emailSettings = args.userInput.emailSettings;
     }
     if (args.userInput.displaySettings) {
-      updateField.avatar = args.userInput.avatar;
+      updateField.displaySettings = args.userInput.displaySettings;
     }
     const updatedUser = await User.updateOne(
       { _id: args.id },
@@ -69,8 +74,8 @@ exports.User = {
     return updatedUser;
   },
 
-  //  deleteUser(id: ID!): Boolean!
-  deleteUser: (args, req) => {
+  // deleteUser(id: ID!): Boolean!
+  async deleteUser  (rgs, req) {
     await User.destroy({
       where: {
         id: args.id

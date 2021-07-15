@@ -12,6 +12,11 @@ module.exports = buildSchema(`
     ${listSchemas.List}
     ${commentSchemas.Comment}
 
+    ${userSchemas.UserInputData}
+    ${taskSchemas.TaskInputData}
+    ${listSchemas.ListInputData}
+    ${commentSchemas.CommentInputData}
+
     type RootQuery {
         ${userSchemas.UserQueries}
         ${taskSchemas.TaskQueries}

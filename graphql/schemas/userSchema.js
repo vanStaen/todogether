@@ -13,7 +13,7 @@ type User {
 }`;
 
 exports.UserInputData = `
-type UserInputData {
+input UserInputData {
     name: String!
     email: String!
     password: String

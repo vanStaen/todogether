@@ -10,7 +10,7 @@ type List {
 }`;
 
 exports.ListInputData = `
-type ListInputData {
+input ListInputData {
     shareWith: [Int]
     avatar: String
     listType: String

@@ -3,13 +3,13 @@ const Comment = require("../../models/Comment");
 exports.Comment = {
 
   //commnent
-  comment: (args, req)=> {
+  async comment (args, req) {
     const comments = await Comment.findAll();
     return comments
   },
 
   //addComment(commentInput: CommentInputData!): Comment!
-  addComment: (args, req) => {
+  async addComment (args, req) {
     const comment = new Comment({
       userId: "1",
       comment: args.commentInput.comment,
@@ -17,8 +17,8 @@ exports.Comment = {
     return comment.save();
   },
 
-  //  deleteComment(id: ID!): Boolean!
-  deleteComment: (args, req) => {
+  //deleteComment(id: ID!): Boolean!
+  async deleteComment (args, req) {
     await Comment.destroy({
       where: {
         id: args.id,

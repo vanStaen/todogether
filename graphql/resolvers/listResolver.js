@@ -3,13 +3,13 @@ const List = require("../../models/List");
 exports.List = {
 
   //list
-  list: (args, req)=> {
+  async list (args, req) {
     const lists = await List.findAll();
     return lists
   },
 
   //addList(listInput: ListInputData!): List!
-  addList: (args, req) => {
+  async addList (args, req) {
     const comment = new List({
       // TODO
     });
@@ -20,7 +20,7 @@ exports.List = {
   // TODO
 
   // deleteList(id: ID!): Boolean!
-  deleteList: (args, req) => {
+  async deleteList (args, req) {
     await List.destroy({
       where: {
         id: args.id,

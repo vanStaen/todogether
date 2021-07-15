@@ -16,7 +16,7 @@ type Task {
 }`;
 
 exports.TaskInputData = `
-type TaskInputData {
+input TaskInputData {
     listId: Int
     positionInList: Int
     favorited: Boolean
