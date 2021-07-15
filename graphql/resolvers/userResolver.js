@@ -22,16 +22,22 @@ exports.userResolver = {
   async getUser(args, req) {
     // const users = await User.find({ _id: args._id });
     const users = await User.findAll();
-    console.log(users)
+    console.log(users);
     return users;
   },
 
   // addUser(userInput: UserInputData!): User!
   async addUser(args, req) {
-    /*const foundUser = await User.findOne({ email: args.userInput.email });
+    console.log("args.userInput.email", args.userInput.email);
+    const foundUser = await User.findOne({
+      where: {
+        email: args.userInput.email,
+      },
+    });
+    console.log("foundUser", foundUser);
     if (foundUser) {
       throw new Error("This email is already associated with an account.");
-    }*/
+    }
     try {
       hashedPassword = await bcrypt.hash(args.userInput.password, 12);
       const user = new User({
@@ -42,8 +48,8 @@ exports.userResolver = {
         displaySettings: "[]",
       });
       const result = await user.save();
-      console.log(result);
-      return { ...result, password: null };
+      console.log(result.dataValues);
+      return { ...result.dataValues, password: null };
     } catch (err) {
       console.log(err);
     }

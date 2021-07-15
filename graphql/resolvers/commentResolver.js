@@ -21,8 +21,7 @@ exports.commentResolver = {
 
   //commnent
   async getComment (args, req) {
-    const comments = await Comment.findAll();
-    return comments
+    return await Comment.findAll();
   },
 
   //addComment(commentInput: CommentInputData!): Comment!
