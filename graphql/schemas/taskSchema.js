@@ -17,7 +17,6 @@ type Task {
 
 exports.TaskInputData = `
 type TaskInputData {
-    id: ID
     listId: Int
     positionInList: Int
     favorited: Boolean
@@ -34,7 +33,7 @@ exports.TaskQueries = `
 `;
 
 exports.TaskMutations = `
-    addTask(TaskInput: TaskInputData!): Task!
-    updateTask(TaskInput: TaskInputData!): Task!
-    deleteTask(TaskId: ID!): Task!
+    addTask(taskInput: TaskInputData!): Task!
+    updateTask(id: ID!, taskInput: TaskInputData!): Task!
+    deleteTask(id: ID!): Boolean!
 `;

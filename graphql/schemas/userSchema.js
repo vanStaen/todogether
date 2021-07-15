@@ -13,7 +13,6 @@ type User {
 
 exports.UserInputData = `
 type UserInputData {
-    id: ID
     name: String!
     email: String!
     avatar: String
@@ -27,7 +26,7 @@ exports.UserQueries = `
 `;
 
 exports.UserMutations = `
-    addUser(UserInput: UserInputData!): User!
-    updateUser(UserInput: UserInputData!): User!
-    deleteUser(UserId: ID!): User!
+    addUser(userInput: UserInputData!): User!
+    updateUser(id: ID!, userInput: UserInputData!): User!
+    deleteUser(id: ID!): Boolean!
 `;

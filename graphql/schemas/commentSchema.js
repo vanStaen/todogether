@@ -17,6 +17,6 @@ exports.CommentQueries = `
 `;
 
 exports.CommentMutations = `
-    addComment(CommentInput: CommentInputData!): Comment!
-    deleteComment(CommentId: ID!): Comment!
+    addComment(commentInput: CommentInputData!): Comment!
+    deleteComment(id: ID!): Boolean!
 `;
