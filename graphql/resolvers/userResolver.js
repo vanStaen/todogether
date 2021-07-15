@@ -9,13 +9,13 @@ exports.UserResolver = {
   },
 
   // addUser(userInput: UserInputData!): User!
-  async createUser(args, req) {
-    console.log("createdUser started");
-    
+  async addUser(args, req) {
+
+    /*console.log("createdUser started");    
     const foundUser = await User.findOne({ email: args.userInput.email });
     if (foundUser) {
       throw new Error("This email is already associated with an account.");
-    } 
+    } */
     hashedPassword = await bcrypt.hash(args.userInput.password, 12);
     const user = new User({
       name: args.userInput.name,
@@ -24,9 +24,9 @@ exports.UserResolver = {
       emailSettings: "[]",
       displaySettings: "[]",
     });
-    const result = user.save();
-    console.log("result", result);
-    return { ...result, password: null };
+    return result = user.save();
+    //console.log("result", result);
+    //return { ...result, password: null };
   },
 
   // updateUser(id: ID!, userInput: UserInputData!): User!
