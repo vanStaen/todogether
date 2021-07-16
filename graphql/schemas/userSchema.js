@@ -3,7 +3,6 @@ type User {
     _id: ID! 
     name: String!
     email: String!
-    password: String!
     avatar: String
     categories: String
     emailSettings: String!

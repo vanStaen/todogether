@@ -17,7 +17,7 @@ input ListInputData {
 }`;
 
 exports.ListQueries = `
-    getList: List
+    getList: [List]
 `;
 
 exports.ListMutations = `

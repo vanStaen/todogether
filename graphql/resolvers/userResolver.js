@@ -22,8 +22,8 @@ exports.userResolver = {
   async getUser(args, req) {
     // const users = await User.find({ _id: args._id });
     const users = await User.findAll();
-    console.log(users);
-    return users;
+    console.log(users[0]);
+    return users[0];
   },
 
   // addUser(userInput: UserInputData!): User!
@@ -47,9 +47,7 @@ exports.userResolver = {
         emailSettings: "[]",
         displaySettings: "[]",
       });
-      const result = await user.save();
-      console.log(result.dataValues);
-      return { ...result.dataValues, password: null };
+      return await user.save();
     } catch (err) {
       console.log(err);
     }
