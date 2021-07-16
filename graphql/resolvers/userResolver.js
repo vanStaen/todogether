@@ -1,22 +1,7 @@
 const bcrypt = require("bcryptjs");
 const Sequelize = require("sequelize");
-
-const sequelize = new Sequelize({
-  database: process.env.DATABASE_NAME,
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PWD,
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-});
-
-const User = require("../../models/User")(sequelize, Sequelize.DataTypes);
+const sequelizedb = require("../../lib/sequelizedb")
+const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
 
 exports.userResolver = {
   async getUser(args, req) {
