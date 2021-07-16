@@ -18,7 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         name: 'userId',
         field: 'userId'
       }
-    })
+    });
+    Comment.belongsTo(models.Task, {
+      foreignKey: {
+        name: 'taskId',
+        field: 'taskId'
+      }
+    });
   }
 
   return Comment;
