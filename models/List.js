@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: !0,
       primaryKey: true,
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    desc: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     shareWith: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: true,

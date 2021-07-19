@@ -2,6 +2,8 @@ exports.List = `
 type List {
     _id: ID! 
     userId: Int!
+    title: String!
+    desc: String
     shareWith: [Int]
     avatar: String
     listType: String
@@ -12,6 +14,8 @@ type List {
 exports.ListInputData = `
 input ListInputData {
     shareWith: [Int]
+    title: String!
+    desc: String
     avatar: String
     listType: String
 }`;

@@ -12,7 +12,19 @@ exports.listResolver = {
 
   //addList(listInput: ListInputData!): List!
   async addList (args, req) {
-    const comment = new List({
+
+    console.log("args.userInput.title", args.userInput.title);
+    const foundList = await User.findOne({
+      where: {
+        title: args.userInput.title,
+      },
+    });
+    console.log("foundList", foundList);
+    if (foundList) {
+      throw new Error("A list with this name is already associated with this account.");
+    }
+    
+    const list = new List({
       // TODO
     });
     return list.save();
