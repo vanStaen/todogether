@@ -1,25 +1,22 @@
 const bcrypt = require("bcryptjs");
 const Sequelize = require("sequelize");
-const sequelizedb = require("../../lib/sequelizedb")
+const sequelizedb = require("../../lib/sequelizedb");
 const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
 
 exports.userResolver = {
   async getUser(args, req) {
-    // const users = await User.find({ _id: args._id });
+    // const user = await User.find({ _id: args._id });
     const users = await User.findAll();
-    console.log(users[0]);
     return users[0];
   },
 
   // addUser(userInput: UserInputData!): User!
   async addUser(args, req) {
-    console.log("args.userInput.email", args.userInput.email);
     const foundUser = await User.findOne({
       where: {
         email: args.userInput.email,
       },
     });
-    console.log("foundUser", foundUser);
     if (foundUser) {
       throw new Error("This email is already associated with an account.");
     }
@@ -31,6 +28,7 @@ exports.userResolver = {
         password: hashedPassword,
         emailSettings: "[]",
         displaySettings: "[]",
+        categories: "[]",
       });
       return await user.save();
     } catch (err) {
@@ -41,8 +39,9 @@ exports.userResolver = {
   // updateUser(_id: ID!, userInput: UserInputData!): User!
   async updateUser(args, req) {
     //if (!req.isAuth) {
-    //  throw new Error(errorName.UNAUTHORIZED);
+    //  throw new Error("Unauthorized!);
     //}
+    const updateFields = [];
     const updatableFields = [
       "password",
       "name",
@@ -57,21 +56,29 @@ exports.userResolver = {
       }
     });
     if (args.userInput.password) {
-      updateField.password = await bcrypt.hash(args.userInput.password, 12);
+      updateFields.password = await bcrypt.hash(args.userInput.password, 12);
     }
     try {
-      const updatedUser = await User.updateOne(
-        { _id: args._id },
-        { $set: updateField }
+      const updatedUser = await User.update(
+        updateFields,
+        {
+          where: {
+            _id: args._id,
+          },
+          returning: true,
+          plain: true,
+        }
       );
-      return updatedUser;
+      // updatedUser[0]: number or row udpated
+      // updatedUser[1]: rows updated
+      return updatedUser[1];
     } catch (err) {
       console.log(err);
     }
   },
 
   // deleteUser(_id: ID!): Boolean!
-  async deleteUser(rgs, req) {
+  async deleteUser(args, req) {
     await User.destroy({
       where: {
         _id: args._id,

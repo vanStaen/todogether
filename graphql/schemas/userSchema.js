@@ -8,13 +8,13 @@ type User {
     emailSettings: String!
     displaySettings: String!
     createdAt: String!
-    udpatedAt: String!
+    updatedAt: String!
 }`;
 
 exports.UserInputData = `
 input UserInputData {
-    name: String!
-    email: String!
+    name: String
+    email: String
     password: String
     avatar: String
     categories: String
