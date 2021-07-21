@@ -12,14 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Comment.associate = (models) => {
-    Comment.belongsTo(models.User, {
-      foreignKey: {
-        name: 'userId',
-        field: 'userId'
-      }
-    })
-  }
+  const User = require("./User")(sequelize, DataTypes);
+  User.hasOne(Comment, {foreignKey: 'userId'});
+  Comment.belongsTo(User);
 
   return Comment;
 }

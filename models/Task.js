@@ -40,20 +40,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Task.associate = (models) => {
-    Task.belongsTo(models.List, {
-      foreignKey: {
-        name: 'listId',
-        field: 'listId'
-      }
-    });
-    Task.belongsTo(models.User, {
-      foreignKey: {
-        name: 'userId',
-        field: 'userId'
-      }
-    });
-  }
+  const User = require("./User")(sequelize, DataTypes);
+  User.hasMany(Task, {foreignKey: 'userId'});
+  Task.belongsTo(User);
+
+  const List = require("./List")(sequelize, DataTypes);
+  List.hasMany(Task, {foreignKey: 'listId'});
+  Task.belongsTo(List);
 
   return Task;
 }

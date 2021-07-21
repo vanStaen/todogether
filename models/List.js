@@ -28,14 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  List.associate = (models) => {
-    List.belongsTo(models.User, {
-      foreignKey: {
-        name: 'userId',
-        field: 'userId'
-      }
-    })
-  }
+  const User = require("./User")(sequelize, DataTypes);
+  User.hasOne(List, {foreignKey: 'userId'});
+  List.belongsTo(User);
 
   return List;
 }
