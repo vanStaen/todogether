@@ -2,23 +2,26 @@ const Sequelize = require("sequelize");
 const sequelizedb = require("../../lib/sequelizedb")
 const Comment = require("../../models/Comment")(sequelizedb, Sequelize.DataTypes);
 const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
+const Task = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
 
 exports.commentResolver = {
 
-  //commnent
+  //comment
   async getComment (args, req) {
     return await Comment.findAll({
       where: {
-        _id: 4, 
+        taskId: args.taskId, 
       },
-      include: User
+      include: User,
+      include: Task,
     });
   },
 
   //addComment(commentInput: CommentInputData!): Comment!
   async addComment (args, req) {
     const comment = new Comment({
-      userId: "1",
+      userId: "1", //TODO
+      taskId: args.commentInput.taskId,
       comment: args.commentInput.comment,
     });
     return comment.save();

@@ -2,6 +2,7 @@ exports.Comment = `
 type Comment {
     _id: ID! 
     userId: String!
+    taskId: String!
     comment: String!
     createdAt: String!
     udpatedAt: String!
@@ -9,11 +10,12 @@ type Comment {
 
 exports.CommentInputData = `
 input CommentInputData {
+    taskId: String!
     comment: String!
 }`;
 
 exports.CommentQueries = `
-    getComment: [Comment]
+    getComment(taskId: String!): [Comment]
 `;
 
 exports.CommentMutations = `

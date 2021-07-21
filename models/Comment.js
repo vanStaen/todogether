@@ -16,5 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   User.hasOne(Comment, {foreignKey: 'userId'});
   Comment.belongsTo(User);
 
+  const Task = require("./Task")(sequelize, DataTypes);
+  Task.hasMany(Comment, {foreignKey: 'taskId'});
+  Comment.belongsTo(Task);
+
   return Comment;
 }
