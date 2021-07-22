@@ -6,8 +6,8 @@ type Comment {
     comment: String!
     createdAt: String!
     udpatedAt: String!
-    user: User!
-    task: Task!
+    user: User
+    task: Task
 }`;
 
 exports.CommentInputData = `

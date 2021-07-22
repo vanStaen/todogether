@@ -3,6 +3,7 @@ const sequelizedb = require("../../lib/sequelizedb")
 const Task = require("../../models/Task")(sequelizedb, Sequelize.DataTypes);
 const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
 const List = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
+const Comment = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
 
 exports.taskResolver = {
   
@@ -14,8 +15,9 @@ exports.taskResolver = {
     return tasks = await Task.findAll({
       where: {
         userId: req.userId,
+        listId: args.listId,
       },
-      include: [List, User],
+      include: [List, User, Comment],
     });
   },
 

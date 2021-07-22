@@ -20,6 +20,5 @@ module.exports = (sequelize, DataTypes) => {
   User.hasMany(Comment);
   Comment.belongsTo(User);
 
-
   return Comment;
 }

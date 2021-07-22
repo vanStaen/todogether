@@ -16,6 +16,7 @@ type Task {
     udpatedAt: String!
     user: User
     list: List
+    comment: Comment
 }`;
 
 exports.TaskInputData = `
@@ -34,7 +35,7 @@ input TaskInputData {
 }`;
 
 exports.TaskQueries = `
-    getTask: [Task]
+    getTask(listId: String!): [Task]
 `;
 
 exports.TaskMutations = `
