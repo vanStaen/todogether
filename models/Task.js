@@ -52,5 +52,9 @@ module.exports = (sequelize, DataTypes) => {
   List.hasMany(Task);
   Task.belongsTo(List);
 
+  const Comment = require("./Comment")(sequelize, DataTypes);
+  Task.hasMany(Comment);
+  Comment.belongsTo(Task);
+
   return Task;
 }
