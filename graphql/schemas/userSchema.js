@@ -28,6 +28,6 @@ exports.UserQueries = `
 
 exports.UserMutations = `
     addUser(userInput: UserInputData!): User!
-    updateUser(_id: ID!, userInput: UserInputData!): User!
+    updateUser(userInput: UserInputData!): User!
     deleteUser(_id: ID!): Boolean!
 `;

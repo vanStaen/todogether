@@ -5,9 +5,11 @@ const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
 
 exports.userResolver = {
   async getUser(args, req) {
-    // const user = await User.find({ _id: args._id });
-    const users = await User.findAll();
-    return users[0];
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const user = await User.findOne({ _id: req.userId });
+    return user;
   },
 
   // addUser(userInput: UserInputData!): User!
@@ -38,9 +40,9 @@ exports.userResolver = {
 
   // updateUser(_id: ID!, userInput: UserInputData!): User!
   async updateUser(args, req) {
-    //if (!req.isAuth) {
-    //  throw new Error("Unauthorized!);
-    //}
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     const updateFields = [];
     const updatableFields = [
       "password",
@@ -63,7 +65,7 @@ exports.userResolver = {
         updateFields,
         {
           where: {
-            _id: args._id,
+            _id: req.userId,
           },
           returning: true,
           plain: true,
