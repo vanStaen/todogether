@@ -17,7 +17,7 @@ input CommentInputData {
 }`;
 
 exports.CommentQueries = `
-    getComment(taskId: String!): [Comment]
+    getComment(taskId: Int!): [Comment]
 `;
 
 exports.CommentMutations = `
