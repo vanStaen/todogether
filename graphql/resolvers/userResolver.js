@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const Sequelize = require("sequelize");
 const sequelizedb = require("../../lib/sequelizedb");
 const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
+const List = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
 
 exports.userResolver = {
   async getUser(args, req) {
@@ -17,6 +18,7 @@ exports.userResolver = {
       where: {
         email: args.userInput.email,
       },
+      include: List,
     });
     if (foundUser) {
       throw new Error("This email is already associated with an account.");

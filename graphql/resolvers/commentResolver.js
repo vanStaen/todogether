@@ -1,11 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelizedb = require("../../lib/sequelizedb");
-const Comment = require("../../models/Comment")(
-  sequelizedb,
-  Sequelize.DataTypes
-);
+const Comment = require("../../models/Comment")(sequelizedb,Sequelize.DataTypes);
 const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
-const Task = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
+const Task = require("../../models/Task")(sequelizedb, Sequelize.DataTypes);
 
 exports.commentResolver = {
   //comment
