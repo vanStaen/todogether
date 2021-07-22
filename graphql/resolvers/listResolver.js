@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelizedb = require("../../lib/sequelizedb")
 const List = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
+const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
 
 exports.listResolver = {
 
@@ -13,6 +14,7 @@ exports.listResolver = {
       where: {
         UserId: req.userId,
       },
+      include: User,
     });
   },
 

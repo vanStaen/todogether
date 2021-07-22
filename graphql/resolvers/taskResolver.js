@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelizedb = require("../../lib/sequelizedb")
 const Task = require("../../models/Task")(sequelizedb, Sequelize.DataTypes);
+const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
+const List = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
 
 exports.taskResolver = {
   
@@ -13,6 +15,8 @@ exports.taskResolver = {
       where: {
         UserId: req.userId,
       },
+      include: User,
+      include: List,
     });
   },
 
