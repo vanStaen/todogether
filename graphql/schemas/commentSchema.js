@@ -7,12 +7,12 @@ type Comment {
     createdAt: String!
     udpatedAt: String!
     user: User
-    task: Task
 }`;
 
 exports.CommentInputData = `
 input CommentInputData {
-    taskId: Int!
+    userId: Int
+    taskId: Int
     comment: String!
 }`;
 

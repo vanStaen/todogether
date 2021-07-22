@@ -11,7 +11,7 @@ exports.commentResolver = {
       where: {
         taskId: args.taskId,
       },
-      include: [Task, User],
+      include: User,
     });
     return result;
   },
@@ -21,6 +21,7 @@ exports.commentResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
+    console.log("args.commentInput.taskId", args.commentInput.taskId)
     const comment = new Comment({
       userId: req.userId,
       taskId: args.commentInput.taskId,

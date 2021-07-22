@@ -14,8 +14,8 @@ type Task {
     assignedTo: Int
     createdAt: String!
     udpatedAt: String!
-    user: User
     list: List
+    user: User
     comment: Comment
 }`;
 
