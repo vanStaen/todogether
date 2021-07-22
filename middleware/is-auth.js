@@ -1,20 +1,21 @@
 const jsonwebtoken = require("jsonwebtoken");
 require("dotenv/config");
 
-const devMode = false;
+const devMode = true;
 
 module.exports = (req, res, next) => {
   const authHeader = req.get("Authorization");
 
-  // If in development mode
+  // if in development mode
   if (devMode) {
     console.log(">>> Developement Mode ACTIVATED <<<")
     req.isAuth = true;
-    req.userId = "2";
-    req.email = "test@email.com";
+    req.userId = "1";
+    req.email = "test@test.com";
     return next();
   }
 
+  // if no authorization header found
   if (!authHeader) {
     req.isAuth = false;
     return next();
