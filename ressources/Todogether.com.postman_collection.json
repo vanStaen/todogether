@@ -176,7 +176,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getComment (taskId: \"1\") {\n    comment\n  }\n}",
+						"query": "query {\n  getComment (TaskId: \"2\") {\n    comment,\n    UserId,\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -214,7 +214,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addComment (\n    commentInput: { \n        taskId: \"1\",\n        comment: \"testComment\"\n        }\n  ) {\n    _id,\n    userId,\n  }\n}",
+						"query": "mutation {\n  addComment (\n    commentInput: { \n        TaskId: \"2\",\n        comment: \"testComment\"\n        }\n  ) {\n    _id,\n    UserId,\n    comment\n  }\n}",
 						"variables": ""
 					}
 				},
