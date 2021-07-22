@@ -1,7 +1,7 @@
 exports.List = `
 type List {
     _id: ID! 
-    userId: Int!
+    UserId: String!
     title: String!
     desc: String
     shareWith: [Int]
@@ -14,7 +14,7 @@ type List {
 exports.ListInputData = `
 input ListInputData {
     shareWith: [Int]
-    title: String!
+    title: String
     desc: String
     avatar: String
     listType: String

@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: !0,
       primaryKey: true,
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    desc: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     positionInList: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -22,20 +30,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
-    recurring: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
     deadline: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     categoryId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     assignedTo: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
   });
