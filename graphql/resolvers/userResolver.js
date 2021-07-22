@@ -8,8 +8,7 @@ exports.userResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const user = await User.findOne({ _id: req.userId });
-    return user;
+    return user = await User.findOne({ _id: req.userId });
   },
 
   // addUser(userInput: UserInputData!): User!
