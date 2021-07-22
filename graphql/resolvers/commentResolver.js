@@ -10,7 +10,7 @@ exports.commentResolver = {
   async getComment (args, req) {
     return await Comment.findAll({
       where: {
-        taskId: args.taskId, 
+        TaskId: args.TaskId, 
       },
       include: User,
       include: Task,
@@ -19,9 +19,12 @@ exports.commentResolver = {
 
   //addComment(commentInput: CommentInputData!): Comment!
   async addComment (args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     const comment = new Comment({
-      userId: "1", //TODO
-      taskId: args.commentInput.taskId,
+      UserId: req.userId,
+      TaskId: args.commentInput.TaskId,
       comment: args.commentInput.comment,
     });
     return comment.save();
