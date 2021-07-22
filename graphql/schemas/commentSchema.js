@@ -1,8 +1,8 @@
 exports.Comment = `
 type Comment {
     _id: ID! 
-    userId: String!
-    taskId: String!
+    userId: Int!
+    taskId: Int!
     comment: String!
     createdAt: String!
     udpatedAt: String!
@@ -12,7 +12,7 @@ type Comment {
 
 exports.CommentInputData = `
 input CommentInputData {
-    taskId: String!
+    taskId: Int!
     comment: String!
 }`;
 

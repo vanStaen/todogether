@@ -1,7 +1,7 @@
 exports.List = `
 type List {
     _id: ID! 
-    userId: String!
+    userId: Int!
     title: String!
     desc: String
     shareWith: [Int]

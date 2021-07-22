@@ -1,17 +1,17 @@
 exports.Task = `
 type Task {
     _id: ID! 
-    listId: String!
-    userId: String!
+    listId: Int!
+    userId: Int!
     title: String!
     desc: String
     positionInList: Int!
     favorited: Boolean
     archived: Boolean
-    subTaskIds: [String]
+    subTaskIds: [Int]
     deadline: String
     categoryId: String
-    assignedTo: String
+    assignedTo: Int
     createdAt: String!
     udpatedAt: String!
     user: User
@@ -21,8 +21,8 @@ type Task {
 
 exports.TaskInputData = `
 input TaskInputData {
-    listId: String
-    userId: String
+    listId: Int
+    userId: Int
     title: String
     desc: String
     positionInList: Int
@@ -35,7 +35,7 @@ input TaskInputData {
 }`;
 
 exports.TaskQueries = `
-    getTask(listId: String!): [Task]
+    getTask(listId: Int!): [Task]
 `;
 
 exports.TaskMutations = `

@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     subTaskIds: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: true,
     },
     deadline: {
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     assignedTo: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   });
