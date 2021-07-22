@@ -6,27 +6,42 @@ exports.listResolver = {
 
   //list
   async getList (args, req) {
-    const lists = await List.findAll();
-    return lists
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return lists = await List.findAll({
+      where: {
+        UserId: req.userId,
+      },
+    });
   },
 
   //addList(listInput: ListInputData!): List!
   async addList (args, req) {
-
-    console.log("args.userInput.title", args.userInput.title);
-    const foundList = await User.findOne({
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const foundList = await List.findOne({
       where: {
-        title: args.userInput.title,
+        title: args.listInput.title,
+        UserId: req.userId,
       },
     });
     console.log("foundList", foundList);
     if (foundList) {
-      throw new Error("A list with this name is already associated with this account.");
+      throw new Error("A list with this title already exist.");
     }    
-    const list = new List({
-      // TODO
-    });
-    return list.save();
+    try {
+      const list = new List({
+        title: args.listInput.title,
+        desc: args.listInput.desc,
+        listType: "todolist",
+        UserId: req.userId,
+      });
+      return await list.save();
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   // updateList(_id: ID!, listInput: ListInputData!): List!
@@ -34,9 +49,13 @@ exports.listResolver = {
 
   // deleteList(id: ID!): Boolean!
   async deleteList (args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     await List.destroy({
       where: {
         _id: args._id,
+        UserId: req.userId,
       },
     });
     return true;

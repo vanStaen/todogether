@@ -41,11 +41,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   const User = require("./User")(sequelize, DataTypes);
-  User.hasMany(Task, {foreignKey: 'userId'});
+  User.hasMany(Task);
   Task.belongsTo(User);
 
   const List = require("./List")(sequelize, DataTypes);
-  List.hasMany(Task, {foreignKey: 'listId'});
+  List.hasMany(Task);
   Task.belongsTo(List);
 
   return Task;

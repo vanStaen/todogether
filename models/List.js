@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   const User = require("./User")(sequelize, DataTypes);
-  User.hasOne(List, {foreignKey: 'userId'});
+  User.hasOne(List);
   List.belongsTo(User);
 
   return List;

@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   const User = require("./User")(sequelize, DataTypes);
-  User.hasOne(Comment, {foreignKey: 'userId'});
+  User.hasOne(Comment);
   Comment.belongsTo(User);
 
   const Task = require("./Task")(sequelize, DataTypes);
-  Task.hasMany(Comment, {foreignKey: 'taskId'});
+  Task.hasMany(Comment);
   Comment.belongsTo(Task);
 
   return Comment;
