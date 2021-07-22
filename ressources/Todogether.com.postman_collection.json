@@ -462,7 +462,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Mutation: AddList Copy",
+			"name": "GraphQL Mutation: addTask",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -480,7 +480,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addTask (\n    taskInput: { \n        ListId: \"3\",\n        title: \"testTask\", \n        }\n  ) {\n    _id,\n    title,\n  }\n}",
+						"query": "mutation {\n  addTask (\n    taskInput: { \n        ListId: \"1\",\n        title: \"testTask\", \n        }\n  ) {\n    _id,\n    title,\n  }\n}",
 						"variables": ""
 					}
 				},
