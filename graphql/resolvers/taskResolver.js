@@ -6,16 +6,37 @@ exports.taskResolver = {
   
   //task
   async getTask (args, req) {
-    const tasks = await Task.findAll();
-    return tasks;
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return tasks = await Task.findAll({
+      where: {
+        UserId: req.userId,
+      },
+    });
   },
 
   //addTask(taskInput: TaskInputData!): Task!
   async addTask (args, req) {
-    const task = new Task({
-      //TODO
-    });
-    return task.save();
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    try {
+      const task = new Task({
+        ListId: args.taskInput.ListId,
+        UserId: req.userId,
+        title: args.taskInput.title,
+        desc: args.taskInput.desc,
+        positionInList: 0,
+        favorited: false,
+        archived: false,
+        subTaskIds: [],
+        assignedTo: req.userId,
+      });
+      return await task.save();
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   //updateTask(_id: ID!, taskInput: TaskInputData!): Task!
