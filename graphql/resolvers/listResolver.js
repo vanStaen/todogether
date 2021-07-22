@@ -63,7 +63,6 @@ exports.listResolver = {
         updateFields[field] = args.listInput[field];
       }
     });
-    console.log("_id", args._id)
     try {
       const updatedList = await List.update(
         updateFields,
