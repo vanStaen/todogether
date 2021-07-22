@@ -22,8 +22,7 @@ exports.listResolver = {
     console.log("foundList", foundList);
     if (foundList) {
       throw new Error("A list with this name is already associated with this account.");
-    }
-    
+    }    
     const list = new List({
       // TODO
     });
