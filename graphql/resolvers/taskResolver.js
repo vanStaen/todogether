@@ -13,10 +13,9 @@ exports.taskResolver = {
     }
     return tasks = await Task.findAll({
       where: {
-        UserId: req.userId,
+        userId: req.userId,
       },
-      include: User,
-      include: List,
+      include: [List, User],
     });
   },
 
@@ -27,8 +26,8 @@ exports.taskResolver = {
     }
     try {
       const task = new Task({
-        ListId: args.taskInput.ListId,
-        UserId: req.userId,
+        listId: args.taskInput.listId,
+        userId: req.userId,
         title: args.taskInput.title,
         desc: args.taskInput.desc,
         positionInList: 0,
@@ -50,7 +49,7 @@ exports.taskResolver = {
     }
     const updateFields = [];
     const updatableFields = [
-      "ListId",
+      "listId",
       "title",
       "desc",
       "avatar",

@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-  const Comment = sequelize.define("Comment", {
+  const Comment = sequelize.define("comment", {
     _id: {
       type: DataTypes.INTEGER,
       field: "_id",
-      autoIncrement: !0,
-      primaryKey: !0
+      autoIncrement: true,
+      primaryKey: true
     },
     comment: {
       type: DataTypes.STRING,
@@ -12,13 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  const User = require("./User")(sequelize, DataTypes);
-  User.hasOne(Comment);
-  Comment.belongsTo(User);
-
   const Task = require("./Task")(sequelize, DataTypes);
   Task.hasMany(Comment);
   Comment.belongsTo(Task);
+
+  const User = require("./User")(sequelize, DataTypes);
+  User.hasMany(Comment);
+  Comment.belongsTo(User);
+
 
   return Comment;
 }

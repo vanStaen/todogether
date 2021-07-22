@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-  const Task = sequelize.define("Task", {
+  const Task = sequelize.define("task", {
     _id: {
       type: DataTypes.INTEGER,
       field: "_id",
-      autoIncrement: !0,
+      autoIncrement: true,
       primaryKey: true,
     },
     title: {

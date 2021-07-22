@@ -176,7 +176,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getComment (TaskId: \"2\") {\n    comment,\n    UserId,\n  }\n}",
+						"query": "query {\n  getComment (taskId: \"1\") {\n    comment,\n    userId,\n    task {\n        _id\n    },\n    user {\n        name\n    },\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -214,7 +214,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addComment (\n    commentInput: { \n        TaskId: \"2\",\n        comment: \"testComment\"\n        }\n  ) {\n    _id,\n    UserId,\n    comment\n  }\n}",
+						"query": "mutation {\n  addComment (\n    commentInput: { \n        taskId: \"1\",\n        comment: \"testComment\"\n        }\n  ) {\n    _id,\n    userId,\n    comment\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -442,7 +442,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getTask {\n    _id,\n    title,\n    desc,\n    ListId,\n    UserId,\n  }\n}",
+						"query": "query {\n  getTask {\n    _id,\n    title,\n    desc,\n    list {\n        _id\n    },\n    user {\n        name\n    },\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -480,7 +480,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addTask (\n    taskInput: { \n        ListId: \"1\",\n        title: \"testTask\", \n        }\n  ) {\n    _id,\n    title,\n  }\n}",
+						"query": "mutation {\n  addTask (\n    taskInput: { \n        listId: \"1\",\n        title: \"testTask\", \n        }\n  ) {\n    _id,\n    title,\n  }\n}",
 						"variables": ""
 					}
 				},

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const List = sequelize.define("List", {
+  const List = sequelize.define("list", {
     _id: {
       type: DataTypes.INTEGER,
       field: "_id",

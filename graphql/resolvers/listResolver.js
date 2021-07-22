@@ -12,7 +12,7 @@ exports.listResolver = {
     }
     return lists = await List.findAll({
       where: {
-        UserId: req.userId,
+        userId: req.userId,
       },
       include: User,
     });
@@ -26,7 +26,7 @@ exports.listResolver = {
     const foundList = await List.findOne({
       where: {
         title: args.listInput.title,
-        UserId: req.userId,
+        userId: req.userId,
       },
     });
     console.log("foundList", foundList);
@@ -39,7 +39,7 @@ exports.listResolver = {
         desc: args.listInput.desc,
         listType: "todolist",
         sharedWith: [],
-        UserId: req.userId,
+        userId: req.userId,
       });
       return await list.save();
     } catch (err) {
@@ -92,7 +92,7 @@ exports.listResolver = {
     await List.destroy({
       where: {
         _id: args._id,
-        UserId: req.userId,
+        userId: req.userId,
       },
     });
     return true;

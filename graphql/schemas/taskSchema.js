@@ -1,8 +1,8 @@
 exports.Task = `
 type Task {
     _id: ID! 
-    ListId: String!
-    UserId: String!
+    listId: String!
+    userId: String!
     title: String!
     desc: String
     positionInList: Int!
@@ -14,12 +14,14 @@ type Task {
     assignedTo: String
     createdAt: String!
     udpatedAt: String!
+    user: User
+    list: List
 }`;
 
 exports.TaskInputData = `
 input TaskInputData {
-    ListId: String
-    UserId: String
+    listId: String
+    userId: String
     title: String
     desc: String
     positionInList: Int
