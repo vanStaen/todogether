@@ -36,6 +36,7 @@ exports.listResolver = {
         title: args.listInput.title,
         desc: args.listInput.desc,
         listType: "todolist",
+        sharedWith: [],
         UserId: req.userId,
       });
       return await list.save();
@@ -44,8 +45,43 @@ exports.listResolver = {
     }
   },
 
-  // updateList(_id: ID!, listInput: ListInputData!): List!
-  // TODO
+  // updateList(listInput: ListInputData!): List!
+  async updateList(args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const updateFields = [];
+    const updatableFields = [
+      "shareWith",
+      "title",
+      "avatar",
+      "desc",
+      "listType",
+    ];
+    updatableFields.forEach((field) => {
+      if (field in args.listInput) {
+        updateFields[field] = args.listInput[field];
+      }
+    });
+    console.log("_id", args._id)
+    try {
+      const updatedList = await List.update(
+        updateFields,
+        {
+          where: {
+            _id: args._id,
+          },
+          returning: true,
+          plain: true,
+        }
+      );
+      // updatedList[0]: number or row udpated
+      // updatedList[1]: rows updated
+      return updatedList[1];
+    } catch (err) {
+      console.log(err);
+    }
+  },
 
   // deleteList(id: ID!): Boolean!
   async deleteList (args, req) {
