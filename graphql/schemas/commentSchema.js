@@ -11,8 +11,7 @@ type Comment {
 
 exports.CommentInputData = `
 input CommentInputData {
-    userId: Int
-    taskId: Int
+    taskId: Int!
     comment: String!
 }`;
 
