@@ -6,20 +6,7 @@ const db = {};
 
 require("dotenv/config");
 
-const sequelize = new Sequelize({
-  database: process.env.DATABASE_NAME,
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PWD,
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-});
+const { sequelize } = require('../lib/sequelizedb');
 
 fs.readdirSync(__dirname)
   .filter((file) => {
@@ -28,10 +15,7 @@ fs.readdirSync(__dirname)
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes
-    );
+    const model = require(path.join(__dirname, file));
     db[model.name] = model;
   });
 

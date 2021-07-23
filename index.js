@@ -1,12 +1,14 @@
-require("dotenv/config");
 const path = require("path");
-const PORT = process.env.PORT || 5012;
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
+
 const db = require("./models");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
+const isAuth = require("./middleware/is-auth");
 
+require("dotenv/config");
+const PORT = process.env.PORT || 5012;
 
 // Init Express
 const app = express();
@@ -14,6 +16,9 @@ const app = express();
 // Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Authorization Middleware
+app.use(isAuth);
 
 // Allow cross origin request
 app.use((req, res, next) => {
@@ -32,11 +37,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// Start DB
+// Start DB & use GraphQL
 db.sequelize.sync().then((req)=> {
-
-  console.log('>>>> DB connection and sync was succesfull!')
-  // GraphQL
   app.use(
     "/graphql",
     graphqlHTTP({

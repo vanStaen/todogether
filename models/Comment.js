@@ -1,31 +1,22 @@
-module.exports = (sequelize, DataTypes) => {
-  const Comment = sequelize.define("Comment", {
-    _id: {
-      type: DataTypes.INTEGER,
-      field: "_id",
-      autoIncrement: !0,
-      primaryKey: !0
-    },
-    comment: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  });
+const { sequelize, DataTypes } = require('../lib/sequelizedb');
+const { User } = require('./User');
 
-  Comment.associate = (models) => {
-    Comment.belongsTo(models.User, {
-      foreignKey: {
-        name: 'userId',
-        field: 'userId'
-      }
-    });
-    Comment.belongsTo(models.Task, {
-      foreignKey: {
-        name: 'taskId',
-        field: 'taskId'
-      }
-    });
-  }
+const Comment = sequelize.define("comment", {
+  _id: {
+    type: DataTypes.INTEGER,
+    field: "_id",
+    autoIncrement: true,
+    primaryKey: true
+  },
+  comment: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+});
 
-  return Comment;
-}
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
+module.exports = {
+  Comment
+};

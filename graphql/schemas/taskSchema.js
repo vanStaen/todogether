@@ -3,33 +3,39 @@ type Task {
     _id: ID! 
     listId: Int!
     userId: Int!
+    title: String!
+    desc: String
     positionInList: Int!
     favorited: Boolean
     archived: Boolean
     subTaskIds: [Int]
-    recurring: Int
     deadline: String
-    categoryId: Int
+    categoryId: String
     assignedTo: Int
     createdAt: String!
     udpatedAt: String!
+    list: List
+    user: User
+    comments: [Comment]
 }`;
 
 exports.TaskInputData = `
 input TaskInputData {
     listId: Int
+    userId: Int
+    title: String
+    desc: String
     positionInList: Int
     favorited: Boolean
     archived: Boolean
-    subTaskIds: [Int]
-    recurring: Int
+    subTaskIds: [String]
     deadline: String
     categoryId: Int
     assignedTo: Int
 }`;
 
 exports.TaskQueries = `
-    getTask: [Task]
+    getTask(listId: Int!): [Task]
 `;
 
 exports.TaskMutations = `
