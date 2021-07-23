@@ -14,7 +14,9 @@ exports.listResolver = {
         userId: req.userId,
       },
       include: [
-        { model: User, include: { model: List, include: Task } },
+        { model: User, include: 
+            { model: List, include: Task } 
+        },
         { model: Task, include: Comment },
       ],
     });
