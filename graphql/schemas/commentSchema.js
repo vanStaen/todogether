@@ -7,6 +7,7 @@ type Comment {
     createdAt: String!
     udpatedAt: String!
     user: User
+    task: Task
 }`;
 
 exports.CommentInputData = `

@@ -9,7 +9,7 @@ exports.commentResolver = {
       where: {
         taskId: args.taskId,
       },
-      include: User,
+      include: [User, Task]
     });
     return result;
   },
