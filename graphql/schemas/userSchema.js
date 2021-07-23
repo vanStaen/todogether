@@ -9,7 +9,8 @@ type User {
     displaySettings: String!
     createdAt: String!
     updatedAt: String!
-    list: List
+    lists: [List]
+    tasks: [Task]
 }`;
 
 exports.UserInputData = `

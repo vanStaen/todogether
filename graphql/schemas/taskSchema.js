@@ -16,7 +16,7 @@ type Task {
     udpatedAt: String!
     list: List
     user: User
-    comment: Comment
+    comments: [Comment]
 }`;
 
 exports.TaskInputData = `

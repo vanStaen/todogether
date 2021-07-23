@@ -1,23 +1,27 @@
 const { List } = require("../../models/List");
 const { User } = require("../../models/User");
+const { Task } = require("../../models/Task");
+const { Comment } = require("../../models/Comment");
 
 exports.listResolver = {
-
   //list
-  async getList (args, req) {
+  async getList(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return lists = await List.findAll({
+    return await List.findAll({
       where: {
         userId: req.userId,
       },
-      include: User,
+      include: [
+        { model: User, include: { model: List, include: Task } },
+        { model: Task, include: Comment },
+      ],
     });
   },
 
   //addList(listInput: ListInputData!): List!
-  async addList (args, req) {
+  async addList(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
@@ -64,16 +68,13 @@ exports.listResolver = {
       }
     });
     try {
-      const updatedList = await List.update(
-        updateFields,
-        {
-          where: {
-            _id: args._id,
-          },
-          returning: true,
-          plain: true,
-        }
-      );
+      const updatedList = await List.update(updateFields, {
+        where: {
+          _id: args._id,
+        },
+        returning: true,
+        plain: true,
+      });
       // updatedList[0]: number or row udpated
       // updatedList[1]: rows updated
       return updatedList[1];
@@ -83,7 +84,7 @@ exports.listResolver = {
   },
 
   // deleteList(id: ID!): Boolean!
-  async deleteList (args, req) {
+  async deleteList(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }

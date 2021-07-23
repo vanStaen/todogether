@@ -10,7 +10,7 @@ exports.taskResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return tasks = await Task.findAll({
+    return await Task.findAll({
       where: {
         userId: req.userId,
         listId: args.listId,

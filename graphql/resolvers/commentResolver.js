@@ -5,13 +5,12 @@ const { Task } = require("../../models/Task");
 exports.commentResolver = {
   //comment
   async getComment(args, req) {
-    const result = await Comment.findAll({
+    return await Comment.findAll({
       where: {
         taskId: args.taskId,
       },
       include: [User, Task]
     });
-    return result;
   },
 
   //addComment(commentInput: CommentInputData!): Comment!

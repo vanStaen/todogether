@@ -1,12 +1,15 @@
 const bcrypt = require("bcryptjs");
 const { User } = require("../../models/User");
+const { List } = require("../../models/List");
+const { Task } = require("../../models/Task");
+
 
 exports.userResolver = {
   async getUser(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return user = await User.findOne({ _id: req.userId });
+    return await User.findOne({ _id: req.userId });
   },
 
   // addUser(userInput: UserInputData!): User!
@@ -15,6 +18,7 @@ exports.userResolver = {
       where: {
         email: args.userInput.email,
       },
+      include: [List, Task],
     });
     if (foundUser) {
       throw new Error("This email is already associated with an account.");

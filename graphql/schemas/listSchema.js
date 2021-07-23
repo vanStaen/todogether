@@ -9,7 +9,7 @@ type List {
     listType: String
     createdAt: String!
     udpatedAt: String!
-    task: Task
+    tasks: [Task]
 }`;
 
 exports.ListInputData = `
