@@ -1,60 +1,62 @@
-module.exports = (sequelize, DataTypes) => {
-  const Task = sequelize.define("task", {
-    _id: {
-      type: DataTypes.INTEGER,
-      field: "_id",
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    desc: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    positionInList: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    favorited: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    archived: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    subTaskIds: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: true,
-    },
-    deadline: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    categoryId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    assignedTo: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-  });
+const { sequelize, DataTypes } = require('../lib/sequelizedb');
+const { Comment } = require('./Comment');
+const { User } = require('./User');
+const { List } = require('./List');
 
-  const User = require("./User")(sequelize, DataTypes);
-  User.hasMany(Task);
-  Task.belongsTo(User);
+const Task = sequelize.define("task", {
+  _id: {
+    type: DataTypes.INTEGER,
+    field: "_id",
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  desc: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  positionInList: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  favorited: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  archived: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  subTaskIds: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    allowNull: true,
+  },
+  deadline: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  categoryId: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  assignedTo: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+});
 
-  const List = require("./List")(sequelize, DataTypes);
-  List.hasMany(Task);
-  Task.belongsTo(List);
+User.hasMany(Task);
+Task.belongsTo(User);
 
-  const Comment = require("./Comment")(sequelize, DataTypes);
-  Task.hasMany(Comment);
-  Comment.belongsTo(Task);
+List.hasMany(Task);
+Task.belongsTo(List);
 
-  return Task;
+Task.hasMany(Comment);
+Comment.belongsTo(Task);
+
+module.exports = {
+  Task
 }

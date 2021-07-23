@@ -1,7 +1,5 @@
 const bcrypt = require("bcryptjs");
-const Sequelize = require("sequelize");
-const sequelizedb = require("../../lib/sequelizedb");
-const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
+const { User } = require("../../models/User");
 
 exports.userResolver = {
   async getUser(args, req) {

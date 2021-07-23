@@ -1,12 +1,10 @@
-const Sequelize = require("sequelize");
-const sequelizedb = require("../../lib/sequelizedb")
-const Task = require("../../models/Task")(sequelizedb, Sequelize.DataTypes);
-const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
-const List = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
-const Comment = require("../../models/Comment")(sequelizedb, Sequelize.DataTypes);
+const { Task } = require("../../models/Task");
+const { User } = require("../../models/User");
+const { List } = require("../../models/List");
+const { Comment } = require("../../models/Comment");
 
 exports.taskResolver = {
-  
+
   //task
   async getTask (args, req) {
     if (!req.isAuth) {

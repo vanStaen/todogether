@@ -1,7 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelizedb = require("../../lib/sequelizedb")
-const List = require("../../models/List")(sequelizedb, Sequelize.DataTypes);
-const User = require("../../models/User")(sequelizedb, Sequelize.DataTypes);
+const { List } = require("../../models/List");
+const { User } = require("../../models/User");
 
 exports.listResolver = {
 
@@ -32,7 +30,7 @@ exports.listResolver = {
     console.log("foundList", foundList);
     if (foundList) {
       throw new Error("A list with this title already exist.");
-    }    
+    }
     try {
       const list = new List({
         title: args.listInput.title,
