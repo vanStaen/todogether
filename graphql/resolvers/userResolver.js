@@ -44,7 +44,6 @@ exports.userResolver = {
     }
     const updateFields = [];
     const updatableFields = [
-      "password",
       "name",
       "avatar",
       "categories",
