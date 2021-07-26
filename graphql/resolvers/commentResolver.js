@@ -3,7 +3,7 @@ const { User } = require("../../models/User");
 const { Task } = require("../../models/Task");
 
 exports.commentResolver = {
-  //comment
+  //getComment
   async getComment(args, req) {
     return await Comment.findAll({
       where: {
