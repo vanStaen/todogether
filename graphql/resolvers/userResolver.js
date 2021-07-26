@@ -3,13 +3,12 @@ const { User } = require("../../models/User");
 const { List } = require("../../models/List");
 const { Task } = require("../../models/Task");
 
-
 exports.userResolver = {
   async getUser(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await User.findOne({ _id: req.userId });
+    return await User.findOne({ _id: req.userId, include: [List, Task] });
   },
 
   // addUser(userInput: UserInputData!): User!
@@ -18,7 +17,6 @@ exports.userResolver = {
       where: {
         email: args.userInput.email,
       },
-      include: [List, Task],
     });
     if (foundUser) {
       throw new Error("This email is already associated with an account.");
@@ -62,16 +60,13 @@ exports.userResolver = {
       updateFields.password = await bcrypt.hash(args.userInput.password, 12);
     }
     try {
-      const updatedUser = await User.update(
-        updateFields,
-        {
-          where: {
-            _id: req.userId,
-          },
-          returning: true,
-          plain: true,
-        }
-      );
+      const updatedUser = await User.update(updateFields, {
+        where: {
+          _id: req.userId,
+        },
+        returning: true,
+        plain: true,
+      });
       // updatedUser[0]: number or row udpated
       // updatedUser[1]: rows updated
       return updatedUser[1];

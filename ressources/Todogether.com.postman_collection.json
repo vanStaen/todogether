@@ -24,7 +24,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getUser {\n    _id,\n    name,\n    email,\n    avatar,\n    categories,\n    createdAt,\n    updatedAt,\n    list {\n        _id\n    }\n    task {\n        _id,\n        title,\n    }\n  }\n}",
+						"query": "query {\n  getUser {\n    _id,\n    name,\n    email,\n    avatar,\n    categories,\n    createdAt,\n    updatedAt,\n    lists {\n        _id,\n        title,\n        desc,\n    }\n    tasks {\n        _id,\n        title,\n        desc,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -272,7 +272,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Query: getList",
+			"name": "GraphQL Querry: GetList",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -290,7 +290,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getList {\n    title,\n    desc,\n    _id,\n    tasks {\n        _id,\n        title\n        comments {\n            _id,\n            comment,\n        },\n    }\n  }\n}",
+						"query": "query {\n    getList {\n        title,\n        desc,\n        _id,\n        tasks {\n            _id,\n            title\n            comments {\n                _id,\n                comment,\n                }\n            }\n        }\n    }",
 						"variables": ""
 					}
 				},
