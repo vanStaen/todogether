@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, notification } from "antd";
 
 import { authStore } from "../../store/authStore/authStore";
@@ -42,8 +42,8 @@ export const LoginForm = () => {
           localStorage.setItem("refreshToken", userData.refreshToken);
           localStorage.setItem("userId", userData.userId);
         }
-        authStore.login(userData.token, userData.refreshToken);
-        userStore.setUserId(userData.userId);
+        authStore.setToken(userData.token);
+        authStore.setRefreshToken(userData.refreshToken);
       } catch (error) {
         notification.warn({
           message: error.message,
@@ -57,12 +57,12 @@ export const LoginForm = () => {
   return (
     <div className="login__full">
       <div className="login__header">
-        <img
+        {/*<img
           className="login__logo"
           src={process.env.REACT_APP_API_URL + `/images/venja.svg`}
           alt="logo"
-        />
-        Venja.org
+        />*/}
+        www.todogether.com
       </div>
 
       <Form

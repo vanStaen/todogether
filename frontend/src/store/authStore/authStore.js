@@ -41,10 +41,6 @@ export class AuthStore {
     await deleteLogout();
   };
 
-  setIsGuest = (isGuest) => {
-    this.isGuest = isGuest;
-  };
-
   setHasAccess = (hasAccess) => {
     this.hasAccess = hasAccess;
   };
