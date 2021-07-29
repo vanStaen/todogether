@@ -11,12 +11,9 @@ router.post("/login", async (req, res) => {
     if (!req.body.remind) {
       throw new Error("The 'remind me'-flag shoud not be missing!");
     }
-    const authData = await authService.login(req.body.username, req.body.email, req.body.password, req.body.remind);
-    const [accessToken, refreshToken, userId] = authData;
+    const loginSuccess = await authService.login(req.body.username, req.body.email, req.body.password, req.body.remind);
     res.status(200).json({
-      userId: userId,
-      token: accessToken,
-      refreshToken: refreshToken,
+      success: loginSuccess,
     });
   } catch (err) {
     res.status(400).json({
@@ -31,10 +28,11 @@ router.delete("/logout", async (req, res) => {
     if (!req.body.userId) {
       throw new Error("Please provide at least an 'Email' or a 'Username'");
     }
-    const logout = await authService.logout(req.body.userId);
+    const logoutSuccess = await authService.logout(req.body.userId);
     if (logout) {
-      // Html resp code 204 return no content
-      res.status(204).json();
+      res.status(200).json({
+        success: logoutSuccess,
+      });
     } else {
       throw new Error("Error during Logout!");
     }

@@ -15,9 +15,9 @@ export class AuthStore {
     });
   }
 
-  login = async () => {
+  login = async (email, username, password, remind) => {
     // Call login endpoint
-    const resultLogIn = await postLogin();
+    const resultLogIn = await postLogin(email, username, password, remind);
     if (resultLogIn) {
       this.hasAccess = true;
     }
@@ -25,10 +25,10 @@ export class AuthStore {
 
   logout = async () => {
     // Call logout endpoint
-     const resultLogOut = await deleteLogout();
-     if (resultLogOut) {
-       this.hasAccess = false;
-     }
+    const resultLogOut = await deleteLogout();
+    if (resultLogOut) {
+      this.hasAccess = false;
+    }
   };
 
   setHasAccess = (hasAccess) => {

@@ -1,13 +1,16 @@
 import axios from "axios";
 
-export const postLoginToken = async (refreshToken) => {
+export const postLogin = async (email, username, password, remind) => {
 
     const requestBody = {
-        "refreshToken": refreshToken,
+        "email": email,
+        "username": username,
+        "password": password,
+        "remind": remind,
     };
 
     const response = await axios({
-        url: process.env.REACT_APP_API_URL + `/login/token`,
+        url: process.env.REACT_APP_API_URL + `/auth/login/`,
         method: "POST",
         data: requestBody,
     });

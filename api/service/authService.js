@@ -38,15 +38,15 @@ exports.authService = {
         { lastActive: Date.now() },
         { where: { _id: findUser._id } }
       );     
-      // Return data to Controller
-      return [accessToken, refreshToken, userId];
+      // Return true if success
+      return true;
     }
   },
 
   async logOut(userId) {
     // delete all session cookie 
     req.session = null
-    // Return data to Controller
+    // Return true if success
     return true;
   },
 
