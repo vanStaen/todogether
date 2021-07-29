@@ -24,7 +24,7 @@ exports.userResolver = {
     try {
       hashedPassword = await bcrypt.hash(args.userInput.password, 12);
       const user = new User({
-        name: args.userInput.name,
+        username: args.userInput.username,
         email: args.userInput.email,
         password: hashedPassword,
         emailSettings: "[]",
@@ -44,7 +44,7 @@ exports.userResolver = {
     }
     const updateFields = [];
     const updatableFields = [
-      "name",
+      "username",
       "avatar",
       "categories",
       "emailSettings",

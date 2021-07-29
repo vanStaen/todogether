@@ -1,7 +1,7 @@
 exports.User = `
 type User {
     _id: ID! 
-    name: String!
+    username: String!
     email: String!
     avatar: String
     categories: String
@@ -15,7 +15,7 @@ type User {
 
 exports.UserInputData = `
 input UserInputData {
-    name: String
+    username: String
     email: String
     password: String
     avatar: String
