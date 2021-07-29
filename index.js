@@ -5,7 +5,8 @@ const { graphqlHTTP } = require("express-graphql");
 const db = require("./models");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
-const isAuth = require("./middleware/is-auth");
+const isAuth = require("./middleware/isAuth");
+const cookieSession = require("./middleware/cookieSession");
 
 require("dotenv/config");
 const PORT = process.env.PORT || 5012;
@@ -16,6 +17,10 @@ const app = express();
 // Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+
+// Session Cookie Middleware
+app.use(cookieSession);
 
 // Authorization Middleware
 app.use(isAuth);

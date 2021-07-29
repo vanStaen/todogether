@@ -1,4 +1,5 @@
 const { User } = require("../../models/User");
+const cookieSession = require('cookie-session')
 const bcrypt = require("bcryptjs");
 
 exports.authService = {
