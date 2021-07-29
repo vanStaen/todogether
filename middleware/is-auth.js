@@ -31,21 +31,22 @@ module.exports = (req, res, next) => {
   try {
     decodedToken = jsonwebtoken.verify(token, process.env.AUTH_SECRET_KEY);
   } catch (err) {
-    req.isAuth = false;
-    return next();
-  }
-  if (!decodedToken) {
-    req.isAuth = false;
-    return next();
-  }
+    try {
+      // if "keep me signed in, checked"
+    
+      decodedToken = jsonwebtoken.verify(refreshToken, process.env.AUTH_SECRET_KEY_REFRESH);
+    } catch (err) {
+      req.isAuth = false;
+      return next(); 
+    }
+  } 
+
+  // Get new token
+  // ... 
+  // Set token & refreshtoken cookie (overwrite)
+  // ...
 
   req.isAuth = true;
   req.userId = decodedToken.userId;
-  req.email = decodedToken.email;
-
-  // Debug:
-  // console.log("email:", req.email);
-  // console.log("userId:", req.userId);
-
   next();
 };

@@ -1,5 +1,4 @@
 const { User } = require("../../models/User");
-const { Token } = require("../../models/Token");
 const bcrypt = require("bcryptjs");
 
 exports.authService = {
@@ -29,34 +28,22 @@ exports.authService = {
       );
       // Update lastLogin in user table
       await User.update(
-        { lastLogin: Date.now() },
+        { lastActive: Date.now() },
         { where: { _id: findUser._id } }
-      );
-      await client.query(updateLastLoginQuery);
-      // Add refresh token to db
-      await Token.create({
-        refreshToken: refreshToken,
-        userId: findUser._id,
-      });
+      );     
       // Return data to Controller
       return [accessToken, refreshToken, userId];
     }
   },
 
   async logOut(userId) {
-    await User.destroy({ where: { _id: userId } });
+    // TODO: delete token and refreshtoken cookie 
     // Return data to Controller
     return true;
   },
 
-  async token(refreshToken) {
-    const findRefreshToken = Token.findOne({
-      where: { refreshToken: refreshToken },
-    });
-    if (!findRefreshToken) {
-      throw new Error("Refresh token could not be found!");
-    } else {
-      const userId = accessToken.userId;
+  async token(userId) {
+      req.userId;
       // Generate new Token
       const accessToken = await jsonwebtoken.sign(
         { userId: userId },
@@ -67,6 +54,5 @@ exports.authService = {
       await User.update({ lastLogin: Date.now() }, { where: { _id: userId } });
       // Return data to Controller
       return [accessToken, userID];
-    }
   },
 };
