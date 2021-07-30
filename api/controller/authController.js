@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const jsonwebtoken = require("jsonwebtoken");
 const authService = require("../service/authService");
 
 // Login

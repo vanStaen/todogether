@@ -1,5 +1,5 @@
 const { User } = require("../../models/User");
-const cookieSession = require('cookie-session')
+const jsonwebtoken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 exports.authService = {
