@@ -18,7 +18,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 // Session Cookie Middleware
 app.use(cookieSession);
 
