@@ -9,6 +9,7 @@ const isAuth = require("./middleware/isAuth");
 const cookieSession = require("./middleware/cookieSession");
 
 require("dotenv/config");
+
 const PORT = process.env.PORT || 5012;
 
 // Init Express
