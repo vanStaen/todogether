@@ -40,7 +40,7 @@ const User = sequelize.define("user", {
     allowNull: false,
   },
   lastActive: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false,
   },
 });
