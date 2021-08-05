@@ -7,6 +7,7 @@ type User {
     categories: String
     emailSettings: String!
     displaySettings: String!
+    lastActive: String!
     createdAt: String!
     updatedAt: String!
     lists: [List]
