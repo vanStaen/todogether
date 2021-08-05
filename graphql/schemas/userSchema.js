@@ -5,8 +5,8 @@ type User {
     email: String!
     avatar: String
     categories: String
-    emailSettings: String!
-    displaySettings: String!
+    emailSettings: [String]!
+    displaySettings: [String]!
     lastActive: String!
     createdAt: String!
     updatedAt: String!
@@ -20,8 +20,8 @@ input UserInputData {
     email: String
     password: String
     avatar: String
-    categories: String
-    emailSettings: String
+    categories: [String]
+    emailSettings: [String]
     displaySettings: String
 }`;
 

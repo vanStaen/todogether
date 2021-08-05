@@ -32,12 +32,12 @@ const User = sequelize.define("user", {
     allowNull: true,
   },
   emailSettings: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: [],
   },
-  displaySettings: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  profilSettings: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: [],
   },
   lastActive: {
     type: DataTypes.DATE,
