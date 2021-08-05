@@ -8,7 +8,10 @@ exports.userResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await User.findOne({ _id: req.userId, include: [List, Task] });
+    return await User.findOne({
+      where: { _id: req.userId },
+      include: [List, Task],
+    });
   },
 
   // addUser(userInput: UserInputData!): User!
