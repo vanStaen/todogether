@@ -1,0 +1,21 @@
+.home__logout {
+  border: 1px solid red;
+  cursor: pointer;
+}
+
+.home__logout:hover {
+  border: 1px solid red;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.thumbsup {
+  width: 500px;
+  height: 300px;
+  vertical-align: top;
+  background-image: url("../../img/thumbsup.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -5,23 +5,20 @@ import { getUserInfo } from "./getUserInfo";
 export class UserStore {
   email = null;
   infos = null;
-  name = "there";
+  name = null;
   username = null;
-  isAdmin = false;
 
   constructor() {
     makeObservable(this, {
-      fetchuserData: action,
-      setEmail: action,
       email: observable,
-      setInfos: action,
       infos: observable,
-      setName: action,
       name: observable,
-      setUsername: action,
       username: observable,
-      isAdmin: observable,
-      setIsAdmin: action,
+      setEmail: action,
+      setInfos: action,
+      setName: action,
+      setUsername: action,
+      fetchuserData: action,
     });
   }
 
@@ -39,10 +36,6 @@ export class UserStore {
 
   setUsername = (username) => {
     this.username = username;
-  };
-
-  setIsAdmin = (isAdmin) => {
-    this.isAdmin = isAdmin;
   };
 
   fetchuserData = async () => {

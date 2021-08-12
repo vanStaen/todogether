@@ -1,16 +1,13 @@
 import axios from "axios";
 
-export const postLogin = async (email, username, password, remind) => {
+export const postSendRecoverLink = async (email) => {
 
     const requestBody = {
-        "email": email,
-        "username": username,
-        "password": password,
-        "remind": remind,
+        "sendto": email,
     };
 
     const response = await axios({
-        url: process.env.REACT_APP_API_URL + `/auth/login/`,
+        url: process.env.REACT_APP_API_URL + `/mail/recover`,
         method: "POST",
         data: requestBody,
     });
@@ -23,5 +20,6 @@ export const postLogin = async (email, username, password, remind) => {
         }
     }
 
-    return response;
+    return true
+
 };

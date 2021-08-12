@@ -6,7 +6,10 @@ export const deleteLogout = async () => {
     method: "DELETE",
   });
 
-  if (response.status !== 204) {
-    throw new Error(`Error ou Logout! Status ${response.status}`);
+  if (response.status !== 200) {
+    throw new Error(`Error on Logout! Status ${response.status}`);
   }
+
+  return response.data.success;
+
 };
