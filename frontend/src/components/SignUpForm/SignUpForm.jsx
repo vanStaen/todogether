@@ -86,40 +86,15 @@ export const SignUpForm = (props) => {
   return (
     <div className="signup__full">
       <div className="signup__header">
-        Sign up to <b>merrier</b>
-        .app
+        Sign up to <b>togogether</b>
+        .com
       </div>
 
       <Form
         name="form_signup"
         className="signup__form"
-        initialValues={{
-          code: props.inviteCode,
-        }}
         onFinish={submitHandler}
       >
-        <Tooltip
-          trigger={["hover"]}
-          title={"Your invitation code"}
-          placement="left"
-        >
-          <Form.Item
-            name="code"
-            rules={[
-              {
-                required: true,
-                message: "An invitation is required to create a account",
-              },
-            ]}
-          >
-            <Input
-              prefix={<CheckOutlined className="site-form-item-icon" />}
-              placeholder="Invitation code"
-              disabled={props.inviteCode}
-            />
-          </Form.Item>
-        </Tooltip>
-
         <Form.Item
           name="firstname"
           style={{ display: "inline-block", width: "calc(50% - 12px)" }}
