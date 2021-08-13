@@ -7,6 +7,7 @@ const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 const isAuth = require("./middleware/isAuth");
 const cookieSession = require("./middleware/cookieSession");
+const redirectTraffic = require("./middleware/redirectTraffic");
 
 require("dotenv/config");
 
@@ -14,6 +15,10 @@ const PORT = process.env.PORT || 5012;
 
 // Init Express
 const app = express();
+
+// Redirect www trafic to root
+app.set("trust proxy", true);
+app.use(redirectTraffic);
 
 // Body Parser Middleware
 app.use(express.json());
