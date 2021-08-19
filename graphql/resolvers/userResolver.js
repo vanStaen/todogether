@@ -8,7 +8,10 @@ exports.userResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await User.findOne({ _id: req.userId, include: [List, Task] });
+    return await User.findOne({
+      where: { _id: req.userId },
+      include: [List, Task],
+    });
   },
 
   // addUser(userInput: UserInputData!): User!
@@ -74,13 +77,17 @@ exports.userResolver = {
     }
   },
 
-  // deleteUser(_id: ID!): Boolean!
+  // deleteUser: Boolean!
   async deleteUser(args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     await User.destroy({
       where: {
-        _id: args._id,
+        _id: req.userId,
       },
     });
+    req.session = null;
     return true;
   },
 };

@@ -32,15 +32,23 @@ const User = sequelize.define("user", {
     allowNull: true,
   },
   emailSettings: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: [],
   },
-  displaySettings: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  profilSettings: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: [],
+  },
+  verifiedEmail: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  active: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
   lastActive: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false,
   },
 });

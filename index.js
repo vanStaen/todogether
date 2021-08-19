@@ -8,6 +8,7 @@ const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 const isAuth = require("./middleware/isAuth");
 const cookieSession = require("./middleware/cookieSession");
+const redirectTraffic = require("./middleware/redirectTraffic");
 
 require("dotenv/config");
 
@@ -15,6 +16,10 @@ const PORT = process.env.PORT || 5012;
 
 // Init Express
 const app = express();
+
+// Redirect www trafic to root
+app.set("trust proxy", true);
+app.use(redirectTraffic);
 
 // Body Parser Middleware
 app.use(express.json());
@@ -26,19 +31,36 @@ app.use(cookieSession);
 // Authorization Middleware
 app.use(isAuth);
 
+
 // Allow cross origin request
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
+app.use(function (req, res, next) {
+  let corsOptions = {};
+  if ((req.get('host') === 'localhost:5012')) {
+    corsOptions = {
+      origin: 'http://localhost:8080',
+      optionsSuccessStatus: 200
+    }
+  } else {
+    corsOptions = {
+      origin: [
+        'https://www.todogether.com',
+        'https://todogether.com',
+        'http://todogether-cvs.herokuapp.com',
+        'https://todogether-cvs.herokuapp.com',
+      ],
+      credentials: true,
+      optionsSuccessStatus: 200
+    }
   }
-  next();
-});
+  cors(corsOptions)(req, res, next);
+})
+
 
 // Router to API endpoints
 app.use("/auth", require("./api/controller/authController"));
+app.use('/user', require('./api/controller/userController'))
+app.use('/mail', require('./api/controller/mailController'))
+
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {

@@ -5,8 +5,9 @@ type User {
     email: String!
     avatar: String
     categories: String
-    emailSettings: String!
-    displaySettings: String!
+    emailSettings: [String]!
+    displaySettings: [String]!
+    lastActive: String!
     createdAt: String!
     updatedAt: String!
     lists: [List]
@@ -19,8 +20,8 @@ input UserInputData {
     email: String
     password: String
     avatar: String
-    categories: String
-    emailSettings: String
+    categories: [String]
+    emailSettings: [String]
     displaySettings: String
 }`;
 
@@ -31,5 +32,5 @@ exports.UserQueries = `
 exports.UserMutations = `
     addUser(userInput: UserInputData!): User!
     updateUser(userInput: UserInputData!): User!
-    deleteUser(_id: ID!): Boolean!
+    deleteUser: Boolean!
 `;
