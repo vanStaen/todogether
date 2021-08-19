@@ -1,4 +1,5 @@
 const path = require("path");
+const cors = require(`cors`)
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 
@@ -40,22 +41,22 @@ app.use((req, res, next) => {
 app.use("/auth", require("./api/controller/authController"));
 
 // Start DB & use GraphQL
-db.sequelize.sync().then((req)=> {
+db.sequelize.sync().then((req) => {
   app.use(
     "/graphql",
     graphqlHTTP({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
-      graphiql: true,     
+      graphiql: true,
       customFormatErrorFn(err) {
         if (!err.originalError) {
           return err
         }
         const data = err.originalError.data;
-        const message = err.message || 'An error occured with GraphQl';
-        const code = err.originalError.code || 500;
-        return { message: message, status: code, data: data}
-      } 
+        const message = err.message || 'An error occured with GraphQl';
+        const code = err.originalError.code || 500;
+        return { message: message, status: code, data: data }
+      }
     })
   );
 });
