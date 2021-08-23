@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import '../src/lib/i18n';
 
 ReactDOM.render(
   <React.StrictMode>
