@@ -88,8 +88,8 @@ export const SignUpForm = (props) => {
   return (
     <div className="signup__full">
       <div className="signup__header">
-        Sign up to <b>merrier</b>
-        .app
+        Sign up to <b>todogether</b>
+        .com
       </div>
 
       <Form
