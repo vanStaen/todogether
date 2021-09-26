@@ -7,12 +7,15 @@ const devMode = false;
 module.exports = async (req, res, next) => {
   // if in development mode
   if (devMode) {
-    console.log(">>>>>>>>> Auth: Developement Mode is on");
-    req.isAuth = true;
-    req.userId = "1";
-    req.email = "test@test.com";
-    return next();
+    if (req.get("host") === "localhost:5000") {
+      console.log(">>>> Developement Mode <<<<<");
+      req.isAuth = true;
+      req.userId = "1";
+      req.email = "clement.vanstaen@gmail.com";
+      return next();
+    }
   }
+
   // Authorization: Bearer <token>
   const token = req.session.token;
   const refreshToken = req.session.refreshToken;
