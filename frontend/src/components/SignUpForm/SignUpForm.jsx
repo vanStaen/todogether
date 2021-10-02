@@ -5,7 +5,6 @@ import {
   MailOutlined,
   LockOutlined,
   SyncOutlined,
-  SmileOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
