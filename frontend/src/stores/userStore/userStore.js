@@ -4,20 +4,26 @@ import { getUserInfo } from "./getUserInfo";
 
 export class UserStore {
   email = null;
-  infos = null;
-  name = null;
-  username = null;
+  userName = null;
+  avatar = null;
+  categories = [];
+  emailSettings = [];
+  profilSettings = [];
 
   constructor() {
     makeObservable(this, {
       email: observable,
-      infos: observable,
-      name: observable,
-      username: observable,
+      userName: observable,
+      avatar: observable,
+      categories: observable,
+      emailSettings: observable,
+      profilSettings: observable,
       setEmail: action,
-      setInfos: action,
-      setName: action,
-      setUsername: action,
+      setUserName: action,
+      setAvatar: action,
+      setCategories: action,
+      setEmailSettings: action,
+      setProfilSettings: action,
       fetchuserData: action,
     });
   }
@@ -26,25 +32,35 @@ export class UserStore {
     this.email = email;
   };
 
-  setInfos = (infos) => {
-    this.infos = infos;
+  setUserName = (userName) => {
+    this.userName = userName;
   };
 
-  setName = (name) => {
-    this.name = name;
+  setAvatar = (avatar) => {
+    this.avatar = avatar;
   };
 
-  setUsername = (username) => {
-    this.username = username;
+  setCategories = (categories) => {
+    this.categories = categories;
+  };
+ 
+  setEmailSettings = (emailSettings) => {
+    this.emailSettings = emailSettings;
+  };
+
+  setProfilSettings = (profilSettings) => {
+    this.profilSettings = profilSettings;
   };
 
   fetchuserData = async () => {
     const userData = await getUserInfo();
     if (userData) {
-      userStore.setEmail(userData.email);
-      userStore.setInfos(userData.infos);
-      userStore.setName(userData.name);
-      userStore.setUsername(userData.username);
+      this.setEmail(userData.email);
+      this.setUserName(userData.userName);
+      this.setAvatar(userData.avatar);
+      this.setCategories(userData.categories);
+      this.setEmailSettings(userData.emailSettings);
+      this.setProfilSettings(userData.profilSettings);
     }
   };
 }
