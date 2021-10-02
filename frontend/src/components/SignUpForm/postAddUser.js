@@ -11,15 +11,12 @@ export const postAddUser = async (
     query: `mutation {
                 addUser (
                     userInput: { 
-                        firstName: "${firstName}", 
-                        lastName: "${lastName}",
                         userName: "${userName}", 
                         email: "${email}", 
                         password: "${password}", 
                         }
                     ) {
                     _id
-                    email
                     }
                 }`,
             };

@@ -95,45 +95,6 @@ export const SignUpForm = (props) => {
         className="signup__form"
         onFinish={submitHandler}
       >
-        <Form.Item
-          name="firstname"
-          style={{ display: "inline-block", width: "calc(50% - 12px)" }}
-          rules={[
-            {
-              required: true,
-              message: t("login.firstNameMissing"),
-            },
-          ]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder={t("login.firstName")}
-          />
-        </Form.Item>
-        <span
-          style={{
-            display: "inline-block",
-            width: "24px",
-            lineHeight: "32px",
-            textAlign: "center",
-          }}
-        ></span>
-        <Form.Item
-          name="lastname"
-          style={{ display: "inline-block", width: "calc(50% - 12px)" }}
-          rules={[
-            {
-              required: true,
-              message: t("login.lastNameMissing"),
-            },
-          ]}
-        >
-          <Input
-            prefix={<SmileOutlined className="site-form-item-icon" />}
-            placeholder={t("login.lastName")}
-          />
-        </Form.Item>
-
         <Tooltip
           trigger={["hover"]}
           title={
