@@ -7,8 +7,8 @@ export class UserStore {
   userName = null;
   avatar = null;
   categories = [];
-  emailSettings = [];
-  profilSettings = [];
+  emailSettings = null;
+  profilSettings = null;
 
   constructor() {
     makeObservable(this, {

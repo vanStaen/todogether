@@ -5,8 +5,8 @@ type User {
     email: String!
     avatar: String
     categories: String
-    emailSettings: [String]!
-    displaySettings: [String]!
+    emailSettings: String!
+    profilSettings: String!
     lastActive: String!
     createdAt: String!
     updatedAt: String!
@@ -21,8 +21,8 @@ input UserInputData {
     password: String
     avatar: String
     categories: [String]
-    emailSettings: [String]
-    displaySettings: String
+    emailSettings: String
+    profilSettings: String
 }`;
 
 exports.UserQueries = `
