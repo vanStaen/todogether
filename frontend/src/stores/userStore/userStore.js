@@ -1,6 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 
 import { getUserInfo } from "./getUserInfo";
+import defaultEmailSettings from "./defaultEmailSettings.json";
+import defaultProfilSettings from "./defaultProfilSettings.json";
 
 export class UserStore {
   email = null;
@@ -59,8 +61,19 @@ export class UserStore {
       this.setUserName(userData.userName);
       this.setAvatar(userData.avatar);
       this.setCategories(userData.categories);
-      this.setEmailSettings(userData.emailSettings);
-      this.setProfilSettings(userData.profilSettings);
+
+      if (userData.emailSettings === null || userData.emailSettings === "{}") {
+        this.setEmailSettings(defaultEmailSettings);
+      } else {
+        this.setEmailSettings(userData.emailSettings);
+      }
+
+      if (userData.profilSettings === null || userData.profilSettings === "{}") {
+        this.setProfilSettings(defaultProfilSettings);
+      } else {
+        this.setProfilSettings(userData.profilSettings);
+      }
+
     }
   };
 }
