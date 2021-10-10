@@ -1,0 +1,23 @@
+.EditSettings__main {
+  width: 100vw;
+  height: 100vh;
+  font-size: 0.5em;
+}
+
+.EditSettings__container {
+  margin: 40px 4vw;
+  width: calc(100vw - 8vw);
+  display: inline-block;
+}
+
+.EditSettings__title {
+  font-size: 22px;
+  margin-bottom: 15px;
+
+}
+.EditSettings__singleSetting {
+  font-size: 15px;
+  margin-bottom: 15px;
+
+}
+
