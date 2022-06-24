@@ -12,13 +12,11 @@ export const Welcome = (props) => {
 
   return (
     <div>
+      <LanguageDropDown />
       <div className="welcome__alreadyMember">
         <AlreadyMember showLogin={showLogin} setShowLogin={setShowLogin} />
       </div>
-      <div className="welcome__leftPanel">
-        <LanguageDropDown />
-      </div>
-      <div className="welcome__rightPanel">
+      <div className="welcome__container">
         {showLogin ? <LoginForm /> : <SignUpForm setShowLogin={setShowLogin} />}
       </div>
     </div>

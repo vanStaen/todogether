@@ -1,20 +1,9 @@
-.welcome__leftPanel {
-  width: 40vw;
+.welcome__container {
+  width: 100vw;
   height: 100vh;
   display: inline-block;
   vertical-align: top;
-  background-image: url("./../../img/couple.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.welcome__rightPanel {
-  width: 60vw;
-  height: 100vh;
-  display: inline-block;
-  vertical-align: top;
-  background-color: white;
+  background-color: rgba(130, 119, 82, .3);
 }
 
 .welcome__alreadyMember{

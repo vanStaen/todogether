@@ -2,7 +2,7 @@
 
 ## Backlog:
 
-- [ ] Make Auth responsive
+- [x] Make Auth responsive
 - [ ] Add Logo and webmanifest
 - [ ] Add ServiceWorker
 

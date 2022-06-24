@@ -1,5 +1,5 @@
 .languageDropdown {
-  color: rgba(0,0,0,1);
+  position: absolute;
   margin: 15px 25px;
   font-weight: 300;
   font-size: 20px;
@@ -7,11 +7,11 @@
 }
 
 .languageDropdown .ant-dropdown-link {
-  color: rgba(255,255,255,1);
+  color: rgba(0,0,0,1);
 }
 
 .languageDropdown .ant-dropdown-link:hover {
-  color: rgba(0,0,0,.75);
+  font-weight: 200;
 }
 
 .languageDropdown__item {
