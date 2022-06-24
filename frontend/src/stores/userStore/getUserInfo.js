@@ -1,19 +1,33 @@
 import axios from "axios";
 
 export const getUserInfo = async () => {
+    const requestBody = {
+        query: `
+        {
+            getUser {
+              firstName,
+              lastName,
+              userName,
+              email,
+              avatar,
+              emailSettings,
+              profilSettings,
+              friends,
+              lastActive
+            }
+          }
+          `,
+    };
 
     const response = await axios({
-        url: process.env.REACT_APP_API_URL + `/user`,
-        method: "GET",
+        url: process.env.REACT_APP_API_URL + `/graphql`,
+        method: "POST",
+        data: requestBody,
     });
 
     if ((response.status !== 200) & (response.status !== 201)) {
-        if (response.status === 401) {
-            throw new Error(`Error! Unauthorized(401)`);
-        } else {
-            throw new Error(`Error! Status ${response.status}`);
-        }
+        throw new Error("Unauthenticated!");
     }
 
-    return response.data[0];
+    return response.data.data.getUser;
 };
