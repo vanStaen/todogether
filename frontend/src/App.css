@@ -8,6 +8,7 @@
   justify-content: center;
   font-size: calc(16px + 1vmin);
   letter-spacing: 1.5px;
+  background-color: #d9d6cb;
 }
 
 .App a:link, a:visited {
@@ -15,15 +16,15 @@
 }
 
 .App a:hover {
-  color: rgba(229, 152, 102, 1);
+  color: rgba(229, 152, 102, .75);
 }
 
 .link {
-  color: rgba(229, 152, 102, .75);
+  color: rgba(229, 152, 102, 1);
   cursor: pointer;
 } 
 
 .link:hover {
-  color: rgba(229, 152, 102, 1);
+  color: rgba(229, 152, 102, .75);
 }
 

@@ -23,6 +23,7 @@ GraphQL for data exchange with Frontend, but REST API for Auth.
      - Monthly
      - Yearly
      - Custom
+     - x time after being closed
    - Can have a deadline
    - Belongs to a category
    - Has an owner (must not equal owner of list)
@@ -69,3 +70,8 @@ GraphQL for data exchange with Frontend, but REST API for Auth.
       - List Owner: Task added by other 
       - Deadline is soonish
       - Deadline is over
+
+## Ressources
+
+Colors: #D9D6CB & #E59966
+Logo: `https://icons8.com/icon/104283/handshake-heart`
