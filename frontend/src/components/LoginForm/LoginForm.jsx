@@ -12,6 +12,7 @@ import { AlreadyMember } from "../SignUpForm/AlreadyMember";
 import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
 import { authStore } from "../../stores/authStore/authStore";
 import { postVerifyEmailLink } from "./postVerifyEmailLink";
+import Logo from "../../img/todogetherLogo.png";
 
 import "./LoginForm.css";
 
@@ -89,6 +90,7 @@ export const LoginForm = () => {
     <PasswordRecover setIsRecovery={setIsRecovery} email={isEmail.current} />
   ) : (
     <div className="login__full">
+      <img className="login__logo" src={Logo} alt="logo" />
       <div className="login__header">
         {t("login.loginto")} <b>todogether</b>
         .com {t("login.logintoAfter")}
@@ -170,6 +172,7 @@ export const LoginForm = () => {
           </div>
         </Form.Item>
       </Form>
+      <div className="login__logo" id="spacer" />
     </div>
   );
 };

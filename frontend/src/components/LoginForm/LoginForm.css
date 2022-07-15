@@ -12,6 +12,12 @@
   width: 400px;
 }
 
+.login__full .login__logo {
+  margin-bottom: 10px;
+  width: 65px;
+  height: 65px;
+}
+
 .login__full .login__formbutton {
   width: 100%;
 }
@@ -46,7 +52,7 @@
   width: 400px;
   font-weight: 200;
   font-size: .75em;
-  text-align: left;
+  text-align: center;
   margin-bottom: 2vh;
 }
 
