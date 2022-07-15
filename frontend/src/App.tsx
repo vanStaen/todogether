@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Switch,
+  Routes,
 } from "react-router-dom";
 import { observer } from "mobx-react";
 
@@ -22,18 +21,14 @@ const App = observer(() => {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route path="/recoverpwd/:key" component={NewPassword} />
-          <Route path="/emailverify/:verifyCode" component={EmailVerified} />
+        <Routes>
+          <Route path="/recoverpwd/:key" element={<NewPassword/>} />
+          <Route path="/emailverify/:verifyCode" element={<EmailVerified/>} />
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
           <Route path="/settings">"settings page"</Route>
-          {/*authStore.hasAccess && <Route path="/profil" component={Profil} />*/}
-          <Route path="/" exact>
-            {authStore.hasAccess ? "YOU ARE IN" : <Welcome showLogin={true} />}
-          </Route>
-          <Redirect to="/" />
-        </Switch>
+          {authStore.hasAccess ? "YOU ARE IN" : <Route path="/"element={<Welcome showLogin={true} />}/>}
+        </Routes>
       </div>
     </Router>
   );
