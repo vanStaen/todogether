@@ -31,8 +31,8 @@ exports.userResolver = {
         email: args.userInput.email,
         password: hashedPassword,
         emailSettings: "[]",
-        displaySettings: "[]",
-        categories: "[]",
+        profileSettings: "[]",
+        lastActive: Date.now()
       });
       return await user.save();
     } catch (err) {
@@ -51,7 +51,7 @@ exports.userResolver = {
       "avatar",
       "categories",
       "emailSettings",
-      "displaySettings",
+      "profileSettings",
     ];
     updatableFields.forEach((field) => {
       if (field in args.userInput) {

@@ -42,7 +42,7 @@ export type User = {
   createdAt: string; // UTC
   udpatedAt: string; // UTC
   emailSettings: EmailSettings;
-  displaySettings: DisplaySettings;
+  profileSettings: profileSettings;
 };
 
 export type Category = {
@@ -57,7 +57,7 @@ export type EmailSettings = {
   getNotification: boolean;
 };
 
-export type DisplaySettings = {
+export type profileSettings = {
   showCategories: boolean;
   showDoneTasks: boolean;
   showDeletedTasks: boolean;
