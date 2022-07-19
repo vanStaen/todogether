@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 import { postEmailVerified } from "./postEmailVerified";
 import { LanguageDropDown } from "../../components/LanguageDropDown/LanguageDropDown";
 
 import "./EmailVerified.css";
 
-export const EmailVerified = (props) => {
+export const EmailVerified = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVerified, setIsVerified] = useState(false);
   const { t } = useTranslation();
+  const params = useParams();
 
   const emailIsVerified = useCallback(async () => {
-    const success = await postEmailVerified(props.match.params.verifyCode);
+    const success = await postEmailVerified(params.verifyCode);
     if (success) {
       setIsVerified(true);
       setTimeout(() => {
@@ -21,7 +23,7 @@ export const EmailVerified = (props) => {
       }, 10000);
     }
     setIsLoading(false);
-  }, [props.match.params.verifyCode]);
+  }, [params.verifyCode]);
 
   useEffect(() => {
     emailIsVerified();

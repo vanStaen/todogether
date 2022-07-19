@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Form, Input, Button, notification } from "antd";
 import { LockOutlined, SyncOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 import { postTokenVerify } from "./postTokenVerify";
 import { postChangePassword } from "./postChangePassword";
@@ -12,8 +13,9 @@ export const NewPassword = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const { t } = useTranslation();
+  const params = useParams();
 
-  const token = props.match.params.key;
+  const token = params.key;
 
   const submitHandler = async (value) => {
     setIsLoading(true);
