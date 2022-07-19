@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
   let corsOptions = {};
   if ((req.get('host') === 'localhost:5012')) {
     corsOptions = {
-      origin: 'http://localhost:8080',
+      origin: 'http://localhost:8086',
       optionsSuccessStatus: 200
     }
   } else {

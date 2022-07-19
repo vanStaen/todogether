@@ -7,7 +7,7 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     historyApiFallback: true,
-    port: 8081,
+    port: 8086,
   },
   entry: { index: "./src/index.js", sw: "./src/sw.js" },
   mode: "development",
