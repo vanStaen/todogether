@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 exports.userService = {
   async taken(username) {
     foundUser = await User.findOne({
-      where: { userName: username },
+      where: { username: username },
     });
     if (!foundUser) {
       return false;

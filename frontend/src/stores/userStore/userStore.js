@@ -6,7 +6,7 @@ import defaultProfilSettings from "./defaultProfilSettings.json";
 
 export class UserStore {
   email = null;
-  userName = null;
+  username = null;
   avatar = null;
   categories = [];
   emailSettings = null;
@@ -15,7 +15,7 @@ export class UserStore {
   constructor() {
     makeObservable(this, {
       email: observable,
-      userName: observable,
+      username: observable,
       avatar: observable,
       categories: observable,
       emailSettings: observable,
@@ -34,8 +34,8 @@ export class UserStore {
     this.email = email;
   };
 
-  setUserName = (userName) => {
-    this.userName = userName;
+  setUserName = (username) => {
+    this.username = username;
   };
 
   setAvatar = (avatar) => {
@@ -58,7 +58,7 @@ export class UserStore {
     const userData = await getUserInfo();
     if (userData) {
       this.setEmail(userData.email);
-      this.setUserName(userData.userName);
+      this.setUserName(userData.username);
       this.setAvatar(userData.avatar);
       this.setCategories(userData.categories);
 

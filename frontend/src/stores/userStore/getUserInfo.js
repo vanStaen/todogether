@@ -7,7 +7,7 @@ export const getUserInfo = async () => {
             getUser {
               firstName,
               lastName,
-              userName,
+              username,
               email,
               avatar,
               emailSettings,

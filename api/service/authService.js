@@ -6,7 +6,7 @@ exports.authService = {
   async login(req, email, username, password, remindMe) {
     if (username) {
       foundUser = await User.findOne({
-        where: { userName: username },
+        where: { username: username },
       });
     } else {
       foundUser = await User.findOne({

@@ -3,7 +3,7 @@ import axios from "axios";
 export const postAddUser = async (
   firstName,
   lastName,
-  userName,
+  username,
   email,
   password
 ) => {
@@ -11,7 +11,7 @@ export const postAddUser = async (
     query: `mutation {
                 addUser (
                     userInput: { 
-                        userName: "${userName}", 
+                        username: "${username}", 
                         email: "${email}", 
                         password: "${password}", 
                         }
