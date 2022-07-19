@@ -30,8 +30,9 @@ exports.userResolver = {
         username: args.userInput.username,
         email: args.userInput.email,
         password: hashedPassword,
+        categories: [],
         emailSettings: "[]",
-        profileSettings: "[]",
+        profilSettings: "[]",
         lastActive: Date.now()
       });
       return await user.save();
@@ -51,7 +52,7 @@ exports.userResolver = {
       "avatar",
       "categories",
       "emailSettings",
-      "profileSettings",
+      "profilSettings",
     ];
     updatableFields.forEach((field) => {
       if (field in args.userInput) {
