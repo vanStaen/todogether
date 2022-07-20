@@ -11,6 +11,7 @@
 }
 
 .home__container {
+  font-size: .75em;
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -35,4 +36,25 @@
   background-color: rgba(255,255,255,.9);
   border-radius: 0.3rem;
   padding: 1rem;
+}
+
+.home__row {
+  border-bottom: 1px solid #d9d6cb;
+  background-color: rgba(255,255,255,.9);
+  padding: 1rem;
+  font-weight: 200;
+}
+
+.home__rowLogo {
+  width: 3rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.home__checkbox {
+  position: relative;
+  top: 3px;
+  width: 1em;
+  height: 1em;
 }
