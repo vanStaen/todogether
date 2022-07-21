@@ -8,25 +8,6 @@
   justify-content: center;
 }
 
-.home__header {
-  padding-top: .8rem;
-  border-bottom: 3px solid #d9d6cb;
-  height: 3.5rem;
-  width: calc(100vw - 8rem);
-  opacity: .5;
-}
-
-.home__Logo {
-  margin: 0rem .5rem 0rem 1rem;
-  width: 25px;
-  height: 25px;
-}
-
-.home__motto {
-  display: auto;
-  font-weight: 200;
-}
-
 .home__main {
   margin: 0 4rem 3rem 4rem;
   background-color: rgba(255,255,255,.25);
@@ -40,63 +21,7 @@
   overflow: auto;
 }
 
-.home__listHeader {
-  border-bottom: 3px solid #d9d6cb;
-  background-color: rgba(255,255,255,.9);
-  border-radius: 0.3rem;
-  padding: 1rem;
-}
-
-.home__listHeaderSwitchShowDone {
-  position: relative;
-  right: 0px;
-  border: 1px solid red; 
-  display: inline-block;
-}
-
-.home__row {
-  border-bottom: 1px solid #d9d6cb;
-  background-color: rgba(255,255,255,.9);
-  padding: 1rem;
-  font-weight: 200;  
-}
-
-.home__rowNoBar {
-  border-left: .4rem solid transparent;
-  border-radius: 0rem;
-}
-
-.home__rowGoldBar {
-  border-left: .4rem solid rgba(229, 152, 102, .75);
-  border-radius: .3rem;
-}
-
-.home__row:hover {
-  background-color: rgba(255,255,255,.75);
-}
-
-.home__rowLogo {
-  width: 2rem;
-  margin-right: 1rem;
-  display: inline-block;
-  text-align: center;
-}
-
-.home__checkbox {
-  position: relative;
-  top: 3px;
-  width: 1em;
-  height: 1em;
-  cursor: pointer;
-}
-
 @media only screen and (max-width: 600px) {
-  .home__header {
-    width: 100vw;
-  }
-  .home__motto {
-    display: none; 
-  }
   .home__main {
     margin: 0rem .8rem .3rem .8rem;
     width: calc(100vw - 1.6rem);
