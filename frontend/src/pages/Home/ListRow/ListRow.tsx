@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { EditOutlined } from "@ant-design/icons";
 
@@ -8,7 +8,12 @@ import "./ListRow.css";
 
 export const ListRow = observer((props) => {
 
-  if (listStore.showCompleted = false && props.completed) {
+  useEffect(() => {
+    console.log('props.completed', props.completed);
+    console.log('listStore.showCompleted', listStore.showCompleted);
+  }, [])
+
+  if (!listStore.showCompleted && props.completed) {
     return null
   }
 
