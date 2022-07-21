@@ -14,9 +14,9 @@ export const Home = () => {
         <div className="home__main">
           <ListHeader/>
           <ListRow name="fist row" completed={true}/>
-          <ListRow name="second row" completed={false}/>
+          <ListRow name="second row" completed={true}/>
           <ListRow name="third row" completed={false}/>
-          <ListRow name="fourth row" completed={true}/>
+          <ListRow name="fourth row" completed={false}/>
           <ListRow name="fifth row" completed={false}/>
         </div>
       </div>
