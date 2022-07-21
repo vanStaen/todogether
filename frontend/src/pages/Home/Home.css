@@ -22,6 +22,11 @@
   height: 25px;
 }
 
+.home__motto {
+  display: auto;
+  font-weight: 200;
+}
+
 .home__main {
   margin: 0 4rem 3rem 4rem;
   background-color: rgba(255,255,255,.25);
@@ -40,6 +45,13 @@
   background-color: rgba(255,255,255,.9);
   border-radius: 0.3rem;
   padding: 1rem;
+}
+
+.home__listHeaderSwitchShowDone {
+  position: relative;
+  right: 0px;
+  border: 1px solid red; 
+  display: inline-block;
 }
 
 .home__row {
@@ -81,6 +93,9 @@
 @media only screen and (max-width: 600px) {
   .home__header {
     width: 100vw;
+  }
+  .home__motto {
+    display: none; 
   }
   .home__main {
     margin: 0rem .4rem .3rem .4rem;

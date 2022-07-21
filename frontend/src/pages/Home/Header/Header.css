@@ -1,0 +1,27 @@
+.header {
+    padding-top: .8rem;
+    border-bottom: 3px solid #d9d6cb;
+    height: 3.5rem;
+    width: calc(100vw - 8rem);
+    opacity: .5;
+}
+
+.header__Logo {
+    margin: 0rem .5rem 0rem 1rem;
+    width: 25px;
+    height: 25px;
+}
+
+.header__motto {
+    display: auto;
+    font-weight: 200;
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        width: 100vw;
+    }
+    .header__motto {
+        display: none; 
+    }
+}

@@ -1,0 +1,35 @@
+ .row {
+    border-bottom: 1px solid #d9d6cb;
+    background-color: rgba(255,255,255,.9);
+    padding: 1rem;
+    font-weight: 200;  
+}
+  
+.row:hover {
+    background-color: rgba(255,255,255,.75);
+}
+  
+.row__noBar {
+    border-left: .4rem solid transparent;
+    border-radius: 0rem;
+}
+  
+.row__goldBar {
+    border-left: .4rem solid rgba(229, 152, 102, .75);
+    border-radius: .3rem;
+}
+  
+.row__checkboxContainer {
+    width: 2rem;
+    margin-right: 1rem;
+    display: inline-block;
+    text-align: center;
+}
+  
+.row__checkbox {
+    position: relative;
+    top: 3px;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+}  
