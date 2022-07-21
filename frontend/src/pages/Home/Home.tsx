@@ -1,5 +1,5 @@
 import React from "react";
-import { UnorderedListOutlined } from "@ant-design/icons";
+import { UnorderedListOutlined, EditOutlined } from "@ant-design/icons";
 
 import { authStore } from "../../stores/authStore/authStore";
 

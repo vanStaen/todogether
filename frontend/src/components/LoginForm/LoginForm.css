@@ -10,6 +10,7 @@
 
 .login__full .login__form {
   width: 400px;
+  max-width: 85vw;
 }
 
 .login__full .login__logo {
