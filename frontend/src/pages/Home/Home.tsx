@@ -17,7 +17,7 @@ export const Home = () => {
           <ListRow name="second row" completed={true} selected={false}/>
           <ListRow name="third row" completed={false} selected={true}/>
           <ListRow name="fourth row" completed={true} selected={false}/>
-          <ListRow name="fifth row" completed={false} selected={false}/>
+          <ListRow name="fifth row" completed={false} selected={true}/>
         </div>
       </div>
     </div>
