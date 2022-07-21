@@ -98,8 +98,8 @@
     display: none; 
   }
   .home__main {
-    margin: 0rem .4rem .3rem .4rem;
-    width: calc(100vw - .8rem);
+    margin: 0rem .8rem .3rem .8rem;
+    width: calc(100vw - 1.6rem);
     min-height: calc(100vh - 3.8rem); /* 3.5 header + 0.3 margin */
   }
 }
