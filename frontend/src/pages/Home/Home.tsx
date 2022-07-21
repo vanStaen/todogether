@@ -1,7 +1,7 @@
 import React from "react";
 import { UnorderedListOutlined, EditOutlined } from "@ant-design/icons";
 
-import { authStore } from "../../stores/authStore/authStore";
+import Logo from "../../img/todogetherLogo.png";
 
 import "./Home.css";
 
@@ -9,12 +9,16 @@ export const Home = () => {
   return (
     <div>
       <div className="home__container">
+      <div className="home__header">
+          <img className="home__Logo" src={Logo} alt="logo" />
+            Todogether.com 
+      </div>
         <div className="home__main">
-          <div className="home__header home__rowNoBar">
+          <div className="home__listHeader home__rowNoBar">
             <div className="home__rowLogo">
               <UnorderedListOutlined />
             </div>
-            Todogether
+            My shared todolist
           </div>
           <div className="home__row home__rowNoBar">
             <div className="home__rowLogo">
@@ -46,9 +50,9 @@ export const Home = () => {
             fifth row
           </div>
         </div>
-        <div className="home__logout" onClick={authStore.logout}>
+       {/*<div className="home__logout" onClick={authStore.logout}>
           logout
-        </div>
+        </div>*/}
       </div>
     </div>
   );
