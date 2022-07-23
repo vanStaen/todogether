@@ -3,14 +3,25 @@
     background-color: rgba(255,255,255,.9);
     border-radius: 0.3rem;
     padding: 1rem; 
+    height: 60px;
     border-left: .4rem solid transparent;
     border-radius: 0rem;
   }
-  
-  .listHeader__SwitchShowDone {
-    position: relative;
-    right: 0px;
+
+  .listHeader__ListNameContainer {
     display: inline-block;
+    width: 60%;
+  } 
+
+  .listHeader__SwitchContainer {
+    display: inline-block;
+    text-align: right;
+    width: 40%;
+  } 
+
+  .listHeader__Switch {
+    display: inline-block;
+    margin-left: 1rem;
   }
   
   .listHeader__rowLogo {
@@ -18,4 +29,5 @@
     margin-right: 1rem;
     display: inline-block;
     text-align: center;
+    cursor: pointer;
   }
