@@ -3,6 +3,7 @@ import React from "react";
 import { Header } from "./Header/Header";
 import { ListHeader } from "./ListHeader/ListHeader";
 import { ListRow } from "./listRow/listRow";
+import { ListFooter } from "./ListFooter/ListFooter";
 
 import "./Home.css";
 
@@ -18,6 +19,7 @@ export const Home = () => {
           <ListRow name="third row" completed={false} selected={true}/>
           <ListRow name="fourth row" completed={false} selected={false}/>
           <ListRow name="fifth row" completed={false} selected={false}/>
+          <ListFooter/>
         </div>
       </div>
     </div>
