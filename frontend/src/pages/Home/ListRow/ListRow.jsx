@@ -15,9 +15,16 @@ export const ListRow = (props) => {
    return (
       <div className={`row ${props.completed ? 'row__noBar' : 'row__goldBar'}`}>
          <div className="row__checkboxContainer">
-            <Checkbox defaultChecked={isSelected} onChange={handleCheckboxClick} className="row__checkbox"></Checkbox>
+            <div>
+               <Checkbox defaultChecked={isSelected} onChange={handleCheckboxClick} className="row__checkbox"></Checkbox>
+            </div>
          </div>
-         {props.name}
+         <div className="row__textContainer">
+            {props.name}
+         </div>
+         <div className="row__edit">
+            <EditOutlined style={{ cursor: "pointer" }} />
+         </div>
       </div>
    );
 };
