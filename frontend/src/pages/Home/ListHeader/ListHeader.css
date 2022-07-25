@@ -31,3 +31,25 @@
     text-align: center;
     cursor: pointer;
   }
+
+  .listOfLists {
+    position: absolute;
+    background-color: rgba(226,224,217,.9);
+    width: 100%;
+    padding: 1rem 1rem 1rem 4.5rem; 
+    z-index: 10;
+    height: auto;
+    transition: height 0.3s linear;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .listHeader {
+      padding: 1rem 1rem 1rem .5rem; 
+    }  
+    .listHeader__rowLogo {
+      margin-right: .5rem;
+    }
+    .listOfLists {
+      padding: 1rem 1rem 1rem 3.5rem; 
+    }
+  }

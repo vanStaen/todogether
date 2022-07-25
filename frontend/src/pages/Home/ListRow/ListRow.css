@@ -50,4 +50,7 @@
     .row__checkboxContainer {
         margin-right: .5rem;
     }
+    .row__textContainer {
+        padding-left: 0rem;
+    }
 }
