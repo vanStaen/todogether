@@ -30,6 +30,10 @@
     padding-left: 1rem;
     display: inline-block;
     width: calc(100% - 3rem - 3rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
 }
   
 .row__edit {

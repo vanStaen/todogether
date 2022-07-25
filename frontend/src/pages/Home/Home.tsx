@@ -25,6 +25,7 @@ export const Home = () => {
             <ListRow name="eighth row" completed={true} selected={true}/>
             <ListRow name="ninth row" completed={false} selected={false}/>
             <ListRow name="tenth row" completed={false} selected={true}/>
+            <ListRow name="eleventh row, and this time its a really long title!" completed={false} selected={true}/>
           </div>
           <ListFooter/>
         </div>
