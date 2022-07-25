@@ -10,18 +10,21 @@
 
   .listHeader__ListNameContainer {
     display: inline-block;
-    width: 60%;
+    width: calc(100% - 140px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   } 
 
   .listHeader__SwitchContainer {
     display: inline-block;
     text-align: right;
-    width: 40%;
+    width: 140px;
+    vertical-align: top;
   } 
 
   .listHeader__Switch {
     display: inline-block;
-    margin-left: 1rem;
   }
   
   .listHeader__rowLogo {
