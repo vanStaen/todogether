@@ -10,17 +10,19 @@ export const ListFooter = observer(() => {
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
-        3 task selected
+        3 tasks selected
       </div>
       <div className="listFooter__actionContainer">
-        <Tooltip title="Mark selected task as done">
-          <Button type="success"><CheckOutlined /></Button>
+        <Tooltip title="Delete selected tasks">
+          <Button type="primary" icon={<DeleteOutlined />} danger />
         </Tooltip>
-        <Tooltip title="Delete selected task">
-          <Button type="primary" danger><DeleteOutlined /></Button>
+        &nbsp;
+        <Tooltip title="Mark selected tasks as done">
+          <Button type="primary" icon={<CheckOutlined />} style={{ background: "rgba(102, 187, 106,1)", borderColor: "rgba(76, 175, 80, 1)" }} />
         </Tooltip>
+        &nbsp;
         <Tooltip title="Add new task">
-          <Button><PlusOutlined /></Button>
+          <Button type="primary" icon={<PlusOutlined />} />
         </Tooltip>
       </div>
     </div>
