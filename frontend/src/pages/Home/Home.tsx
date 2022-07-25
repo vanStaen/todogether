@@ -20,6 +20,11 @@ export const Home = () => {
             <ListRow name="third row" completed={false} selected={true}/>
             <ListRow name="fourth row" completed={false} selected={false}/>
             <ListRow name="fifth row" completed={false} selected={false}/>
+            <ListRow name="sixth row" completed={false} selected={false}/>
+            <ListRow name="seventh row" completed={true} selected={false}/>
+            <ListRow name="eighth row" completed={true} selected={true}/>
+            <ListRow name="ninth row" completed={false} selected={false}/>
+            <ListRow name="tenth row" completed={false} selected={true}/>
           </div>
           <ListFooter/>
         </div>
