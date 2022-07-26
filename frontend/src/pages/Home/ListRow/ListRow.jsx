@@ -7,7 +7,9 @@ import { listStore } from "../../../stores/listStore/listStore";
 import "./ListRow.css";
 
 export const ListRow = (props) => {
-  const [isSelected, setIsSelected] = useState(props.selected);
+  const [isSelected, setIsSelected] = useState(
+    listStore.selectedTasks.indexOf(props.id) > -1
+  );
 
   const handleCheckboxClick = () => {
     if (isSelected) {
