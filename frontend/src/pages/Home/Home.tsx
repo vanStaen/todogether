@@ -33,7 +33,7 @@ export const Home = observer(() => {
                 <ListRow id={10} name="tenth row" completed={false}/>
                 <ListRow
                   id={11} 
-                  name="eleventh row, and this time its a really long title!"
+                  name="eleventh row, and this time its a really long title,  and this time its a really long title,  and this time its a really long title,  and this time its a really long title!"
                   completed={false}
                 />
               </div>
