@@ -34,10 +34,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: top;
-}
-
-.row__text {
-    display: inline-block;
+    cursor: pointer;
 }
   
 .row__edit {

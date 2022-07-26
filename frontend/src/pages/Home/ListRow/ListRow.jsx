@@ -33,12 +33,8 @@ export const ListRow = (props) => {
           ></Checkbox>
         </div>
       </div>
-      <div className="row__textContainer">
-        <Tooltip title={props.name}>
-          <div className="row__text" onClick={handleCheckboxClick}>
-            {props.name}
-          </div>
-        </Tooltip>
+      <div className="row__textContainer" onClick={handleCheckboxClick}>
+        <div className="row__text">{props.name}</div>
       </div>
       <div className="row__edit">
         <EditOutlined style={{ cursor: "pointer" }} onClick={handleEditClick} />
