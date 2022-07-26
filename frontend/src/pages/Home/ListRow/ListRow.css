@@ -35,6 +35,10 @@
     text-overflow: ellipsis;
     vertical-align: top;
 }
+
+.row__text {
+    display: inline-block;
+}
   
 .row__edit {
     width: 3rem;

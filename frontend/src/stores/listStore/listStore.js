@@ -29,12 +29,18 @@ export class ListStore {
   };
 
   selectTask = (task) => {
-    this.selectedTasks.push(task);
+    const index = this.selectedTasks.indexOf(task)
+    if (index > -1) {      
+      console.log("Error", "the task was already in the 'selectedTasks'-array")
+    }
+    else {
+      this.selectedTasks.push(task);
+    }
   }
 
   unselectTask = (task) => {
     const index = this.selectedTasks.indexOf(task)
-    if (index > 0) {
+    if (index > -1) {
       this.selectedTasks.splice(index, 1);
     }
     else {
