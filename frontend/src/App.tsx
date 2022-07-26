@@ -10,6 +10,10 @@ import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 
 import "./App.css";
 
+/* TRick to get correct 100vh on mobile */
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 const App = observer(() => {
   useEffect(() => {
     authStore.checkAccess();
