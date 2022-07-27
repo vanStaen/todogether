@@ -52,11 +52,11 @@ export const ListRow = (props) => {
               {props.name}
             </div>
           </div>
-          <Tooltip title="Show the pictures">
-            <div className="row__picture" onClick={handlePictureClick}>
+          <div className="row__picture" onClick={handlePictureClick}>
+            <Tooltip title="Show the pictures">
               <PictureOutlined style={{ color: colorLogo }} />
-            </div>
-          </Tooltip>
+            </Tooltip>
+          </div>
         </>
       ) : (
         <div className="row__textContainer" onClick={handleCheckboxClick}>
