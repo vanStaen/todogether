@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Checkbox, Tooltip } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { Checkbox } from "antd";
+import { EditOutlined, PictureOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
 
@@ -24,6 +24,11 @@ export const ListRow = (props) => {
     listStore.setTaskInEditMode(props.id);
   };
 
+  const handlePictureClick = () => {
+    listStore.setShowPictureGallery(true);
+    console.log("This should open the image gallery!");
+  };
+
   return (
     <div className={`row ${props.completed ? "row__noBar" : "row__goldBar"}`}>
       <div className="row__checkboxContainer">
@@ -35,9 +40,24 @@ export const ListRow = (props) => {
           ></Checkbox>
         </div>
       </div>
-      <div className="row__textContainer" onClick={handleCheckboxClick}>
-        <div className="row__text">{props.name}</div>
-      </div>
+      {props.hasPicture ? (
+        <>
+          <div
+            className="row__textContainerWithPicture"
+            onClick={handleCheckboxClick}
+          >
+            <div className="row__text">{props.name}</div>
+          </div>
+          <div className="row__picture" onClick={handlePictureClick}>
+            <PictureOutlined />
+            &nbsp;
+          </div>
+        </>
+      ) : (
+        <div className="row__textContainer" onClick={handleCheckboxClick}>
+          <div className="row__text">{props.name}</div>
+        </div>
+      )}
       <div className="row__edit">
         <EditOutlined style={{ cursor: "pointer" }} onClick={handleEditClick} />
       </div>

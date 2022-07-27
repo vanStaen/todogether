@@ -34,7 +34,17 @@
     padding-bottom: 1rem;
     padding-left: 1rem;
     display: inline-block;
-    width: calc(100% - 3rem - 3rem);
+    width: calc(100% - 3rem - 2rem);
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.row__textContainerWithPicture {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    display: inline-block;
+    width: calc(100% - 3rem - 4rem);
     vertical-align: top;
     cursor: pointer;
 }
@@ -44,13 +54,31 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.row__picture {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 2rem;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    cursor: pointer;
+}
+
+.row__picture:hover {
+    opacity: .75;
+}
   
 .row__edit {
-    width: 3rem;
+    width: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: inline-block;
     text-align: right;
+}
+
+.row__edit:hover {
+    opacity: .75;
 }
 
 .row__checkbox {
