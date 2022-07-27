@@ -1,4 +1,4 @@
-  .listFooter {
+.taskedit__footer {
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -10,16 +10,16 @@
     border-radius: 0rem;
   }
 
-  .listFooter__leftContainer {
+  .taskedit__footerLeft {
     display: inline-block;
     font-weight: 200;
     padding-left: 1rem;
-    width: 60%;
+    width: 30%;
   } 
 
-  .listFooter__actionContainer {
+  .taskedit__footerRight {
     display: inline-block;
     text-align: right;
     padding-right: .5rem;
-    width: 40%;
+    width: 70%;
   } 

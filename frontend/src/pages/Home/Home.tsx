@@ -5,11 +5,15 @@ import { Header } from "./Header/Header";
 import { ListHeader } from "./ListHeader/ListHeader";
 import { ListRow } from "./listRow/listRow";
 import { ListFooter } from "./ListFooter/ListFooter";
+import { TaskEdit } from "./TaskEdit/TaskEdit";
 import { listStore } from "../../stores/listStore/listStore";
 
 import "./Home.css";
 
 export const Home = observer(() => {
+  const date = new Date();
+  const year = date.getFullYear();
+
   return (
     <div>
       <div className="home__container">
@@ -17,7 +21,7 @@ export const Home = observer(() => {
         <div className="home__main">
           <ListHeader />
           {listStore.taskInEditMode ? (
-            <div>EditMode: task#{listStore.taskInEditMode}</div>
+            <TaskEdit />
           ) : (
             <>
               <div className="home__rows">
@@ -25,7 +29,12 @@ export const Home = observer(() => {
                 <ListRow id={2} name="second row" completed={true} />
                 <ListRow id={3} name="third row" completed={false} />
                 <ListRow id={4} name="fourth row" completed={false} />
-                <ListRow id={5} name="fifth row" completed={false} hasPicture={true}/>
+                <ListRow
+                  id={5}
+                  name="fifth row"
+                  completed={false}
+                  hasPicture={true}
+                />
                 <ListRow
                   id={6}
                   name="sixth row, and this time its a really long title,  and this time its a really long title,  and this time its a really long title,  and this time its a really long title!"
@@ -46,6 +55,7 @@ export const Home = observer(() => {
             </>
           )}
         </div>
+        <span className="menu__copyright">todogether.com ©{year}</span>
       </div>
     </div>
   );

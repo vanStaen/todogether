@@ -11,7 +11,7 @@
 
 .home__main {
   position: relative;
-  margin: 0 4rem 3rem 4rem;
+  margin: 0 4rem 1rem 4rem;
   background-color: rgba(255, 255, 255, 0.25);
   width: calc(100vw - 8rem);
   height: calc(100% - 6.5rem);
@@ -24,6 +24,12 @@
   overflow: scroll;
 }
 
+.menu__copyright {
+  font-size: 0.75em;
+  opacity: .5;
+  margin-bottom: 1rem;
+}
+
 @media only screen and (max-width: 600px) {
   .home__main {
     margin: 0rem 0.8rem 1rem 0.8rem;
@@ -34,5 +40,8 @@
     height: calc(100vh - 3.5rem - 65px - 70px - 1rem); /* Fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 100 - 3.5rem - 65px - 70px - 1rem); /* header, listHeader, listFooter, margin-bottom  */
     overflow: scroll;
+  }
+  .menu__copyright {
+    display: none;
   }
 }
