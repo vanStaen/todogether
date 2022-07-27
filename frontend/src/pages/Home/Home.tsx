@@ -32,7 +32,7 @@ export const Home = observer(() => {
                 <ListRow
                   id={5}
                   name="fifth row"
-                  completed={false}
+                  completed={true}
                   hasPicture={true}
                 />
                 <ListRow

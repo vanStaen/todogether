@@ -55,6 +55,11 @@
     text-overflow: ellipsis;
 }
 
+.row__completed {
+    /*text-decoration: line-through;*/
+    color: #bbb7ac;
+}
+
 .row__picture {
     padding-top: 1rem;
     padding-bottom: 1rem;

@@ -11,6 +11,8 @@ export const ListRow = (props) => {
     listStore.selectedTasks.indexOf(props.id) > -1
   );
 
+  const colorLogo = props.completed ? "#bbb7ac" : "inherit";
+
   const handleCheckboxClick = () => {
     if (isSelected) {
       listStore.unselectTask(props.id);
@@ -46,23 +48,27 @@ export const ListRow = (props) => {
             className="row__textContainerWithPicture"
             onClick={handleCheckboxClick}
           >
-            <div className="row__text">{props.name}</div>
+            <div className={`row__text ${props.completed && "row__completed"}`}>
+              {props.name}
+            </div>
           </div>
           <Tooltip title="Show the pictures">
             <div className="row__picture" onClick={handlePictureClick}>
-              <PictureOutlined />
+              <PictureOutlined style={{ color: colorLogo }} />
             </div>
           </Tooltip>
         </>
       ) : (
         <div className="row__textContainer" onClick={handleCheckboxClick}>
-          <div className="row__text">{props.name}</div>
+          <div className={`row__text ${props.completed && "row__completed"}`}>
+            {props.name}
+          </div>
         </div>
       )}
       <div className="row__edit">
         <Tooltip title="Edit this task">
           <EditOutlined
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", color: colorLogo }}
             onClick={handleEditClick}
           />
         </Tooltip>
