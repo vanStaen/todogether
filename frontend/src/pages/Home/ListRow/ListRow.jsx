@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { Checkbox, Tooltip } from "antd";
+import { Checkbox } from "antd";
 import { EditOutlined, PictureOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
@@ -13,6 +13,7 @@ export const ListRow = observer((props) => {
   );
 
   const colorLogo = props.completed ? "#bbb7ac" : "inherit";
+  const editPointer = props.completed ? "not-allowed" : "cursor";
 
   const handleCheckboxClick = () => {
     if (isSelected) {
@@ -24,7 +25,9 @@ export const ListRow = observer((props) => {
   };
 
   const handleEditClick = () => {
-    listStore.setTaskInEditMode(props.id);
+    if (!props.completed) {
+      listStore.setTaskInEditMode(props.id);
+    }
   };
 
   const handlePictureClick = () => {
@@ -54,9 +57,7 @@ export const ListRow = observer((props) => {
             </div>
           </div>
           <div className="row__picture" onClick={handlePictureClick}>
-            <Tooltip title="Show the pictures">
-              <PictureOutlined style={{ color: colorLogo }} />
-            </Tooltip>
+            <PictureOutlined style={{ color: colorLogo }} />
           </div>
         </>
       ) : (
@@ -67,12 +68,10 @@ export const ListRow = observer((props) => {
         </div>
       )}
       <div className="row__edit">
-        <Tooltip title="Edit this task">
-          <EditOutlined
-            style={{ cursor: "pointer", color: colorLogo }}
-            onClick={handleEditClick}
-          />
-        </Tooltip>
+        <EditOutlined
+          style={{ cursor: editPointer, color: colorLogo }}
+          onClick={handleEditClick}
+        />
       </div>
     </div>
   );

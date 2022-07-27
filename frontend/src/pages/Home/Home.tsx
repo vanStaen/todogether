@@ -44,7 +44,12 @@ export const Home = observer(() => {
                   />
                   <ListRow id={7} name="seventh row" completed={true} />
                   <ListRow id={8} name="eighth row" completed={true} />
-                  <ListRow id={9} name="ninth row" completed={false} />
+                  <ListRow
+                    id={9}
+                    name="ninth row"
+                    completed={false}
+                    hasPicture={true}
+                  />
                   <ListRow id={10} name="tenth row" completed={false} />
                   <ListRow
                     id={11}
