@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Checkbox } from "antd";
+import { Checkbox, Tooltip } from "antd";
 import { EditOutlined, PictureOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
@@ -48,10 +48,11 @@ export const ListRow = (props) => {
           >
             <div className="row__text">{props.name}</div>
           </div>
-          <div className="row__picture" onClick={handlePictureClick}>
-            <PictureOutlined />
-            &nbsp;
-          </div>
+          <Tooltip title="Show the pictures">
+            <div className="row__picture" onClick={handlePictureClick}>
+              <PictureOutlined />
+            </div>
+          </Tooltip>
         </>
       ) : (
         <div className="row__textContainer" onClick={handleCheckboxClick}>
