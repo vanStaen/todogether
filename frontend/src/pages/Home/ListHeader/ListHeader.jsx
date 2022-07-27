@@ -30,6 +30,10 @@ export const ListHeader = observer(() => {
     listStore.setDisplayAslist(e.target.value);
   };
 
+  const hideListOfListsHandler = () => {
+    setShowListOfLists(false);
+  };
+
   return (
     <div>
       <div className="listHeader">
@@ -88,11 +92,14 @@ export const ListHeader = observer(() => {
         )}
       </div>
       {showListOfLists && (
-        <div className="listOfLists" id="listOfLists">
-          <div>My shared to do list</div>
-          <div>Kühlschrank</div>
-          <div>Private todos</div>
-        </div>
+        <>
+          <div className="listOfLists" id="listOfLists">
+            <div>My shared to do list</div>
+            <div>Kühlschrank</div>
+            <div>Private todos</div>
+          </div>
+          <div className="fullScreen" onClick={hideListOfListsHandler}></div>
+        </>
       )}
     </div>
   );

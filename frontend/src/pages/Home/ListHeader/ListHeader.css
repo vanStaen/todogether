@@ -45,6 +45,17 @@
     transition: height 0.3s linear;
   }
 
+  .fullScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: calc(100vh); /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100); 
+    width: 100vw;
+    background-color: transparent;
+    z-index: 9;
+  }
+
   @media only screen and (max-width: 600px) {
     .listHeader {
       padding: 1rem 1rem 1rem .5rem; 
