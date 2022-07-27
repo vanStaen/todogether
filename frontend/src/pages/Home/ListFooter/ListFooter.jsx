@@ -11,16 +11,23 @@ export const ListFooter = observer(() => {
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
-        {listStore.selectedTasks.length} task
-        {listStore.selectedTasks.length > 1 && "s"} selected
+        {!!listStore.selectedTasks.length && (
+          <Tooltip title="Delete selected tasks">
+            <Button type="primary" icon={<DeleteOutlined />} danger />
+          </Tooltip>
+        )}
       </div>
-      <div className="listFooter__actionContainer">
+      <div className="listFooter__centerContainer">
+        {!!listStore.selectedTasks.length && (
+          <>
+            {listStore.selectedTasks.length} task
+            {listStore.selectedTasks.length > 1 && "s"} selected
+          </>
+        )}
+      </div>
+      <div className="listFooter__rightContainer">
         {listStore.selectedTasks.length ? (
           <>
-            <Tooltip title="Delete selected tasks">
-              <Button type="primary" icon={<DeleteOutlined />} danger />
-            </Tooltip>
-            &nbsp; &nbsp;
             <Tooltip title="Mark selected tasks as done">
               <Button
                 type="primary"

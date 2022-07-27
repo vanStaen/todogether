@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import { Checkbox, Tooltip } from "antd";
 import { EditOutlined, PictureOutlined } from "@ant-design/icons";
 
@@ -6,7 +7,7 @@ import { listStore } from "../../../stores/listStore/listStore";
 
 import "./ListRow.css";
 
-export const ListRow = (props) => {
+export const ListRow = observer((props) => {
   const [isSelected, setIsSelected] = useState(
     listStore.selectedTasks.indexOf(props.id) > -1
   );
@@ -75,4 +76,4 @@ export const ListRow = (props) => {
       </div>
     </div>
   );
-};
+});
