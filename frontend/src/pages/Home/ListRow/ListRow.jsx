@@ -59,9 +59,14 @@ export const ListRow = (props) => {
           <div className="row__text">{props.name}</div>
         </div>
       )}
-      <div className="row__edit">
-        <EditOutlined style={{ cursor: "pointer" }} onClick={handleEditClick} />
-      </div>
+      <Tooltip title="Show the pictures">
+        <div className="row__edit">
+          <EditOutlined
+            style={{ cursor: "pointer" }}
+            onClick={handleEditClick}
+          />
+        </div>
+      </Tooltip>
     </div>
   );
 };
