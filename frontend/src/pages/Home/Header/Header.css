@@ -2,19 +2,24 @@
     height: 3.8rem;
     padding-top: 1rem;
     border-bottom: 2px solid #d9d6cb;
-    width: calc(100vw - 8rem);
-    opacity: .5;
+    width: calc(100vw - 7rem);
 }
 
-.header__Logo {
+.header__logo {
     margin: 0rem .5rem 0rem 1rem;
     width: 25px;
     height: 25px;
+    opacity: .5;
+}
+
+.header__title {
+    opacity: .5;
 }
 
 .header__motto {
     display: auto;
     font-weight: 200;
+    opacity: .5;
 }
 
 @media only screen and (max-width: 600px) {
