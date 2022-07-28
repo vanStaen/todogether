@@ -40,9 +40,9 @@ export const ListFooter = observer(() => {
             </Tooltip>
           </>
         ) : (
-          <Tooltip title="Add new task">
-            <Button type="primary" icon={<PlusOutlined />} />
-          </Tooltip>
+          <Button type="primary" icon={<PlusOutlined />}>
+            New Task
+          </Button>
         )}
       </div>
     </div>
