@@ -8,7 +8,10 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 8086,
+    liveReload: true,
+    hot: false,
   },
+  target: "web",
   entry: { index: "./src/index.js", sw: "./src/sw.js" },
   mode: "development",
   output: {
