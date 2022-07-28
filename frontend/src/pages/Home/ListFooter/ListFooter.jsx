@@ -1,7 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Tooltip, Button } from "antd";
-import { DeleteOutlined, CheckOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  CheckOutlined,
+  PlusOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
 
@@ -28,7 +33,24 @@ export const ListFooter = observer(() => {
       <div className="listFooter__rightContainer">
         {listStore.selectedTasks.length ? (
           <>
-            <Tooltip title="Mark selected tasks as done">
+            <Tooltip
+              title={
+                <>
+                  Mark as <b>un</b>done
+                </>
+              }
+            >
+              <Button
+                type="primary"
+                icon={<CloseOutlined />}
+                style={{
+                  background: "rgba(229, 152, 102, .9)",
+                  borderColor: "rgba(229, 152, 102, 1)",
+                }}
+              />
+            </Tooltip>
+            &nbsp; &nbsp;
+            <Tooltip title="Mark as done">
               <Button
                 type="primary"
                 icon={<CheckOutlined />}
