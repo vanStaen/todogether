@@ -5,15 +5,20 @@ export const getUserInfo = async () => {
         query: `
         {
             getUser {
-              firstName,
-              lastName,
-              username,
-              email,
-              avatar,
-              emailSettings,
-              profilSettings,
-              friends,
-              lastActive
+                username,
+                email,
+                avatar,
+                categories,
+                emailSettings,
+                profilSettings,
+                lastActive,
+                createdAt,
+                updatedAt,
+                lists {
+                    _id,
+                    title,
+                    desc,
+                }
             }
           }
           `,

@@ -84,7 +84,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getUser {\n    _id,\n    name,\n    email,\n    avatar,\n    categories,\n    createdAt,\n    updatedAt,\n    lists {\n        _id,\n        title,\n        desc,\n    }\n    tasks {\n        _id,\n        title,\n        desc,\n    }\n  }\n}",
+						"query": "query {\n  getUser {\n    username,\n    email,\n    avatar,\n    categories,\n    emailSettings,\n    profilSettings,\n    lastActive,\n    createdAt,\n    updatedAt,\n    lists {\n        _id,\n        title,\n        desc,\n    }\n    tasks {\n        _id,\n        title,\n        desc,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -388,7 +388,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addList (\n    listInput: { \n        title: \"testList\", \n        desc: \"testListDesc\", \n        }\n  ) {\n    _id,\n    title,\n    desc,\n    listType\n  }\n}",
+						"query": "mutation {\n  addList (\n    listInput: { \n        title: \"Clément & Theresa\", \n        desc: \"Geteilte Todo-Liste zwischen uns\", \n        }\n  ) {\n    _id,\n    title,\n    desc,\n    listType\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -632,6 +632,36 @@
 					]
 				},
 				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\",\n    \"password\": \"123456\",\n    \"remind\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5002/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
 			},
 			"response": []
 		}
