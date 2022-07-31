@@ -34,17 +34,6 @@
     padding-bottom: 1rem;
     padding-left: 1rem;
     display: inline-block;
-    width: calc(100% - 3rem - 2rem);
-    vertical-align: top;
-    cursor: pointer;
-}
-
-.row__textContainerWithPicture {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-    display: inline-block;
-    width: calc(100% - 3rem - 5rem);
     vertical-align: top;
     cursor: pointer;
 }

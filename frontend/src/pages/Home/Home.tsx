@@ -29,7 +29,13 @@ export const Home = observer(() => {
                   <ListRow id={1} name="fist row" completed={true} />
                   <ListRow id={2} name="second row" completed={true} />
                   <ListRow id={3} name="third row" completed={false} />
-                  <ListRow id={4} name="fourth row" completed={false} />
+                  <ListRow
+                    id={4}
+                    name="fourth row"
+                    completed={false}
+                    hasPicture={false}
+                    hasComment={true}
+                  />
                   <ListRow
                     id={5}
                     name="fifth row"
@@ -49,6 +55,7 @@ export const Home = observer(() => {
                     name="ninth row"
                     completed={false}
                     hasPicture={true}
+                    hasComment={true}
                   />
                   <ListRow id={10} name="tenth row" completed={false} />
                   <ListRow
