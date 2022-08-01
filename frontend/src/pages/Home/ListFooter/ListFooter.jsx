@@ -13,6 +13,7 @@ import { listStore } from "../../../stores/listStore/listStore";
 import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
+
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
@@ -23,12 +24,12 @@ export const ListFooter = observer(() => {
         )}
       </div>
       <div className="listFooter__centerContainer">
-        {!!listStore.selectedTasks.length && (
+        {!!listStore.selectedTasks.length && (window.innerWidth > 530 ? (
           <>
             {listStore.selectedTasks.length} task
             {listStore.selectedTasks.length > 1 && "s"} selected
           </>
-        )}
+        ) : (listStore.selectedTasks.length))}
       </div>
       <div className="listFooter__rightContainer">
         {listStore.selectedTasks.length ? (
@@ -63,7 +64,7 @@ export const ListFooter = observer(() => {
           </>
         ) : (
           <Button type="primary" icon={<PlusOutlined />}>
-            New Task
+            {window.innerWidth > 460 && "New Task"}
           </Button>
         )}
       </div>

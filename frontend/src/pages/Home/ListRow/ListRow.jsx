@@ -15,7 +15,6 @@ export const ListRow = observer((props) => {
   useEffect(() => {
     const elementId = `row__textContainer${props.id}`;
     const element = document.getElementById(elementId);
-    console.log("window.innerWidth", window.innerWidth);
     if (window.innerWidth > 600) {
       if (listStore.showActionBar === props.id) {
         element.style.width = "calc(100% - 3rem - 210px)";
