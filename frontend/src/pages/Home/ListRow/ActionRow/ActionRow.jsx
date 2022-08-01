@@ -23,18 +23,33 @@ export const ActionRow = observer((props) => {
     }
   };
 
+  const handleEditClick = () => {
+    if (!props.completed) {
+      listStore.setTaskInEditMode(props.id);
+    }
+  };
+
+  const handlePictureClick = () => {
+    listStore.setShowPictureGallery(true);
+    console.log("This should open the image gallery!");
+  };
+
+  const handleCommentClick = () => {
+    console.log("This should open the comments!");
+  };
+
   return (
     <>
       <div className="actionRow">
         {listStore.showActionBar === props.id && (
           <div className="actionRow__actionContainer">
-            <div className="actionRow__action">
+            <div className="actionRow__action" onClick={handleCommentClick}>
               <PictureOutlined style={{ color: colorLogo }} />
             </div>
-            <div className="actionRow__action">
+            <div className="actionRow__action" onClick={handlePictureClick}>
               <CommentOutlined style={{ color: colorLogo }} />
             </div>
-            <div className="actionRow__action">
+            <div className="actionRow__action" onClick={handleEditClick}>
               <EditOutlined style={{ color: colorLogo, cursor: editPointer }} />
             </div>
           </div>

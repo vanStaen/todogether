@@ -24,7 +24,7 @@ export const ListRow = observer((props) => {
       }
     } else {
       if (listStore.showActionBar === props.id) {
-        element.style.width = "calc(100% - 4rem - 210px)";
+        element.style.width = "calc(100% - 1rem - 210px)";
       } else {
         element.style.width = "calc(100% - 4rem - 20px)";
       }
@@ -38,17 +38,6 @@ export const ListRow = observer((props) => {
       listStore.selectTask(props.id);
     }
     setIsSelected(!isSelected);
-  };
-
-  const handleEditClick = () => {
-    if (!props.completed) {
-      listStore.setTaskInEditMode(props.id);
-    }
-  };
-
-  const handlePictureClick = () => {
-    listStore.setShowPictureGallery(true);
-    console.log("This should open the image gallery!");
   };
 
   return (

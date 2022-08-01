@@ -45,3 +45,14 @@
 .actionRow__action:hover {
     color: rgba(229, 152, 102, 1);
 }
+
+
+@media only screen and (max-width: 600px) {
+    .actionRow__actionContainer {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .actionRow__action {
+        width: 40px;
+    }
+}
