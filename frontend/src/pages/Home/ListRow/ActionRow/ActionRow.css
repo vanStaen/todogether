@@ -39,4 +39,9 @@
     width: 50px;
     text-align: center;
     display: inline-block;
+    cursor: pointer;
+}
+
+.actionRow__action:hover {
+    color: rgba(229, 152, 102, 1);
 }

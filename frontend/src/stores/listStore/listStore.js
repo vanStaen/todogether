@@ -6,6 +6,7 @@ export class ListStore {
   selectedTasks = [];
   taskInEditMode = null;
   showPictureGallery = false;
+  showActionBar = null;
 
   constructor() {
     makeObservable(this, {
@@ -20,6 +21,8 @@ export class ListStore {
       setTaskInEditMode: action,
       showPictureGallery: observable,
       setShowPictureGallery: action,
+      showActionBar: observable,
+      setShowActionBar: action, 
     });
   }
 
@@ -57,6 +60,10 @@ export class ListStore {
 
   setShowPictureGallery = (showPictureGallery) => {
     this.showPictureGallery = (showPictureGallery);
+  }
+
+  setShowActionBar = (showActionBar) => {
+    this.showActionBar = (showActionBar);
   }
 
 }

@@ -8,7 +8,6 @@ import { ActionRow } from "./ActionRow/ActionRow";
 import "./ListRow.css";
 
 export const ListRow = observer((props) => {
-  const [showActionItems, setShowActionItems] = useState(false);
   const [isSelected, setIsSelected] = useState(
     listStore.selectedTasks.indexOf(props.id) > -1
   );
@@ -16,12 +15,12 @@ export const ListRow = observer((props) => {
   useEffect(() => {
     const elementId = `row__textContainer${props.id}`;
     const element = document.getElementById(elementId);
-    if (showActionItems) {
+    if (listStore.showActionBar === props.id) {
       element.style.width = "calc(100% - 3rem - 210px)";
     } else {
       element.style.width = "calc(100% - 3rem - 20px)";
     }
-  }, [showActionItems]);
+  }, [listStore.showActionBar]);
 
   const handleCheckboxClick = () => {
     if (isSelected) {
@@ -63,10 +62,7 @@ export const ListRow = observer((props) => {
           {props.name}
         </div>
       </div>
-      <ActionRow
-        showActionItems={showActionItems}
-        setShowActionItems={setShowActionItems}
-      />
+      <ActionRow completed={props.completed} id={props.id} />
     </div>
   );
 });
