@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Checkbox } from "antd";
-import {
-  EditOutlined,
-  PictureOutlined,
-  CommentOutlined,
-} from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
+import { ActionRow } from "./ActionRow/ActionRow";
 
 import "./ListRow.css";
 
 export const ListRow = observer((props) => {
+  const [showActionItems, setShowActionItems] = useState(false);
   const [isSelected, setIsSelected] = useState(
     listStore.selectedTasks.indexOf(props.id) > -1
   );
@@ -19,17 +16,12 @@ export const ListRow = observer((props) => {
   useEffect(() => {
     const elementId = `row__textContainer${props.id}`;
     const element = document.getElementById(elementId);
-    if (props.hasPicture && props.hasComment) {
-      element.style.width = "calc(100% - 3rem - 2rem - 6rem)";
-    } else if (props.hasPicture || props.hasComment) {
-      element.style.width = "calc(100% - 3rem - 2rem - 3rem)";
+    if (showActionItems) {
+      element.style.width = "calc(100% - 3rem - 210px)";
     } else {
-      element.style.width = "calc(100% - 3rem - 2rem)";
+      element.style.width = "calc(100% - 3rem - 20px)";
     }
-  });
-
-  const colorLogo = props.completed ? "#bbb7ac" : "inherit";
-  const editPointer = props.completed ? "not-allowed" : "cursor";
+  }, [showActionItems]);
 
   const handleCheckboxClick = () => {
     if (isSelected) {
@@ -71,22 +63,10 @@ export const ListRow = observer((props) => {
           {props.name}
         </div>
       </div>
-      {props.hasPicture && (
-        <div className="row__picture" onClick={handlePictureClick}>
-          <PictureOutlined style={{ color: colorLogo }} />
-        </div>
-      )}
-      {props.hasComment && (
-        <div className="row__picture" onClick={handlePictureClick}>
-          <CommentOutlined style={{ color: colorLogo }} />
-        </div>
-      )}
-      <div className="row__edit">
-        <EditOutlined
-          style={{ cursor: editPointer, color: colorLogo }}
-          onClick={handleEditClick}
-        />
-      </div>
+      <ActionRow
+        showActionItems={showActionItems}
+        setShowActionItems={setShowActionItems}
+      />
     </div>
   );
 });

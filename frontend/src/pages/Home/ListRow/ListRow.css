@@ -30,9 +30,7 @@
 }
 
 .row__textContainer {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
+    padding: 1rem;
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
@@ -47,33 +45,6 @@
 .row__completed {
     /*text-decoration: line-through;*/
     color: #bbb7ac;
-}
-
-.row__picture {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-right: 1rem;
-    width: 3rem;
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
-    cursor: pointer;
-}
-
-.row__picture:hover {
-    opacity: .75;
-}
-  
-.row__edit {
-    width: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    display: inline-block;
-    text-align: right;
-}
-
-.row__edit:hover {
-    opacity: .75;
 }
 
 .row__checkbox {

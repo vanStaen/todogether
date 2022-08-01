@@ -1,0 +1,42 @@
+
+.actionRow {
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+}
+
+.actionRow__more {
+    cursor: pointer;
+}
+
+.actionRow__more:hover {
+    color: rgba(229, 152, 102, 1);
+}
+
+.actionRow__moreContainer {   
+    display: inline-block;
+    vertical-align: top;
+    text-align: center; 
+    width: 30px;      
+}
+
+.actionRow__actionContainer {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;    
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.actionRow__actionsContainer {
+    display: inline-block;
+}
+
+.actionRow__action {
+    width: 50px;
+    text-align: center;
+    display: inline-block;
+}
