@@ -15,10 +15,19 @@ export const ListRow = observer((props) => {
   useEffect(() => {
     const elementId = `row__textContainer${props.id}`;
     const element = document.getElementById(elementId);
-    if (listStore.showActionBar === props.id) {
-      element.style.width = "calc(100% - 3rem - 210px)";
+    console.log("window.innerWidth", window.innerWidth);
+    if (window.innerWidth > 600) {
+      if (listStore.showActionBar === props.id) {
+        element.style.width = "calc(100% - 3rem - 210px)";
+      } else {
+        element.style.width = "calc(100% - 3rem - 20px)";
+      }
     } else {
-      element.style.width = "calc(100% - 3rem - 20px)";
+      if (listStore.showActionBar === props.id) {
+        element.style.width = "calc(100% - 4rem - 210px)";
+      } else {
+        element.style.width = "calc(100% - 4rem - 20px)";
+      }
     }
   }, [listStore.showActionBar]);
 
