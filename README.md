@@ -25,7 +25,6 @@ GraphQL for data exchange with Frontend, but REST API for Auth.
      - Custom
      - x time after being closed
    - Can have a deadline
-   - Belongs to a category
    - Has an owner (must not equal owner of list)
 2. List
    - Has an Id
@@ -44,12 +43,10 @@ GraphQL for data exchange with Frontend, but REST API for Auth.
    - Pwd
    - Avatar
    - Is linked to all the list he is owner of
-   - Has a list of category (to sort tasks)
    - Email Settings 
      - Get daily/weekly/no recap
      - get notification per email
    - Display settings:
-     - Show category tag
      - Show done tasks
      - Show deleted tasks
      - Show Recurring tasks

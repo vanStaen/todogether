@@ -10,7 +10,6 @@ type Task {
     archived: Boolean
     subTaskIds: [Int]
     deadline: String
-    categoryId: String
     assignedTo: Int
     createdAt: String!
     udpatedAt: String!
@@ -30,7 +29,6 @@ input TaskInputData {
     archived: Boolean
     subTaskIds: [String]
     deadline: String
-    categoryId: Int
     assignedTo: Int
 }`;
 

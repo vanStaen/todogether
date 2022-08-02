@@ -4,7 +4,6 @@ type User {
     username: String!
     email: String!
     avatar: String
-    categories: String
     emailSettings: String!
     profilSettings: String!
     lastActive: String!
@@ -20,7 +19,6 @@ input UserInputData {
     email: String
     password: String
     avatar: String
-    categories: [String]
     emailSettings: String
     profilSettings: String
 }`;

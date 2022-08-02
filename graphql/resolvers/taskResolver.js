@@ -58,7 +58,6 @@ exports.taskResolver = {
       "archived",
       "subTaskIds",
       "deadline",
-      "categoryId",
       "assignedTo",
     ];
     updatableFields.forEach((field) => {

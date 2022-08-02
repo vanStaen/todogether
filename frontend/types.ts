@@ -11,7 +11,6 @@ export type Task = {
   createdAt: string; // UTC
   udpatedAt: string; // UTC
   deadline?: string; // UTC 
-  categoryId: string; // CategoryId
   assignedTo?: string;
 };
 
@@ -38,7 +37,6 @@ export type User = {
   name: string;
   email: string;
   avatar?: string; // S3 Url
-  categories: Category[];
   createdAt: string; // UTC
   udpatedAt: string; // UTC
   emailSettings: EmailSettings;
@@ -58,7 +56,6 @@ export type EmailSettings = {
 };
 
 export type profilSettings = {
-  showCategories: boolean;
   showDoneTasks: boolean;
   showDeletedTasks: boolean;
   showRecurringTasks: boolean;

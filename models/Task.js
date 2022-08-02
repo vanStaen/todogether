@@ -38,10 +38,6 @@ const Task = sequelize.define("task", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  categoryId: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
   assignedTo: {
     type: DataTypes.INTEGER,
     allowNull: true,

@@ -30,7 +30,6 @@ exports.userResolver = {
         username: args.userInput.username,
         email: args.userInput.email,
         password: hashedPassword,
-        categories: [],
         emailSettings: "[]",
         profilSettings: "[]",
         lastActive: Date.now()
@@ -50,7 +49,6 @@ exports.userResolver = {
     const updatableFields = [
       "username",
       "avatar",
-      "categories",
       "emailSettings",
       "profilSettings",
     ];
