@@ -24,6 +24,16 @@
   overflow: scroll;
 }
 
+.home__grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  align-self: stretch;
+  padding: .5rem;
+}
+
 .menu__copyright {
   font-size: 0.75em;
   opacity: .5;
@@ -40,6 +50,9 @@
     height: calc(100vh - 3.5rem - 65px - 70px - 1rem); /* Fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 100 - 3.5rem - 65px - 70px - 1rem); /* header, listHeader, listFooter, margin-bottom  */
     overflow: scroll;
+  }
+  .home__grid {
+    padding: 1rem 1.5rem;
   }
   .menu__copyright {
     display: none;
