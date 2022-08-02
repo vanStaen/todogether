@@ -1,9 +1,9 @@
 .grid__container {
     position: relative;
-    width: 33%;
+    width: 30%;
     height: 195px; /*150+45*/
     max-width: 200px;
-    margin: .5rem;    
+    margin-top: .5rem;    
 }
 
 .grid__isSelected {
