@@ -19,9 +19,12 @@ export const ListGrid = observer((props) => {
     }
     setIsSelected(!isSelected);
   };
-
   return (
-    <div className={`grid__container ${isSelected && "grid__isSelected"}`}>
+    <div
+      className={`grid__container 
+      ${isSelected && "grid__isSelected"} 
+      ${!props.completed && "grid__goldBar"}`}
+    >
       <div className="grid__action">
         <Button size="small" icon={<MoreOutlined />} />
       </div>

@@ -1,7 +1,7 @@
 .grid__container {
     position: relative;
     width: 33%;
-    height: 200px;
+    height: 195px; /*150+45*/
     max-width: 200px;
     margin: .5rem;    
 }
@@ -13,6 +13,11 @@
 .grid__isCompleted {
     opacity: .5;
     cursor: not-allowed;
+}
+
+.grid__goldBar {
+    border-left: .4rem solid rgba(229, 152, 102, .75);
+    border-radius: .3rem;
 }
 
 .grid__background {
