@@ -30,7 +30,7 @@
 }
 
 .row__textContainer {
-    padding: 1rem;
+    padding: .5rem 1rem;
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
@@ -41,6 +41,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
 
 .row__completed {
     /*text-decoration: line-through;*/
@@ -55,6 +57,14 @@
 .ant-checkbox-inner, .ant-checkbox-input {
     transform: scale(1.2)
   }
+
+.row__desc {
+    font-size: .6em;
+}
+
+.row__noDesc {
+    padding-top: .5rem;
+}
 
 @media only screen and (max-width: 600px) {
     .row {

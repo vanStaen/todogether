@@ -55,8 +55,13 @@ export const ListRow = observer((props) => {
         id={`row__textContainer${props.id}`}
         onClick={handleCheckboxClick}
       >
-        <div className={`row__text ${props.completed && "row__completed"}`}>
-          {props.name}
+        <div className={`${props.completed && "row__completed"}`}>
+          <div className={`row__text  ${!props.desc && "row__noDesc"}`}>
+            {props.name}
+          </div>
+          {props.desc && (
+            <div className="row__text row__desc">{props.desc}</div>
+          )}
         </div>
       </div>
       <ActionRow completed={props.completed} id={props.id} />

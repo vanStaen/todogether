@@ -26,12 +26,18 @@ export const Home = observer(() => {
             <>
               {listStore.displayAslist ? (
                 <div className="home__rows">
-                  <ListRow id={1} name="fist row" completed={true} />
+                  <ListRow
+                    id={1}
+                    name="fist row"
+                    desc="this also has a really really really really really really really really really really really really really really really really really really really really long description"
+                    completed={true}
+                  />
                   <ListRow id={2} name="second row" completed={true} />
                   <ListRow id={3} name="third row" completed={false} />
                   <ListRow
                     id={4}
                     name="fourth row"
+                    desc="this also has a description"
                     completed={false}
                     hasPicture={false}
                     hasComment={true}
@@ -39,12 +45,14 @@ export const Home = observer(() => {
                   <ListRow
                     id={5}
                     name="fifth row"
+                    desc="this also has a description"
                     completed={true}
                     hasPicture={true}
                   />
                   <ListRow
                     id={6}
                     name="sixth row, and this time its a really long title,  and this time its a really long title,  and this time its a really long title,  and this time its a really long title!"
+                    desc="this also has a really really really really really really really really really really really really really really really really really really really really long description"
                     completed={false}
                     hasPicture={true}
                   />
