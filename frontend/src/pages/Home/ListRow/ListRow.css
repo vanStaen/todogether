@@ -3,7 +3,7 @@
     background-color: rgba(255,255,255,.9);
     padding-left: 1rem;
     padding-right: 1rem;
-    font-weight: 200;  
+    font-weight: 300;  
 }
   
 .row:hover {
@@ -58,6 +58,7 @@
 
 .row__desc {
     font-size: .6em;
+    font-weight: 200;  
 }
 
 .row__noDesc {

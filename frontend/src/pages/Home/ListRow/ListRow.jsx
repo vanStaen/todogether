@@ -56,7 +56,7 @@ export const ListRow = observer((props) => {
         onClick={handleCheckboxClick}
       >
         <div className={`${props.completed && "row__completed"}`}>
-          <div className={`row__text  ${!props.desc && "row__noDesc"}`}>
+          <div className={`row__text ${!props.desc && "row__noDesc"}`}>
             {props.name}
           </div>
           {props.desc && (
