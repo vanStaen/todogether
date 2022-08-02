@@ -1,11 +1,27 @@
 .grid__container {
+    position: relative;
     width: 33%;
+    height: 200px;
     max-width: 200px;
-    padding: .5rem;
+    margin: .5rem;    
+}
+
+.grid__isSelected {
+    box-shadow: 0px 0px 7px 7px #1890ff;
+}
+
+.grid__isCompleted {
+    opacity: .5;
+    cursor: not-allowed;
 }
 
 .grid__background {
     background-color: rgba(255,255,255,.9);
+    cursor: pointer;
+}
+
+.grid__background:hover {
+    box-shadow: 0px 0px 7px 7px rgba(255,255,255,.5);
 }
 
 .grid__pic, .grid__title, .grid__desc {
@@ -26,8 +42,8 @@
 }
 
 .grid__titleContainer { 
-    padding: 0 .5rem .5rem .5rem;
-    height: 40px;
+    padding: .5rem;
+    height: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,4 +54,10 @@
 
 .grid__desc {
     font-size: .5em;
+}
+
+.grid__action {
+    position: absolute;
+    top: 0rem;
+    right: .4rem;
 }

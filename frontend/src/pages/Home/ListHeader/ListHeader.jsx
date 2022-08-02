@@ -47,47 +47,45 @@ export const ListHeader = observer(() => {
         </div>
         {!listStore.taskInEditMode && (
           <div className="listHeader__SwitchContainer">
-            <Tooltip title="Change display">
-              <div className="listHeader__Switch">
-                <Radio.Group
-                  defaultValue={listStore.displayAslist}
-                  size="small"
-                  buttonStyle="solid"
-                  onChange={displayAsListClickHandler}
-                >
-                  <Radio.Button value={true}>
+            <div className="listHeader__Switch">
+              <Radio.Group
+                defaultValue={listStore.displayAslist}
+                size="small"
+                buttonStyle="solid"
+                onChange={displayAsListClickHandler}
+              >
+                <Radio.Button value={true}>
+                  <Tooltip title="Display as a list">
                     <DatabaseOutlined />
-                  </Radio.Button>
-                  <Radio.Button value={false}>
+                  </Tooltip>
+                </Radio.Button>
+                <Radio.Button value={false}>
+                  <Tooltip title="Display as a grid">
                     <AppstoreOutlined />
-                  </Radio.Button>
-                </Radio.Group>
-              </div>
-            </Tooltip>
+                  </Tooltip>
+                </Radio.Button>
+              </Radio.Group>
+            </div>
             &nbsp;
-            <Tooltip
-              title={
-                listStore.showCompleted
-                  ? "Hide completed task"
-                  : "Show completed task"
-              }
-            >
-              <div className="listHeader__Switch">
-                <Radio.Group
-                  defaultValue={listStore.showCompleted}
-                  size="small"
-                  buttonStyle="solid"
-                  onChange={showCompletedClickHandler}
-                >
-                  <Radio.Button value={true}>
+            <div className="listHeader__Switch">
+              <Radio.Group
+                defaultValue={listStore.showCompleted}
+                size="small"
+                buttonStyle="solid"
+                onChange={showCompletedClickHandler}
+              >
+                <Radio.Button value={true}>
+                  <Tooltip title="Show all task">
                     <CheckSquareOutlined />
-                  </Radio.Button>
-                  <Radio.Button value={false}>
+                  </Tooltip>
+                </Radio.Button>
+                <Radio.Button value={false}>
+                  <Tooltip title="Hide completed task">
                     <CloseSquareOutlined />
-                  </Radio.Button>
-                </Radio.Group>
-              </div>
-            </Tooltip>
+                  </Tooltip>
+                </Radio.Button>
+              </Radio.Group>
+            </div>
           </div>
         )}
       </div>
