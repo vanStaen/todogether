@@ -10,7 +10,8 @@ type Task {
     archived: Boolean
     subTaskIds: [Int]
     deadline: String
-    assignedTo: Int
+    categoryId: String
+    assignedTo: Int    
     createdAt: String!
     udpatedAt: String!
     list: List
@@ -29,7 +30,8 @@ input TaskInputData {
     favorited: Boolean
     archived: Boolean
     subTaskIds: [String]
-    deadline: String
+    deadline: String    
+    categoryId: Int
     assignedTo: Int
 }`;
 

@@ -27,6 +27,10 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  categories: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: [],
+  },
   emailSettings: {
     type: DataTypes.STRING,
     allowNull: true,

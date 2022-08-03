@@ -6,18 +6,31 @@ export type Task = {
   favorited: boolean;
   archived: boolean;
   comments?: Comment[];
+  pictures?: Picture[];
   subTaskIds?: Task["id"][];
   recurring?: number; // In days 
   createdAt: string; // UTC
   udpatedAt: string; // UTC
   deadline?: string; // UTC 
-  assignedTo?: string;
+  assignedTo?: string;  
+  categoryId: string; // CategoryId
 };
 
 export type Comment = {
   id: number;
+  taskId: Task["id"];
   userId: User["id"];
   comment: string;
+  createdAt: string; // UTC
+  udpatedAt: string; // UTC
+};
+
+export type Picture = {
+  id: number;
+  taskId: Task["id"];
+  userId: User["id"];
+  url: string;
+  thumbUrl: string;
   createdAt: string; // UTC
   udpatedAt: string; // UTC
 };
@@ -36,7 +49,8 @@ export type User = {
   id: number;
   name: string;
   email: string;
-  avatar?: string; // S3 Url
+  avatar?: string; // S3 Url  
+  categories: Category[];
   createdAt: string; // UTC
   udpatedAt: string; // UTC
   emailSettings: EmailSettings;
@@ -55,7 +69,8 @@ export type EmailSettings = {
   getNotification: boolean;
 };
 
-export type profilSettings = {
+export type profilSettings = {  
+  showCategories: boolean;
   showDoneTasks: boolean;
   showDeletedTasks: boolean;
   showRecurringTasks: boolean;
