@@ -36,16 +36,6 @@
     cursor: pointer;
   }
 
-  .listOfLists {
-    position: absolute;
-    background-color: rgba(226,224,217,.9);
-    width: 100%;
-    padding: 1rem 1rem 1rem 4.5rem; 
-    z-index: 10;
-    height: auto;
-    transition: height 0.3s linear;
-  }
-
   .fullScreen {
     position: fixed;
     top: 0;
@@ -57,6 +47,39 @@
     z-index: 9;
   }
 
+  .listHeader__Loading, .listHeader__desc {
+    font-weight: 200;
+  }
+
+  .listHeader__title {
+    font-weight: 500;
+  }
+
+  .listHeader__taskCount {
+    color: #bbb7ac;
+  }
+
+  .listHeader__listOfListsContainer {
+    position: absolute;
+    background-color: rgba(226,224,217,.9);
+    width: 100%;
+    z-index: 10;
+    height: auto;
+    border-bottom: 2px solid #d9d6cb;
+  }
+
+  .listHeader__listsOfList, .listHeader__Loading {
+    font-size: .9rem;
+    padding: .5rem 1rem .5rem 4.5rem; 
+    cursor: pointer;
+  }
+
+  .listHeader__listsOfList:hover {
+    background-color: rgba(229, 152, 102, .5);
+    color: white;
+  }
+
+
   @media only screen and (max-width: 600px) {
     .listHeader {
       padding: 1rem 1rem 1rem .5rem; 
@@ -64,7 +87,8 @@
     .listHeader__rowLogo {
       margin-right: .5rem;
     }
-    .listOfLists {
-      padding: 1rem 1rem 1rem 3.5rem; 
+    .listHeader__listsOfList {
+      padding: 1rem 1rem 1rem 3.2rem; 
+      font-size: .9em;
     }
   }

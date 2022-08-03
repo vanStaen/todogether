@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Radio, Tooltip } from "antd";
 import { observer } from "mobx-react";
 import {
@@ -7,6 +7,7 @@ import {
   AppstoreOutlined,
   CheckSquareOutlined,
   CloseSquareOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
@@ -15,6 +16,10 @@ import "./ListHeader.css";
 
 export const ListHeader = observer(() => {
   const [showListOfLists, setShowListOfLists] = useState(false);
+
+  useEffect(() => {
+    console.log("listStore.myLists", listStore.myLists);
+  }, [listStore.myLists]);
 
   const ShowListClickHander = () => {
     //const listsContainer = document.getElementById("listOfLists");
@@ -33,6 +38,20 @@ export const ListHeader = observer(() => {
   const hideListOfListsHandler = () => {
     setShowListOfLists(false);
   };
+
+  const listOflists = listStore.myLists.map((list) => {
+    return (
+      <div className="listHeader__listsOfList">
+        <span className="listHeader__title">{list.title}</span>
+        <span className="listHeader__desc">
+          &nbsp;|&nbsp;{list.desc}{" "}
+          <span className="listHeader__taskCount">
+            {list.tasks.length} task{list.tasks.length > 1 && "s"}
+          </span>
+        </span>
+      </div>
+    );
+  });
 
   return (
     <div>
@@ -91,10 +110,15 @@ export const ListHeader = observer(() => {
       </div>
       {showListOfLists && (
         <>
-          <div className="listOfLists" id="listOfLists">
-            <div>My shared to do list</div>
-            <div>Kühlschrank</div>
-            <div>Private todos</div>
+          <div className="listHeader__listOfListsContainer" id="listOfLists">
+            {listStore.myLists.length ? (
+              listOflists
+            ) : (
+              <div className="listHeader__Loading">
+                <LoadingOutlined />
+                &nbsp;&nbsp; Your lists are loading
+              </div>
+            )}
           </div>
           <div className="fullScreen" onClick={hideListOfListsHandler}></div>
         </>

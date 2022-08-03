@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 
 import { Header } from "./Header/Header";
@@ -14,6 +14,10 @@ import "./Home.css";
 export const Home = observer(() => {
   const date = new Date();
   const year = date.getFullYear();
+
+  useEffect(() => {
+    listStore.fetchMyLists();
+  }, []);
 
   return (
     <div>

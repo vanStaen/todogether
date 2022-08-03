@@ -1,5 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 
+import { getLists } from "./getLists";
+
 export class ListStore {
   showCompleted = false;
   displayAslist = true;
@@ -7,6 +9,7 @@ export class ListStore {
   taskInEditMode = null;
   showPictureGallery = false;
   showActionBar = null;
+  myLists = [];
 
   constructor() {
     makeObservable(this, {
@@ -23,6 +26,8 @@ export class ListStore {
       setShowPictureGallery: action,
       showActionBar: observable,
       setShowActionBar: action, 
+      myLists: observable,
+      fetchMyLists: action,
     });
   }
 
@@ -65,6 +70,13 @@ export class ListStore {
   setShowActionBar = (showActionBar) => {
     this.showActionBar = (showActionBar);
   }
+
+  fetchMyLists = async () => {
+    const listData = await getLists();
+    if (listData) {
+      this.myLists = listData;
+    }
+  };
 
 }
 
