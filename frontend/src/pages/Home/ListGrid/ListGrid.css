@@ -2,8 +2,7 @@
     position: relative;
     width: 30%;
     height: 195px; /*150+45*/
-    max-width: 200px;
-    margin: 10px;    
+    max-width: 200px;    
 }
 
 .grid__isSelected {
