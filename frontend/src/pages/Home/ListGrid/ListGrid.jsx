@@ -34,7 +34,7 @@ export const ListGrid = observer((props) => {
         }`}
         onClick={handleSelectClick}
       >
-        <div className="grid__pic">{props.id}</div>
+        <div className="grid__pic"></div>
         <div className="grid__titleContainer">
           <div className="grid__title">{props.name}</div>
           {props.desc && <div className="grid__desc">{props.desc}</div>}
