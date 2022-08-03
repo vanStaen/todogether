@@ -6,6 +6,7 @@
 - [ ] Add ServiceWorker
 - [ ] create info@todogether.com
 - [ ] ListOfList header, edit feature
+- [ ] store last shown list, and use is by next app load
 
 ## Completed ✓
 
