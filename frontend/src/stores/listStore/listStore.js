@@ -6,6 +6,7 @@ export class ListStore {
   showCompleted = false;
   displayAslist = true;
   selectedTasks = [];
+  selectedListId = null;
   taskInEditMode = null;
   showPictureGallery = false;
   showActionBar = null;
@@ -28,6 +29,8 @@ export class ListStore {
       setShowActionBar: action, 
       myLists: observable,
       fetchMyLists: action,
+      selectedListId: observable,
+      setSelectedListId: action,
     });
   }
 
@@ -77,6 +80,10 @@ export class ListStore {
       this.myLists = listData;
     }
   };
+
+  setSelectedListId = (selectedListId) => {
+    this.selectedListId = (selectedListId);
+  }
 
 }
 

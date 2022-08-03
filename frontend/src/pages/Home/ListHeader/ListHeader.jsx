@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Radio, Tooltip } from "antd";
 import { observer } from "mobx-react";
 import {
@@ -8,6 +8,7 @@ import {
   CheckSquareOutlined,
   CloseSquareOutlined,
   LoadingOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
@@ -17,13 +18,7 @@ import "./ListHeader.css";
 export const ListHeader = observer(() => {
   const [showListOfLists, setShowListOfLists] = useState(false);
 
-  useEffect(() => {
-    console.log("listStore.myLists", listStore.myLists);
-  }, [listStore.myLists]);
-
   const ShowListClickHander = () => {
-    //const listsContainer = document.getElementById("listOfLists");
-    //listsContainer.style.height = showListOfLists ? "200px" : "0px";
     setShowListOfLists(!showListOfLists);
   };
 
@@ -47,6 +42,10 @@ export const ListHeader = observer(() => {
           &nbsp;|&nbsp;{list.desc}{" "}
           <span className="listHeader__taskCount">
             {list.tasks.length} task{list.tasks.length > 1 && "s"}
+            &nbsp;
+            <Tooltip title="Edit this list">
+              <EditOutlined className="listHeader__editList" />
+            </Tooltip>
           </span>
         </span>
       </div>
