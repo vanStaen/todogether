@@ -7,17 +7,14 @@ export const getTasks = async (listId) => {
             getTask(listId: ${listId}) {
                 _id,
                 title,
-                desc,
-                list {
-                    _id,
-                },
-                user {
-                    _id,
-                    username,
-                },
+                desc,    
+                archived,  
+                assignedTo,        
                 comments {
                     _id,
-                    comment,
+                },            
+                pictures {
+                    _id,
                 },
               }
           }

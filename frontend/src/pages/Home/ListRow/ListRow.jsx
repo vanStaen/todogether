@@ -57,7 +57,7 @@ export const ListRow = observer((props) => {
       >
         <div className={`${props.completed && "row__completed"}`}>
           <div className={`row__text ${!props.desc && "row__noDesc"}`}>
-            {props.name}
+            {props.title}
           </div>
           {props.desc && (
             <div className="row__text row__desc">{props.desc}</div>

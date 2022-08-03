@@ -1,16 +1,17 @@
 import { action, makeObservable, observable } from "mobx";
 
 import { getLists } from "./getLists";
-
+import { getTasks } from "./getTasks";
 export class ListStore {
   showCompleted = false;
   displayAslist = true;
   selectedTasks = [];
-  selectedListId = null;
+  selectedList = null;
   taskInEditMode = null;
   showPictureGallery = false;
   showActionBar = null;
   myLists = [];
+  myTasks = [];
 
   constructor() {
     makeObservable(this, {
@@ -29,8 +30,9 @@ export class ListStore {
       setShowActionBar: action, 
       myLists: observable,
       fetchMyLists: action,
-      selectedListId: observable,
-      setSelectedListId: action,
+      myTasks: observable,
+      selectedList: observable,
+      setSelectedList: action,
     });
   }
 
@@ -78,11 +80,19 @@ export class ListStore {
     const listData = await getLists();
     if (listData) {
       this.myLists = listData;
+      if (!this.selectedList) {
+        this.setSelectedList(listData[0])
+      }
     }
   };
 
-  setSelectedListId = (selectedListId) => {
-    this.selectedListId = (selectedListId);
+  setSelectedList = async (selectedList) => {
+    this.selectedList = (selectedList);
+    const taskData = await getTasks(selectedList._id);
+    if (taskData) {
+      this.myTasks = taskData;
+    }
+    console.log("taskData", taskData)
   }
 
 }

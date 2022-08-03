@@ -36,7 +36,13 @@ export const ListHeader = observer(() => {
 
   const listOflists = listStore.myLists.map((list) => {
     return (
-      <div className="listHeader__listsOfList">
+      <div
+        className="listHeader__listsOfList"
+        onClick={() => {
+          listStore.setSelectedList(list);
+        }}
+        key={list._id}
+      >
         <span className="listHeader__title">{list.title}</span>
         <span className="listHeader__desc">
           &nbsp;|&nbsp;{list.desc}{" "}
@@ -61,8 +67,8 @@ export const ListHeader = observer(() => {
               <UnorderedListOutlined />
             </div>
           </Tooltip>
-          {listStore.myLists.length ? (
-            listStore.myLists[0].title
+          {listStore.selectedList ? (
+            listStore.selectedList.title
           ) : (
             <LoadingOutlined />
           )}
