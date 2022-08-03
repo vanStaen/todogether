@@ -2,6 +2,7 @@ const { Task } = require("../../models/Task");
 const { User } = require("../../models/User");
 const { List } = require("../../models/List");
 const { Comment } = require("../../models/Comment");
+const { Picture } = require("../../models/Picture");
 
 exports.taskResolver = {
 
@@ -15,7 +16,7 @@ exports.taskResolver = {
         userId: req.userId,
         listId: args.listId,
       },
-      include: [List, User, Comment],
+      include: [List, User, Comment, Picture],
     });
   },
 

@@ -16,6 +16,7 @@ type Task {
     list: List
     user: User
     comments: [Comment]
+    pictures: [Picture]
 }`;
 
 exports.TaskInputData = `

@@ -2,6 +2,7 @@ const { sequelize, DataTypes } = require('../lib/sequelizedb');
 const { Comment } = require('./Comment');
 const { User } = require('./User');
 const { List } = require('./List');
+const { Picture } = require('./Picture');
 
 const Task = sequelize.define("task", {
   _id: {
@@ -52,6 +53,9 @@ Task.belongsTo(List);
 
 Task.hasMany(Comment);
 Comment.belongsTo(Task);
+
+Task.hasMany(Picture);
+Picture.belongsTo(Task);
 
 module.exports = {
   Task
