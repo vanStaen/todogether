@@ -40,6 +40,7 @@ export const ListHeader = observer(() => {
         className="listHeader__listsOfList"
         onClick={() => {
           listStore.setSelectedList(list);
+          setShowListOfLists(false);
         }}
         key={list._id}
       >
