@@ -502,7 +502,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getTask(listId: 1) {\n    _id,\n    title,\n    desc,\n    list {\n        _id,\n    },\n    user {\n        name,\n    },\n    comment {\n        _id,\n        comment,\n    },\n  }\n}",
+						"query": "query {\n  getTask(listId: 1) {\n    _id,\n    title,\n    desc,\n    list {\n        _id,\n    },\n    user {\n        _id,\n        username,\n    },\n    comments {\n        _id,\n        comment,\n    },\n    pictures {\n        _id,\n        url,\n        thumbUrl,\n    },\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -540,7 +540,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  addTask (\n    taskInput: { \n        listId: 1,\n        title: \"testTask\", \n        desc: \"testTaskDesc\", \n        }\n  ) {\n    _id,\n    title,\n  }\n}",
+						"query": "mutation {\n  addTask (\n    taskInput: { \n        listId: 1,\n        title: \"Wohnungstür in Blau\", \n        desc: \"Ein Maler finden, der unserem Tür in der richtige Blau anmalen kann.\", \n        }\n  ) {\n    _id,\n    title,\n  }\n}",
 						"variables": ""
 					}
 				},

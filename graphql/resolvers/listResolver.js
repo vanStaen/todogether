@@ -2,6 +2,7 @@ const { List } = require("../../models/List");
 const { User } = require("../../models/User");
 const { Task } = require("../../models/Task");
 const { Comment } = require("../../models/Comment");
+const { Picture } = require("../../models/Picture");
 
 exports.listResolver = {
   //list
@@ -17,7 +18,7 @@ exports.listResolver = {
         { model: User, include: 
             { model: List, include: Task } 
         },
-        { model: Task, include: Comment },
+        { model: Task, include: Comment, Picture },
       ],
     });
   },

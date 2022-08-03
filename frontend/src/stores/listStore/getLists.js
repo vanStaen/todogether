@@ -1,25 +1,23 @@
 import axios from "axios";
 
-export const getTasks = async (listId) => {
+export const getLists = async () => {
   const requestBody = {
     query: `
         {
-            getTask(listId: ${listId}) {
+          getList {
+            title,
+            desc,
+            listType,
+            _id,
+            tasks {
                 _id,
-                title,
-                desc,
-                list {
-                    _id,
-                },
-                user {
-                    _id,
-                    username,
-                },
+                title
                 comments {
                     _id,
                     comment,
-                },
-              }
+                    }
+                }
+            }
           }
           `,
   };
@@ -34,5 +32,5 @@ export const getTasks = async (listId) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getTask;
+  return response.data.data.getList;
 };
