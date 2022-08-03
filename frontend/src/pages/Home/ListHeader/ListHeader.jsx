@@ -62,7 +62,11 @@ export const ListHeader = observer(() => {
               <UnorderedListOutlined />
             </div>
           </Tooltip>
-          My long titled shared todolist
+          {listStore.myLists.length ? (
+            listStore.myLists[0].title
+          ) : (
+            <LoadingOutlined />
+          )}
         </div>
         {!listStore.taskInEditMode && (
           <div className="listHeader__SwitchContainer">
