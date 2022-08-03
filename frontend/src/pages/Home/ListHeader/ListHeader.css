@@ -10,24 +10,13 @@
 
   .listHeader__ListNameContainer {
     display: inline-block;
-    width: calc(100% - 140px);
+    width: calc(100% - 35px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600;
   } 
 
-  .listHeader__SwitchContainer {
-    display: inline-block;
-    text-align: right;
-    width: 140px;
-    vertical-align: top;
-  } 
-
-  .listHeader__Switch {
-    display: inline-block;
-  }
-  
   .listHeader__rowLogo {
     width: 2rem;
     margin-right: 1rem;
@@ -61,7 +50,7 @@
 
   .listHeader__listOfListsContainer {
     position: absolute;
-    background-color: rgba(226,224,217,.9);
+    background-color: rgba(226,224,217,1);
     width: 100%;
     z-index: 10;
     height: auto;

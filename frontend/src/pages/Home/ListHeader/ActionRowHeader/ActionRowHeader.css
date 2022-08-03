@@ -1,0 +1,34 @@
+
+.actionRowHeader {
+    position: relative;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+}
+
+.actionRowHeader__more {
+    cursor: pointer;
+}
+
+.actionRowHeader__more:hover {
+    color: rgba(229, 152, 102, 1);
+}
+
+.actionRowHeader__moreContainer {   
+    display: inline-block;
+    vertical-align: top;
+    text-align: center; 
+    width: 30px;      
+}
+
+.actionRowHeader__SwitchContainer {
+    display: inline-block;
+    text-align: right;
+    width: 140px;
+    vertical-align: top;
+  } 
+
+.actionRowHeader__Switch {
+    display: inline-block;
+  }
+  
