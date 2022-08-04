@@ -2,6 +2,7 @@ import { action, makeObservable, observable } from "mobx";
 
 import { getLists } from "./getLists";
 import { getTasks } from "./getTasks";
+import { archiveTaskInBulk } from "./archiveTaskInBulk";
 export class ListStore {
   showCompleted = false;
   displayAslist = true;
@@ -27,12 +28,14 @@ export class ListStore {
       showPictureGallery: observable,
       setShowPictureGallery: action,
       showActionBar: observable,
-      setShowActionBar: action, 
+      setShowActionBar: action,
       myLists: observable,
       fetchMyLists: action,
       myTasks: observable,
+      setMyTasks: observable,
       selectedList: observable,
       setSelectedList: action,
+      setTasksArchived: action,
     });
   }
 
@@ -45,56 +48,69 @@ export class ListStore {
   };
 
   selectTask = (task) => {
-    const index = this.selectedTasks.indexOf(task)
-    if (index > -1) {      
-      console.log("Error", "the task was already in the 'selectedTasks'-array")
-    }
-    else {
+    const index = this.selectedTasks.indexOf(task);
+    if (index > -1) {
+      console.log("Error", "the task was already in the 'selectedTasks'-array");
+    } else {
       this.selectedTasks.push(task);
     }
-  }
+  };
 
   unselectTask = (task) => {
-    const index = this.selectedTasks.indexOf(task)
+    const index = this.selectedTasks.indexOf(task);
     if (index > -1) {
       this.selectedTasks.splice(index, 1);
+    } else {
+      console.log("Error", "the task was not in the 'selectedTasks'-array");
     }
-    else {
-      console.log("Error", "the task was not in the 'selectedTasks'-array")
-    }
-  }
+  };
 
   setTaskInEditMode = (taskInEditMode) => {
-    this.taskInEditMode = (taskInEditMode);
-  }
+    this.taskInEditMode = taskInEditMode;
+  };
 
   setShowPictureGallery = (showPictureGallery) => {
-    this.showPictureGallery = (showPictureGallery);
-  }
+    this.showPictureGallery = showPictureGallery;
+  };
 
   setShowActionBar = (showActionBar) => {
-    this.showActionBar = (showActionBar);
-  }
+    this.showActionBar = showActionBar;
+  };
 
   fetchMyLists = async () => {
     const listData = await getLists();
     if (listData) {
       this.myLists = listData;
       if (!this.selectedList) {
-        this.setSelectedList(listData[0])
+        this.setSelectedList(listData[0]);
       }
     }
   };
 
+  setMyTasks = (myTasks) => {
+    this.myTasks = myTasks;
+  };
+
   setSelectedList = async (selectedList) => {
-    this.selectedList = (selectedList);
+    this.selectedList = selectedList;
     const taskData = await getTasks(selectedList._id);
     if (taskData) {
-      this.myTasks = taskData;
+      this.setMyTasks(taskData);
     }
-    console.log("myTasks", taskData)
-  }
+    console.log("myTasks", taskData);
+  };
 
+  setTasksArchived = async (archived) => {
+    try {
+      await archiveTaskInBulk(this.selectedTasks, archived);
+      const taskData = await getTasks(this.selectedList._id);
+      if (taskData) {
+        this.setMyTasks(taskData);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
 }
 
 export const listStore = new ListStore();

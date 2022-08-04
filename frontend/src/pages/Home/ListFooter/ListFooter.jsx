@@ -46,6 +46,9 @@ export const ListFooter = observer(() => {
               <Button
                 type="primary"
                 icon={<CloseOutlined />}
+                onClick={() => {
+                  listStore.setTasksArchived(false);
+                }}
                 style={{
                   background: "rgba(229, 152, 102, .9)",
                   borderColor: "rgba(229, 152, 102, 1)",
@@ -57,6 +60,9 @@ export const ListFooter = observer(() => {
               <Button
                 type="primary"
                 icon={<CheckOutlined />}
+                onClick={() => {
+                  listStore.setTasksArchived(true);
+                }}
                 style={{
                   background: "rgba(102, 187, 106,1)",
                   borderColor: "rgba(76, 175, 80, 1)",
