@@ -10,7 +10,7 @@
 
   .listHeader__ListNameContainer {
     display: inline-block;
-    width: calc(100% - 35px);
+    width: calc(100% - 36px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -50,7 +50,7 @@
 
   .listHeader__listOfListsContainer {
     position: absolute;
-    background-color: rgba(226,224,217,1);
+    background-color: rgba(226,224,217,.9);
     width: 100%;
     z-index: 10;
     height: auto;
