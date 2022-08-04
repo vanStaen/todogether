@@ -50,7 +50,7 @@
 
   .listHeader__listOfListsContainer {
     position: absolute;
-    background-color: rgba(226,224,217,.9);
+    background-color: rgba(226,224,217,.95);
     width: 100%;
     z-index: 10;
     height: auto;
@@ -60,6 +60,7 @@
   .listHeader__listsOfList, .listHeader__Loading {
     font-size: .9rem;
     padding: .5rem 1rem .5rem 4.5rem; 
+    border-bottom: 1px solid rgba(255,255,255,1);
     cursor: pointer;
   }
 
