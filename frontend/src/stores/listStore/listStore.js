@@ -9,6 +9,7 @@ export class ListStore {
   selectedTasks = [];
   selectedList = null;
   taskInEditMode = null;
+  listInEditMode = null;
   showPictureGallery = false;
   showActionBar = null;
   myLists = [];
@@ -25,6 +26,8 @@ export class ListStore {
       unselectTask: action,
       taskInEditMode: observable,
       setTaskInEditMode: action,
+      listInEditMode: observable,
+      setListInEditMode: action,
       showPictureGallery: observable,
       setShowPictureGallery: action,
       showActionBar: observable,
@@ -68,6 +71,11 @@ export class ListStore {
   setTaskInEditMode = (taskInEditMode) => {
     this.taskInEditMode = taskInEditMode;
   };
+
+  setListInEditMode = (listInEditMode) => {
+    this.listInEditMode = listInEditMode;
+  };
+
 
   setShowPictureGallery = (showPictureGallery) => {
     this.showPictureGallery = showPictureGallery;

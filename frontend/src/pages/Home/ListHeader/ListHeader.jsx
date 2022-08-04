@@ -5,6 +5,7 @@ import {
   UnorderedListOutlined,
   LoadingOutlined,
   EditOutlined,
+  PlusSquareOutlined,
 } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
@@ -33,17 +34,17 @@ export const ListHeader = observer(() => {
         }}
         key={list._id}
       >
-        <span className="listHeader__title">{list.title}</span>
-        <span className="listHeader__desc">
-          &nbsp;|&nbsp;{list.desc}{" "}
-          <span className="listHeader__taskCount">
-            {list.tasks.length} task{list.tasks.length > 1 && "s"}
-            &nbsp;
-            <Tooltip title="Edit this list">
-              <EditOutlined className="listHeader__editList" />
-            </Tooltip>
-          </span>
-        </span>
+        <div className="listHeader__listsOfListMain">
+          <span className="listHeader__title">{list.title}</span>
+          <span className="listHeader__desc">&nbsp;|&nbsp;{list.desc} </span>
+        </div>
+        <div className="listHeader__taskCount">
+          {list.tasks.length} task{list.tasks.length > 1 && "s"}
+          &nbsp;
+          <Tooltip title="Edit this list">
+            <EditOutlined className="listHeader__editList" />
+          </Tooltip>
+        </div>
       </div>
     );
   });
@@ -51,7 +52,10 @@ export const ListHeader = observer(() => {
   return (
     <div>
       <div className="listHeader">
-        <div className="listHeader__ListNameContainer" id="listHeader__ListNameContainer">
+        <div
+          className="listHeader__ListNameContainer"
+          id="listHeader__ListNameContainer"
+        >
           <Tooltip title="Switch between list">
             <div className="listHeader__rowLogo" onClick={ShowListClickHander}>
               <UnorderedListOutlined />
@@ -69,7 +73,20 @@ export const ListHeader = observer(() => {
         <>
           <div className="listHeader__listOfListsContainer" id="listOfLists">
             {listStore.myLists.length ? (
-              listOflists
+              <>
+                {listOflists}
+                <div
+                  className="listHeader__listsOfListCreate"
+                  key="createNewList"
+                >
+                  <div className="listHeader__listsOfListMain">
+                    <PlusSquareOutlined />
+                    <span className="listHeader__createTitle">
+                      Create new list
+                    </span>
+                  </div>
+                </div>
+              </>
             ) : (
               <div className="listHeader__Loading">
                 <LoadingOutlined />

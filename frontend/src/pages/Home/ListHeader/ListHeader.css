@@ -45,7 +45,12 @@
   }
 
   .listHeader__taskCount {
-    color: #bbb7ac;
+    width: 7.5rem;
+    padding: .5rem 1rem .5rem 0rem; 
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+    color: #8C8981;
   }
 
   .listHeader__listOfListsContainer {
@@ -57,11 +62,20 @@
     border-bottom: 2px solid #d9d6cb;
   }
 
-  .listHeader__listsOfList, .listHeader__Loading {
+  .listHeader__listsOfList, .listHeader__Loading, .listHeader__listsOfListCreate {
     font-size: .9rem;
-    padding: .5rem 1rem .5rem 4.5rem; 
     border-bottom: 1px solid rgba(255,255,255,1);
     cursor: pointer;
+    height: 45px;
+  }
+
+  .listHeader__listsOfListMain {
+    display: inline-block;
+    padding: .5rem 1rem .5rem 4.5rem; 
+    width: calc(100vw - 7rem - 8rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .listHeader__listsOfList:hover {
@@ -69,8 +83,19 @@
     color: white;
   }
 
+  .listHeader__createTitle {
+    font-weight: 200;
+    padding-left: 10px;
+    
+  }
+
+  .listHeader__listsOfListCreate:hover {
+    background-color: rgba(163, 161, 152, 1);
+    color: white;
+  }
+
   .listHeader__editList:hover {
-    color:rgba(0, 0, 0, .5);
+    color:rgba(0, 0, 0, .75);
   }
 
 
@@ -81,8 +106,11 @@
     .listHeader__rowLogo {
       margin-right: .5rem;
     }
-    .listHeader__listsOfList {
-      padding: 1rem 1rem 1rem 3.2rem; 
+    .listHeader__listsOfList, .listHeader__listsOfListCreate {
       font-size: .9em;
+    }
+    .listHeader__listsOfListMain {
+      padding-left: 3.2rem;
+      width: calc(100vw - 7rem - 2.5rem);
     }
   }
