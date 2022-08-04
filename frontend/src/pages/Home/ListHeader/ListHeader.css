@@ -106,8 +106,9 @@
     .listHeader__rowLogo {
       margin-right: .5rem;
     }
-    .listHeader__listsOfList, .listHeader__listsOfListCreate {
+    .listHeader__listsOfList, .listHeader__Loading, .listHeader__listsOfListCreate {
       font-size: .9em;
+      height: 40px;
     }
     .listHeader__listsOfListMain {
       padding-left: 3.2rem;

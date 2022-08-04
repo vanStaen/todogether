@@ -99,8 +99,10 @@ export const ListHeader = observer(() => {
               </>
             ) : (
               <div className="listHeader__Loading">
-                <LoadingOutlined />
-                &nbsp;&nbsp; Your lists are loading
+                <div className="listHeader__listsOfListMain">
+                  <LoadingOutlined />
+                  &nbsp;&nbsp; Your lists are loading
+                </div>
               </div>
             )}
           </div>
