@@ -15,9 +15,7 @@ exports.taskResolver = {
         userId: req.userId,
         listId: args.listId,
       },
-      order: [
-        ["_id", "DESC"],
-      ],
+      order: [["_id", "DESC"]],
       include: [List, User, Comment, Picture],
     });
   },
@@ -80,6 +78,28 @@ exports.taskResolver = {
       // updatedTask[0]: number or row udpated
       // updatedTask[1]: rows updated
       return updatedTask[1];
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  // archiveTaskInBulk(_id: [ID!], archived: Boolean!): Boolean!
+  async archiveTaskInBulk(args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    try {
+      await Task.update(
+        { archived: args.archived },
+        {
+          where: {
+            _id: args._id,
+          },
+          returning: true,
+          plain: true,
+        }
+      );
+      return true;
     } catch (err) {
       console.log(err);
     }

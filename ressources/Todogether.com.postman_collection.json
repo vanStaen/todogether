@@ -350,7 +350,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n    getList {\n        title,\n        desc,\n        _id,\n        tasks {\n            _id,\n            title\n            comments {\n                _id,\n                comment,\n                }\n            }\n        }\n    }",
+						"query": "query {\n    getList {\n        title,\n        desc,\n        listType,\n        _id,\n        tasks {\n            _id,\n            title,\n            desc,\n            deadline,\n            comments {\n                _id,\n                comment,\n                }\n            }\n        }\n    }",
 						"variables": ""
 					}
 				},
@@ -636,32 +636,40 @@
 			"response": []
 		},
 		{
-			"name": "auth/login",
+			"name": "GraphQL Mutation: ArchiveTaskInBulk",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 123456789",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\",\n    \"password\": \"123456\",\n    \"remind\": true\n}"
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  archiveTaskInBulk (\n      _id: [8, 9, 10, 11, 12, 13, 14, 15, 16],\n      archived: false,\n      )\n}",
+						"variables": ""
+					}
 				},
 				"url": {
-					"raw": "http://localhost:5002/auth/login",
+					"raw": "http://localhost:5012/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5002",
+					"port": "5012",
 					"path": [
-						"auth",
-						"login"
+						"graphql"
 					]
-				}
+				},
+				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
 			},
 			"response": []
 		}

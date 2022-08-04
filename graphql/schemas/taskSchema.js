@@ -42,5 +42,6 @@ exports.TaskQueries = `
 exports.TaskMutations = `
     addTask(taskInput: TaskInputData!): Task!
     updateTask(_id: ID!, taskInput: TaskInputData!): Task!
+    archiveTaskInBulk(_id: [ID!], archived: Boolean!): Boolean!
     deleteTask(_id: ID!): Boolean!
 `;
