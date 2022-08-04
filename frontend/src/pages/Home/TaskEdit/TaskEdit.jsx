@@ -32,6 +32,7 @@ export const TaskEdit = () => {
           initialValues={{
             title: "test",
             desc: "test desc",
+            deadline: null,
           }}
         >
           <Form.Item label="Title" name="title" required>
@@ -59,6 +60,12 @@ export const TaskEdit = () => {
           </Form.Item>
           <Form.Item label="Tags" name="tags">
             <Tag disabled>Not available yet</Tag>
+          </Form.Item>
+          <Form.Item label="Assigned" name="assignedTo" disabled>
+            Assign someone to the task
+          </Form.Item>
+          <Form.Item label="Urgent" name="favorite" disabled>
+            Define as urgent
           </Form.Item>
         </Form>
       </div>

@@ -8,7 +8,8 @@ export const getTasks = async (listId) => {
                 _id,
                 title,
                 desc,    
-                archived,  
+                archived, 
+                deadline,
                 assignedTo,        
                 comments {
                     _id,
