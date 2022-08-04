@@ -30,7 +30,6 @@ export const ActionRowHeader = observer((props) => {
     if (showActionBar) {
       element.style.width = "calc(100% - 176px)";
     } else {
-      console.log("here");
       element.style.width = "";
     }
   }, [showActionBar]);

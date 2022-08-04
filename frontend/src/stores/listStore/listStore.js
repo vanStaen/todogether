@@ -92,7 +92,7 @@ export class ListStore {
     if (taskData) {
       this.myTasks = taskData;
     }
-    console.log("taskData", taskData)
+    console.log("myTasks", taskData)
   }
 
 }

@@ -38,7 +38,7 @@ export const Home = observer(() => {
         <Header />
         <div className="home__main">
           <ListHeader />
-          {listStore.taskInEditMode ? (
+          {listStore.taskInEditMode !== null ? (
             <TaskEdit />
           ) : (
             <>
