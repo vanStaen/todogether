@@ -5,9 +5,8 @@ const { Comment } = require("../../models/Comment");
 const { Picture } = require("../../models/Picture");
 
 exports.taskResolver = {
-
   //task
-  async getTask (args, req) {
+  async getTask(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
@@ -16,12 +15,15 @@ exports.taskResolver = {
         userId: req.userId,
         listId: args.listId,
       },
+      order: [
+        ["_id", "DESC"],
+      ],
       include: [List, User, Comment, Picture],
     });
   },
 
   //addTask(taskInput: TaskInputData!): Task!
-  async addTask (args, req) {
+  async addTask(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
@@ -58,7 +60,7 @@ exports.taskResolver = {
       "favorited",
       "archived",
       "subTaskIds",
-      "deadline",      
+      "deadline",
       "categoryId",
       "assignedTo",
     ];
@@ -68,16 +70,13 @@ exports.taskResolver = {
       }
     });
     try {
-      const updatedTask = await Task.update(
-        updateFields,
-        {
-          where: {
-            _id: args._id,
-          },
-          returning: true,
-          plain: true,
-        }
-      );
+      const updatedTask = await Task.update(updateFields, {
+        where: {
+          _id: args._id,
+        },
+        returning: true,
+        plain: true,
+      });
       // updatedTask[0]: number or row udpated
       // updatedTask[1]: rows updated
       return updatedTask[1];
@@ -87,7 +86,7 @@ exports.taskResolver = {
   },
 
   // deleteTask(_id: ID!): Boolean!
-  async deleteTask (args, req) {
+  async deleteTask(args, req) {
     await Task.destroy({
       where: {
         _id: args._id,
