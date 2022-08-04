@@ -4,6 +4,7 @@ import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
+import { postAddTask } from "./postAddTask";
 
 import "./TaskEdit.css";
 
@@ -16,24 +17,44 @@ export const TaskEdit = observer(() => {
     listStore.setTaskInEditMode(null);
   };
 
-  const saveClickHandler = () => {
-    console.log("title", form.getFieldValue("title"));
-    console.log("desc", form.getFieldValue("desc"));
-    console.log("deadline", form.getFieldValue("deadline"));
-    console.log("picture", form.getFieldValue("picture"));
-    console.log("tags", form.getFieldValue("tags"));
+  const saveClickHandler = async (values) => {
+    if (listStore.taskInEditMode === 0) {
+      try {
+        const taskInputData = {};
+        taskInputData.listId = parseInt(listStore.selectedList._id);
+        taskInputData.title = values.title;
+        const resultId = await postAddTask(taskInputData);
+        console.log("New Task #", resultId, " added");
+        listStore.setTaskInEditMode(null);
+        listStore.fetchMyTasks();
+      } catch (e) {
+        console.log("error", e);
+      }
+    } else {
+      console.log("this is an edit");
+    }
   };
 
   return (
     <>
-      <div className="taskedit__container">
-        <Form
-          layout="vertical"
-          form={form}
-          initialValues={listStore.taskInEditMode}
-          requiredMark="optional"
-        >
-          <Form.Item label="Title" name="title" required>
+      <Form
+        layout="vertical"
+        form={form}
+        initialValues={listStore.taskInEditMode}
+        requiredMark="optional"
+        onFinish={saveClickHandler}
+      >
+        <div className="taskedit__container">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[
+              {
+                required: true,
+                message: "A task title is mandatory!",
+              },
+            ]}
+          >
             <Input placeholder="Add a title" />
           </Form.Item>
           <Form.Item label="Description" name="desc">
@@ -65,34 +86,36 @@ export const TaskEdit = observer(() => {
           <Form.Item label="Urgent" name="favorite" disabled>
             Define as urgent
           </Form.Item>
-        </Form>
-      </div>
-      <div className="taskedit__footer">close</div>
-      <div className="taskedit__footer">
-        <div className="taskedit__footerLeft">Edit mode</div>
-        <div className="taskedit__footerRight">
-          <Button
-            type="primary"
-            icon={<CloseOutlined />}
-            danger
-            onClick={closeClickHandler}
-          >
-            Close
-          </Button>
-          &nbsp; &nbsp;
-          <Button
-            type="primary"
-            icon={<SaveOutlined />}
-            onClick={saveClickHandler}
-            style={{
-              background: "rgba(102, 187, 106,1)",
-              borderColor: "rgba(76, 175, 80, 1)",
-            }}
-          >
-            Save
-          </Button>
         </div>
-      </div>
+        <div className="taskedit__footer">close</div>
+        <div className="taskedit__footer">
+          <div className="taskedit__footerLeft">Task edit mode</div>
+          <div className="taskedit__footerRight">
+            <Form.Item>
+              <Button
+                type="primary"
+                icon={<CloseOutlined />}
+                danger
+                onClick={closeClickHandler}
+              >
+                Close
+              </Button>
+              &nbsp; &nbsp;
+              <Button
+                type="primary"
+                htmlType="submit"
+                icon={<SaveOutlined />}
+                style={{
+                  background: "rgba(102, 187, 106,1)",
+                  borderColor: "rgba(76, 175, 80, 1)",
+                }}
+              >
+                Save
+              </Button>
+            </Form.Item>
+          </div>
+        </div>
+      </Form>
     </>
   );
 });

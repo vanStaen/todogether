@@ -33,9 +33,11 @@ export class ListStore {
       showActionBar: observable,
       setShowActionBar: action,
       myLists: observable,
+      setMyLists: action,
       fetchMyLists: action,
       myTasks: observable,
-      setMyTasks: observable,
+      setMyTasks: action,
+      fetchMyTasks: action,
       selectedList: observable,
       setSelectedList: action,
       setTasksArchived: action,
@@ -85,10 +87,14 @@ export class ListStore {
     this.showActionBar = showActionBar;
   };
 
+  setMyLists = (myLists) => {
+    this.myLists = myLists;
+  };
+
   fetchMyLists = async () => {
     const listData = await getLists();
     if (listData) {
-      this.myLists = listData;
+      this.setMyLists(listData);
       if (!this.selectedList) {
         this.setSelectedList(listData[0]);
       }
@@ -99,13 +105,16 @@ export class ListStore {
     this.myTasks = myTasks;
   };
 
-  setSelectedList = async (selectedList) => {
+  setSelectedList = (selectedList) => {
     this.selectedList = selectedList;
-    const taskData = await getTasks(selectedList._id);
-    if (taskData) {
+    this.fetchMyTasks()
+  };
+
+  fetchMyTasks = async () => {
+    const taskData = await getTasks(this.selectedList._id);
+    if (taskData) {      
       this.setMyTasks(taskData);
     }
-    console.log("myTasks", taskData);
   };
 
   setTasksArchived = async (archived) => {
