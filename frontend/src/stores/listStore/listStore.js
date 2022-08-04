@@ -4,7 +4,7 @@ import { getLists } from "./getLists";
 import { getTasks } from "./getTasks";
 import { archiveTaskInBulk } from "./archiveTaskInBulk";
 export class ListStore {
-  showCompleted = false;
+  showCompleted = true;
   displayAslist = true;
   selectedTasks = [];
   selectedList = null;
