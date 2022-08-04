@@ -23,6 +23,9 @@ export const TaskEdit = observer(() => {
         const taskInputData = {};
         taskInputData.listId = parseInt(listStore.selectedList._id);
         taskInputData.title = values.title;
+        if (values.desc) {
+          taskInputData.desc = values.desc;
+        }
         const resultId = await postAddTask(taskInputData);
         console.log("New Task #", resultId, " added");
         listStore.setTaskInEditMode(null);

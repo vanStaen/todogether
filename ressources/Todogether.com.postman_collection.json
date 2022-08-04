@@ -578,7 +578,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  deleteTask (_id: 1)\n}",
+						"query": "mutation {\n  deleteTask (_id: [18, 19, 20, 21])\n}",
 						"variables": ""
 					}
 				},
