@@ -41,7 +41,7 @@ export const ListRow = observer((props) => {
 
   return (
     <div
-      className={`row ${props.task.completed ? "row__noBar" : "row__goldBar"}`}
+      className={`row ${props.task.archived ? "row__noBar" : "row__goldBar"}`}
     >
       <div className="row__checkboxContainer">
         <div>
@@ -57,7 +57,7 @@ export const ListRow = observer((props) => {
         id={`row__textContainer${props.task._id}`}
         onClick={handleCheckboxClick}
       >
-        <div className={`${props.task.completed && "row__completed"}`}>
+        <div className={`${props.task.archived && "row__completed"}`}>
           <div className={`row__text ${!props.task.desc && "row__noDesc"}`}>
             {props.task.title}
           </div>

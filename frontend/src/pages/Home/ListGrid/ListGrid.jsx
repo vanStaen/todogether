@@ -23,14 +23,14 @@ export const ListGrid = observer((props) => {
     <div
       className={`grid__container 
       ${isSelected && "grid__isSelected"} 
-      ${!props.task.completed && "grid__goldBar"}`}
+      ${!props.task.archived && "grid__goldBar"}`}
     >
       <div className="grid__action">
         <Button size="small" icon={<MoreOutlined />} />
       </div>
       <div
         className={`grid__background  ${
-          props.task.completed && "grid__isCompleted"
+          props.task.archived && "grid__isCompleted"
         }`}
         onClick={handleSelectClick}
       >
