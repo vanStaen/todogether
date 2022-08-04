@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react";
 import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
@@ -7,7 +8,7 @@ import { listStore } from "../../../stores/listStore/listStore";
 import "./TaskEdit.css";
 
 // if taskInEditMode === 0, its a new task
-export const TaskEdit = () => {
+export const TaskEdit = observer(() => {
   const [form] = Form.useForm();
   const { TextArea } = Input;
 
@@ -29,17 +30,14 @@ export const TaskEdit = () => {
         <Form
           layout="vertical"
           form={form}
-          initialValues={{
-            title: "test",
-            desc: "test desc",
-            deadline: null,
-          }}
+          initialValues={listStore.taskInEditMode}
+          requiredMark="optional"
         >
           <Form.Item label="Title" name="title" required>
-            <Input placeholder="input placeholder" />
+            <Input placeholder="Add a title" />
           </Form.Item>
           <Form.Item label="Description" name="desc">
-            <TextArea rows={4} placeholder="input placeholder" />
+            <TextArea rows={4} placeholder="Add an optional description" />
           </Form.Item>
           <Form.Item label="Deadline" name="deadline">
             <DatePicker />
@@ -97,4 +95,4 @@ export const TaskEdit = () => {
       </div>
     </>
   );
-};
+});

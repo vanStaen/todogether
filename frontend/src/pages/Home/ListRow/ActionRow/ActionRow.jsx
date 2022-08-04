@@ -16,10 +16,10 @@ export const ActionRow = observer((props) => {
   const editPointer = props.completed ? "not-allowed" : "cursor";
 
   const showEditBarhandler = () => {
-    if (listStore.showActionBar === props.id) {
+    if (listStore.showActionBar === props.task._id) {
       listStore.setShowActionBar(null);
     } else {
-      listStore.setShowActionBar(props.id);
+      listStore.setShowActionBar(props.task._id);
     }
   };
 
@@ -35,7 +35,7 @@ export const ActionRow = observer((props) => {
   return (
     <>
       <div className="actionRow">
-        {listStore.showActionBar === props.id && (
+        {listStore.showActionBar === props.task._id && (
           <div className="actionRow__actionContainer">
             <div className="actionRow__action" onClick={handleCommentClick}>
               <PictureOutlined style={{ color: colorLogo }} />
@@ -46,7 +46,7 @@ export const ActionRow = observer((props) => {
             <div
               className="actionRow__action"
               onClick={() => {
-                listStore.setTaskInEditMode(props.id);
+                listStore.setTaskInEditMode(props.task);
               }}
             >
               <EditOutlined style={{ color: colorLogo, cursor: editPointer }} />

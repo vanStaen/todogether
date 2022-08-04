@@ -9,20 +9,20 @@ import "./ListRow.css";
 
 export const ListRow = observer((props) => {
   const [isSelected, setIsSelected] = useState(
-    listStore.selectedTasks.indexOf(props.id) > -1
+    listStore.selectedTasks.indexOf(props._id) > -1
   );
 
   useEffect(() => {
-    const elementId = `row__textContainer${props.id}`;
+    const elementId = `row__textContainer${props.task._id}`;
     const element = document.getElementById(elementId);
     if (window.innerWidth > 600) {
-      if (listStore.showActionBar === props.id) {
+      if (listStore.showActionBar === props.task._id) {
         element.style.width = "calc(100% - 3rem - 210px)";
       } else {
         element.style.width = "calc(100% - 3rem - 20px)";
       }
     } else {
-      if (listStore.showActionBar === props.id) {
+      if (listStore.showActionBar === props.task._id) {
         element.style.width = "calc(100% - 1rem - 210px)";
       } else {
         element.style.width = "calc(100% - 4rem - 20px)";
@@ -32,15 +32,17 @@ export const ListRow = observer((props) => {
 
   const handleCheckboxClick = () => {
     if (isSelected) {
-      listStore.unselectTask(props.id);
+      listStore.unselectTask(props.task._id);
     } else {
-      listStore.selectTask(props.id);
+      listStore.selectTask(props.task._id);
     }
     setIsSelected(!isSelected);
   };
 
   return (
-    <div className={`row ${props.completed ? "row__noBar" : "row__goldBar"}`}>
+    <div
+      className={`row ${props.task.completed ? "row__noBar" : "row__goldBar"}`}
+    >
       <div className="row__checkboxContainer">
         <div>
           <Checkbox
@@ -52,19 +54,19 @@ export const ListRow = observer((props) => {
       </div>
       <div
         className="row__textContainer"
-        id={`row__textContainer${props.id}`}
+        id={`row__textContainer${props.task._id}`}
         onClick={handleCheckboxClick}
       >
-        <div className={`${props.completed && "row__completed"}`}>
-          <div className={`row__text ${!props.desc && "row__noDesc"}`}>
-            {props.title}
+        <div className={`${props.task.completed && "row__completed"}`}>
+          <div className={`row__text ${!props.task.desc && "row__noDesc"}`}>
+            {props.task.title}
           </div>
-          {props.desc && (
-            <div className="row__text row__desc">{props.desc}</div>
+          {props.task.desc && (
+            <div className="row__text row__desc">{props.task.desc}</div>
           )}
         </div>
       </div>
-      <ActionRow completed={props.completed} id={props.id} />
+      <ActionRow task={props.task} />
     </div>
   );
 });

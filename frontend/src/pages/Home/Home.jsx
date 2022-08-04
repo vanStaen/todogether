@@ -26,10 +26,7 @@ export const Home = observer(() => {
     return (
       <ListRow
         key={task._id}
-        id={task._id}
-        title={task.title}
-        desc={task.desc}
-        completed={task.archived}
+        task={task}
         hasComments={task.comments.length}
         hasPicture={task.pictures.length}
       />
@@ -43,10 +40,7 @@ export const Home = observer(() => {
     return (
       <ListGrid
         key={task._id}
-        id={task._id}
-        title={task.title}
-        desc={task.desc}
-        completed={task.archived}
+        task={task}
         hasComments={task.comments.length}
         hasPicture={task.pictures.length}
       />
