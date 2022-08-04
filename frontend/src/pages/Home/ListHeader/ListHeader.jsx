@@ -26,15 +26,15 @@ export const ListHeader = observer(() => {
 
   const listOflists = listStore.myLists.map((list) => {
     return (
-      <div
-        className="listHeader__listsOfList"
-        onClick={() => {
-          listStore.setSelectedList(list);
-          setShowListOfLists(false);
-        }}
-        key={list._id}
-      >
-        <div className="listHeader__listsOfListMain">
+      <div className="listHeader__listsOfList" key={list._id}>
+        <div
+          className="listHeader__listsOfListMain"
+          onClick={() => {
+            listStore.setSelectedList(list);
+            listStore.setListInEditMode(null);
+            setShowListOfLists(false);
+          }}
+        >
           <span className="listHeader__title">{list.title}</span>
           <span className="listHeader__desc">&nbsp;|&nbsp;{list.desc} </span>
         </div>
@@ -42,7 +42,13 @@ export const ListHeader = observer(() => {
           {list.tasks.length} task{list.tasks.length > 1 && "s"}
           &nbsp;
           <Tooltip title="Edit this list">
-            <EditOutlined className="listHeader__editList" />
+            <EditOutlined
+              className="listHeader__editList"
+              onClick={() => {
+                listStore.setListInEditMode(list);
+                hideListOfListsHandler();
+              }}
+            />
           </Tooltip>
         </div>
       </div>
@@ -78,6 +84,10 @@ export const ListHeader = observer(() => {
                 <div
                   className="listHeader__listsOfListCreate"
                   key="createNewList"
+                  onClick={() => {
+                    listStore.setListInEditMode(0);
+                    hideListOfListsHandler();
+                  }}
                 >
                   <div className="listHeader__listsOfListMain">
                     <PlusSquareOutlined />

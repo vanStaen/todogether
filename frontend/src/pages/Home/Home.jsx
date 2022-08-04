@@ -55,6 +55,8 @@ export const Home = observer(() => {
           <ListHeader />
           {listStore.taskInEditMode !== null ? (
             <TaskEdit />
+          ) : listStore.listInEditMode !== null ? (
+            `Todo listEditMode`
           ) : (
             <>
               {!listStore.displayAslist ? (
