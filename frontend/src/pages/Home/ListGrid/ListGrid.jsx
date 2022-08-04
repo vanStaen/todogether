@@ -36,7 +36,7 @@ export const ListGrid = observer((props) => {
       >
         <div className="grid__pic"></div>
         <div className="grid__titleContainer">
-          <div className="grid__title">{props.name}</div>
+          <div className="grid__title">{props.title}</div>
           {props.desc && <div className="grid__desc">{props.desc}</div>}
         </div>
       </div>

@@ -20,8 +20,29 @@ export const Home = observer(() => {
   }, []);
 
   const tasksRow = listStore.myTasks.map((task) => {
+    if (listStore.showCompleted === false && task.archived) {
+      return null;
+    }
     return (
       <ListRow
+        key={task._id}
+        id={task._id}
+        title={task.title}
+        desc={task.desc}
+        completed={task.archived}
+        hasComments={task.comments.length}
+        hasPicture={task.pictures.length}
+      />
+    );
+  });
+
+  const tasksGrid = listStore.myTasks.map((task) => {
+    if (listStore.showCompleted === false && task.archived) {
+      return null;
+    }
+    return (
+      <ListGrid
+        key={task._id}
         id={task._id}
         title={task.title}
         desc={task.desc}
@@ -43,53 +64,7 @@ export const Home = observer(() => {
           ) : (
             <>
               {!listStore.displayAslist ? (
-                <div className="home__grid">
-                  <ListGrid
-                    id={1}
-                    name="fist row"
-                    desc="this also has a really really really really really really really really really really really really really really really really really really really really long description"
-                    completed={true}
-                  />
-                  <ListGrid id={2} name="second row" completed={true} />
-                  <ListGrid id={3} name="third row" completed={false} />
-                  <ListGrid
-                    id={4}
-                    name="fourth row"
-                    desc="this also has a description"
-                    completed={false}
-                    hasPicture={false}
-                    hasComment={true}
-                  />
-                  <ListGrid
-                    id={5}
-                    name="fifth row"
-                    desc="this also has a description"
-                    completed={true}
-                    hasPicture={true}
-                  />
-                  <ListGrid
-                    id={6}
-                    name="sixth row, and this time its a really long title,  and this time its a really long title,  and this time its a really long title,  and this time its a really long title!"
-                    desc="this also has a really really really really really really really really really really really really really really really really really really really really long description"
-                    completed={false}
-                    hasPicture={true}
-                  />
-                  <ListGrid id={7} name="seventh row" completed={true} />
-                  <ListGrid id={8} name="eighth row" completed={true} />
-                  <ListGrid
-                    id={9}
-                    name="ninth row"
-                    completed={false}
-                    hasPicture={true}
-                    hasComment={true}
-                  />
-                  <ListGrid id={10} name="tenth row" completed={false} />
-                  <ListGrid
-                    id={11}
-                    name="eleventh row, and this time its a really long title,  and this time its a really long title,  and this time its a really long title,  and this time its a really long title!"
-                    completed={false}
-                  />
-                </div>
+                <div className="home__grid">{tasksGrid}</div>
               ) : (
                 <div className="home__rows">{tasksRow}</div>
               )}
