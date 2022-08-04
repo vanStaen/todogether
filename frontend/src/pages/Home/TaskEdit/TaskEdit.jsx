@@ -89,6 +89,9 @@ export const TaskEdit = observer(() => {
           <Form.Item label="Urgent" name="favorite" disabled>
             Define as urgent
           </Form.Item>
+          <Form.Item label="Recuring" name="recuring" disabled>
+            Make it recurring
+          </Form.Item>
         </div>
         <div className="taskedit__footer">close</div>
         <div className="taskedit__footer">
