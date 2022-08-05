@@ -22,11 +22,13 @@ export const ListFooter = observer(() => {
             title="Are you sure？"
             icon={<QuestionCircleOutlined style={{ color: "red" }} />}
           >
-            <Tooltip
-              title="Delete selected tasks"
-              onClick={listStore.deleteSelectedTask}
-            >
-              <Button type="primary" icon={<DeleteOutlined />} danger />
+            <Tooltip title="Delete selected tasks">
+              <Button
+                type="primary"
+                icon={<DeleteOutlined />}
+                danger
+                onClick={listStore.deleteSelectedTask}
+              />
             </Tooltip>
           </Popconfirm>
         )}
