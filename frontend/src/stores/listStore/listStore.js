@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import { getLists } from "./getLists";
 import { getTasks } from "./getTasks";
 import { archiveTaskInBulk } from "./archiveTaskInBulk";
+import { deleleTask } from "./deleteTask";
 export class ListStore {
   showCompleted = true;
   displayAslist = true;
@@ -128,6 +129,18 @@ export class ListStore {
       console.log("error", e);
     }
   };
+
+  deleteSelectedTask = async() => {
+    try {
+      await deleleTask(this.selectedTasks);
+      const taskData = await getTasks(this.selectedList._id);
+      if (taskData) {
+        this.setMyTasks(taskData);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  }
 }
 
 export const listStore = new ListStore();

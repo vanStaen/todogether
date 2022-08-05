@@ -1,11 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Tooltip, Button } from "antd";
+import { Tooltip, Button, Popconfirm } from "antd";
 import {
   DeleteOutlined,
   CheckOutlined,
   PlusOutlined,
   CloseOutlined,
+  QuestionCircleOutlined,
 } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
@@ -17,9 +18,17 @@ export const ListFooter = observer(() => {
     <div className="listFooter">
       <div className="listFooter__leftContainer">
         {!!listStore.selectedTasks.length && (
-          <Tooltip title="Delete selected tasks">
-            <Button type="primary" icon={<DeleteOutlined />} danger />
-          </Tooltip>
+          <Popconfirm
+            title="Are you sure？"
+            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+          >
+            <Tooltip
+              title="Delete selected tasks"
+              onClick={listStore.deleteSelectedTask}
+            >
+              <Button type="primary" icon={<DeleteOutlined />} danger />
+            </Tooltip>
+          </Popconfirm>
         )}
       </div>
       <div className="listFooter__centerContainer">
