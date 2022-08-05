@@ -35,5 +35,10 @@
   .taskedit__container {
     margin: .5rem 1rem;
   }
-  
+  .taskedit__footerLeft {
+    width: 50%;
+  }
+  .taskedit__footerRight {
+    width: 50%;
+  }
 }

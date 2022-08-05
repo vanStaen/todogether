@@ -95,31 +95,58 @@ export const TaskEdit = observer(() => {
         </div>
         <div className="taskedit__footer">close</div>
         <div className="taskedit__footer">
-          <div className="taskedit__footerLeft">Task edit mode</div>
-          <div className="taskedit__footerRight">
-            <Form.Item>
-              <Button
-                type="primary"
-                icon={<CloseOutlined />}
-                danger
-                onClick={closeClickHandler}
-              >
-                Close
-              </Button>
-              &nbsp; &nbsp;
-              <Button
-                type="primary"
-                htmlType="submit"
-                icon={<SaveOutlined />}
-                style={{
-                  background: "rgba(102, 187, 106,1)",
-                  borderColor: "rgba(76, 175, 80, 1)",
-                }}
-              >
-                Save
-              </Button>
-            </Form.Item>
-          </div>
+          {window.innerWidth < 460 ?
+            (<>
+              <Form.Item>
+                <div className="taskedit__footerLeft">
+                  <Button
+                    type="primary"
+                    icon={<CloseOutlined />}
+                    danger
+                    onClick={closeClickHandler}
+                  />
+                </div>
+                <div className="taskedit__footerRight">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    icon={<SaveOutlined />}
+                    style={{
+                      background: "rgba(102, 187, 106,1)",
+                      borderColor: "rgba(76, 175, 80, 1)",
+                    }}
+                  />
+                </div>
+              </Form.Item>
+            </>) : (<>
+              <div className="taskedit__footerLeft">
+                {listStore.taskInEditMode === 0 ? "New task" : "Edit task"}
+              </div>
+              <div className="taskedit__footerRight">
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    icon={<CloseOutlined />}
+                    danger
+                    onClick={closeClickHandler}
+                  >
+                    Close
+                  </Button>
+                  &nbsp; &nbsp;
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    icon={<SaveOutlined />}
+                    style={{
+                      background: "rgba(102, 187, 106,1)",
+                      borderColor: "rgba(76, 175, 80, 1)",
+                    }}
+                  >
+                    Save
+                  </Button>
+                </Form.Item>
+              </div>
+            </>)}
         </div>
       </Form>
     </>
