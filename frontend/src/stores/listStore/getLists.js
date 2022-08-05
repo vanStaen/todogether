@@ -10,7 +10,8 @@ export const getLists = async () => {
             listType,
             _id,
             tasks {
-                _id
+                _id,
+                archived,
                 }
             }
           }
@@ -26,6 +27,6 @@ export const getLists = async () => {
   if ((response.status !== 200) & (response.status !== 201)) {
     throw new Error("Unauthenticated!");
   }
-  
+
   return response.data.data.getList;
 };

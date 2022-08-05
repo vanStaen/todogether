@@ -25,6 +25,9 @@ export const ListHeader = observer(() => {
   };
 
   const listOflists = listStore.myLists.map((list) => {
+
+    const arrayUnDoneTask = list.tasks.filter(task => !task.archived);
+
     return (
       <div className="listHeader__listsOfList" key={list._id}>
         <div
@@ -39,7 +42,7 @@ export const ListHeader = observer(() => {
           <span className="listHeader__desc">&nbsp;|&nbsp;{list.desc} </span>
         </div>
         <div className="listHeader__taskCount">
-          {list.tasks.length} task{list.tasks.length > 1 && "s"}
+          {arrayUnDoneTask.length} task{arrayUnDoneTask.length > 1 && "s"}
           &nbsp;
           <Tooltip title="Edit this list">
             <EditOutlined
