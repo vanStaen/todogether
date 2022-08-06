@@ -20,7 +20,8 @@ export const Home = observer(() => {
   }, []);
 
   const tasksRow = listStore.myTasks.map((task) => {
-    if (listStore.showCompleted === false && task.archived) {
+    const isTaskSelected = listStore.selectedTasks.includes(task._id);
+    if (listStore.showCompleted === false && task.archived && !isTaskSelected) {
       return null;
     }
     return (
