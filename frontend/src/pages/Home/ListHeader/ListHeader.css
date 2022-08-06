@@ -1,116 +1,123 @@
+.listHeader {
+  border-bottom: 2px solid #d9d6cb;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.3rem;
+  padding: 1rem;
+  height: 65px;
+  border-left: 0.4rem solid transparent;
+  border-radius: 0rem;
+}
+
+.listHeader__ListNameContainer {
+  display: inline-block;
+  width: calc(100% - 36px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.listHeader__rowLogo {
+  width: 2rem;
+  margin-right: 1rem;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: calc(
+    100vh
+  ); /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  background-color: transparent;
+  z-index: 9;
+}
+
+.listHeader__Loading,
+.listHeader__desc {
+  font-weight: 200;
+}
+
+.listHeader__title {
+  font-weight: 500;
+}
+
+.listHeader__taskCount {
+  width: 7.5rem;
+  padding: 0.5rem 1rem 0.5rem 0rem;
+  display: inline-block;
+  text-align: right;
+  vertical-align: top;
+  color: #8c8981;
+}
+
+.listHeader__listOfListsContainer {
+  position: absolute;
+  background-color: rgba(226, 224, 217, 0.95);
+  width: 100%;
+  z-index: 10;
+  height: auto;
+  border-bottom: 2px solid #d9d6cb;
+}
+
+.listHeader__listsOfList,
+.listHeader__Loading,
+.listHeader__listsOfListCreate {
+  padding-top: 3px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  height: 45px;
+}
+
+.listHeader__listsOfListMain {
+  display: inline-block;
+  padding: 0.5rem 1rem 0.5rem 4.5rem;
+  width: calc(100vw - 7rem - 8rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.listHeader__listsOfList:hover {
+  background-color: rgba(229, 152, 102, 0.5);
+  color: white;
+}
+
+.listHeader__createTitle {
+  font-weight: 200;
+  padding-left: 10px;
+}
+
+.listHeader__listsOfListCreate:hover {
+  background-color: rgba(163, 161, 152, 1);
+  color: white;
+}
+
+.listHeader__editList:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+@media only screen and (max-width: 600px) {
   .listHeader {
-    border-bottom: 2px solid #d9d6cb;
-    background-color: rgba(255,255,255,.9);
-    border-radius: 0.3rem;
-    padding: 1rem; 
-    height: 65px;
-    border-left: .4rem solid transparent;
-    border-radius: 0rem;
+    padding: 1rem 1rem 1rem 0.5rem;
   }
-
-  .listHeader__ListNameContainer {
-    display: inline-block;
-    width: calc(100% - 36px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 600;
-  } 
-
   .listHeader__rowLogo {
-    width: 2rem;
-    margin-right: 1rem;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
+    margin-right: 0.5rem;
   }
-
-  .fullScreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: calc(100vh); /* Fallback for browsers that do not support Custom Properties */
-    height: calc(var(--vh, 1vh) * 100); 
-    width: 100vw;
-    background-color: transparent;
-    z-index: 9;
+  .listHeader__listsOfList,
+  .listHeader__Loading,
+  .listHeader__listsOfListCreate {
+    font-size: 0.9em;
+    height: 40px;
   }
-
-  .listHeader__Loading, .listHeader__desc {
-    font-weight: 200;
-  }
-
-  .listHeader__title {
-    font-weight: 500;
-  }
-
-  .listHeader__taskCount {
-    width: 7.5rem;
-    padding: .5rem 1rem .5rem 0rem; 
-    display: inline-block;
-    text-align: right;
-    vertical-align: top;
-    color: #8C8981;
-  }
-
-  .listHeader__listOfListsContainer {
-    position: absolute;
-    background-color: rgba(226,224,217,.95);
-    width: 100%;
-    z-index: 10;
-    height: auto;
-    border-bottom: 2px solid #d9d6cb;
-  }
-
-  .listHeader__listsOfList, .listHeader__Loading, .listHeader__listsOfListCreate {
-    border-bottom: 1px solid rgba(255,255,255,1);
-    height: 45px;
-  }
-
   .listHeader__listsOfListMain {
-    display: inline-block;
-    padding: .5rem 1rem .5rem 4.5rem; 
-    width: calc(100vw - 7rem - 8rem);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
+    padding-left: 3.2rem;
+    width: calc(100vw - 7rem - 2.5rem);
   }
-
-  .listHeader__listsOfList:hover {
-    background-color: rgba(229, 152, 102, .5);
-    color: white;
-  }
-
-  .listHeader__createTitle {
-    font-weight: 200;
-    padding-left: 10px;
-    
-  }
-
-  .listHeader__listsOfListCreate:hover {
-    background-color: rgba(163, 161, 152, 1);
-    color: white;
-  }
-
-  .listHeader__editList:hover {
-    color:rgba(0, 0, 0, .75);
-  }
-
-
-  @media only screen and (max-width: 600px) {
-    .listHeader {
-      padding: 1rem 1rem 1rem .5rem; 
-    }  
-    .listHeader__rowLogo {
-      margin-right: .5rem;
-    }
-    .listHeader__listsOfList, .listHeader__Loading, .listHeader__listsOfListCreate {
-      font-size: .9em;
-      height: 40px;
-    }
-    .listHeader__listsOfListMain {
-      padding-left: 3.2rem;
-      width: calc(100vw - 7rem - 2.5rem);
-    }
-  }
+}
