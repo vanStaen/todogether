@@ -6,7 +6,7 @@ import '../src/lib/i18n';
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js").then(() => {
-    console.log("Service worker Registered");
+    console.log("Service worker registered");
   });
 }
 

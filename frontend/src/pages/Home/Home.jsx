@@ -57,9 +57,9 @@ export const Home = observer(() => {
         <div className="home__main">
           <ListHeader />
           {listStore.taskAreLoading ? (
-            <div className="home__taskLoadingContainer">
+            <div className="home__taskCenterContainer">
               <LoadingOutlined className="home__taskLoadingLogo" />
-              <div className="home__taskLoading">Tasks are loading</div>
+              <div className="home__taskLoading">Task are loading</div>
             </div>
           ) : listStore.taskInEditMode !== null ? (
             <TaskEdit />
@@ -67,10 +67,20 @@ export const Home = observer(() => {
             <ListEdit />
           ) : (
             <>
-              {!listStore.displayAslist ? (
-                <div className="home__grid">{tasksGrid}</div>
+              {tasksRow.length ? (
+                !listStore.displayAslist ? (
+                  <div className="home__grid">{tasksGrid}</div>
+                ) : (
+                  <div className="home__rows">{tasksRow}</div>
+                )
               ) : (
-                <div className="home__rows">{tasksRow}</div>
+                <div className="home__taskCenterContainer">
+                  <div className="home__taskNothing">
+                    Nothing yet
+                    <br />
+                    Add a task
+                  </div>
+                </div>
               )}
               <ListFooter />
             </>
