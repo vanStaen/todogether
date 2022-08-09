@@ -5,6 +5,7 @@ import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
 import { postAddTask } from "./postAddTask";
+import { updateTask } from "./updateTask";
 
 import "./TaskEdit.css";
 
@@ -27,14 +28,28 @@ export const TaskEdit = observer(() => {
           taskInputData.desc = values.desc;
         }
         const resultId = await postAddTask(taskInputData);
-        console.log("New Task #", resultId, " added");
+        console.log(`New Task #${resultId} added`);
         listStore.setTaskInEditMode(null);
         listStore.fetchMyTasks();
       } catch (e) {
         console.log("error", e);
       }
     } else {
-      console.log("this is an edit");
+      try {
+        const taskInputData = {};
+        if (listStore.taskInEditMode.title !== values.title) {
+          taskInputData.title = values.title;
+        }
+        if (listStore.taskInEditMode.desc !== values.desc) {
+          taskInputData.desc = values.desc;
+        }
+        await updateTask(listStore.taskInEditMode._id, taskInputData);
+        console.log(`Task #${listStore.taskInEditMode._id} modified`);
+        listStore.setTaskInEditMode(null);
+        listStore.fetchMyTasks();
+      } catch (e) {
+        console.log("error", e);
+      }
     }
   };
 
@@ -95,8 +110,8 @@ export const TaskEdit = observer(() => {
         </div>
         <div className="taskedit__footer">close</div>
         <div className="taskedit__footer">
-          {window.innerWidth < 460 ?
-            (<>
+          {window.innerWidth < 460 ? (
+            <>
               <Form.Item>
                 <div className="taskedit__footerLeft">
                   <Button
@@ -118,7 +133,9 @@ export const TaskEdit = observer(() => {
                   />
                 </div>
               </Form.Item>
-            </>) : (<>
+            </>
+          ) : (
+            <>
               <div className="taskedit__footerLeft">
                 {listStore.taskInEditMode === 0 ? "New task" : "Edit task"}
               </div>
@@ -146,7 +163,8 @@ export const TaskEdit = observer(() => {
                   </Button>
                 </Form.Item>
               </div>
-            </>)}
+            </>
+          )}
         </div>
       </Form>
     </>
