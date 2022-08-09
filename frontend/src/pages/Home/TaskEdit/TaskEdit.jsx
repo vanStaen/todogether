@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
-import { postAddTask } from "./postAddTask";
+import { addTask } from "./addTask";
 import { updateTask } from "./updateTask";
 
 import "./TaskEdit.css";
@@ -27,8 +27,8 @@ export const TaskEdit = observer(() => {
         if (values.desc) {
           taskInputData.desc = values.desc;
         }
-        const resultId = await postAddTask(taskInputData);
-        console.log(`New Task #${resultId} added`);
+        const resultId = await addTask(taskInputData);
+        //console.log(`New Task #${resultId} added`);
         listStore.setTaskInEditMode(null);
         listStore.fetchMyTasks();
       } catch (e) {
@@ -44,7 +44,7 @@ export const TaskEdit = observer(() => {
           taskInputData.desc = values.desc;
         }
         await updateTask(listStore.taskInEditMode._id, taskInputData);
-        console.log(`Task #${listStore.taskInEditMode._id} modified`);
+        //console.log(`Task #${listStore.taskInEditMode._id} modified`);
         listStore.setTaskInEditMode(null);
         listStore.fetchMyTasks();
       } catch (e) {

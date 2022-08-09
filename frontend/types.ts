@@ -1,5 +1,7 @@
 export type Task = {
   id: number;
+  title: string;
+  desc: string;
   listId: List["id"];
   userId: User["id"];
   positionInList: number;
@@ -37,6 +39,8 @@ export type Picture = {
 
 export type List = {
   id: number;
+  title: string;
+  desc: string;
   userId: User["id"];
   sharedWith: Pick<User,'id'|'name'>[];
   avatar?: string; // S3 Url

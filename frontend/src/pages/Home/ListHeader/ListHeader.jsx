@@ -25,8 +25,7 @@ export const ListHeader = observer(() => {
   };
 
   const listOflists = listStore.myLists.map((list) => {
-
-    const arrayUnDoneTask = list.tasks.filter(task => !task.archived);
+    const arrayUnDoneTask = list.tasks.filter((task) => !task.archived);
 
     return (
       <div className="listHeader__listsOfList" key={list._id}>
@@ -89,6 +88,7 @@ export const ListHeader = observer(() => {
                   key="createNewList"
                   onClick={() => {
                     listStore.setListInEditMode(0);
+                    listStore.setTaskInEditMode(null);
                     hideListOfListsHandler();
                   }}
                 >

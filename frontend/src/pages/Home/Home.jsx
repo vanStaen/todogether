@@ -7,6 +7,7 @@ import { ListRow } from "./listRow/listRow";
 import { ListGrid } from "./ListGrid/ListGrid";
 import { ListFooter } from "./ListFooter/ListFooter";
 import { TaskEdit } from "./TaskEdit/TaskEdit";
+import { ListEdit } from "./ListEdit/ListEdit";
 import { listStore } from "../../stores/listStore/listStore";
 
 import "./Home.css";
@@ -57,7 +58,7 @@ export const Home = observer(() => {
           {listStore.taskInEditMode !== null ? (
             <TaskEdit />
           ) : listStore.listInEditMode !== null ? (
-            `Todo listEditMode`
+            <ListEdit />
           ) : (
             <>
               {!listStore.displayAslist ? (

@@ -1,11 +1,11 @@
-.taskedit__container {
+.listedit__container {
   margin: 1rem 1.5rem;
   height: calc(100vh - 3.5rem - 65px - 70px - 3rem); /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100 - 3.5rem - 65px - 70px - 3rem); /* header, listHeader, listFooter, margin-bottom  */  
   overflow: scroll;
 }
 
-.taskedit__footer {
+.listedit__footer {
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -17,14 +17,14 @@
   border-radius: 0rem;
 }
 
-.taskedit__footerLeft {
+.listedit__footerLeft {
   display: inline-block;
   font-weight: 200;
   padding-left: 1rem;
   width: 30%;
 }
 
-.taskedit__footerRight {
+.listedit__footerRight {
   display: inline-block;
   text-align: right;
   padding-right: 0.5rem;
@@ -32,8 +32,13 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .taskedit__container {
+  .listedit__container {
     margin: .5rem 1rem;
   }
-  
+  .listedit__footerLeft {
+    width: 50%;
+  }
+  .listedit__footerRight {
+    width: 50%;
+  }
 }

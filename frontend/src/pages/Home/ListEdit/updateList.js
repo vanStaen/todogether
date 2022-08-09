@@ -1,16 +1,20 @@
 import axios from "axios";
 
-export const postAddTask = async (taskInputData) => {
+export const updateList = async (id, listInputData) => {
   const requestBody = {
     query: `
-        mutation ($taskInput: TaskInputData!) {
-          addTask (taskInput: $taskInput) {
+        mutation ($id: ID!, $listInput: ListInputData!) {
+          updateList (
+            _id: $id,
+            listInput: $listInput
+            ) {
             _id,
           }
         }
         `,
     variables: {
-      taskInput: taskInputData,
+      id: id,
+      listInput: listInputData,
     },
   };
 
@@ -24,5 +28,5 @@ export const postAddTask = async (taskInputData) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.addTask._id;
+  return true;
 };

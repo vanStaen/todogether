@@ -4,6 +4,8 @@ import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
+import { addList } from "./addList";
+import { updateList } from "./updateList";
 
 import "./ListEdit.css";
 
@@ -13,37 +15,81 @@ export const ListEdit = observer(() => {
   const { TextArea } = Input;
 
   const closeClickHandler = () => {
-    listStore.setTaskInEditMode(null);
+    listStore.setListInEditMode(null);
   };
 
-  //TODO
-  const saveClickHandler = () => {
-    console.log("title", form.getFieldValue("title"));
-    console.log("desc", form.getFieldValue("desc"));
-    console.log("deadline", form.getFieldValue("deadline"));
-    console.log("picture", form.getFieldValue("picture"));
-    console.log("tags", form.getFieldValue("tags"));
+  const saveClickHandler = async (values) => {
+    if (listStore.listInEditMode === 0) {
+      try {
+        const listInputData = {};
+        listInputData.title = values.title;
+        if (values.desc) {
+          listInputData.desc = values.desc;
+        }
+        if (values.listType) {
+          listInputData.listType = values.listType;
+        }
+        if (values.sharedWith) {
+          listInputData.sharedWith = values.sharedWith;
+        }
+        if (values.avatar) {
+          listInputData.avatar = values.avatar;
+        }
+        const resultId = await addList(listInputData);
+        console.log(`New List #${resultId} added`);
+        listStore.setListInEditMode(null);
+        listStore.fetchMyLists();
+      } catch (e) {
+        console.log("error", e);
+      }
+    } else {
+      try {
+        const listInputData = {};
+        if (listStore.listInEditMode.title !== values.title) {
+          listInputData.title = values.title;
+        }
+        if (listStore.listInEditMode.desc !== values.desc) {
+          listInputData.desc = values.desc;
+        }
+        if (listStore.listInEditMode.desc !== values.desc) {
+          listInputData.desc = values.desc;
+        }
+        await updateList(listStore.listInEditMode._id, listInputData);
+        console.log(`List #${listStore.listInEditMode._id} modified`);
+        listStore.setListInEditMode(null);
+        listStore.fetchMyLists();
+      } catch (e) {
+        console.log("error", e);
+      }
+    }
   };
 
   return (
     <>
-      <div className="taskedit__container">
-        <Form
-          layout="vertical"
-          form={form}
-          initialValues={listStore.taskInEditMode}
-          requiredMark="optional"
-        >
-          <Form.Item label="Title" name="title" required>
+      <Form
+        layout="vertical"
+        form={form}
+        initialValues={listStore.listInEditMode}
+        requiredMark="optional"
+        onFinish={saveClickHandler}
+      >
+        <div className="listedit__container">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[
+              {
+                required: true,
+                message: "A task title is mandatory!",
+              },
+            ]}
+          >
             <Input placeholder="Add a title" />
           </Form.Item>
           <Form.Item label="Description" name="desc">
             <TextArea rows={4} placeholder="Add an optional description" />
           </Form.Item>
-          <Form.Item label="Deadline" name="deadline">
-            <DatePicker />
-          </Form.Item>
-          <Form.Item label="Pictures" name="pictures">
+          <Form.Item label="Avatar" name="avatar">
             <Upload action="/upload.do" listType="picture-card" disabled>
               <div>
                 <PlusOutlined />
@@ -57,43 +103,69 @@ export const ListEdit = observer(() => {
               </div>
             </Upload>
           </Form.Item>
-          <Form.Item label="Tags" name="tags">
-            <Tag disabled>Not available yet</Tag>
+          <Form.Item label="Shared with" name="sharedWith" disabled>
+            Shared list with others
           </Form.Item>
-          <Form.Item label="Assigned" name="assignedTo" disabled>
-            Assign someone to the task
-          </Form.Item>
-          <Form.Item label="Urgent" name="favorite" disabled>
-            Define as urgent
-          </Form.Item>
-        </Form>
-      </div>
-      <div className="taskedit__footer">close</div>
-      <div className="taskedit__footer">
-        <div className="taskedit__footerLeft">Edit mode</div>
-        <div className="taskedit__footerRight">
-          <Button
-            type="primary"
-            icon={<CloseOutlined />}
-            danger
-            onClick={closeClickHandler}
-          >
-            Close
-          </Button>
-          &nbsp; &nbsp;
-          <Button
-            type="primary"
-            icon={<SaveOutlined />}
-            onClick={saveClickHandler}
-            style={{
-              background: "rgba(102, 187, 106,1)",
-              borderColor: "rgba(76, 175, 80, 1)",
-            }}
-          >
-            Save
-          </Button>
         </div>
-      </div>
+        <div className="listedit__footer">close</div>
+        <div className="listedit__footer">
+          {window.innerWidth < 460 ? (
+            <>
+              <Form.Item>
+                <div className="listedit__footerLeft">
+                  <Button
+                    type="primary"
+                    icon={<CloseOutlined />}
+                    danger
+                    onClick={closeClickHandler}
+                  />
+                </div>
+                <div className="listedit__footerRight">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    icon={<SaveOutlined />}
+                    style={{
+                      background: "rgba(102, 187, 106,1)",
+                      borderColor: "rgba(76, 175, 80, 1)",
+                    }}
+                  />
+                </div>
+              </Form.Item>
+            </>
+          ) : (
+            <>
+              <div className="listedit__footerLeft">
+                {listStore.taskInEditMode === 0 ? "New task" : "Edit task"}
+              </div>
+              <div className="listedit__footerRight">
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    icon={<CloseOutlined />}
+                    danger
+                    onClick={closeClickHandler}
+                  >
+                    Close
+                  </Button>
+                  &nbsp; &nbsp;
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    icon={<SaveOutlined />}
+                    style={{
+                      background: "rgba(102, 187, 106,1)",
+                      borderColor: "rgba(76, 175, 80, 1)",
+                    }}
+                  >
+                    Save
+                  </Button>
+                </Form.Item>
+              </div>
+            </>
+          )}
+        </div>
+      </Form>
     </>
   );
 });
