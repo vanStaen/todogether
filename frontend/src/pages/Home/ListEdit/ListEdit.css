@@ -24,6 +24,11 @@
   width: 30%;
 }
 
+.listedit__footerCenter {
+  display: inline-block;
+  text-align: center;
+}
+
 .listedit__footerRight {
   display: inline-block;
   text-align: right;
@@ -36,9 +41,12 @@
     margin: .5rem 1rem;
   }
   .listedit__footerLeft {
-    width: 50%;
+    width: 40%;
+  }
+  .listedit__footerCenter {
+    width: 20%;
   }
   .listedit__footerRight {
-    width: 50%;
+    width: 40%;
   }
 }

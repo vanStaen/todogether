@@ -24,7 +24,15 @@ export const ListFooter = observer(() => {
             icon={<QuestionCircleOutlined style={{ color: "red" }} />}
           >
             <Tooltip title="Delete selected tasks">
-              <Button type="primary" icon={<DeleteOutlined />} danger />
+              <Button
+                type="primary"
+                icon={<DeleteOutlined />}
+                danger
+                style={{
+                  background: "rgba(146, 43, 33, 1)",
+                  borderColor: "rgba(123, 36, 28, 1)",
+                }}
+              />
             </Tooltip>
           </Popconfirm>
         )}

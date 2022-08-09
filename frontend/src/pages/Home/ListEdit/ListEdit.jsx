@@ -135,6 +135,22 @@ export const ListEdit = observer(() => {
                     onClick={closeClickHandler}
                   />
                 </div>
+                <div className="listedit__footerCenter">
+                  <Popconfirm
+                    title="Are you sure to delete this list?"
+                    onConfirm={deleteClickHandler}
+                  >
+                    <Button
+                      type="primary"
+                      icon={<DeleteOutlined />}
+                      danger
+                      style={{
+                        background: "rgba(146, 43, 33, 1)",
+                        borderColor: "rgba(123, 36, 28, 1)",
+                      }}
+                    ></Button>
+                  </Popconfirm>
+                </div>
                 <div className="listedit__footerRight">
                   <Button
                     type="primary"
