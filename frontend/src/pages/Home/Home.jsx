@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import { Header } from "./Header/Header";
 import { ListHeader } from "./ListHeader/ListHeader";
@@ -55,7 +56,12 @@ export const Home = observer(() => {
         <Header />
         <div className="home__main">
           <ListHeader />
-          {listStore.taskInEditMode !== null ? (
+          {listStore.taskAreLoading ? (
+            <div className="home__taskLoadingContainer">
+              <LoadingOutlined className="home__taskLoadingLogo" />
+              <div className="home__taskLoading">Tasks are loading</div>
+            </div>
+          ) : listStore.taskInEditMode !== null ? (
             <TaskEdit />
           ) : listStore.listInEditMode !== null ? (
             <ListEdit />

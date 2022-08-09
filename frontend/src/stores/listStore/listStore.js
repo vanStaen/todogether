@@ -15,6 +15,7 @@ export class ListStore {
   showActionBar = null;
   myLists = [];
   myTasks = [];
+  taskAreLoading = true;
 
   constructor() {
     makeObservable(this, {
@@ -42,6 +43,8 @@ export class ListStore {
       selectedList: observable,
       setSelectedList: action,
       setTasksArchived: action,
+      taskAreLoading: observable,
+      setTaskAreLoading: action,
     });
   }
 
@@ -79,7 +82,6 @@ export class ListStore {
     this.listInEditMode = listInEditMode;
   };
 
-
   setShowPictureGallery = (showPictureGallery) => {
     this.showPictureGallery = showPictureGallery;
   };
@@ -108,13 +110,19 @@ export class ListStore {
 
   setSelectedList = (selectedList) => {
     this.selectedList = selectedList;
+    this.setTaskAreLoading(true);
     this.fetchMyTasks()
+  };
+
+  setTaskAreLoading = (taskAreLoading) => {
+    this.taskAreLoading = taskAreLoading;
   };
 
   fetchMyTasks = async () => {
     const taskData = await getTasks(this.selectedList._id);
     if (taskData) {      
       this.setMyTasks(taskData);
+      this.setTaskAreLoading(false);
     }
   };
 
