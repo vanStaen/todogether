@@ -1,2 +1,2 @@
-self.addEventListener("install",(function(e){})),self.addEventListener("fetch",(function(e){}));
+self.addEventListener("install",(function(e){console.log("Service worker installed")})),self.addEventListener("activate",(function(e){console.log("Service worker activated")})),self.addEventListener("fetch",(function(e){console.log("Service worker detected a fetch call")}));
 //# sourceMappingURL=sw.js.map
