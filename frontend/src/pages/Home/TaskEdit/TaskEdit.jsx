@@ -108,7 +108,6 @@ export const TaskEdit = observer(() => {
             Make it recurring
           </Form.Item>
         </div>
-        <div className="taskedit__footer">close</div>
         <div className="taskedit__footer">
           {window.innerWidth < 460 ? (
             <>

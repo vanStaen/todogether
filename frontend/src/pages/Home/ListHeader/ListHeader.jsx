@@ -38,7 +38,9 @@ export const ListHeader = observer(() => {
           }}
         >
           <span className="listHeader__title">{list.title}</span>
-          <span className="listHeader__desc">&nbsp;|&nbsp;{list.desc} </span>
+          {list.desc && (
+            <span className="listHeader__desc">&nbsp;|&nbsp;{list.desc} </span>
+          )}
         </div>
         <div className="listHeader__taskCount">
           {arrayUnDoneTask.length} task{arrayUnDoneTask.length > 1 && "s"}
@@ -69,7 +71,13 @@ export const ListHeader = observer(() => {
               <UnorderedListOutlined />
             </div>
           </Tooltip>
-          {listStore.selectedList ? (
+          {listStore.listInEditMode !== null ? (
+            listStore.listInEditMode === 0 ? (
+              "New list"
+            ) : (
+              "Edit list"
+            )
+          ) : listStore.selectedList ? (
             listStore.selectedList.title
           ) : (
             <LoadingOutlined />

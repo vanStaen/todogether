@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { observer } from "mobx-react";
-import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
-import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Upload, Popconfirm } from "antd";
+import {
+  SaveOutlined,
+  CloseOutlined,
+  PlusOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
 import { addList } from "./addList";
 import { updateList } from "./updateList";
+import { deleteList } from "./deleteList";
 
 import "./ListEdit.css";
 
@@ -16,6 +22,16 @@ export const ListEdit = observer(() => {
 
   const closeClickHandler = () => {
     listStore.setListInEditMode(null);
+  };
+
+  const deleteClickHandler = async () => {
+    try {
+      await deleteList(listStore.listInEditMode._id);
+      listStore.setListInEditMode(null);
+      listStore.fetchMyLists();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const saveClickHandler = async (values) => {
@@ -107,7 +123,6 @@ export const ListEdit = observer(() => {
             Shared list with others
           </Form.Item>
         </div>
-        <div className="listedit__footer">close</div>
         <div className="listedit__footer">
           {window.innerWidth < 460 ? (
             <>
@@ -136,7 +151,22 @@ export const ListEdit = observer(() => {
           ) : (
             <>
               <div className="listedit__footerLeft">
-                {listStore.taskInEditMode === 0 ? "New task" : "Edit task"}
+                <Popconfirm
+                  title="Are you sure to delete this list?"
+                  onConfirm={deleteClickHandler}
+                >
+                  <Button
+                    type="primary"
+                    icon={<DeleteOutlined />}
+                    danger
+                    style={{
+                      background: "rgba(146, 43, 33, 1)",
+                      borderColor: "rgba(123, 36, 28, 1)",
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </Popconfirm>
               </div>
               <div className="listedit__footerRight">
                 <Form.Item>
