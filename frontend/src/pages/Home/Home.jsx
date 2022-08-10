@@ -67,7 +67,7 @@ export const Home = observer(() => {
             <ListEdit />
           ) : (
             <>
-              {tasksRow.length ? (
+              {tasksRow.filter((value) => value !== null).length ? (
                 !listStore.displayAslist ? (
                   <div className="home__grid">{tasksGrid}</div>
                 ) : (
@@ -76,7 +76,7 @@ export const Home = observer(() => {
               ) : (
                 <div className="home__taskCenterContainer">
                   <div className="home__taskNothing">
-                    Nothing yet
+                    Nothing here
                     <br />
                     Add a task
                   </div>
