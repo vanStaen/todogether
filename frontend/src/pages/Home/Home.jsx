@@ -57,10 +57,13 @@ export const Home = observer(() => {
         <div className="home__main">
           <ListHeader />
           {listStore.taskAreLoading ? (
-            <div className="home__taskCenterContainer">
-              <LoadingOutlined className="home__taskLoadingLogo" />
-              <div className="home__taskLoading">Task are loading</div>
-            </div>
+            <>
+              <div className="home__taskCenterContainer">
+                <LoadingOutlined className="home__taskLoadingLogo" />
+                <div className="home__taskLoading">Task are loading</div>
+              </div>
+              <ListFooter />
+            </>
           ) : listStore.taskInEditMode !== null ? (
             <TaskEdit />
           ) : listStore.listInEditMode !== null ? (
