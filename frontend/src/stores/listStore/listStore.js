@@ -1,14 +1,17 @@
 import { action, makeObservable, observable } from "mobx";
+import Cookies from 'universal-cookie';
 
 import { getLists } from "./getLists";
 import { getTasks } from "./getTasks";
 import { archiveTaskInBulk } from "./archiveTaskInBulk";
 import { deleleTask } from "./deleteTask";
+
+const cookies = new Cookies();
 export class ListStore {
   showCompleted = false;
   displayAslist = true;
   selectedTasks = [];
-  selectedList = null;
+  selectedList = cookies.get('lastSelectedList');
   taskInEditMode = null;
   listInEditMode = null;
   showPictureGallery = false;
@@ -100,6 +103,8 @@ export class ListStore {
       this.setMyLists(listData);
       if (!this.selectedList) {
         this.setSelectedList(listData[0]);
+      } else {
+        this.setSelectedList(this.selectedList);
       }
     }
   };
@@ -112,6 +117,7 @@ export class ListStore {
     this.selectedList = selectedList;
     this.setTaskAreLoading(true);
     this.fetchMyTasks()
+    cookies.set('lastSelectedList', selectedList, { path: '/' });
   };
 
   setTaskAreLoading = (taskAreLoading) => {
