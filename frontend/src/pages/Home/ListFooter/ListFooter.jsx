@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Tooltip, Button, Popconfirm } from "antd";
 import {
@@ -14,6 +14,22 @@ import { listStore } from "../../../stores/listStore/listStore";
 import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
+  const [taskArrayArchived, setTaskArrayArchived] = useState([]);
+
+  useEffect(() => {
+    selectedTaskArrayArchived();
+  }, [listStore.selectedTasks, listStore.myTasks]);
+
+  const selectedTaskArrayArchived = () => {
+    let taskArrayArchivedTemp = [];
+    listStore.myTasks.forEach((task) => {
+      if (listStore.selectedTasks.includes(task._id)) {
+        taskArrayArchivedTemp.push(task.archived);
+      }
+    });
+    setTaskArrayArchived(taskArrayArchivedTemp);
+  };
+
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
@@ -51,39 +67,39 @@ export const ListFooter = observer(() => {
       <div className="listFooter__rightContainer">
         {listStore.selectedTasks.length ? (
           <>
-            <Tooltip
-              title={
-                <>
-                  Mark as <b>un</b>done
-                </>
-              }
-            >
-              <Button
-                type="primary"
-                icon={<CloseOutlined />}
-                onClick={() => {
-                  listStore.setTasksArchived(false);
-                }}
-                style={{
-                  background: "rgba(229, 152, 102, .9)",
-                  borderColor: "rgba(229, 152, 102, 1)",
-                }}
-              />
-            </Tooltip>
-            &nbsp; &nbsp;
-            <Tooltip title="Mark as done">
-              <Button
-                type="primary"
-                icon={<CheckOutlined />}
-                onClick={() => {
-                  listStore.setTasksArchived(true);
-                }}
-                style={{
-                  background: "rgba(102, 187, 106,1)",
-                  borderColor: "rgba(76, 175, 80, 1)",
-                }}
-              />
-            </Tooltip>
+            {taskArrayArchived.includes(true) && (
+              <Tooltip title="Mark as undone">
+                <Button
+                  type="primary"
+                  icon={<CloseOutlined />}
+                  onClick={() => {
+                    listStore.setTasksArchived(false);
+                  }}
+                  style={{
+                    background: "rgba(229, 152, 102, .9)",
+                    borderColor: "rgba(229, 152, 102, 1)",
+                  }}
+                />
+              </Tooltip>
+            )}
+            {taskArrayArchived.includes(false) && (
+              <>
+                &nbsp; &nbsp;
+                <Tooltip title="Mark as done">
+                  <Button
+                    type="primary"
+                    icon={<CheckOutlined />}
+                    onClick={() => {
+                      listStore.setTasksArchived(true);
+                    }}
+                    style={{
+                      background: "rgba(102, 187, 106,1)",
+                      borderColor: "rgba(76, 175, 80, 1)",
+                    }}
+                  />
+                </Tooltip>
+              </>
+            )}
           </>
         ) : (
           <Button

@@ -59,22 +59,17 @@ export class ListStore {
     this.displayAslist = displayAslist;
   };
 
-  selectTask = (task) => {
-    const index = this.selectedTasks.indexOf(task);
+  selectTask = (taskId) => {
+    const index = this.selectedTasks.indexOf(taskId);
     if (index > -1) {
       console.log("Error", "the task was already in the 'selectedTasks'-array");
     } else {
-      this.selectedTasks.push(task);
+      this.selectedTasks = [...this.selectedTasks, taskId]
     }
   };
 
-  unselectTask = (task) => {
-    const index = this.selectedTasks.indexOf(task);
-    if (index > -1) {
-      this.selectedTasks.splice(index, 1);
-    } else {
-      console.log("Error", "the task was not in the 'selectedTasks'-array");
-    }
+  unselectTask = (taskId) => {
+    this.selectedTasks = this.selectedTasks.filter((id) => id === taskId);
   };
 
   setTaskInEditMode = (taskInEditMode) => {
