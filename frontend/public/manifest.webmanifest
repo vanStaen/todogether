@@ -26,7 +26,7 @@
   ],
   "start_url": "https://todogether.com",
   "display": "standalone",
-  "background_color": "#E2E0D9",
-  "theme_color": "#E2E0D9",
+  "background_color": "#d9d6cb",
+  "theme_color": "#d9d6cb",
   "clipboardWrite": true
 }
