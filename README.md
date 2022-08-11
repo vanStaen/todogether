@@ -75,3 +75,4 @@ GraphQL for data exchange with Frontend, but REST API for Auth.
 
 Colors: #D9D6CB & #E59966
 Logo: `https://icons8.com/icon/104283/handshake-heart`
+PWA: install as an app `https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PWAs`

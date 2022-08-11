@@ -38,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0",
+    "regenerator-runtime": "^0.13.9",
     "style-loader": "^3.3.1",
     "universal-cookie": "^4.0.4",
     "webpack": "^5.73.0",
