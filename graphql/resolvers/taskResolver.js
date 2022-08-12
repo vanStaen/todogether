@@ -12,7 +12,6 @@ exports.taskResolver = {
     }
     return await Task.findAll({
       where: {
-        userId: req.userId,
         listId: args.listId,
       },
       order: [["_id", "DESC"]],

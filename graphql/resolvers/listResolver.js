@@ -4,6 +4,9 @@ const { Task } = require("../../models/Task");
 const { Comment } = require("../../models/Comment");
 const { Picture } = require("../../models/Picture");
 
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 exports.listResolver = {
   //list
   async getList(args, req) {
@@ -12,12 +15,11 @@ exports.listResolver = {
     }
     return await List.findAll({
       where: {
-        userId: req.userId,
+        [Op.or]: [{ userId: req.userId }, { shareWith: { [Op.contains]: [req.userId] } }],
       },
+      order: [["_id", "ASC"]],
       include: [
-        { model: User, include: 
-            { model: List, include: Task } 
-        },
+        { model: User, include: { model: List, include: Task } },
         { model: Task, include: Comment, Picture },
       ],
     });
