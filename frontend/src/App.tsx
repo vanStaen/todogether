@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { observer } from "mobx-react";
 
@@ -10,13 +10,23 @@ import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 
 import "./App.css";
 
-/* TRick to get correct 100vh on mobile */
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+const defineVariableHeight = () => {
+  /* Trick to get correct 100vh on mobile */
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+};
+
+window.addEventListener("resize", defineVariableHeight);
 
 const App = observer(() => {
   useEffect(() => {
     authStore.checkAccess();
+  }, []);
+
+  useLayoutEffect(() => {
+    // Define variable height
+    defineVariableHeight();
   }, []);
 
   return (
