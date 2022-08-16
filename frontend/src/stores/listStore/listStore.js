@@ -110,6 +110,7 @@ export class ListStore {
 
   setSelectedList = (selectedList) => {
     this.selectedList = selectedList;
+    this.selectedTasks = [];
     this.setTaskAreLoading(true);
     this.fetchMyTasks()
     cookies.set('lastSelectedList', selectedList, { path: '/' });
@@ -121,7 +122,7 @@ export class ListStore {
 
   fetchMyTasks = async () => {
     const taskData = await getTasks(this.selectedList._id);
-    if (taskData) {      
+    if (taskData) {
       this.setMyTasks(taskData);
       this.setTaskAreLoading(false);
     }
@@ -139,7 +140,7 @@ export class ListStore {
     }
   };
 
-  deleteSelectedTask = async() => {
+  deleteSelectedTask = async () => {
     try {
       await deleleTask(this.selectedTasks);
       const taskData = await getTasks(this.selectedList._id);
