@@ -15,6 +15,7 @@ export const TaskEdit = observer(() => {
   const { TextArea } = Input;
 
   const closeClickHandler = () => {
+    listStore.setShowActionBar(null);
     listStore.setTaskInEditMode(null);
   };
 
@@ -29,6 +30,7 @@ export const TaskEdit = observer(() => {
         }
         const resultId = await addTask(taskInputData);
         //console.log(`New Task #${resultId} added`);
+        listStore.setShowActionBar(null);
         listStore.setTaskInEditMode(null);
         listStore.fetchMyTasks();
       } catch (e) {
@@ -45,6 +47,7 @@ export const TaskEdit = observer(() => {
         }
         await updateTask(listStore.taskInEditMode._id, taskInputData);
         //console.log(`Task #${listStore.taskInEditMode._id} modified`);
+        listStore.setShowActionBar(null);
         listStore.setTaskInEditMode(null);
         listStore.fetchMyTasks();
       } catch (e) {
