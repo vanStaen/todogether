@@ -27,6 +27,7 @@ export class ListStore {
       displayAslist: observable,
       setDisplayAslist: action,
       selectedTasks: observable,
+      unselectAllTasks: action,
       selectTask: action,
       unselectTask: action,
       taskInEditMode: observable,
@@ -59,6 +60,10 @@ export class ListStore {
     this.displayAslist = displayAslist;
   };
 
+  unselectAllTasks = () => {
+    this.selectedTasks = [];
+  };
+
   selectTask = (taskId) => {
     const index = this.selectedTasks.indexOf(taskId);
     if (index > -1) {
@@ -69,7 +74,12 @@ export class ListStore {
   };
 
   unselectTask = (taskId) => {
-    this.selectedTasks = this.selectedTasks.filter((id) => id === taskId);
+    const index = this.selectedTasks.indexOf(taskId);
+    if (index === -1) {
+      console.log("Error", "the task was not in the 'selectedTasks'-array");
+    } else {
+      this.selectedTasks = this.selectedTasks.filter((id) => id !== taskId);
+    }
   };
 
   setTaskInEditMode = (taskInEditMode) => {

@@ -53,17 +53,6 @@ export const ListFooter = observer(() => {
           </Popconfirm>
         )}
       </div>
-      <div className="listFooter__centerContainer">
-        {!!listStore.selectedTasks.length &&
-          (window.innerWidth > 530 ? (
-            <>
-              {listStore.selectedTasks.length} task
-              {listStore.selectedTasks.length > 1 && "s"} selected
-            </>
-          ) : (
-            listStore.selectedTasks.length
-          ))}
-      </div>
       <div className="listFooter__rightContainer">
         {listStore.selectedTasks.length ? (
           <>

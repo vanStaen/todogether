@@ -8,6 +8,11 @@
   border-radius: 0rem;
 }
 
+.listHeader__taskCountHeader {
+    font-weight: 300;
+    color: #bbb7ac;
+} 
+
 .listHeader__ListNameContainer {
   display: inline-block;
   width: calc(100% - 36px);
@@ -102,6 +107,18 @@
 .listHeader__editList:hover {
   color: rgba(0, 0, 0, 0.75);
 }
+
+.listHeader__checkboxContainer {
+  width: 2rem;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.listHeader__checkbox {
+  position: relative;
+  cursor: pointer;
+}  
 
 @media only screen and (max-width: 600px) {
   .listHeader {

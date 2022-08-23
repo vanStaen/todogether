@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tooltip } from "antd";
+import { Tooltip, Checkbox } from "antd";
 import { observer } from "mobx-react";
 import {
   UnorderedListOutlined,
@@ -23,6 +23,10 @@ export const ListHeader = observer(() => {
   const hideListOfListsHandler = () => {
     setShowListOfLists(false);
   };
+
+  const handleCheckboxUnselectAllClick = () => {
+    listStore.unselectAllTasks();
+  }
 
   const listOflists = listStore.myLists.map((list) => {
     const arrayUnDoneTask = list.tasks.filter((task) => !task.archived);
@@ -62,28 +66,50 @@ export const ListHeader = observer(() => {
   return (
     <div>
       <div className="listHeader">
-        <div
-          className="listHeader__ListNameContainer"
-          id="listHeader__ListNameContainer"
-        >
-          <Tooltip title="Switch between list">
-            <div className="listHeader__rowLogo" onClick={ShowListClickHander}>
-              <UnorderedListOutlined />
+        {!!listStore.selectedTasks.length ?
+          (window.innerWidth > 530 ? (
+            <div className="listHeader__taskCountHeader">
+              <div className="listHeader__checkboxContainer">
+                <div>
+                  <Checkbox
+                    checked={true}
+                    onChange={handleCheckboxUnselectAllClick}
+                    className="listHeader__checkbox"
+                  ></Checkbox>
+                </div>
+              </div>
+              <span style={{ paddingLeft: "16px" }}>
+                {listStore.selectedTasks.length} task
+                {listStore.selectedTasks.length > 1 && "s"} selected
+              </span>
             </div>
-          </Tooltip>
-          {listStore.listInEditMode !== null ? (
-            listStore.listInEditMode === 0 ? (
-              "New list"
-            ) : (
-              "Edit list"
-            )
-          ) : listStore.selectedList ? (
-            listStore.selectedList.title
           ) : (
-            <LoadingOutlined />
-          )}
-        </div>
-        <ActionRowHeader />
+            listStore.selectedTasks.length
+          )) :
+          (<>
+            <div
+              className="listHeader__ListNameContainer"
+              id="listHeader__ListNameContainer"
+            >
+              <Tooltip title="Switch between list">
+                <div className="listHeader__rowLogo" onClick={ShowListClickHander}>
+                  <UnorderedListOutlined />
+                </div>
+              </Tooltip>
+              {listStore.listInEditMode !== null ? (
+                listStore.listInEditMode === 0 ? (
+                  "New list"
+                ) : (
+                  "Edit list"
+                )
+              ) : listStore.selectedList ? (
+                listStore.selectedList.title
+              ) : (
+                <LoadingOutlined />
+              )}
+            </div>
+            <ActionRowHeader />
+          </>)}
       </div>
       {showListOfLists && (
         <>

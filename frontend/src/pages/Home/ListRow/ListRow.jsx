@@ -13,6 +13,14 @@ export const ListRow = observer((props) => {
   );
 
   useEffect(() => {
+    console.log("DA")
+    if (listStore.selectedTasks.length === 0) {
+      console.log("HERE")
+      setIsSelected(false);
+    }
+  }, [listStore.selectedTasks])
+
+  useEffect(() => {
     const elementId = `row__textContainer${props.task._id}`;
     const element = document.getElementById(elementId);
     if (window.innerWidth > 600) {
