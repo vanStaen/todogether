@@ -22,8 +22,10 @@ const defineVariableHeight = () => {
 window.addEventListener("resize", defineVariableHeight);
 
 const App = observer(() => {
+
   useEffect(() => {
     authStore.checkAccess();
+    defineVariableHeight();
   }, []);
 
   return (

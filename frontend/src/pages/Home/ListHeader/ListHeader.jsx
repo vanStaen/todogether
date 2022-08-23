@@ -67,25 +67,22 @@ export const ListHeader = observer(() => {
     <div>
       <div className="listHeader">
         {!!listStore.selectedTasks.length ?
-          (window.innerWidth > 530 ? (
-            <div className="listHeader__taskCountHeader">
-              <div className="listHeader__checkboxContainer">
-                <div>
-                  <Checkbox
-                    checked={true}
-                    onChange={handleCheckboxUnselectAllClick}
-                    className="listHeader__checkbox"
-                  ></Checkbox>
-                </div>
+          (<div className="listHeader__taskCountHeader">
+            <div className="listHeader__checkboxContainer">
+              <div>
+                <Checkbox
+                  checked={true}
+                  onChange={handleCheckboxUnselectAllClick}
+                  className="listHeader__checkbox"
+                ></Checkbox>
               </div>
-              <span style={{ paddingLeft: "16px" }}>
-                {listStore.selectedTasks.length} task
-                {listStore.selectedTasks.length > 1 && "s"} selected
-              </span>
             </div>
-          ) : (
-            listStore.selectedTasks.length
-          )) :
+            <span style={{ paddingLeft: "16px" }}>
+              {listStore.selectedTasks.length} task
+              {listStore.selectedTasks.length > 1 && "s"} selected
+            </span>
+          </div>
+          ) :
           (<>
             <div
               className="listHeader__ListNameContainer"
