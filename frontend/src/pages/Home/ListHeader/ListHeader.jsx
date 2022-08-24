@@ -77,7 +77,10 @@ export const ListHeader = observer(() => {
                 ></Checkbox>
               </div>
             </div>
-            <span style={{ paddingLeft: "16px" }}>
+            <span
+              style={{ paddingLeft: "16px" }}
+              onClick={handleCheckboxUnselectAllClick}
+            >
               {listStore.selectedTasks.length} task
               {listStore.selectedTasks.length > 1 && "s"} selected
             </span>
