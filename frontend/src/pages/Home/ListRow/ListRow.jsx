@@ -13,12 +13,12 @@ export const ListRow = observer((props) => {
   );
 
   useEffect(() => {
-    console.log("DA")
+    console.log("DA");
     if (listStore.selectedTasks.length === 0) {
-      console.log("HERE")
+      console.log("HERE");
       setIsSelected(false);
     }
-  }, [listStore.selectedTasks])
+  }, [listStore.selectedTasks]);
 
   useEffect(() => {
     const elementId = `row__textContainer${props.task._id}`;
@@ -69,7 +69,13 @@ export const ListRow = observer((props) => {
           <div className={`row__text ${!props.task.desc && "row__noDesc"}`}>
             {props.task.title}
           </div>
-          {props.task.desc && (
+          {props.task.desc && props.task.desc.substring(0, 4) === "http" ? (
+            <div className="row__text row__linkDesc">
+              <a href={props.task.desc} target="_blank">
+                {props.task.desc}
+              </a>
+            </div>
+          ) : (
             <div className="row__text row__desc">{props.task.desc}</div>
           )}
         </div>
