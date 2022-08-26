@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Checkbox } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
 import { ActionRow } from "./ActionRow/ActionRow";
@@ -37,6 +38,14 @@ export const ListRow = observer((props) => {
       }
     }
   }, [listStore.showActionBar]);
+
+  const showEditBarhandler = () => {
+    if (listStore.showActionBar === props.task._id) {
+      listStore.setShowActionBar(null);
+    } else {
+      listStore.setShowActionBar(props.task._id);
+    }
+  };
 
   const handleCheckboxClick = () => {
     if (isSelected) {
@@ -79,6 +88,9 @@ export const ListRow = observer((props) => {
             <div className="row__text row__desc">{props.task.desc}</div>
           )}
         </div>
+      </div>
+      <div className="row__moreContainer">
+        <DownOutlined className="row__more" onClick={showEditBarhandler} />
       </div>
       <ActionRow task={props.task} />
     </div>

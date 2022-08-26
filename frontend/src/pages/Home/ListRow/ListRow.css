@@ -80,6 +80,25 @@
     text-decoration: underline !important;
 }
 
+.row__more {
+    cursor: pointer;
+}
+
+.row__more:hover {
+    color: rgba(229, 152, 102, 1);
+}
+
+.row__moreContainer {   
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: right;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center; 
+    width: 30px;      
+}
+
 @media only screen and (max-width: 600px) {
     .row {
         padding-left: 0.5rem;

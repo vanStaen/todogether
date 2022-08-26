@@ -8,21 +8,6 @@
     text-align: right;
 }
 
-.actionRow__more {
-    cursor: pointer;
-}
-
-.actionRow__more:hover {
-    color: rgba(229, 152, 102, 1);
-}
-
-.actionRow__moreContainer {   
-    display: inline-block;
-    vertical-align: top;
-    text-align: center; 
-    width: 30px;      
-}
-
 .actionRow__actionContainer {
     display: inline-block;
     vertical-align: top;

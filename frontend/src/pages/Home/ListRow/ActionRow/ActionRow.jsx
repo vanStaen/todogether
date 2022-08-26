@@ -4,7 +4,6 @@ import {
   EditOutlined,
   PictureOutlined,
   CommentOutlined,
-  MoreOutlined,
 } from "@ant-design/icons";
 
 import { listStore } from "../../../../stores/listStore/listStore";
@@ -14,14 +13,6 @@ import "./ActionRow.css";
 export const ActionRow = observer((props) => {
   const colorLogo = props.completed ? "#bbb7ac" : "inherit";
   const editPointer = props.completed ? "not-allowed" : "cursor";
-
-  const showEditBarhandler = () => {
-    if (listStore.showActionBar === props.task._id) {
-      listStore.setShowActionBar(null);
-    } else {
-      listStore.setShowActionBar(props.task._id);
-    }
-  };
 
   const handlePictureClick = () => {
     listStore.setShowPictureGallery(true);
@@ -53,12 +44,6 @@ export const ActionRow = observer((props) => {
             </div>
           </div>
         )}
-        <div className="actionRow__moreContainer">
-          <MoreOutlined
-            className="actionRow__more"
-            onClick={showEditBarhandler}
-          />
-        </div>
       </div>
     </>
   );
