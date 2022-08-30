@@ -27,19 +27,43 @@ export const ActionRow = observer((props) => {
     <>
       <div className="actionRow">
         <div className="actionRow__actionContainer">
-          <div className="actionRow__action" onClick={handleCommentClick}>
+          <div
+            className="actionRow__action"
+            onClick={handleCommentClick}
+            style={{ cursor: editPointer }}
+          >
             <PictureOutlined style={{ color: colorLogo }} />
+            {window.innerWidth > 600 && (
+              <span className="actionRow__actionTitle">
+                &nbsp;&nbsp;Picture
+              </span>
+            )}
           </div>
-          <div className="actionRow__action" onClick={handlePictureClick}>
+          <div
+            className="actionRow__action actionRow__actionMiddleMargin"
+            style={{ cursor: editPointer }}
+            onClick={handlePictureClick}
+          >
             <CommentOutlined style={{ color: colorLogo }} />
+            {window.innerWidth > 600 && (
+              <span className="actionRow__actionTitle">
+                &nbsp;&nbsp;Comment
+              </span>
+            )}
           </div>
           <div
             className="actionRow__action"
+            style={{ cursor: editPointer }}
             onClick={() => {
-              listStore.setTaskInEditMode(props.task);
+              if (!props.completed) {
+                listStore.setTaskInEditMode(props.task);
+              }
             }}
           >
-            <EditOutlined style={{ color: colorLogo, cursor: editPointer }} />
+            <EditOutlined style={{ color: colorLogo }} />
+            {window.innerWidth > 600 && (
+              <span className="actionRow__actionTitle">&nbsp;&nbsp;Edit</span>
+            )}
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export const DetailRow = observer((props) => {
         {props.task.title}
         {props.task.desc && `: ${props.task.desc}`}
       </div>
-      <ActionRow task={props.task} />
+      <ActionRow completed={props.task.archived} />
     </div>
   );
 });

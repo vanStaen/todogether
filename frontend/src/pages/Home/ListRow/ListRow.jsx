@@ -19,16 +19,6 @@ export const ListRow = observer((props) => {
     }
   }, [listStore.selectedTasks]);
 
-  useEffect(() => {
-    const elementId = `row__textContainer${props.task._id}`;
-    const element = document.getElementById(elementId);
-    if (window.innerWidth > 600) {
-      element.style.width = "calc(100% - 3rem)";
-    } else {
-      element.style.width = "calc(100% - 4rem)";
-    }
-  }, [listStore.showActionBar]);
-
   const showEditBarhandler = () => {
     if (listStore.showActionBar === props.task._id) {
       listStore.setShowActionBar(null);
