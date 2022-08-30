@@ -26,24 +26,22 @@ export const ActionRow = observer((props) => {
   return (
     <>
       <div className="actionRow">
-        {listStore.showActionBar === props.task._id && (
-          <div className="actionRow__actionContainer">
-            <div className="actionRow__action" onClick={handleCommentClick}>
-              <PictureOutlined style={{ color: colorLogo }} />
-            </div>
-            <div className="actionRow__action" onClick={handlePictureClick}>
-              <CommentOutlined style={{ color: colorLogo }} />
-            </div>
-            <div
-              className="actionRow__action"
-              onClick={() => {
-                listStore.setTaskInEditMode(props.task);
-              }}
-            >
-              <EditOutlined style={{ color: colorLogo, cursor: editPointer }} />
-            </div>
+        <div className="actionRow__actionContainer">
+          <div className="actionRow__action" onClick={handleCommentClick}>
+            <PictureOutlined style={{ color: colorLogo }} />
           </div>
-        )}
+          <div className="actionRow__action" onClick={handlePictureClick}>
+            <CommentOutlined style={{ color: colorLogo }} />
+          </div>
+          <div
+            className="actionRow__action"
+            onClick={() => {
+              listStore.setTaskInEditMode(props.task);
+            }}
+          >
+            <EditOutlined style={{ color: colorLogo, cursor: editPointer }} />
+          </div>
+        </div>
       </div>
     </>
   );

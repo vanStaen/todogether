@@ -1,9 +1,6 @@
 
 .actionRow {
     position: relative;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    display: inline-block;
     vertical-align: top;
     text-align: right;
 }
