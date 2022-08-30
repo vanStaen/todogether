@@ -2,11 +2,7 @@
 
 ## Backlog:
 
-- [ ] Add Logo and webmanifest
-- [ ] Add ServiceWorker
 - [ ] create info@todogether.com
-- [ ] ListOfList header, edit feature
-- [ ] store last shown list, and use is by next app load
 - [ ] Service Worker
   - [ ] Deliver notifications
   - [ ] Work offline
@@ -24,3 +20,7 @@
 - [x] Link project to domain via Alias
 - [x] Make a nice UX
 - [x] Make Auth responsive
+- [x] store last shown list, and use is by next app load
+- [x] ListOfList header, edit feature
+- [x] Add Logo and webmanifest
+- [x] Add ServiceWorker
