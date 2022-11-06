@@ -65,7 +65,7 @@ app.use('/mail', require('./api/controller/mailController'))
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {
   app.use(
-    "/graphql",
+    "/graphqlapi",
     graphqlHTTP({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
