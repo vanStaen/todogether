@@ -4,10 +4,10 @@
     "description": "Multiplayer-todo-lists",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
+        "start": "node index.js --use_strict",
         "start-client": "react-scripts start",
         "devfr": "cd frontend/; npm i; npm start; cd ../;",
-        "dev": "nodemon index.js",
+        "dev": "nodemon index.js --use_strict",
         "log": "heroku logs --tail -a 'todogether-cvs'",
         "version": "heroku --version; git --version",
         "buildfe": "cd frontend/; npm run build; cd ../; git add -A; git commit -a -m \"deploy frontend Build\"; git push;",
