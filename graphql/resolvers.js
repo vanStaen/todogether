@@ -1,10 +1,10 @@
-const userResolver = require("./resolvers/userResolver");
-const listResolver = require("./resolvers/listResolver");
-const taskResolver = require("./resolvers/taskResolver");
-const commentResolver = require("./resolvers/commentResolver");
-const pictureResolver = require("./resolvers/pictureResolver");
+import userResolver from "./resolvers/userResolver.js";
+import listResolver from "./resolvers/listResolver.js";
+import taskResolver from "./resolvers/taskResolver.js";
+import commentResolver from "./resolvers/commentResolver.js";
+import pictureResolver from "./resolvers/pictureResolver.js";
 
-module.exports = {
+export default {
   ...userResolver.userResolver,
   ...listResolver.listResolver,
   ...taskResolver.taskResolver,

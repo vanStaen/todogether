@@ -5,6 +5,7 @@ const { Task } = require("../../models/Task");
 
 exports.userResolver = {
   async getUser(args, req) {
+    console.log("HELLO");
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
@@ -29,7 +30,7 @@ exports.userResolver = {
       const user = new User({
         username: args.userInput.username,
         email: args.userInput.email,
-        password: hashedPassword,        
+        password: hashedPassword,
         categories: [],
         emailSettings: "[]",
         profilSettings: "[]",
