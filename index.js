@@ -1,16 +1,20 @@
-const path = require("path");
-const cors = require(`cors`)
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
+import path from 'path';
+import cors from 'cors';
+import express from 'express';
+import { createHandler } from 'graphql-http/lib/use/express';
 
-const db = require("./models");
-const graphqlSchema = require("./graphql/schema");
-const graphqlResolver = require("./graphql/resolvers");
-const isAuth = require("./middleware/isAuth");
-const cookieSession = require("./middleware/cookieSession");
-const redirectTraffic = require("./middleware/redirectTraffic");
+
+import db from './models/index.js';
+import graphqlSchema from './graphql/schema.js';
+import graphqlResolver from './graphql/resolvers.js';
+import isAuth from './middleware/isAuth.js';
+import cookieSession from './middleware/cookieSession.js';
+import redirectTraffic from './middleware/redirectTraffic.js';
 
 require("dotenv/config");
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const PORT = process.env.PORT || 5012;
 
@@ -66,7 +70,7 @@ app.use('/mail', require('./api/controller/mailController'))
 db.sequelize.sync().then((req) => {
   app.use(
     "/graphql",
-    graphqlHTTP({
+    createHandler({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
       graphiql: true,

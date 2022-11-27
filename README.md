@@ -6,7 +6,7 @@ http://todogether-cvs.herokuapp.com/
 Sequelize as Object-Relational-Mapper for node.js & PostgresQL. 
 GraphQL for data exchange with Frontend, but REST API for Auth.
 
-Packages: `npm i aws-sdk axios bcryptjs cookie-session cors dotenv express express-graphql fs graphql jimp jsonwebtoken moment path pg sequelize uuid`
+Packages: `npm i aws-sdk axios bcryptjs cookie-session cors dotenv express graphql-http fs graphql jimp jsonwebtoken moment path pg sequelize uuid`
 
 ## Requirements
 

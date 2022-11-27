@@ -29,7 +29,7 @@ exports.userResolver = {
       const user = new User({
         username: args.userInput.username,
         email: args.userInput.email,
-        password: hashedPassword,        
+        password: hashedPassword,
         categories: [],
         emailSettings: "[]",
         profilSettings: "[]",
