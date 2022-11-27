@@ -4,7 +4,7 @@ require("dotenv/config");
 
 const devMode = true;
 
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
   // if in development mode
   if (devMode) {
     if (req.get("host") === "localhost:5012") {
