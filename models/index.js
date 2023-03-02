@@ -1,12 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import Sequelize from 'sequelize';
-import { fileURLToPath } from 'url';
-import sequelize from '../lib/sequelizedb.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
+const { sequelize } = require('../lib/sequelizedb');
+
 const db = {};
 
 fs.readdirSync(__dirname)
@@ -16,9 +13,7 @@ fs.readdirSync(__dirname)
     );
   })
   .forEach(async (file) => {
-    const model = await import(path.join(__dirname, file));
-    model.default();
-    //const model = require(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file));
     db[model.name] = model;
   });
 
@@ -31,4 +26,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export default db;
+module.exports = db;

@@ -1,7 +1,7 @@
 const cookieSession = require("cookie-session");
 require("dotenv/config");
 
-export default cookieSession({
+module.exports = cookieSession({
   name: "session",
   keys: [
     process.env.COOKIE_KEY_1,

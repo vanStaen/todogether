@@ -1,20 +1,16 @@
-import path from 'path';
-import cors from 'cors';
-import express from 'express';
-import { createHandler } from 'graphql-http/lib/use/express';
+const path = require('path');
+const cors = require('cors');
+const express = require('express');
+const { createHandler } = require('graphql-http/lib/use/express');
 
-
-import db from './models/index.js';
-import graphqlSchema from './graphql/schema.js';
-import graphqlResolver from './graphql/resolvers.js';
-import isAuth from './middleware/isAuth.js';
-import cookieSession from './middleware/cookieSession.js';
-import redirectTraffic from './middleware/redirectTraffic.js';
+const db = require('./models/index');
+const graphqlSchema = require('./graphql/schema');
+const graphqlResolver = require('./graphql/resolvers');
+const isAuth = require('./middleware/isAuth');
+const cookieSession = require('./middleware/cookieSession');
+const redirectTraffic = require('./middleware/redirectTraffic');
 
 require("dotenv/config");
-
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
 
 const PORT = process.env.PORT || 5012;
 

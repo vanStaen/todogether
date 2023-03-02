@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "Multiplayer-todo-lists",
     "main": "index.js",
-    "type": "module",
     "scripts": {
         "start": "node index.js --use_strict",
         "start-client": "react-scripts start",
