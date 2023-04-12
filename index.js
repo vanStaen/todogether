@@ -1,14 +1,14 @@
-const path = require("path");
-const cors = require(`cors`)
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
+const path = require('path');
+const cors = require('cors');
+const express = require('express');
+const { createHandler } = require('graphql-http/lib/use/express');
 
-const db = require("./models");
-const graphqlSchema = require("./graphql/schema");
-const graphqlResolver = require("./graphql/resolvers");
-const isAuth = require("./middleware/isAuth");
-const cookieSession = require("./middleware/cookieSession");
-const redirectTraffic = require("./middleware/redirectTraffic");
+const db = require('./models/index');
+const graphqlSchema = require('./graphql/schema');
+const graphqlResolver = require('./graphql/resolvers');
+const isAuth = require('./middleware/isAuth');
+const cookieSession = require('./middleware/cookieSession');
+const redirectTraffic = require('./middleware/redirectTraffic');
 
 require("dotenv/config");
 
@@ -66,7 +66,7 @@ app.use('/mail', require('./api/controller/mailController'))
 db.sequelize.sync().then((req) => {
   app.use(
     "/graphql",
-    graphqlHTTP({
+    createHandler({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
       graphiql: true,

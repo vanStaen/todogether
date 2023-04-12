@@ -2,11 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-const db = {};
-
-require("dotenv/config");
-
 const { sequelize } = require('../lib/sequelizedb');
+
+const db = {};
 
 fs.readdirSync(__dirname)
   .filter((file) => {
@@ -14,7 +12,7 @@ fs.readdirSync(__dirname)
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
-  .forEach((file) => {
+  .forEach(async (file) => {
     const model = require(path.join(__dirname, file));
     db[model.name] = model;
   });

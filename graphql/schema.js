@@ -1,10 +1,10 @@
 const { buildSchema } = require("graphql");
 
-const userSchemas = require("./schemas/userSchema");
-const taskSchemas = require("./schemas/taskSchema");
-const listSchemas = require("./schemas/listSchema");
-const commentSchemas = require("./schemas/commentSchema");
-const pictureSchemas = require("./schemas/pictureSchema");
+const userSchemas = require("./schemas/userSchema.js");
+const taskSchemas = require("./schemas/taskSchema.js");
+const listSchemas = require("./schemas/listSchema.js");
+const commentSchemas = require("./schemas/commentSchema.js");
+const pictureSchemas = require("./schemas/pictureSchema.js");
 
 module.exports = buildSchema(`
 

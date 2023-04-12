@@ -1,8 +1,8 @@
-const userResolver = require("./resolvers/userResolver");
-const listResolver = require("./resolvers/listResolver");
-const taskResolver = require("./resolvers/taskResolver");
-const commentResolver = require("./resolvers/commentResolver");
-const pictureResolver = require("./resolvers/pictureResolver");
+const userResolver = require("./resolvers/userResolver.js");
+const listResolver = require("./resolvers/listResolver.js");
+const taskResolver = require("./resolvers/taskResolver.js");
+const commentResolver = require("./resolvers/commentResolver.js");
+const pictureResolver = require("./resolvers/pictureResolver.js");
 
 module.exports = {
   ...userResolver.userResolver,
