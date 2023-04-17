@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
@@ -53,6 +53,20 @@ export const TaskEdit = observer(() => {
       } catch (e) {
         console.log("error", e);
       }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyDownListener);
+    return () => {
+      document.removeEventListener("keydown", keyDownListener);
+    };
+  }, [keyDownListener]);
+
+  const keyDownListener = (event) => {
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "escape") {
+      closeClickHandler();
     }
   };
 
