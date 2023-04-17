@@ -57,6 +57,10 @@ export const TaskEdit = observer(() => {
   };
 
   useEffect(() => {
+    document.getElementById("titleInput").focus();
+  });
+
+  useEffect(() => {
     document.addEventListener("keydown", keyDownListener);
     return () => {
       document.removeEventListener("keydown", keyDownListener);
@@ -90,7 +94,7 @@ export const TaskEdit = observer(() => {
               },
             ]}
           >
-            <Input placeholder="Add a title" />
+            <Input id="titleInput" placeholder="Add a title" />
           </Form.Item>
           <Form.Item label="Description" name="desc">
             <TextArea rows={4} placeholder="Add an optional description" />
