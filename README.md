@@ -73,9 +73,7 @@ Packages: `npm i aws-sdk axios bcryptjs cookie-session cors dotenv express graph
      - Task Owner: Task done by other
      - List Owner: Task added by other
      - Deadline is soonish
-     - Deadline is over
-
-this is a change
+     - Deadline is overs
 ## Ressources
 
 Colors: #D9D6CB & #E59966
