@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
@@ -56,6 +56,24 @@ export const TaskEdit = observer(() => {
     }
   };
 
+  useEffect(() => {
+    document.getElementById("titleInput").focus();
+  });
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyDownListener);
+    return () => {
+      document.removeEventListener("keydown", keyDownListener);
+    };
+  }, [keyDownListener]);
+
+  const keyDownListener = (event) => {
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "escape") {
+      closeClickHandler();
+    }
+  };
+
   return (
     <>
       <Form
@@ -76,7 +94,7 @@ export const TaskEdit = observer(() => {
               },
             ]}
           >
-            <Input placeholder="Add a title" />
+            <Input id="titleInput" placeholder="Add a title" />
           </Form.Item>
           <Form.Item label="Description" name="desc">
             <TextArea rows={4} placeholder="Add an optional description" />

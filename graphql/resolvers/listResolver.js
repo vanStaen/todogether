@@ -12,7 +12,7 @@ exports.listResolver = {
   async getList(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
-    }
+    }    
     return await List.findAll({
       where: {
         [Op.or]: [{ userId: req.userId }, { shareWith: { [Op.contains]: [req.userId] } }],

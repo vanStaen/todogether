@@ -20,6 +20,21 @@ export const ListFooter = observer(() => {
     selectedTaskArrayArchived();
   }, [listStore.selectedTasks, listStore.myTasks]);
 
+  useEffect(() => {
+    document.addEventListener("keydown", keyDownListener);
+    return () => {
+      document.removeEventListener("keydown", keyDownListener);
+    };
+  }, [keyDownListener]);
+
+  const keyDownListener = (event) => {
+    event.preventDefault();
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "+") {
+      listStore.setTaskInEditMode(0);
+    }
+  };
+
   const selectedTaskArrayArchived = () => {
     let taskArrayArchivedTemp = [];
     listStore.myTasks.forEach((task) => {

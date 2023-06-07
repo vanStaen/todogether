@@ -1,7 +1,7 @@
 const path = require('path');
 const cors = require('cors');
 const express = require('express');
-const { createHandler } = require('graphql-http/lib/use/express');
+const { graphqlHTTP } = require("express-graphql")
 
 const db = require('./models/index');
 const graphqlSchema = require('./graphql/schema');
@@ -66,7 +66,7 @@ app.use('/mail', require('./api/controller/mailController'))
 db.sequelize.sync().then((req) => {
   app.use(
     "/graphql",
-    createHandler({
+    graphqlHTTP({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
       graphiql: true,
