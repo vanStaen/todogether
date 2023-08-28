@@ -5,7 +5,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
 }
 
 .home__main {
@@ -45,7 +44,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 3.5rem - 65px - 70px - 1rem); /* header, listHeader, listFooter, margin-bottom  */
+  height: 80%;
   opacity: .75;
 }
 
@@ -92,9 +91,6 @@
   .home__grid {    
     height: calc(100% - 3.5rem - 65px - 70px); /* header, listHeader, listFooter, margin-bottom  */
     overflow: scroll;
-  }
-  .home__taskCenterContainer { 
-    height: calc(100% - 3.5rem - 65px - 70px); /* header, listHeader, listFooter, margin-bottom  */
   }
   .menu__copyright {
     display: none;
