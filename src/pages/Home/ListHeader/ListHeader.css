@@ -108,7 +108,7 @@
 
 .listHeader__checkboxContainer {
   width: 2rem;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   display: inline-block;
   text-align: center;
 }
