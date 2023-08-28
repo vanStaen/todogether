@@ -14,7 +14,7 @@
   margin: 0 3.5rem 1rem 3.5rem;
   background-color: rgba(255, 255, 255, 0.25);
   width: calc(100vw - 7rem);
-  height: calc(var(--vh, 1vh) * 100 - 6.5rem);
+  height: calc(100% - 6.5rem);
   border-radius: 0.3rem;
 }
 
@@ -87,7 +87,7 @@
   .home__main {
     margin: 0;
     width: calc(100vw);
-    height: calc(var(--vh, 1vh) * 100 - 3.5rem); /* 3.5 header*/
+    height: calc(100% - 3.5rem); /* 3.5 header*/
   }
   .home__rows {
     height: calc(100vh - 3.5rem - 65px - 70px); /* Fallback for browsers that do not support Custom Properties */
