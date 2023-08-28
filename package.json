@@ -19,8 +19,7 @@
     "start": "node server/index.js",
     "prebuild": "rm -rf ./build",
     "build": "webpack --config webpack.config.prod.js --mode production",
-    "deploy": "npm i; npm run build; heroku git:remote -a todogether-cvs; git push heroku main",
-    "postbuild": "rm -rf ./build",
+    "deploy": "npm i; heroku git:remote -a todogether-cvs; git push heroku main",
     "log": "heroku logs --tail",
     "version": "heroku --version; git --version",
     "kill": "killall -9 node"
@@ -49,7 +48,6 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
-    "file-loader": "^6.2.0",
     "fs": "^0.0.1-security",
     "graphql": "^15.8.0",
     "html-webpack-plugin": "^5.5.0",
@@ -75,7 +73,7 @@
     "style-loader": "^3.3.1",
     "universal-cookie": "^4.0.4",
     "uuid": "^9.0.0",
-    "webpack": "^5.73.0",
+    "webpack": "^5.87.0",
     "webpack-dev-server": "^4.9.3"
   },
   "devDependencies": {
