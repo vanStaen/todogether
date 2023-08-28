@@ -54,7 +54,7 @@ export const ListFooter = observer(() => {
             onConfirm={listStore.deleteSelectedTask}
             icon={<QuestionCircleOutlined style={{ color: "red" }} />}
           >
-            <Tooltip title="Delete selected tasks">
+            <Tooltip title="Delete selected tasks" placement="right">
               <Button
                 type="primary"
                 icon={<DeleteOutlined />}
@@ -89,7 +89,7 @@ export const ListFooter = observer(() => {
             {taskArrayArchived.includes(false) && (
               <>
                 &nbsp; &nbsp;
-                <Tooltip title="Mark as done">
+                <Tooltip title="Mark as done" placement="left">
                   <Button
                     type="primary"
                     icon={<CheckOutlined />}
