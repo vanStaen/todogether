@@ -52,7 +52,7 @@ export const Home = observer(() => {
 
   return (
     <div>
-      <div className="home__container">
+      <div className="home__container" style={{ height: window.innerHeight }}>
         <Header />
         <div className="home__main">
           <ListHeader />
