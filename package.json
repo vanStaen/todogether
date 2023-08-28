@@ -1,55 +1,86 @@
 {
-    "name": "todogether.com",
-    "version": "1.0.0",
-    "description": "Multiplayer-todo-lists",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js --use_strict",
-        "start-client": "react-scripts start",
-        "devfr": "cd frontend/; npm i; npm start; cd ../;",
-        "dev": "nodemon index.js --use_strict",
-        "log": "heroku logs --tail -a 'todogether-cvs'",
-        "version": "heroku --version; git --version",
-        "buildfe": "cd frontend/; npm run build; cd ../; git add -A; git commit -a -m \"deploy frontend Build\"; git push;",
-        "deploy": "npm i; npm run buildfe; heroku git:remote -a todogether-cvs; git push heroku main",
-        "kill": "killall -9 node"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/vanStaen/todogether.com.git"
-    },
-    "keywords": [
-        "todogether",
-        "todo",
-        "todoList"
-    ],
-    "dependencies": {
-        "aws-sdk": "^2.1261.0",
-        "axios": "^1.2.0",
-        "bcryptjs": "^2.4.3",
-        "cookie-session": "^2.0.0",
-        "cors": "^2.8.5",
-        "dotenv": "^16.0.3",
-        "express": "^4.18.2",
-        "express-graphql": "^0.12.0",
-        "fs": "^0.0.1-security",
-        "graphql": "^15.8.0",
-        "jimp": "^0.16.2",
-        "jsonwebtoken": "^8.5.1",
-        "lint": "^1.1.2",
-        "moment": "^2.29.4",
-        "nodemon": "^2.0.20",
-        "path": "^0.12.7",
-        "pg": "^8.8.0",
-        "prettier": "^2.8.0",
-        "sequelize": "^6.25.8",
-        "sequelize-cli": "^6.5.2",
-        "uuid": "^9.0.0"
-    },
-    "author": "cvanstaen",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/vanStaen/todogether.com/issues"
-    },
-    "homepage": "https://github.com/vanStaen/todogether.com#readme"
+  "name": "todogether.com",
+  "version": "1.1.0",
+  "keywords": [
+      "todogether",
+      "todo",
+      "todoList"
+  ],
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vanStaen/todogether.git"
+  },
+  "author": "cvanstaen",
+  "homepage": "https://github.com/vanStaen/todogether",
+  "scripts": {
+    "devfr": "webpack serve --config webpack.config.dev.js --hot --open",
+    "dev": "nodemon server/index.js",
+    "server": "npm run build; pm2 start server/index.js",
+    "start": "node server/index.js",
+    "prebuild": "rm -rf ./build",
+    "build": "webpack --config webpack.config.prod.js --mode production",
+    "deploy": "npm i; npm run build; heroku git:remote -a todogether-cvs; git push heroku master",
+    "postbuild": "mv build ./build",
+    "log": "heroku logs --tail",
+    "version": "heroku --version; git --version",
+    "kill": "killall -9 node"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "aws-sdk": "^2.1261.0",
+    "antd": "^4.21.6",
+    "axios": "^1.2.0",
+    "babel-loader": "^8.2.5",
+    "bcryptjs": "^2.4.3",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "core-js": "^3.23.4",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "file-loader": "^6.2.0",
+    "fs": "^0.0.1-security",
+    "graphql": "^15.8.0",
+    "html-webpack-plugin": "^5.5.0",
+    "i18next": "^21.8.14",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "image-webpack-loader": "^8.1.0",
+    "jest": "^28.1.3",
+    "jimp": "^0.16.2",
+    "jsonwebtoken": "^8.5.1",
+    "lint": "^1.1.2",
+    "mobx": "^6.6.1",
+    "mobx-react": "^7.5.2",
+    "moment": "^2.29.4",
+    "path": "^0.12.7",
+    "pg": "^8.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
+    "regenerator-runtime": "^0.13.9",
+    "sequelize": "^6.25.8",
+    "sequelize-cli": "^6.5.2",
+    "style-loader": "^3.3.1",
+    "universal-cookie": "^4.0.4",
+    "uuid": "^9.0.0",
+    "webpack": "^5.73.0",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.0.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.0"
+  }
 }

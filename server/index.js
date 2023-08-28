@@ -31,7 +31,6 @@ app.use(cookieSession);
 // Authorization Middleware
 app.use(isAuth);
 
-
 // Allow cross origin request
 app.use(function (req, res, next) {
   let corsOptions = {};
