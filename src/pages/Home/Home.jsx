@@ -4,7 +4,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 import { Header } from "./Header/Header";
 import { ListHeader } from "./ListHeader/ListHeader";
-import { ListRow } from "./listRow/ListRow";
+import { ListRow } from "./ListRow/ListRow";
 import { ListGrid } from "./ListGrid/ListGrid";
 import { ListFooter } from "./ListFooter/ListFooter";
 import { TaskEdit } from "./TaskEdit/TaskEdit";
