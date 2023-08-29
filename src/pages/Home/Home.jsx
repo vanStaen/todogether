@@ -10,6 +10,7 @@ import { ListFooter } from "./ListFooter/ListFooter";
 import { TaskEdit } from "./TaskEdit/TaskEdit";
 import { ListEdit } from "./ListEdit/ListEdit";
 import { listStore } from "../../stores/listStore/listStore";
+import { TaskEditRow } from "./TaskEdit/TaskEditRow/TaskEditRow";
 
 import "./Home.css";
 
@@ -70,19 +71,12 @@ export const Home = observer(() => {
             <ListEdit />
           ) : (
             <>
-              {tasksRow.filter((value) => value !== null).length ? (
-                !listStore.displayAslist ? (
-                  <div className="home__grid">{tasksGrid}</div>
-                ) : (
-                  <div className="home__rows">{tasksRow}</div>
-                )
+              {!listStore.displayAslist ? (
+                <div className="home__grid">{tasksGrid}</div>
               ) : (
-                <div className="home__taskCenterContainer">
-                  <div className="home__taskNothing">
-                    Nothing here
-                    <br />
-                    Add a task
-                  </div>
+                <div className="home__rows">
+                  {tasksRow}
+                  <TaskEditRow />
                 </div>
               )}
               <ListFooter />

@@ -2,7 +2,10 @@
 
 ## Backlog:
 
+- [ ] create quick task 
+  - [ ] autocomplete
 - [ ] create info@todogether.com
+- [ ] 
 - [ ] Service Worker
   - [ ] Deliver notifications
   - [ ] Work offline

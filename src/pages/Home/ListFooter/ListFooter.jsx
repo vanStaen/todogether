@@ -28,7 +28,7 @@ export const ListFooter = observer(() => {
   }, [keyDownListener]);
 
   const keyDownListener = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "+") {
       listStore.setTaskInEditMode(0);
