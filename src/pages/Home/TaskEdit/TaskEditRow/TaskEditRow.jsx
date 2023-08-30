@@ -30,6 +30,7 @@ export const TaskEditRow = observer(() => {
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
       listStore.fetchMyTasks();
+      setTextNewTask(null);
     } catch (e) {
       console.log("error", e);
     }
