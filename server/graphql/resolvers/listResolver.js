@@ -19,7 +19,7 @@ exports.listResolver = {
       },
       order: [["_id", "ASC"]],
       include: [
-        { model: User, include: { model: List, include: Task } },
+        //{ model: User, include: { model: List, include: Task } }, //This reduce loading time from 12s to >1sec
         { model: Task, include: Comment, Picture },
       ],
     });
