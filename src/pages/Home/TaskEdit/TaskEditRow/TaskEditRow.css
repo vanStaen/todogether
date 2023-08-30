@@ -42,7 +42,8 @@
     display: inline-block;
     vertical-align: top;
     text-align: center; 
-    width: 30px;      
+    width: 30px;   
+    font-size: 23px;
 }
 
 .taskeditrow__input {

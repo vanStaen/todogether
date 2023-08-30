@@ -58,7 +58,9 @@ export const TaskEditRow = observer(() => {
           </div>
         </div>
         {textNewTask && (
-          <div className="taskeditrow__moreContainer">&#9166;</div>
+          <div className="taskeditrow__moreContainer" onClick={saveNewTask}>
+            &#9166;
+          </div>
         )}
       </div>
     </>
