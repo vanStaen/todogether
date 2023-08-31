@@ -7,13 +7,13 @@ import { Home } from "./pages/Home/Home";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
+import { consoleGreetings } from "./helpers/consoleGreetings";
 
 import "./App.css";
 
-
 const App = observer(() => {
-
   useEffect(() => {
+    consoleGreetings();
     authStore.checkAccess();
   }, []);
 
