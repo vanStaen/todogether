@@ -157,6 +157,7 @@ export class ListStore {
       if (taskData) {
         this.setMyTasks(taskData);
       }
+      this.unselectAllTasks();
     } catch (e) {
       console.log("error", e);
     }

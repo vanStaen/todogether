@@ -7,14 +7,17 @@ import {
   PlusOutlined,
   CloseOutlined,
   QuestionCircleOutlined,
+  PlusSquareOutlined,
 } from "@ant-design/icons";
 
 import { listStore } from "../../../stores/listStore/listStore";
+import { addTask } from "../TaskEdit/addTask";
 
 import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
   const [taskArrayArchived, setTaskArrayArchived] = useState([]);
+  const [textNewTask, setTextNewTask] = useState(null);
 
   useEffect(() => {
     selectedTaskArrayArchived();
@@ -27,11 +30,26 @@ export const ListFooter = observer(() => {
     };
   }, [keyDownListener]);
 
+  const saveNewTask = async (value) => {
+    try {
+      const taskInputData = {};
+      taskInputData.listId = parseInt(listStore.selectedList._id);
+      taskInputData.title = value;
+      const resultId = await addTask(taskInputData);
+      console.log(`New Task #${resultId} added`);
+      listStore.fetchMyTasks();
+      setTextNewTask(null);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   const keyDownListener = (event) => {
-    //event.preventDefault();
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "+") {
       listStore.setTaskInEditMode(0);
+    } else if (keyPressed === "enter") {
+      saveNewTask(textNewTask);
     }
   };
 
@@ -45,10 +63,14 @@ export const ListFooter = observer(() => {
     setTaskArrayArchived(taskArrayArchivedTemp);
   };
 
+  const onChangeInput = (event) => {
+    setTextNewTask(event.target.value);
+  };
+
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
-        {!!listStore.selectedTasks.length && (
+        {!!listStore.selectedTasks.length ? (
           <Popconfirm
             title="Are you sure？"
             onConfirm={listStore.deleteSelectedTask}
@@ -66,6 +88,19 @@ export const ListFooter = observer(() => {
               />
             </Tooltip>
           </Popconfirm>
+        ) : (
+          <>
+            <div className="addTaskFooter__icon">
+              <PlusSquareOutlined />
+            </div>
+            <div className="addTaskFooter__textContainer">
+              <input
+                id="newTaskInput"
+                className="addTaskFooter__input"
+                onChange={onChangeInput}
+              />
+            </div>
+          </>
         )}
       </div>
       <div className="listFooter__rightContainer">
@@ -108,12 +143,19 @@ export const ListFooter = observer(() => {
         ) : (
           <Button
             type="primary"
-            icon={<PlusOutlined />}
+            icon={!textNewTask && <PlusOutlined />}
             onClick={() => {
-              listStore.setTaskInEditMode(0);
+              textNewTask
+                ? saveNewTask(textNewTask)
+                : listStore.setTaskInEditMode(0);
             }}
           >
-            {window.innerWidth > 460 && "New Task"}
+            {window.innerWidth > 460 && textNewTask ? (
+              <>Add Task &nbsp;</>
+            ) : (
+              "New Task"
+            )}
+            {textNewTask && <>&#9166;</>}
           </Button>
         )}
       </div>
