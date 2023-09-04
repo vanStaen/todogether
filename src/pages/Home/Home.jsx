@@ -19,21 +19,23 @@ export const Home = observer(() => {
   const [windowInnerHeight, setWindowInnerHeight] = useState(
     window.innerHeight
   );
+  const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     listStore.fetchMyLists();
   }, []);
 
-  const resetWindowInnerHeight = () => {
+  const resetWindowInners = () => {
     setWindowInnerHeight(window.innerHeight);
+    setWindowInnerWidth(window.innerWidth);
   };
 
   useEffect(() => {
-    window.addEventListener("resize", resetWindowInnerHeight);
+    window.addEventListener("resize", resetWindowInners);
     return () => {
-      window.removeEventListener("resize", resetWindowInnerHeight);
+      window.removeEventListener("resize", resetWindowInners);
     };
-  }, [resetWindowInnerHeight]);
+  }, [resetWindowInners]);
 
   const tasksRow = listStore.myTasks.map((task) => {
     const isTaskSelected = listStore.selectedTasks.includes(task._id);
@@ -68,15 +70,28 @@ export const Home = observer(() => {
     <div>
       <div className="home__container" style={{ height: windowInnerHeight }}>
         <Header />
-        <div className="home__main">
+        <div
+          className="home__main"
+          style={{
+            height: `calc(${windowInnerHeight - 5}px - ${
+              windowInnerWidth > 600 ? "11rem" : "10rem"
+            }`,
+          }}
+        >
           <ListHeader />
           {listStore.taskAreLoading ? (
             <>
-              <div className="home__taskCenterContainer">
+              <div
+                className="home__taskCenterContainer"
+                style={{
+                  height: `calc(${windowInnerHeight - 65}px - ${
+                    windowInnerWidth > 600 ? "11rem" : "10rem"
+                  }`,
+                }}
+              >
                 <LoadingOutlined className="home__taskLoadingLogo" />
                 <div className="home__taskLoading">Task are loading</div>
               </div>
-              <ListFooter />
             </>
           ) : listStore.taskInEditMode !== null ? (
             <TaskEdit />
@@ -85,13 +100,31 @@ export const Home = observer(() => {
           ) : (
             <>
               {!listStore.displayAslist ? (
-                <div className="home__grid">{tasksGrid}</div>
+                <div
+                  className="home__grid"
+                  style={{
+                    height: `calc(${windowInnerHeight - 70}px - ${
+                      windowInnerWidth > 600 ? "11rem" : "10rem"
+                    }`,
+                  }}
+                >
+                  {tasksGrid}
+                </div>
               ) : (
-                <div className="home__rows">{tasksRow}</div>
+                <div
+                  className="home__rows"
+                  style={{
+                    height: `calc(${windowInnerHeight - 70}px - ${
+                      windowInnerWidth > 600 ? "11rem" : "10rem"
+                    }`,
+                  }}
+                >
+                  {tasksRow}
+                </div>
               )}
-              <ListFooter />
             </>
           )}
+          <ListFooter />
         </div>
         <span className="menu__copyright">todogether.com ©{year}</span>
       </div>

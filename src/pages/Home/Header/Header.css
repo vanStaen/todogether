@@ -1,4 +1,6 @@
 .header {
+    position: fixed;
+    top: 0;
     height: 3.8rem;
     padding-top: 1rem;
     border-bottom: 1px solid #bebbb2;
@@ -24,8 +26,6 @@
 
 @media only screen and (max-width: 600px) {
     .header {
-        height: 3.5rem;
-        padding-top: .8rem;
         width: 100vw;
     }
     .header__motto {

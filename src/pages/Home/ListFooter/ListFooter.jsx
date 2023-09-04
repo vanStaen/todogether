@@ -31,6 +31,8 @@ export const ListFooter = observer(() => {
   }, [keyDownListener]);
 
   const saveNewTask = async (value) => {
+    setTextNewTask(null);
+    document.getElementById("newTaskInput").value = "";
     try {
       const taskInputData = {};
       taskInputData.listId = parseInt(listStore.selectedList._id);
@@ -38,7 +40,6 @@ export const ListFooter = observer(() => {
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
       listStore.fetchMyTasks();
-      setTextNewTask(null);
     } catch (e) {
       console.log("error", e);
     }
@@ -150,11 +151,8 @@ export const ListFooter = observer(() => {
                 : listStore.setTaskInEditMode(0);
             }}
           >
-            {window.innerWidth > 460 && textNewTask ? (
-              <>Add Task &nbsp;</>
-            ) : (
-              "New Task"
-            )}
+            {window.innerWidth > 460 &&
+              (textNewTask ? <>Add Task &nbsp;</> : "New Task")}
             {textNewTask && <>&#9166;</>}
           </Button>
         )}
