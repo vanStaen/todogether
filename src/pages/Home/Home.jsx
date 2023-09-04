@@ -73,9 +73,9 @@ export const Home = observer(() => {
         <div
           className="home__main"
           style={{
-            height: `calc(${windowInnerHeight}px - ${
-              windowInnerWidth > 600 ? "11rem" : "10rem"
-            } ${windowInnerWidth > 600 && "- 5px"}`,
+            height: `calc(${
+              windowInnerHeight + (windowInnerWidth > 600 ? -5 : 10)
+            }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
           }}
         >
           <ListHeader />
@@ -85,8 +85,8 @@ export const Home = observer(() => {
                 className="home__taskCenterContainer"
                 style={{
                   height: `calc(${windowInnerHeight - 65}px - ${
-                    windowInnerWidth > 600 ? "11rem" : "10rem"
-                  } ${windowInnerWidth > 600 && "- 5px"}`,
+                    windowInnerWidth > 600 ? "11rem" : "8rem"
+                  }`,
                 }}
               >
                 <LoadingOutlined className="home__taskLoadingLogo" />
@@ -104,8 +104,8 @@ export const Home = observer(() => {
                   className="home__grid"
                   style={{
                     height: `calc(${windowInnerHeight - 65}px - ${
-                      windowInnerWidth > 600 ? "11rem" : "10rem"
-                    } ${windowInnerWidth > 600 && "- 5px"}`,
+                      windowInnerWidth > 600 ? "11rem" : "8rem"
+                    }`,
                   }}
                 >
                   {tasksGrid}
@@ -115,8 +115,8 @@ export const Home = observer(() => {
                   className="home__rows"
                   style={{
                     height: `calc(${windowInnerHeight - 65}px - ${
-                      windowInnerWidth > 600 ? "11rem" : "10rem"
-                    } ${windowInnerWidth > 600 && "- 5px"}`,
+                      windowInnerWidth > 600 ? "11rem" : "8rem"
+                    }`,
                   }}
                 >
                   {tasksRow}
