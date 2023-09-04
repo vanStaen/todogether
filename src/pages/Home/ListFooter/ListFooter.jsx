@@ -65,6 +65,9 @@ export const ListFooter = observer(() => {
   };
 
   const onChangeInput = (event) => {
+    if (event.target.value) {
+      listStore.setTaskInEditMode(null);
+    }
     setTextNewTask(event.target.value);
   };
 
