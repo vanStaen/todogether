@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -16,10 +16,24 @@ import "./Home.css";
 export const Home = observer(() => {
   const date = new Date();
   const year = date.getFullYear();
+  const [windowInnerHeight, setWindowInnerHeight] = useState(
+    window.innerHeight
+  );
 
   useEffect(() => {
     listStore.fetchMyLists();
   }, []);
+
+  const resetWindowInnerHeight = () => {
+    setWindowInnerHeight(window.innerHeight);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", resetWindowInnerHeight);
+    return () => {
+      window.removeEventListener("resize", resetWindowInnerHeight);
+    };
+  }, [resetWindowInnerHeight]);
 
   const tasksRow = listStore.myTasks.map((task) => {
     const isTaskSelected = listStore.selectedTasks.includes(task._id);
@@ -52,7 +66,7 @@ export const Home = observer(() => {
 
   return (
     <div>
-      <div className="home__container" style={{ height: window.innerHeight }}>
+      <div className="home__container" style={{ height: windowInnerHeight }}>
         <Header />
         <div className="home__main">
           <ListHeader />
