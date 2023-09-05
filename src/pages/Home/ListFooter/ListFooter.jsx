@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import { Tooltip, Button, Popconfirm } from "antd";
+import { Tooltip, Button, Popconfirm, AutoComplete } from "antd";
 import {
   DeleteOutlined,
   CheckOutlined,
@@ -30,16 +30,16 @@ export const ListFooter = observer(() => {
     };
   }, [keyDownListener]);
 
-  const saveNewTask = async (value) => {
-    setTextNewTask(null);
+  const saveNewTask = async () => {
     document.getElementById("newTaskInput").value = "";
     try {
       const taskInputData = {};
       taskInputData.listId = parseInt(listStore.selectedList._id);
-      taskInputData.title = value;
+      taskInputData.title = textNewTask;
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
       listStore.fetchMyTasks();
+      setTextNewTask(null);
     } catch (e) {
       console.log("error", e);
     }
@@ -48,9 +48,11 @@ export const ListFooter = observer(() => {
   const keyDownListener = (event) => {
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "+") {
+      event.preventDefault();
       listStore.setTaskInEditMode(0);
     } else if (keyPressed === "enter") {
-      saveNewTask(textNewTask);
+      event.preventDefault();
+      saveNewTask();
     }
   };
 
@@ -64,12 +66,18 @@ export const ListFooter = observer(() => {
     setTaskArrayArchived(taskArrayArchivedTemp);
   };
 
-  const onChangeInput = (event) => {
-    if (event.target.value) {
+  const onChangeInput = (value) => {
+    if (value) {
       listStore.setTaskInEditMode(null);
     }
-    setTextNewTask(event.target.value);
+    setTextNewTask(value);
   };
+
+  const options = listStore.myTasks.map((task) => task.title.trim());
+  const optionsUnique = [...new Set(options)];
+  const optionsFormated = optionsUnique.map((option) => {
+    return { value: option };
+  });
 
   return (
     <div className="listFooter">
@@ -98,10 +106,18 @@ export const ListFooter = observer(() => {
               <PlusSquareOutlined />
             </div>
             <div className="addTaskFooter__textContainer">
-              <input
+              <AutoComplete
                 id="newTaskInput"
                 className="addTaskFooter__input"
+                bordered={false}
                 onChange={onChangeInput}
+                placeholder="add a task"
+                options={optionsFormated}
+                filterOption={(inputValue, option) =>
+                  option.value
+                    .toUpperCase()
+                    .indexOf(inputValue.toUpperCase()) !== -1
+                }
               />
             </div>
           </>
@@ -149,9 +165,7 @@ export const ListFooter = observer(() => {
             type="primary"
             icon={!textNewTask && <PlusOutlined />}
             onClick={() => {
-              textNewTask
-                ? saveNewTask(textNewTask)
-                : listStore.setTaskInEditMode(0);
+              textNewTask ? saveNewTask() : listStore.setTaskInEditMode(0);
             }}
           >
             {window.innerWidth > 460 &&
