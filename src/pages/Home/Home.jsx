@@ -74,7 +74,7 @@ export const Home = observer(() => {
           className="home__main"
           style={{
             height: `calc(${
-              windowInnerHeight + (windowInnerWidth > 600 ? -5 : 10)
+              windowInnerHeight + (windowInnerWidth > 600 ? -5 : 5)
             }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
           }}
         >
@@ -84,9 +84,9 @@ export const Home = observer(() => {
               <div
                 className="home__taskCenterContainer"
                 style={{
-                  height: `calc(${windowInnerHeight - 65}px - ${
-                    windowInnerWidth > 600 ? "11rem" : "8rem"
-                  }`,
+                  height: `calc(${windowInnerHeight}px - ${
+                    windowInnerWidth > 600 ? 70 : 60
+                  }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
                 }}
               >
                 <LoadingOutlined className="home__taskLoadingLogo" />
@@ -103,9 +103,9 @@ export const Home = observer(() => {
                 <div
                   className="home__grid"
                   style={{
-                    height: `calc(${windowInnerHeight - 65}px - ${
-                      windowInnerWidth > 600 ? "11rem" : "8rem"
-                    }`,
+                    height: `calc(${windowInnerHeight}px - ${
+                      windowInnerWidth > 600 ? 70 : 60
+                    }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
                   }}
                 >
                   {tasksGrid}
@@ -114,9 +114,9 @@ export const Home = observer(() => {
                 <div
                   className="home__rows"
                   style={{
-                    height: `calc(${windowInnerHeight - 65}px - ${
-                      windowInnerWidth > 600 ? "11rem" : "8rem"
-                    }`,
+                    height: `calc(${windowInnerHeight}px - ${
+                      windowInnerWidth > 600 ? 70 : 60
+                    }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
                   }}
                 >
                   {tasksRow}
