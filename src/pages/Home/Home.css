@@ -18,7 +18,6 @@
 
 .home__rows {  
   overflow: scroll;
-  border: 1px solid red;
 }
 
 .home__grid {
