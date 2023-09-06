@@ -130,7 +130,7 @@ export const TaskEdit = observer(() => {
           </Form.Item>
         </div>
         <div className="taskedit__footer">
-          {window.innerWidth < 460 ? (
+          {window.innerWidth < 600 ? (
             <>
               <Form.Item>
                 <div className="taskedit__footerLeft">

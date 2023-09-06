@@ -28,9 +28,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "public/logo64.png" },
-        { from: "public/logo128.png" },
-        { from: "public/logo256.png" },
-        { from: "public/logo512.png" },
         { from: "public/manifest.webmanifest" },
       ],
     }),

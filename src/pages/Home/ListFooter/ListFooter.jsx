@@ -31,7 +31,7 @@ export const ListFooter = observer(() => {
   }, [keyDownListener]);
 
   const saveNewTask = async () => {
-    document.getElementById("newTaskInput").value = "";
+    setTextNewTask(null);
     try {
       const taskInputData = {};
       taskInputData.listId = parseInt(listStore.selectedList._id);
@@ -39,7 +39,6 @@ export const ListFooter = observer(() => {
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
       listStore.fetchMyTasks();
-      setTextNewTask(null);
     } catch (e) {
       console.log("error", e);
     }
@@ -48,10 +47,8 @@ export const ListFooter = observer(() => {
   const keyDownListener = (event) => {
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "+") {
-      event.preventDefault();
       listStore.setTaskInEditMode(0);
     } else if (keyPressed === "enter") {
-      event.preventDefault();
       saveNewTask();
     }
   };
@@ -67,6 +64,8 @@ export const ListFooter = observer(() => {
   };
 
   const onChangeInput = (value) => {
+    console.log("value", value);
+    console.log("textNewTask", textNewTask);
     if (value) {
       listStore.setTaskInEditMode(null);
     }
@@ -107,9 +106,11 @@ export const ListFooter = observer(() => {
             </div>
             <div className="addTaskFooter__textContainer">
               <AutoComplete
+                allowClear={true}
                 id="newTaskInput"
                 className="addTaskFooter__input"
                 bordered={false}
+                onSearch={onChangeInput}
                 onChange={onChangeInput}
                 placeholder="add a task"
                 options={optionsFormated}
@@ -168,7 +169,7 @@ export const ListFooter = observer(() => {
               textNewTask ? saveNewTask() : listStore.setTaskInEditMode(0);
             }}
           >
-            {window.innerWidth > 460 &&
+            {window.innerWidth > 600 &&
               (textNewTask ? <>Add Task &nbsp;</> : "New Task")}
             {textNewTask && <>&#9166;</>}
           </Button>

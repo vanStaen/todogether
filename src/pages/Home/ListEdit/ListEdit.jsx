@@ -124,7 +124,7 @@ export const ListEdit = observer(() => {
           </Form.Item>
         </div>
         <div className="listedit__footer">
-          {window.innerWidth < 460 ? (
+          {window.innerWidth < 600 ? (
             <>
               <Form.Item>
                 <div className="listedit__footerLeft">
