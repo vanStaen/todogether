@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Tooltip, Button, Popconfirm, AutoComplete } from "antd";
 import {
@@ -17,7 +17,13 @@ import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
   const [taskArrayArchived, setTaskArrayArchived] = useState([]);
-  const [textNewTask, setTextNewTask] = useState(null);
+  const [textNewTask, _setTextNewTask] = useState(null);
+  const textNewTaskRef = useRef(textNewTask);
+
+  function setTextNewTask(value) {
+    textNewTaskRef.current = value;
+    _setTextNewTask(value);
+  }
 
   useEffect(() => {
     selectedTaskArrayArchived();
@@ -31,13 +37,13 @@ export const ListFooter = observer(() => {
   }, [keyDownListener]);
 
   const saveNewTask = async () => {
-    setTextNewTask(null);
     try {
       const taskInputData = {};
       taskInputData.listId = parseInt(listStore.selectedList._id);
-      taskInputData.title = textNewTask;
+      taskInputData.title = textNewTaskRef.current;
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
+      setTextNewTask(null);
       listStore.fetchMyTasks();
     } catch (e) {
       console.log("error", e);
@@ -64,8 +70,6 @@ export const ListFooter = observer(() => {
   };
 
   const onChangeInput = (value) => {
-    console.log("value", value);
-    console.log("textNewTask", textNewTask);
     if (value) {
       listStore.setTaskInEditMode(null);
     }
@@ -112,6 +116,7 @@ export const ListFooter = observer(() => {
                 bordered={false}
                 onSearch={onChangeInput}
                 onChange={onChangeInput}
+                value={textNewTaskRef.current}
                 placeholder="add a task"
                 options={optionsFormated}
                 filterOption={(inputValue, option) =>
@@ -166,7 +171,9 @@ export const ListFooter = observer(() => {
             type="primary"
             icon={!textNewTask && <PlusOutlined />}
             onClick={() => {
-              textNewTask ? saveNewTask() : listStore.setTaskInEditMode(0);
+              textNewTask
+                ? saveNewTask(textNewTask)
+                : listStore.setTaskInEditMode(0);
             }}
           >
             {window.innerWidth > 600 &&
