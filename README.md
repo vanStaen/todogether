@@ -1,7 +1,6 @@
 # Todogether.com
 
 Multiplayer-todo-lists.
-https://todogether.com/
 
 ## Backend
 
