@@ -1,7 +1,7 @@
 # Todogether.com
 
 Multiplayer-todo-lists.
-http://todogether-cvs.herokuapp.com/
+https://todogether.com/
 
 ## Backend
 
