@@ -99,27 +99,37 @@ export const Home = observer(() => {
             <ListEdit />
           ) : (
             <>
-              {!listStore.displayAslist ? (
-                <div
-                  className="home__grid"
-                  style={{
-                    height: `calc(${windowInnerHeight}px - ${
-                      windowInnerWidth > 600 ? 70 : 60
-                    }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
-                  }}
-                >
-                  {tasksGrid}
-                </div>
+              {tasksRow.filter((value) => value !== null).length ? (
+                !listStore.displayAslist ? (
+                  <div
+                    className="home__grid"
+                    style={{
+                      height: `calc(${windowInnerHeight}px - ${
+                        windowInnerWidth > 600 ? 70 : 60
+                      }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
+                    }}
+                  >
+                    {tasksGrid}
+                  </div>
+                ) : (
+                  <div
+                    className="home__rows"
+                    style={{
+                      height: `calc(${windowInnerHeight}px - ${
+                        windowInnerWidth > 600 ? 70 : 60
+                      }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
+                    }}
+                  >
+                    {tasksRow}
+                  </div>
+                )
               ) : (
-                <div
-                  className="home__rows"
-                  style={{
-                    height: `calc(${windowInnerHeight}px - ${
-                      windowInnerWidth > 600 ? 70 : 60
-                    }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
-                  }}
-                >
-                  {tasksRow}
+                <div className="home__taskCenterContainer">
+                  <div className="home__taskNothing">
+                    Nothing here
+                    <br />
+                    Add a task
+                  </div>
                 </div>
               )}
             </>
