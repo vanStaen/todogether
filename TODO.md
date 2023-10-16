@@ -2,10 +2,11 @@
 
 ## Backlog:
 
-- [ ] create quick task 
-  - [ ] autocomplete
-- [ ] create info@todogether.com
-- [ ] 
+- [ ] Create info@todogether.com
+- [ ] Fix "new task" with details
+- [ ] Add basic profil
+  - [ ] Add avatar + upload
+  - [ ] Setting page
 - [ ] Service Worker
   - [ ] Deliver notifications
   - [ ] Work offline
@@ -26,4 +27,5 @@
 - [x] store last shown list, and use is by next app load
 - [x] ListOfList header, edit feature
 - [x] Add Logo and webmanifest
-- [x] Add ServiceWorker
+- [x] create quick task 
+  - [x] autocomplete
