@@ -5,6 +5,7 @@
     padding-top: 1rem;
     border-bottom: 1px solid #bebbb2;
     width: calc(100vw - 7rem);
+    max-width: 1600px;
 }
 
 .header__logo {

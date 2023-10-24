@@ -26,7 +26,7 @@ export const ListHeader = observer(() => {
 
   const handleCheckboxUnselectAllClick = () => {
     listStore.unselectAllTasks();
-  }
+  };
 
   const listOflists = listStore.myLists.map((list) => {
     const arrayUnDoneTask = list.tasks.filter((task) => !task.archived);
@@ -66,8 +66,8 @@ export const ListHeader = observer(() => {
   return (
     <div>
       <div className="listHeader">
-        {!!listStore.selectedTasks.length ?
-          (<div className="listHeader__taskCountHeader">
+        {!!listStore.selectedTasks.length ? (
+          <div className="listHeader__taskCountHeader">
             <div className="listHeader__checkboxContainer">
               <div>
                 <Checkbox
@@ -85,14 +85,17 @@ export const ListHeader = observer(() => {
               {listStore.selectedTasks.length > 1 && "s"} selected
             </span>
           </div>
-          ) :
-          (<>
+        ) : (
+          <>
             <div
               className="listHeader__ListNameContainer"
               id="listHeader__ListNameContainer"
             >
               <Tooltip title="Switch between list">
-                <div className="listHeader__rowLogo" onClick={ShowListClickHander}>
+                <div
+                  className="listHeader__rowLogo"
+                  onClick={ShowListClickHander}
+                >
                   <UnorderedListOutlined />
                 </div>
               </Tooltip>
@@ -109,7 +112,8 @@ export const ListHeader = observer(() => {
               )}
             </div>
             <ActionRowHeader />
-          </>)}
+          </>
+        )}
       </div>
       {showListOfLists && (
         <>
