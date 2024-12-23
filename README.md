@@ -73,13 +73,10 @@ Packages: `npm i aws-sdk axios bcryptjs cookie-session cors dotenv express graph
      - List Owner: Task added by other
      - Deadline is soonish
      - Deadline is overs
+
+     
 ## Ressources
 
 Colors: #D9D6CB & #E59966
 Logo: `https://icons8.com/icon/104283/handshake-heart`
 PWA: install as an app `https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PWAs`
-
-## Deployment
-
-To update Render's permission in github
-https://github.com/apps/render/installations/new/permissions?targetid=12551446
