@@ -23,7 +23,7 @@ export const TaskEdit = observer(() => {
     if (listStore.taskInEditMode === 0) {
       try {
         const taskInputData = {};
-        taskInputData.listId = parseInt(listStore.selectedList._id);
+        taskInputData.listId = parseInt(listStore.selectedList.id);
         taskInputData.title = values.title;
         if (values.desc) {
           taskInputData.desc = values.desc;
@@ -45,8 +45,8 @@ export const TaskEdit = observer(() => {
         if (listStore.taskInEditMode.desc !== values.desc) {
           taskInputData.desc = values.desc;
         }
-        await updateTask(listStore.taskInEditMode._id, taskInputData);
-        //console.log(`Task #${listStore.taskInEditMode._id} modified`);
+        await updateTask(listStore.taskInEditMode.id, taskInputData);
+        //console.log(`Task #${listStore.taskInEditMode.id} modified`);
         listStore.setShowActionBar(null);
         listStore.setTaskInEditMode(null);
         listStore.fetchMyTasks();

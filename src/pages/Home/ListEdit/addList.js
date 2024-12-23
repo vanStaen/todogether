@@ -5,7 +5,7 @@ export const addList = async (listInputData) => {
     query: `
         mutation ($listInput: ListInputData!) {
           addList (listInput: $listInput) {
-            _id,
+            id,
           }
         }
         `,
@@ -24,5 +24,5 @@ export const addList = async (listInputData) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.addList._id;
+  return response.data.data.addList.id;
 };

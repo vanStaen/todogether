@@ -38,13 +38,13 @@ export const Home = observer(() => {
   }, [resetWindowInners]);
 
   const tasksRow = listStore.myTasks.map((task) => {
-    const isTaskSelected = listStore.selectedTasks.includes(task._id);
+    const isTaskSelected = listStore.selectedTasks.includes(task.id);
     if (listStore.showCompleted === false && task.archived && !isTaskSelected) {
       return null;
     }
     return (
       <ListRow
-        key={task._id}
+        key={task.id}
         task={task}
         hasComments={task.comments.length}
         hasPicture={task.pictures.length}
@@ -58,7 +58,7 @@ export const Home = observer(() => {
     }
     return (
       <ListGrid
-        key={task._id}
+        key={task.id}
         task={task}
         hasComments={task.comments.length}
         hasPicture={task.pictures.length}

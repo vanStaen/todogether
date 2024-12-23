@@ -5,7 +5,7 @@ export const addTask = async (taskInputData) => {
     query: `
         mutation ($taskInput: TaskInputData!) {
           addTask (taskInput: $taskInput) {
-            _id,
+            id,
           }
         }
         `,
@@ -24,5 +24,5 @@ export const addTask = async (taskInputData) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.addTask._id;
+  return response.data.data.addTask.id;
 };

@@ -32,7 +32,7 @@ export const ListHeader = observer(() => {
     const arrayUnDoneTask = list.tasks.filter((task) => !task.archived);
 
     return (
-      <div className="listHeader__listsOfList" key={list._id}>
+      <div className="listHeader__listsOfList" key={list.id}>
         <div
           className="listHeader__listsOfListMain"
           onClick={() => {

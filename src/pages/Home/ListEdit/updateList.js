@@ -5,10 +5,10 @@ export const updateList = async (id, listInputData) => {
     query: `
         mutation ($id: ID!, $listInput: ListInputData!) {
           updateList (
-            _id: $id,
+            id: $id,
             listInput: $listInput
             ) {
-            _id,
+            id,
           }
         }
         `,

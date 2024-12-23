@@ -1,17 +1,17 @@
 import axios from "axios";
 
-export const archiveTaskInBulk = async (_ids, archived) => {
+export const archiveTaskInBulk = async (ids, archived) => {
   const requestBody = {
     query: `
           mutation ($id: [ID!]!, $archived: Boolean!) {
             archiveTaskInBulk (
-                _id: $id,
+                id: $id,
                 archived: $archived,
                 )
           }
           `,
           variables: {
-            id: _ids,
+            id: ids,
             archived: archived,
           },
   };

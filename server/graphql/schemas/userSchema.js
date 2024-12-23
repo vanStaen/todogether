@@ -1,6 +1,6 @@
-exports.User = `
+export const User = `
 type User {
-    _id: ID! 
+    id: ID! 
     username: String!
     email: String!
     avatar: String    
@@ -10,11 +10,10 @@ type User {
     lastActive: String!
     createdAt: String!
     updatedAt: String!
-    lists: [List]
     tasks: [Task]
 }`;
 
-exports.UserInputData = `
+export const UserInputData = `
 input UserInputData {
     username: String
     email: String
@@ -25,11 +24,11 @@ input UserInputData {
     profilSettings: String
 }`;
 
-exports.UserQueries = `
-    getUser(_id: Int): User
+export const UserQueries = `
+    getUser(id: Int): User
 `;
 
-exports.UserMutations = `
+export const UserMutations = `
     addUser(userInput: UserInputData!): User!
     updateUser(userInput: UserInputData!): User!
     deleteUser: Boolean!

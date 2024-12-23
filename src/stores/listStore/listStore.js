@@ -1,10 +1,10 @@
 import { action, makeObservable, observable } from "mobx";
 import Cookies from 'universal-cookie';
 
-import { getLists } from "./getLists";
-import { getTasks } from "./getTasks";
-import { archiveTaskInBulk } from "./archiveTaskInBulk";
-import { deleleTask } from "./deleteTask";
+import { getLists } from "./getLists.js";
+import { getTasks } from "./getTasks.js";
+import { archiveTaskInBulk } from "./archiveTaskInBulk.js";
+import { deleleTask } from "./deleteTask.js";
 
 const cookies = new Cookies();
 export class ListStore {
@@ -131,7 +131,7 @@ export class ListStore {
   };
 
   fetchMyTasks = async () => {
-    const taskData = await getTasks(this.selectedList._id);
+    const taskData = await getTasks(this.selectedList.id);
     if (taskData) {
       this.setMyTasks(taskData);
       this.setTaskAreLoading(false);
@@ -141,7 +141,7 @@ export class ListStore {
   setTasksArchived = async (archived) => {
     try {
       await archiveTaskInBulk(this.selectedTasks, archived);
-      const taskData = await getTasks(this.selectedList._id);
+      const taskData = await getTasks(this.selectedList.id);
       if (taskData) {
         this.setMyTasks(taskData);
       }
@@ -153,7 +153,7 @@ export class ListStore {
   deleteSelectedTask = async () => {
     try {
       await deleleTask(this.selectedTasks);
-      const taskData = await getTasks(this.selectedList._id);
+      const taskData = await getTasks(this.selectedList.id);
       if (taskData) {
         this.setMyTasks(taskData);
       }

@@ -5,17 +5,17 @@ export const getTasks = async (listId) => {
     query: `
         {
             getTask(listId: ${listId}) {
-                _id,
+                id,
                 title,
                 desc,    
                 archived, 
                 deadline,
                 assignedTo,        
                 comments {
-                    _id,
+                    id,
                 },            
                 pictures {
-                    _id,
+                    id,
                 },
               }
           }

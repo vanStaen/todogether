@@ -16,7 +16,7 @@ export const postAddUser = async (
                         password: "${password}", 
                         }
                     ) {
-                    _id
+                    id
                     }
                 }`,
             };

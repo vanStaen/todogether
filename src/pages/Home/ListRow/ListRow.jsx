@@ -10,7 +10,7 @@ import "./ListRow.css";
 
 export const ListRow = observer((props) => {
   const [isSelected, setIsSelected] = useState(
-    listStore.selectedTasks.indexOf(props._id) > -1
+    listStore.selectedTasks.indexOf(props.id) > -1
   );
 
   useEffect(() => {
@@ -20,18 +20,18 @@ export const ListRow = observer((props) => {
   }, [listStore.selectedTasks]);
 
   const showEditBarhandler = () => {
-    if (listStore.showActionBar === props.task._id) {
+    if (listStore.showActionBar === props.task.id) {
       listStore.setShowActionBar(null);
     } else {
-      listStore.setShowActionBar(props.task._id);
+      listStore.setShowActionBar(props.task.id);
     }
   };
 
   const handleCheckboxClick = () => {
     if (isSelected) {
-      listStore.unselectTask(props.task._id);
+      listStore.unselectTask(props.task.id);
     } else {
-      listStore.selectTask(props.task._id);
+      listStore.selectTask(props.task.id);
     }
     setIsSelected(!isSelected);
   };
@@ -51,18 +51,18 @@ export const ListRow = observer((props) => {
       </div>
       <div
         className="row__textContainer"
-        id={`row__textContainer${props.task._id}`}
+        id={`row__textContainer${props.task.id}`}
         onClick={handleCheckboxClick}
       >
         <div className={`${props.task.archived && "row__completed"}`}>
           <div
             className={`row__text ${!props.task.desc && "row__noDesc"} ${
-              listStore.showActionBar === props.task._id && "row__noDesc"
+              listStore.showActionBar === props.task.id && "row__noDesc"
             }`}
           >
             {props.task.title}
           </div>
-          {listStore.showActionBar !== props.task._id &&
+          {listStore.showActionBar !== props.task.id &&
             (props.task.desc && props.task.desc.substring(0, 4) === "http" ? (
               <div className="row__text row__linkDesc">
                 <a href={props.task.desc} target="_blank">
@@ -75,13 +75,13 @@ export const ListRow = observer((props) => {
         </div>
       </div>
       <div className="row__moreContainer">
-        {listStore.showActionBar === props.task._id ? (
+        {listStore.showActionBar === props.task.id ? (
           <UpOutlined className="row__more" onClick={showEditBarhandler} />
         ) : (
           <DownOutlined className="row__more" onClick={showEditBarhandler} />
         )}
       </div>
-      {listStore.showActionBar === props.task._id && (
+      {listStore.showActionBar === props.task.id && (
         <DetailRow task={props.task} />
       )}
     </div>

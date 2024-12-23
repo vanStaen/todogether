@@ -1,23 +1,28 @@
-const path = require('path');
-const cors = require('cors');
-const express = require('express');
-const { graphqlHTTP } = require("express-graphql")
 
-const db = require('./models/index');
-const graphqlSchema = require('./graphql/schema');
-const graphqlResolver = require('./graphql/resolvers');
-const isAuth = require('./middleware/isAuth');
-const cookieSession = require('./middleware/cookieSession');
-const redirectTraffic = require('./middleware/redirectTraffic');
+import path from "path";
+import express from "express";
+import cors from "cors";
+import { graphqlHTTP } from "express-graphql";
+import { fileURLToPath } from "url";
 
-require("dotenv/config");
+import db from "./models/index.js"
+import graphqlSchema from "./graphql/schema.js";
+import graphqlResolver from "./graphql/resolvers.js";
+import isAuth from "./middleware/isAuth.js";
+import cookieSession from "./middleware/cookieSession.js";
+import redirectTraffic from "./middleware/redirectTraffic.js";
+
+import { router as AuthRouter } from "./api/controller/authController.js";
+import { router as UserRouter } from "./api/controller/userController.js";
+
+import "./lib/loadEnv.js";
 
 const PORT = process.env.PORT || 5012;
 
 // Init Express
 const app = express();
 
-// Redirect www trafic to root
+// Redirect trafic to root and https
 app.set("trust proxy", true);
 app.use(redirectTraffic);
 
@@ -56,13 +61,11 @@ app.use(function (req, res, next) {
 
 
 // Router to API endpoints
-app.use("/auth", require("./api/controller/authController"));
-app.use('/user', require('./api/controller/userController'))
-app.use('/mail', require('./api/controller/mailController'))
-
+app.use('/auth', AuthRouter);
+app.use('/user', UserRouter);
 
 // Start DB & use GraphQL
-db.sequelize.sync().then((req) => {
+db.sequelize.sync().then((_) => {
   app.use(
     "/graphql",
     graphqlHTTP({
@@ -82,9 +85,12 @@ db.sequelize.sync().then((req) => {
   );
 });
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Set up for React
 app.use(express.static(path.join(__dirname, "../build")));
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../build", "index.html"));
 });
 

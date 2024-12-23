@@ -9,13 +9,13 @@ import "./ListGrid.css";
 
 export const ListGrid = observer((props) => {
   const [isSelected, setIsSelected] = useState(
-    listStore.selectedTasks.indexOf(props.task._id) > -1
+    listStore.selectedTasks.indexOf(props.task.id) > -1
   );
   const handleSelectClick = () => {
     if (isSelected) {
-      listStore.unselectTask(props.task._id);
+      listStore.unselectTask(props.task.id);
     } else {
-      listStore.selectTask(props.task._id);
+      listStore.selectTask(props.task.id);
     }
     setIsSelected(!isSelected);
   };

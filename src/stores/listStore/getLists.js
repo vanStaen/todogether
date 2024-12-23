@@ -8,9 +8,9 @@ export const getLists = async () => {
             title,
             desc,
             listType,
-            _id,
+            id,
             tasks {
-                _id,
+                id,
                 archived,
                 }
             }

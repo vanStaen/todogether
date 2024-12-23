@@ -4,7 +4,7 @@ export const deleteList = async (id) => {
   const requestBody = {
     query: `
         mutation ($id: ID!) {
-          deleteList (_id: $id) 
+          deleteList (id: $id) 
         }
         `,
     variables: {

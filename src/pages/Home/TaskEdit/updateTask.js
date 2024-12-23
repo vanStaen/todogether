@@ -5,10 +5,10 @@ export const updateTask = async (id, taskInputData) => {
     query: `
         mutation ($id: ID!, $taskInput: TaskInputData!) {
           updateTask (
-            _id: $id,
+            id: $id,
             taskInput: $taskInput
             ) {
-            _id,
+            id,
           }
         }
         `,

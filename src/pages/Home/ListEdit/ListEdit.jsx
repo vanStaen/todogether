@@ -26,7 +26,7 @@ export const ListEdit = observer(() => {
 
   const deleteClickHandler = async () => {
     try {
-      await deleteList(listStore.listInEditMode._id);
+      await deleteList(listStore.listInEditMode.id);
       listStore.setListInEditMode(null);
       listStore.fetchMyLists();
     } catch (e) {
@@ -70,8 +70,8 @@ export const ListEdit = observer(() => {
         if (listStore.listInEditMode.desc !== values.desc) {
           listInputData.desc = values.desc;
         }
-        await updateList(listStore.listInEditMode._id, listInputData);
-        console.log(`List #${listStore.listInEditMode._id} modified`);
+        await updateList(listStore.listInEditMode.id, listInputData);
+        console.log(`List #${listStore.listInEditMode.id} modified`);
         listStore.setListInEditMode(null);
         listStore.fetchMyLists();
       } catch (e) {

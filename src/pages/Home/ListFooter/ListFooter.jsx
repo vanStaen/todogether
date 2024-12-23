@@ -39,7 +39,7 @@ export const ListFooter = observer(() => {
   const saveNewTask = async () => {
     try {
       const taskInputData = {};
-      taskInputData.listId = parseInt(listStore.selectedList._id);
+      taskInputData.listId = parseInt(listStore.selectedList.id);
       taskInputData.title = textNewTaskRef.current;
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
@@ -62,7 +62,7 @@ export const ListFooter = observer(() => {
   const selectedTaskArrayArchived = () => {
     let taskArrayArchivedTemp = [];
     listStore.myTasks.forEach((task) => {
-      if (listStore.selectedTasks.includes(task._id)) {
+      if (listStore.selectedTasks.includes(task.id)) {
         taskArrayArchivedTemp.push(task.archived);
       }
     });

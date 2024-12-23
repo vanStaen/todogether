@@ -1,14 +1,14 @@
 import axios from "axios";
 
-export const deleleTask = async (_ids) => {
+export const deleleTask = async (ids) => {
   const requestBody = {
     query: `
           mutation ($id: [ID!]!) {
-            deleteTask (_id: $id)
+            deleteTask (id: $id)
           }
           `,
           variables: {
-            id: _ids,
+            id: ids,
           },
   };
 

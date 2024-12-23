@@ -82,4 +82,4 @@ PWA: install as an app `https://developer.mozilla.org/en-US/docs/Web/Progressive
 ## Deployment
 
 To update Render's permission in github
-https://github.com/apps/render/installations/new/permissions?target_id=12551446
+https://github.com/apps/render/installations/new/permissions?targetid=12551446
