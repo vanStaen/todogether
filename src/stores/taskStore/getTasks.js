@@ -1,22 +1,16 @@
 import axios from "axios";
 
-export const getTasks = async (listId) => {
+export const getTasks = async () => {
   const requestBody = {
     query: `
         {
-            getTask(listId: ${listId}) {
+            getTasks {
                 id,
                 title,
                 desc,    
                 archived, 
                 deadline,
-                assignedTo,        
-                comments {
-                    id,
-                },            
-                pictures {
-                    id,
-                },
+                assignedTo, 
               }
           }
           `,
