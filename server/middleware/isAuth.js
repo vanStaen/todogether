@@ -16,7 +16,7 @@ export default async (req, res, next) => {
     if (req.get("host") === "localhost:5012") {
       console.log(">>>> Developement Mode <<<<<");
       req.isAuth = true;
-      req.userId = "1";
+      req.userId = "6";
       req.email = "clement.vanstaen@gmail.com";
       return next();
     }

@@ -1,5 +1,4 @@
 import { Task } from "../../models/Task.js";
-import { User } from "../../models/User.js";
 
 export const taskResolver = {
   // getTask(taskId: Int!): Task
@@ -10,7 +9,6 @@ export const taskResolver = {
     return await Task.findOne({
       where: { id: args.taskId },
       order: [["id", "DESC"]],
-      include: [User],
     });
   },
 
@@ -20,8 +18,8 @@ export const taskResolver = {
       throw new Error("Unauthorized!");
     }
     return await Task.findAll({
+      where: { userId: req.userId },
       order: [["id", "DESC"]],
-      include: [User],
     });
   },
 
