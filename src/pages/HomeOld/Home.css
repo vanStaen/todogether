@@ -1,0 +1,92 @@
+.home__container {
+  font-size: 0.75em;
+  width: 100vw;  
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__main {
+  position: fixed;
+  top: 3.8rem;
+  margin: 0 3.5rem 1rem 3.5rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: calc(100vw - 7rem);
+  border-radius: 0.3rem;
+  max-width: 1600px;
+}
+
+.home__rows {  
+  overflow: scroll;
+}
+
+.home__grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: .5rem;  
+  height: calc(100% - 3.5rem - 65px - 70px - 3rem); /* header, listHeader, listFooter, margin-bottom  */  
+  overflow: scroll;
+}
+
+.menu__copyright {
+  position: fixed;
+  bottom: 0;
+  font-size: 0.75em;
+  opacity: .5;
+  margin-bottom: 1rem;
+}
+
+.home__taskCenterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 65px);
+  opacity: .75;
+}
+
+.home__taskLoadingLogo {
+  font-size: 4em;
+  width: 100%; 
+  color: rgb(229, 152, 102) !important;
+}
+
+.home__taskLoading{
+  font-size: .75em;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.home__taskLoading{
+  font-size: .75em;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.home__taskNothing {
+  font-size: .75em;
+  width: 100%;
+  text-align: center;
+  opacity: .5;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .home__main {
+    margin: 0;
+    width: calc(100vw);
+  }
+  .menu__copyright {
+    display: none;
+  }
+}

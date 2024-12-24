@@ -8,7 +8,7 @@ import {
   PlusSquareOutlined,
 } from "@ant-design/icons";
 
-import { listStore } from "../../../stores/listStore/listStore";
+import { taskStore } from "../../../stores/taskStore/taskStore";
 import { ActionRowHeader } from "./ActionRowHeader/ActionRowHeader";
 
 import "./ListHeader.css";
@@ -25,10 +25,10 @@ export const ListHeader = observer(() => {
   };
 
   const handleCheckboxUnselectAllClick = () => {
-    listStore.unselectAllTasks();
+    taskStore.unselectAllTasks();
   };
 
-  const listOflists = listStore.myLists.map((list) => {
+  const listOflists = taskStore.myLists.map((list) => {
     const arrayUnDoneTask = list.tasks.filter((task) => !task.archived);
 
     return (
@@ -36,8 +36,8 @@ export const ListHeader = observer(() => {
         <div
           className="listHeader__listsOfListMain"
           onClick={() => {
-            listStore.setSelectedList(list);
-            listStore.setListInEditMode(null);
+            taskStore.setSelectedList(list);
+            taskStore.setListInEditMode(null);
             setShowListOfLists(false);
           }}
         >
@@ -53,7 +53,7 @@ export const ListHeader = observer(() => {
             <EditOutlined
               className="listHeader__editList"
               onClick={() => {
-                listStore.setListInEditMode(list);
+                taskStore.setListInEditMode(list);
                 hideListOfListsHandler();
               }}
             />
@@ -66,7 +66,7 @@ export const ListHeader = observer(() => {
   return (
     <div>
       <div className="listHeader">
-        {!!listStore.selectedTasks.length ? (
+        {!!taskStore.selectedTasks.length ? (
           <div className="listHeader__taskCountHeader">
             <div className="listHeader__checkboxContainer">
               <div>
@@ -81,8 +81,8 @@ export const ListHeader = observer(() => {
               style={{ paddingLeft: "16px" }}
               onClick={handleCheckboxUnselectAllClick}
             >
-              {listStore.selectedTasks.length} task
-              {listStore.selectedTasks.length > 1 && "s"} selected
+              {taskStore.selectedTasks.length} task
+              {taskStore.selectedTasks.length > 1 && "s"} selected
             </span>
           </div>
         ) : (
@@ -99,14 +99,14 @@ export const ListHeader = observer(() => {
                   <UnorderedListOutlined />
                 </div>
               </Tooltip>
-              {listStore.listInEditMode !== null ? (
-                listStore.listInEditMode === 0 ? (
+              {taskStore.listInEditMode !== null ? (
+                taskStore.listInEditMode === 0 ? (
                   "New list"
                 ) : (
                   "Edit list"
                 )
-              ) : listStore.selectedList ? (
-                listStore.selectedList.title
+              ) : taskStore.selectedList ? (
+                taskStore.selectedList.title
               ) : (
                 <LoadingOutlined />
               )}
@@ -118,15 +118,15 @@ export const ListHeader = observer(() => {
       {showListOfLists && (
         <>
           <div className="listHeader__listOfListsContainer" id="listOfLists">
-            {listStore.myLists.length ? (
+            {taskStore.myLists.length ? (
               <>
                 {listOflists}
                 <div
                   className="listHeader__listsOfListCreate"
                   key="createNewList"
                   onClick={() => {
-                    listStore.setListInEditMode(0);
-                    listStore.setTaskInEditMode(null);
+                    taskStore.setListInEditMode(0);
+                    taskStore.setTaskInEditMode(null);
                     hideListOfListsHandler();
                   }}
                 >

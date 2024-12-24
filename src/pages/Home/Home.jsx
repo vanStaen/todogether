@@ -3,13 +3,10 @@ import { observer } from "mobx-react";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import { Header } from "./Header/Header";
-import { ListHeader } from "./ListHeader/ListHeader";
 import { ListRow } from "./ListRow/ListRow";
-import { ListGrid } from "./ListGrid/ListGrid";
 import { ListFooter } from "./ListFooter/ListFooter";
 import { TaskEdit } from "./TaskEdit/TaskEdit";
-import { ListEdit } from "./ListEdit/ListEdit";
-import { listStore } from "../../stores/listStore/listStore";
+import { taskStore } from "../../stores/taskStore/taskStore";
 
 import "./Home.css";
 
@@ -22,7 +19,7 @@ export const Home = observer(() => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    listStore.fetchMyLists();
+    taskStore.fetchTasks();
   }, []);
 
   const resetWindowInners = () => {
@@ -37,27 +34,13 @@ export const Home = observer(() => {
     };
   }, [resetWindowInners]);
 
-  const tasksRow = listStore.myTasks.map((task) => {
-    const isTaskSelected = listStore.selectedTasks.includes(task.id);
-    if (listStore.showCompleted === false && task.archived && !isTaskSelected) {
+  const tasksRow = taskStore.tasks.map((task) => {
+    const isTaskSelected = taskStore.selectedTasks.includes(task.id);
+    if (taskStore.showCompleted === false && task.archived && !isTaskSelected) {
       return null;
     }
     return (
       <ListRow
-        key={task.id}
-        task={task}
-        hasComments={task.comments.length}
-        hasPicture={task.pictures.length}
-      />
-    );
-  });
-
-  const tasksGrid = listStore.myTasks.map((task) => {
-    if (listStore.showCompleted === false && task.archived) {
-      return null;
-    }
-    return (
-      <ListGrid
         key={task.id}
         task={task}
         hasComments={task.comments.length}
@@ -78,8 +61,7 @@ export const Home = observer(() => {
             }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
           }}
         >
-          <ListHeader />
-          {listStore.taskAreLoading ? (
+          {taskStore.taskAreLoading ? (
             <>
               <div
                 className="home__taskCenterContainer"
@@ -93,25 +75,11 @@ export const Home = observer(() => {
                 <div className="home__taskLoading">Task are loading</div>
               </div>
             </>
-          ) : listStore.taskInEditMode !== null ? (
+          ) : taskStore.taskInEditMode !== null ? (
             <TaskEdit />
-          ) : listStore.listInEditMode !== null ? (
-            <ListEdit />
           ) : (
             <>
               {tasksRow.filter((value) => value !== null).length ? (
-                !listStore.displayAslist ? (
-                  <div
-                    className="home__grid"
-                    style={{
-                      height: `calc(${windowInnerHeight}px - ${
-                        windowInnerWidth > 600 ? 70 : 60
-                      }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
-                    }}
-                  >
-                    {tasksGrid}
-                  </div>
-                ) : (
                   <div
                     className="home__rows"
                     style={{
@@ -122,7 +90,6 @@ export const Home = observer(() => {
                   >
                     {tasksRow}
                   </div>
-                )
               ) : (
                 <div className="home__taskCenterContainer">
                   <div className="home__taskNothing">

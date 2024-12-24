@@ -6,7 +6,7 @@ import {
   CommentOutlined,
 } from "@ant-design/icons";
 
-import { listStore } from "../../../../stores/listStore/listStore";
+import { taskStore } from "../../../../stores/taskStore/taskStore";
 
 import "./ActionRow.css";
 
@@ -15,7 +15,7 @@ export const ActionRow = observer((props) => {
   const editPointer = props.completed ? "not-allowed" : "cursor";
 
   const handlePictureClick = () => {
-    listStore.setShowPictureGallery(true);
+    taskStore.setShowPictureGallery(true);
     console.log("This should open the image gallery!");
   };
 
@@ -56,7 +56,7 @@ export const ActionRow = observer((props) => {
             style={{ cursor: editPointer }}
             onClick={() => {
               if (!props.completed) {
-                listStore.setTaskInEditMode(props.task);
+                taskStore.setTaskInEditMode(props.task);
               }
             }}
           >

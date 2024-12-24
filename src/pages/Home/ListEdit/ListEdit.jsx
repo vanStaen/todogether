@@ -8,7 +8,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 
-import { listStore } from "../../../stores/listStore/listStore";
+import { taskStore } from "../../../stores/taskStore/taskStore";
 import { addList } from "./addList";
 import { updateList } from "./updateList";
 import { deleteList } from "./deleteList";
@@ -21,21 +21,21 @@ export const ListEdit = observer(() => {
   const { TextArea } = Input;
 
   const closeClickHandler = () => {
-    listStore.setListInEditMode(null);
+    taskStore.setListInEditMode(null);
   };
 
   const deleteClickHandler = async () => {
     try {
-      await deleteList(listStore.listInEditMode.id);
-      listStore.setListInEditMode(null);
-      listStore.fetchMyLists();
+      await deleteList(taskStore.listInEditMode.id);
+      taskStore.setListInEditMode(null);
+      taskStore.fetchMyLists();
     } catch (e) {
       console.log(e);
     }
   };
 
   const saveClickHandler = async (values) => {
-    if (listStore.listInEditMode === 0) {
+    if (taskStore.listInEditMode === 0) {
       try {
         const listInputData = {};
         listInputData.title = values.title;
@@ -53,27 +53,27 @@ export const ListEdit = observer(() => {
         }
         const resultId = await addList(listInputData);
         console.log(`New List #${resultId} added`);
-        listStore.setListInEditMode(null);
-        listStore.fetchMyLists();
+        taskStore.setListInEditMode(null);
+        taskStore.fetchMyLists();
       } catch (e) {
         console.log("error", e);
       }
     } else {
       try {
         const listInputData = {};
-        if (listStore.listInEditMode.title !== values.title) {
+        if (taskStore.listInEditMode.title !== values.title) {
           listInputData.title = values.title;
         }
-        if (listStore.listInEditMode.desc !== values.desc) {
+        if (taskStore.listInEditMode.desc !== values.desc) {
           listInputData.desc = values.desc;
         }
-        if (listStore.listInEditMode.desc !== values.desc) {
+        if (taskStore.listInEditMode.desc !== values.desc) {
           listInputData.desc = values.desc;
         }
-        await updateList(listStore.listInEditMode.id, listInputData);
-        console.log(`List #${listStore.listInEditMode.id} modified`);
-        listStore.setListInEditMode(null);
-        listStore.fetchMyLists();
+        await updateList(taskStore.listInEditMode.id, listInputData);
+        console.log(`List #${taskStore.listInEditMode.id} modified`);
+        taskStore.setListInEditMode(null);
+        taskStore.fetchMyLists();
       } catch (e) {
         console.log("error", e);
       }
@@ -85,7 +85,7 @@ export const ListEdit = observer(() => {
       <Form
         layout="vertical"
         form={form}
-        initialValues={listStore.listInEditMode}
+        initialValues={taskStore.listInEditMode}
         requiredMark="optional"
         onFinish={saveClickHandler}
       >

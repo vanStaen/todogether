@@ -9,7 +9,7 @@ import {
   MoreOutlined,
 } from "@ant-design/icons";
 
-import { listStore } from "../../../../stores/listStore/listStore";
+import { taskStore } from "../../../../stores/taskStore/taskStore";
 
 import "./ActionRowHeader.css";
 
@@ -17,11 +17,11 @@ export const ActionRowHeader = observer((props) => {
   const [showActionBar, setShowActionBar] = useState(false);
 
   const showCompletedClickHandler = (e) => {
-    listStore.setShowCompleted(e.target.value);
+    taskStore.setShowCompleted(e.target.value);
   };
 
   const displayAsListClickHandler = (e) => {
-    listStore.setDisplayAslist(e.target.value);
+    taskStore.setDisplayAslist(e.target.value);
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const ActionRowHeader = observer((props) => {
           <div className="actionRowHeader__SwitchContainer">
             <div className="actionRowHeader__Switch">
               <Radio.Group
-                defaultValue={listStore.displayAslist}
+                defaultValue={taskStore.displayAslist}
                 size="small"
                 buttonStyle="solid"
                 onChange={displayAsListClickHandler}
@@ -61,7 +61,7 @@ export const ActionRowHeader = observer((props) => {
             &nbsp;
             <div className="actionRowHeader__Switch">
               <Radio.Group
-                defaultValue={listStore.showCompleted}
+                defaultValue={taskStore.showCompleted}
                 size="small"
                 buttonStyle="solid"
                 onChange={showCompletedClickHandler}

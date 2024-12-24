@@ -3,19 +3,19 @@ import { observer } from "mobx-react";
 import { Button } from "antd";
 import { MoreOutlined } from "@ant-design/icons";
 
-import { listStore } from "../../../stores/listStore/listStore";
+import { taskStore } from "../../../stores/taskStore/taskStore";
 
 import "./ListGrid.css";
 
 export const ListGrid = observer((props) => {
   const [isSelected, setIsSelected] = useState(
-    listStore.selectedTasks.indexOf(props.task.id) > -1
+    taskStore.selectedTasks.indexOf(props.task.id) > -1
   );
   const handleSelectClick = () => {
     if (isSelected) {
-      listStore.unselectTask(props.task.id);
+      taskStore.unselectTask(props.task.id);
     } else {
-      listStore.selectTask(props.task.id);
+      taskStore.selectTask(props.task.id);
     }
     setIsSelected(!isSelected);
   };

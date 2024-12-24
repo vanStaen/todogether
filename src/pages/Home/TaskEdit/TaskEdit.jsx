@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { Button, Form, Input, Upload, Tag, DatePicker } from "antd";
 import { SaveOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
-import { listStore } from "../../../stores/listStore/listStore";
+import { taskStore } from "../../../stores/taskStore/taskStore";
 import { addTask } from "./addTask";
 import { updateTask } from "./updateTask";
 
@@ -15,41 +15,41 @@ export const TaskEdit = observer(() => {
   const { TextArea } = Input;
 
   const closeClickHandler = () => {
-    listStore.setShowActionBar(null);
-    listStore.setTaskInEditMode(null);
+    taskStore.setShowActionBar(null);
+    taskStore.setTaskInEditMode(null);
   };
 
   const saveClickHandler = async (values) => {
-    if (listStore.taskInEditMode === 0) {
+    if (taskStore.taskInEditMode === 0) {
       try {
         const taskInputData = {};
-        taskInputData.listId = parseInt(listStore.selectedList.id);
+        taskInputData.listId = parseInt(taskStore.selectedList.id);
         taskInputData.title = values.title;
         if (values.desc) {
           taskInputData.desc = values.desc;
         }
         const resultId = await addTask(taskInputData);
         //console.log(`New Task #${resultId} added`);
-        listStore.setShowActionBar(null);
-        listStore.setTaskInEditMode(null);
-        listStore.fetchMyTasks();
+        taskStore.setShowActionBar(null);
+        taskStore.setTaskInEditMode(null);
+        taskStore.fetchTasks();
       } catch (e) {
         console.log("error", e);
       }
     } else {
       try {
         const taskInputData = {};
-        if (listStore.taskInEditMode.title !== values.title) {
+        if (taskStore.taskInEditMode.title !== values.title) {
           taskInputData.title = values.title;
         }
-        if (listStore.taskInEditMode.desc !== values.desc) {
+        if (taskStore.taskInEditMode.desc !== values.desc) {
           taskInputData.desc = values.desc;
         }
-        await updateTask(listStore.taskInEditMode.id, taskInputData);
-        //console.log(`Task #${listStore.taskInEditMode.id} modified`);
-        listStore.setShowActionBar(null);
-        listStore.setTaskInEditMode(null);
-        listStore.fetchMyTasks();
+        await updateTask(taskStore.taskInEditMode.id, taskInputData);
+        //console.log(`Task #${taskStore.taskInEditMode.id} modified`);
+        taskStore.setShowActionBar(null);
+        taskStore.setTaskInEditMode(null);
+        taskStore.fetchTasks();
       } catch (e) {
         console.log("error", e);
       }
@@ -79,7 +79,7 @@ export const TaskEdit = observer(() => {
       <Form
         layout="vertical"
         form={form}
-        initialValues={listStore.taskInEditMode}
+        initialValues={taskStore.taskInEditMode}
         requiredMark="optional"
         onFinish={saveClickHandler}
       >
@@ -157,7 +157,7 @@ export const TaskEdit = observer(() => {
           ) : (
             <>
               <div className="taskedit__footerLeft">
-                {listStore.taskInEditMode === 0 ? "New task" : "Edit task"}
+                {taskStore.taskInEditMode === 0 ? "New task" : "Edit task"}
               </div>
               <div className="taskedit__footerRight">
                 <Form.Item>

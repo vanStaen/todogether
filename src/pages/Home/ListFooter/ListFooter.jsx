@@ -10,7 +10,7 @@ import {
   PlusSquareOutlined,
 } from "@ant-design/icons";
 
-import { listStore } from "../../../stores/listStore/listStore";
+import { taskStore } from "../../../stores/taskStore/taskStore";
 import { addTask } from "../TaskEdit/addTask";
 
 import "./ListFooter.css";
@@ -27,7 +27,7 @@ export const ListFooter = observer(() => {
 
   useEffect(() => {
     selectedTaskArrayArchived();
-  }, [listStore.selectedTasks, listStore.myTasks]);
+  }, [taskStore.selectedTasks, taskStore.tasks]);
 
   useEffect(() => {
     document.addEventListener("keydown", keyDownListener);
@@ -39,12 +39,12 @@ export const ListFooter = observer(() => {
   const saveNewTask = async () => {
     try {
       const taskInputData = {};
-      taskInputData.listId = parseInt(listStore.selectedList.id);
+      taskInputData.listId = parseInt(taskStore.selectedList.id);
       taskInputData.title = textNewTaskRef.current;
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
       setTextNewTask(null);
-      listStore.fetchMyTasks();
+      taskStore.fetchTasks();
     } catch (e) {
       console.log("error", e);
     }
@@ -53,7 +53,7 @@ export const ListFooter = observer(() => {
   const keyDownListener = (event) => {
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "+") {
-      listStore.setTaskInEditMode(0);
+      taskStore.setTaskInEditMode(0);
     } else if (keyPressed === "enter") {
       saveNewTask();
     }
@@ -61,8 +61,8 @@ export const ListFooter = observer(() => {
 
   const selectedTaskArrayArchived = () => {
     let taskArrayArchivedTemp = [];
-    listStore.myTasks.forEach((task) => {
-      if (listStore.selectedTasks.includes(task.id)) {
+    taskStore.tasks.forEach((task) => {
+      if (taskStore.selectedTasks.includes(task.id)) {
         taskArrayArchivedTemp.push(task.archived);
       }
     });
@@ -71,12 +71,12 @@ export const ListFooter = observer(() => {
 
   const onChangeInput = (value) => {
     if (value) {
-      listStore.setTaskInEditMode(null);
+      taskStore.setTaskInEditMode(null);
     }
     setTextNewTask(value);
   };
 
-  const options = listStore.myTasks.map((task) => task.title.trim());
+  const options = taskStore.tasks.map((task) => task.title.trim());
   const optionsUnique = [...new Set(options)];
   const optionsFormated = optionsUnique.map((option) => {
     return { value: option };
@@ -85,10 +85,10 @@ export const ListFooter = observer(() => {
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
-        {!!listStore.selectedTasks.length ? (
+        {!!taskStore.selectedTasks.length ? (
           <Popconfirm
             title="Are you sure？"
-            onConfirm={listStore.deleteSelectedTask}
+            onConfirm={taskStore.deleteSelectedTask}
             icon={<QuestionCircleOutlined style={{ color: "red" }} />}
           >
             <Tooltip title="Delete selected tasks" placement="right">
@@ -130,7 +130,7 @@ export const ListFooter = observer(() => {
         )}
       </div>
       <div className="listFooter__rightContainer">
-        {listStore.selectedTasks.length ? (
+        {taskStore.selectedTasks.length ? (
           <>
             {taskArrayArchived.includes(true) && (
               <Tooltip title="Mark as undone">
@@ -138,7 +138,7 @@ export const ListFooter = observer(() => {
                   type="primary"
                   icon={<CloseOutlined />}
                   onClick={() => {
-                    listStore.setTasksArchived(false);
+                    taskStore.setTasksArchived(false);
                   }}
                   style={{
                     background: "rgba(229, 152, 102, .9)",
@@ -155,7 +155,7 @@ export const ListFooter = observer(() => {
                     type="primary"
                     icon={<CheckOutlined />}
                     onClick={() => {
-                      listStore.setTasksArchived(true);
+                      taskStore.setTasksArchived(true);
                     }}
                     style={{
                       background: "rgba(102, 187, 106,1)",
@@ -173,7 +173,7 @@ export const ListFooter = observer(() => {
             onClick={() => {
               textNewTask
                 ? saveNewTask(textNewTask)
-                : listStore.setTaskInEditMode(0);
+                : taskStore.setTaskInEditMode(0);
             }}
           >
             {window.innerWidth > 600 &&
