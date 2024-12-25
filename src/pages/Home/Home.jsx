@@ -82,7 +82,7 @@ export const Home = observer(() => {
                     className="home__rows"
                     style={{
                       height: `calc(${windowInnerHeight}px - ${
-                        windowInnerWidth > 600 ? 5 : 60
+                        windowInnerWidth > 600 ? 5 : 0
                       }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
                     }}
                   >
