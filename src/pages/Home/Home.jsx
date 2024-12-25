@@ -42,9 +42,7 @@ export const Home = observer(() => {
     return (
       <ListRow
         key={task.id}
-        task={task}
-        hasComments={task.comments.length}
-        hasPicture={task.pictures.length}
+        task={task} 
       />
     );
   });
@@ -84,7 +82,7 @@ export const Home = observer(() => {
                     className="home__rows"
                     style={{
                       height: `calc(${windowInnerHeight}px - ${
-                        windowInnerWidth > 600 ? 70 : 60
+                        windowInnerWidth > 600 ? 5 : 60
                       }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
                     }}
                   >

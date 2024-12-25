@@ -26,5 +26,5 @@ export const getTasks = async () => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getTask;
+  return response.data.data.getTasks;
 };
