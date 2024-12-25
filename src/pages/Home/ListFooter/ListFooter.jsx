@@ -7,7 +7,6 @@ import {
   PlusOutlined,
   CloseOutlined,
   QuestionCircleOutlined,
-  PlusSquareOutlined,
 } from "@ant-design/icons";
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
@@ -106,7 +105,7 @@ export const ListFooter = observer(() => {
         ) : (
           <>
             <div className="addTaskFooter__icon">
-              <PlusSquareOutlined />
+              <PlusOutlined />
             </div>
             <div className="addTaskFooter__textContainer">
               <AutoComplete
@@ -117,7 +116,7 @@ export const ListFooter = observer(() => {
                 onSearch={onChangeInput}
                 onChange={onChangeInput}
                 value={textNewTaskRef.current}
-                placeholder="add a task"
+                placeholder="Add a task"
                 options={optionsFormated}
                 filterOption={(inputValue, option) =>
                   option.value

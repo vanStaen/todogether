@@ -23,7 +23,6 @@ export const TaskEdit = observer(() => {
     if (taskStore.taskInEditMode === 0) {
       try {
         const taskInputData = {};
-        taskInputData.listId = parseInt(taskStore.selectedList.id);
         taskInputData.title = values.title;
         if (values.desc) {
           taskInputData.desc = values.desc;

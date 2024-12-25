@@ -34,7 +34,7 @@
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
-    width: calc(100% - 3rem - 20px);
+    width: calc(100% - 2rem);
 }
 
 .row__text {
@@ -110,6 +110,6 @@
     }
     .row__textContainer {
         padding-left: 0rem;
-        width: calc(100% - 4rem - 20px);
+        width: calc(100% - 3rem);
     }
 }

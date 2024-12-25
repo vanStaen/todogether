@@ -4,7 +4,6 @@ import { Checkbox } from "antd";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
-import { DetailRow } from "./DetailRow/DetailRow";
 
 import "./ListRow.css";
 
@@ -74,16 +73,6 @@ export const ListRow = observer((props) => {
             ))}
         </div>
       </div>
-      <div className="row__moreContainer">
-        {taskStore.showActionBar === props.task.id ? (
-          <UpOutlined className="row__more" onClick={showEditBarhandler} />
-        ) : (
-          <DownOutlined className="row__more" onClick={showEditBarhandler} />
-        )}
-      </div>
-      {taskStore.showActionBar === props.task.id && (
-        <DetailRow task={props.task} />
-      )}
     </div>
   );
 });

@@ -1,6 +1,6 @@
 .listFooter {
   position: fixed;
-  bottom: 3.5rem;
+  bottom: 2.5rem;
   width: calc(100vw - 7rem);
   border-top: 1px solid #bebbb2;
   background-color: rgba(255,255,255,.33);

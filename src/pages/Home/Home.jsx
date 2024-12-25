@@ -56,7 +56,7 @@ export const Home = observer(() => {
           style={{
             height: `calc(${
               windowInnerHeight + (windowInnerWidth > 600 ? -5 : 5)
-            }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
+            }px - ${windowInnerWidth > 600 ? "10rem" : "7rem"}`,
           }}
         >
           {taskStore.taskAreLoading ? (
@@ -66,7 +66,7 @@ export const Home = observer(() => {
                 style={{
                   height: `calc(${windowInnerHeight}px - ${
                     windowInnerWidth > 600 ? 70 : 60
-                  }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
+                  }px - ${windowInnerWidth > 600 ? "10rem" : "7rem"}`,
                 }}
               >
                 <LoadingOutlined className="home__taskLoadingLogo" />
@@ -83,7 +83,7 @@ export const Home = observer(() => {
                     style={{
                       height: `calc(${windowInnerHeight}px - ${
                         windowInnerWidth > 600 ? 5 : 0
-                      }px - ${windowInnerWidth > 600 ? "11rem" : "8rem"}`,
+                      }px - ${windowInnerWidth > 600 ? "10rem" : "7rem"}`,
                     }}
                   >
                     {tasksRow}
@@ -101,7 +101,6 @@ export const Home = observer(() => {
           )}
           <ListFooter />
         </div>
-        <span className="menu__copyright">todogether.com ©{year}</span>
       </div>
     </div>
   );
