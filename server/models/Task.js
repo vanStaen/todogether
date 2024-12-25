@@ -1,13 +1,10 @@
-const { sequelize, DataTypes } = require('../lib/sequelizedb');
-const { Comment } = require('./Comment');
-const { User } = require('./User');
-const { List } = require('./List');
-const { Picture } = require('./Picture');
+import { sequelize, DataTypes } from "../lib/sequelizedb.js";
+import { User } from "./User.js";
 
-const Task = sequelize.define("task", {
-  _id: {
+export const Task = sequelize.sequelize.define("task", {
+  id: {
     type: DataTypes.INTEGER,
-    field: "_id",
+    field: "id",
     autoIncrement: true,
     primaryKey: true,
   },
@@ -51,16 +48,3 @@ const Task = sequelize.define("task", {
 
 User.hasMany(Task);
 Task.belongsTo(User);
-
-List.hasMany(Task);
-Task.belongsTo(List);
-
-Task.hasMany(Comment);
-Comment.belongsTo(Task);
-
-Task.hasMany(Picture);
-Picture.belongsTo(Task);
-
-module.exports = {
-  Task
-}

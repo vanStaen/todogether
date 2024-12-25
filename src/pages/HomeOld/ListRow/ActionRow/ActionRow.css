@@ -1,0 +1,44 @@
+
+.actionRow {
+    margin-top: 1rem;
+    position: relative;
+    vertical-align: top;
+    text-align: right;
+}
+
+.actionRow__actionContainer {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;    
+    width: 100%;
+}
+
+.actionRow__action {
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    background-color: rgb(217, 214, 203, .5);
+    border: 1px solid rgb(217, 214, 203, .75);
+    width: 33%;
+}
+
+.actionRow__action:hover {
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, .25);
+    width: 33%;
+}
+
+.actionRow__actionMiddleMargin {
+    margin: 0 .5% 0;
+}
+
+.actionRow__actionTitle {
+    font-size: .75em;
+    font-weight: 200;  
+}
+
+.actionRow__action:hover {
+    color: rgba(229, 152, 102, 1);
+}

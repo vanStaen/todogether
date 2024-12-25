@@ -1,0 +1,35 @@
+.header {
+    position: fixed;
+    top: 0;
+    height: 3.8rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid #bebbb2;
+    width: calc(100vw - 7rem);
+    max-width: 1600px;
+}
+
+.header__logo {
+    margin: 0rem .5rem 0rem 1rem;
+    width: 25px;
+    height: 25px;
+    opacity: .5;
+}
+
+.header__title {
+    opacity: .5;
+}
+
+.header__motto {
+    display: auto;
+    font-weight: 200;
+    opacity: .5;
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        width: 100vw;
+    }
+    .header__motto {
+        display: none; 
+    }
+}

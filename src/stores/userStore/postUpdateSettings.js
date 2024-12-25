@@ -10,7 +10,7 @@ export const postUpdateSettings = async (emailSettings, profilSettings) => {
               profilSettings: ${profilSettings}
             }
           ) {
-            _id
+            id
           }
         }
           `,

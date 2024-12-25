@@ -1,11 +1,12 @@
-const { User } = require("../../models/User");
-const jsonwebtoken = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+import { User } from "../../models/User.js";
+import jsonwebtoken from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+// import { mailService } from "./mailService.js";
 
-exports.userService = {
+export const userService = {
   async taken(username) {
     foundUser = await User.findOne({
-      where: { username: username },
+      where: { userName: username },
     });
     if (!foundUser) {
       return false;
@@ -78,10 +79,15 @@ exports.userService = {
           plain: true,
         }
       );
+      /* Send a mail to admin
+      await mailService.mail(
+        process.env.ADMIN_EMAIL,
+        "Rewaer | New User's email validated!",
+        `The following email has just been validated: ${email}`
+      ); */
       return true;
     } catch (err) {
       return false;
     }
   },
-
 };

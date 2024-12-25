@@ -1,9 +1,9 @@
-const { sequelize, DataTypes } = require('../lib/sequelizedb');
+import { sequelize, DataTypes } from "../lib/sequelizedb.js";
 
-const User = sequelize.define("user", {
-  _id: {
+export const User = sequelize.sequelize.define("user", {
+  id: {
     type: DataTypes.INTEGER,
-    field: "_id",
+    field: "id",
     autoIncrement: true,
     primaryKey: true,
   },
@@ -54,7 +54,3 @@ const User = sequelize.define("user", {
     allowNull: false,
   },
 });
-
-module.exports = {
-  User
-};

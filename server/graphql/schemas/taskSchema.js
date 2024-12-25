@@ -1,7 +1,6 @@
-exports.Task = `
+export const Task = `
 type Task {
-    _id: ID! 
-    listId: Int!
+    id: ID! 
     userId: Int!
     title: String!
     desc: String
@@ -14,34 +13,30 @@ type Task {
     assignedTo: Int    
     createdAt: String!
     udpatedAt: String!
-    list: List
     user: User
-    comments: [Comment]
-    pictures: [Picture]
 }`;
 
-exports.TaskInputData = `
+export const TaskInputData = `
 input TaskInputData {
-    listId: Int
-    userId: Int
     title: String
     desc: String
     positionInList: Int
     favorited: Boolean
     archived: Boolean
-    subTaskIds: [String]
+    subTaskIds: [Int]
+    categoryIds: [Int]
     deadline: String    
-    categoryId: Int
     assignedTo: Int
 }`;
 
-exports.TaskQueries = `
-    getTask(listId: Int!): [Task]
+export const TaskQueries = `
+    getTask(taskId: Int!): Task
+    getTasks: [Task]
 `;
 
-exports.TaskMutations = `
+export const TaskMutations = `
     addTask(taskInput: TaskInputData!): Task!
-    updateTask(_id: ID!, taskInput: TaskInputData!): Task!
-    archiveTaskInBulk(_id: [ID!]!, archived: Boolean!): Boolean!
-    deleteTask(_id: [ID!]!): Boolean!
+    updateTask(id: ID!, taskInput: TaskInputData!): Task!
+    archiveTaskInBulk(id: [ID!]!, archived: Boolean!): Boolean!
+    deleteTask(id: [ID!]!): Boolean!
 `;

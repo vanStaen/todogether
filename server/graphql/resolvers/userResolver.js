@@ -1,16 +1,14 @@
-const bcrypt = require("bcryptjs");
-const { User } = require("../../models/User");
-const { List } = require("../../models/List");
-const { Task } = require("../../models/Task");
+import bcrypt from "bcryptjs";
+import { Task } from "../../models/Task.js";
 
-exports.userResolver = {
-  async getUser(args, req) {
+export const userResolver = {
+  async getUser(_, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
-      where: { _id: req.userId },
-      include: [List, Task],
+      where: { id: req.userId },
+      include: [Task],
     });
   },
 
@@ -41,7 +39,7 @@ exports.userResolver = {
     }
   },
 
-  // updateUser(_id: ID!, userInput: UserInputData!): User!
+  // updateUser(id: ID!, userInput: UserInputData!): User!
   async updateUser(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
@@ -65,7 +63,7 @@ exports.userResolver = {
     try {
       const updatedUser = await User.update(updateFields, {
         where: {
-          _id: req.userId,
+          id: req.userId,
         },
         returning: true,
         plain: true,
@@ -85,7 +83,7 @@ exports.userResolver = {
     }
     await User.destroy({
       where: {
-        _id: req.userId,
+        id: req.userId,
       },
     });
     req.session = null;

@@ -15,7 +15,7 @@ export const getUserInfo = async () => {
                 createdAt,
                 updatedAt,
                 lists {
-                    _id,
+                    id,
                     title,
                     desc,
                 }

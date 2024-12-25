@@ -1,0 +1,51 @@
+.listedit__container {
+  margin: 1rem 1.5rem;
+  height: calc(100% - 3.5rem - 65px - 70px - 3rem); /* header, listHeader, listFooter, margin-bottom  */  
+  overflow: scroll;
+}
+
+.listedit__footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  border-top: 2px solid #d9d6cb;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0.3rem;
+  padding: 1rem;
+  height: 70px;
+  border-radius: 0rem;
+}
+
+.listedit__footerLeft {
+  display: inline-block;
+  font-weight: 200;
+  padding-left: 1rem;
+  width: 30%;
+}
+
+.listedit__footerCenter {
+  display: inline-block;
+  text-align: center;
+}
+
+.listedit__footerRight {
+  display: inline-block;
+  text-align: right;
+  padding-right: 0.5rem;
+  width: 70%;
+}
+
+@media only screen and (max-width: 600px) {
+  .listedit__container {
+    margin: .5rem 1rem;
+  }
+  .listedit__footerLeft {
+    width: 40%;
+  }
+  .listedit__footerCenter {
+    width: 20%;
+  }
+  .listedit__footerRight {
+    width: 40%;
+  }
+}

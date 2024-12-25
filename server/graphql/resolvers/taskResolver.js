@@ -1,21 +1,25 @@
-const { Task } = require("../../models/Task");
-const { User } = require("../../models/User");
-const { List } = require("../../models/List");
-const { Comment } = require("../../models/Comment");
-const { Picture } = require("../../models/Picture");
+import { Task } from "../../models/Task.js";
 
-exports.taskResolver = {
-  //task
+export const taskResolver = {
+  // getTask(taskId: Int!): Task
   async getTask(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
+    return await Task.findOne({
+      where: { id: args.taskId },
+      order: [["id", "DESC"]],
+    });
+  },
+
+  // getTasks(): [Task]
+  async getTasks(_, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     return await Task.findAll({
-      where: {
-        listId: args.listId,
-      },
-      order: [["_id", "DESC"]],
-      include: [List, User, Comment, Picture],
+      where: { userId: req.userId },
+      order: [["id", "DESC"]],
     });
   },
 
@@ -26,10 +30,10 @@ exports.taskResolver = {
     }
     try {
       const task = new Task({
-        listId: args.taskInput.listId,
         userId: req.userId,
         title: args.taskInput.title,
         desc: args.taskInput.desc,
+        categoryIds: args.taskInput.categoryIds,
         positionInList: 0,
         favorited: false,
         archived: false,
@@ -42,23 +46,22 @@ exports.taskResolver = {
     }
   },
 
-  //updateTask(_id: ID!, taskInput: TaskInputData!): Task!
+  //updateTask(id: ID!, taskInput: TaskInputData!): Task!
   async updateTask(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     const updateFields = [];
     const updatableFields = [
-      "listId",
       "title",
       "desc",
       "avatar",
       "positionInList",
       "favorited",
       "archived",
+      "categoryIds",
       "subTaskIds",
       "deadline",
-      "categoryId",
       "assignedTo",
     ];
     updatableFields.forEach((field) => {
@@ -69,7 +72,7 @@ exports.taskResolver = {
     try {
       const updatedTask = await Task.update(updateFields, {
         where: {
-          _id: args._id,
+          id: args.id,
         },
         returning: true,
         plain: true,
@@ -82,7 +85,7 @@ exports.taskResolver = {
     }
   },
 
-  // archiveTaskInBulk(_id: [ID!], archived: Boolean!): Boolean!
+  // archiveTaskInBulk(id: [ID!], archived: Boolean!): Boolean!
   async archiveTaskInBulk(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
@@ -92,7 +95,7 @@ exports.taskResolver = {
         { archived: args.archived },
         {
           where: {
-            _id: args._id,
+            id: args.id,
           },
           returning: true,
           plain: true,
@@ -104,11 +107,11 @@ exports.taskResolver = {
     }
   },
 
-  // deleteTask(_id: ID!): Boolean!
+  // deleteTask(id: ID!): Boolean!
   async deleteTask(args, req) {
     await Task.destroy({
       where: {
-        _id: args._id,
+        id: args.id,
       },
     });
     return true;
