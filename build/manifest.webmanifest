@@ -1,0 +1,17 @@
+{
+  "short_name": "Todogether",
+  "name": "Todogether",
+  "description" : "Todogether | Multiplayer-todo-lists",
+  "icons": [
+    {
+      "src": "logo64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    }
+  ],
+  "start_url": "https://todogether.com",
+  "display": "standalone",
+  "background_color": "#d9d6cb",
+  "theme_color": "#d9d6cb",
+  "clipboardWrite": true
+}
