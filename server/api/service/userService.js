@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 export const userService = {
   async taken(username) {
-    foundUser = await User.findOne({
+    const foundUser = await User.findOne({
       where: { userName: username },
     });
     if (!foundUser) {
@@ -16,7 +16,7 @@ export const userService = {
   },
 
   async email(email) {
-    foundUser = await User.findOne({
+    const foundUser = await User.findOne({
       where: { email: email },
     });
     if (!foundUser) {

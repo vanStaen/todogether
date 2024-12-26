@@ -6,7 +6,7 @@ import sequelize from "sequelize";
 export const authService = {
   async login(req, email, username, password, remindMe) {
     if (username) {
-      foundUser = await User.findOne({
+      const foundUser = await User.findOne({
         where:
           sequelize.where(
             sequelize.fn('lower', sequelize.col('userName')),
@@ -14,7 +14,7 @@ export const authService = {
           ),
       });
     } else {
-      foundUser = await User.findOne({
+      const foundUser = await User.findOne({
         where: { email: email },
       });
     }
