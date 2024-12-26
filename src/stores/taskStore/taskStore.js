@@ -112,7 +112,7 @@ export class TaskStore {
   deleteSelectedTask = async () => {
     try {
       await deleleTask(this.selectedTasks);
-      const taskData = await getTasks(this.selectedList.id);
+      const taskData = await getTasks();
       if (taskData) {
         this.setTasks(taskData);
       }
