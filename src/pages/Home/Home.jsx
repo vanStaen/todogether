@@ -5,7 +5,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Header } from "./Header/Header";
 import { ListRow } from "./ListRow/ListRow";
 import { ListFooter } from "./ListFooter/ListFooter";
-import { TaskEdit } from "./TaskEdit/TaskEdit";
 import { taskStore } from "../../stores/taskStore/taskStore";
 
 import "./Home.css";
@@ -73,8 +72,6 @@ export const Home = observer(() => {
                 <div className="home__taskLoading">Task are loading</div>
               </div>
             </>
-          ) : taskStore.taskInEditMode !== null ? (
-            <TaskEdit />
           ) : (
             <>
               {tasksRow.filter((value) => value !== null).length ? (

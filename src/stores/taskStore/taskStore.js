@@ -24,8 +24,6 @@ export class TaskStore {
       unselectAllTasks: action,
       selectTask: action,
       unselectTask: action,
-      taskInEditMode: observable,
-      setTaskInEditMode: action,
       showPictureGallery: observable,
       setShowPictureGallery: action,
       showActionBar: observable,
@@ -63,10 +61,6 @@ export class TaskStore {
     } else {
       this.selectedTasks = this.selectedTasks.filter((id) => id !== taskId);
     }
-  };
-
-  setTaskInEditMode = (taskInEditMode) => {
-    this.taskInEditMode = taskInEditMode;
   };
 
   setListInEditMode = (listInEditMode) => {

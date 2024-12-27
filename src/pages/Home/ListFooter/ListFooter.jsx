@@ -10,19 +10,13 @@ import {
 } from "@ant-design/icons";
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
-import { addTask } from "../TaskEdit/addTask";
+import { addTask } from "./addTask";
 
 import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
   const [taskArrayArchived, setTaskArrayArchived] = useState([]);
-  const [textNewTask, _setTextNewTask] = useState(null);
-  const textNewTaskRef = useRef(textNewTask);
-
-  function setTextNewTask(value) {
-    textNewTaskRef.current = value;
-    _setTextNewTask(value);
-  }
+  const [textNewTask, setTextNewTask] = useState(null);
 
   useEffect(() => {
     selectedTaskArrayArchived();
@@ -38,8 +32,7 @@ export const ListFooter = observer(() => {
   const saveNewTask = async () => {
     try {
       const taskInputData = {};
-      taskInputData.listId = parseInt(taskStore.selectedList.id);
-      taskInputData.title = textNewTaskRef.current;
+      taskInputData.title = textNewTask;
       const resultId = await addTask(taskInputData);
       console.log(`New Task #${resultId} added`);
       setTextNewTask(null);
@@ -51,9 +44,7 @@ export const ListFooter = observer(() => {
 
   const keyDownListener = (event) => {
     const keyPressed = event.key.toLowerCase();
-    if (keyPressed === "+") {
-      taskStore.setTaskInEditMode(0);
-    } else if (keyPressed === "enter") {
+    if (keyPressed === "enter") {
       saveNewTask();
     }
   };
@@ -69,9 +60,6 @@ export const ListFooter = observer(() => {
   };
 
   const onChangeInput = (value) => {
-    if (value) {
-      taskStore.setTaskInEditMode(null);
-    }
     setTextNewTask(value);
   };
 
@@ -104,9 +92,6 @@ export const ListFooter = observer(() => {
           </Popconfirm>
         ) : (
           <>
-            <div className="addTaskFooter__icon">
-              <PlusOutlined />
-            </div>
             <div className="addTaskFooter__textContainer">
               <AutoComplete
                 allowClear={true}
@@ -115,7 +100,7 @@ export const ListFooter = observer(() => {
                 bordered={false}
                 onSearch={onChangeInput}
                 onChange={onChangeInput}
-                value={textNewTaskRef.current}
+                value={textNewTask}
                 placeholder="Add a task"
                 options={optionsFormated}
                 filterOption={(inputValue, option) =>
@@ -169,11 +154,7 @@ export const ListFooter = observer(() => {
           <Button
             type="primary"
             icon={!textNewTask && <PlusOutlined />}
-            onClick={() => {
-              textNewTask
-                ? saveNewTask(textNewTask)
-                : taskStore.setTaskInEditMode(0);
-            }}
+            onClick={() => saveNewTask(textNewTask)}
           >
             {window.innerWidth > 600 &&
               (textNewTask ? <>Add Task &nbsp;</> : "New Task")}

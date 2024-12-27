@@ -59,7 +59,7 @@
   white-space: nowrap;
   margin-left: .5rem;
   font-weight: 300;
-  width: calc(100vw - 10rem - 170px);
+  width: calc(100vw - 10rem - 150px);
   max-width: 1380px;
 }
 
@@ -85,6 +85,6 @@
 @media only screen and (max-width: 600px) {
   .addTaskFooter__textContainer .addTaskFooter__input {   
     border-bottom: 1px solid #bebbb2;
-    width: calc(100vw - 150px);
+    width: calc(100vw - 130px);
   }
 }
