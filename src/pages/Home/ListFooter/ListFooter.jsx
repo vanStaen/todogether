@@ -154,7 +154,8 @@ export const ListFooter = observer(() => {
           <Button
             type="primary"
             icon={!textNewTask && <PlusOutlined />}
-            onClick={() => saveNewTask(textNewTask)}
+            onClick={() => saveNewTask()}
+            disabled={!textNewTask}
           >
             {window.innerWidth > 600 &&
               (textNewTask ? <>Add Task &nbsp;</> : "New Task")}
