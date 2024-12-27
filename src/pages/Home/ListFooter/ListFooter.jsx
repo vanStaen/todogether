@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Tooltip, Button, Popconfirm, AutoComplete } from "antd";
 import {
@@ -15,12 +15,7 @@ import { addTask } from "./addTask";
 import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
-  const [taskArrayArchived, setTaskArrayArchived] = useState([]);
   const [textNewTask, setTextNewTask] = useState(null);
-
-  useEffect(() => {
-    selectedTaskArrayArchived();
-  }, [taskStore.selectedTasks, taskStore.tasks]);
 
   useEffect(() => {
     document.addEventListener("keydown", keyDownListener);
@@ -49,16 +44,6 @@ export const ListFooter = observer(() => {
     }
   };
 
-  const selectedTaskArrayArchived = () => {
-    let taskArrayArchivedTemp = [];
-    taskStore.tasks.forEach((task) => {
-      if (taskStore.selectedTasks.includes(task.id)) {
-        taskArrayArchivedTemp.push(task.archived);
-      }
-    });
-    setTaskArrayArchived(taskArrayArchivedTemp);
-  };
-
   const onChangeInput = (value) => {
     setTextNewTask(value);
   };
@@ -72,26 +57,6 @@ export const ListFooter = observer(() => {
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
-        {!!taskStore.selectedTasks.length ? (
-          <Popconfirm
-            title="Are you sure？"
-            onConfirm={taskStore.deleteSelectedTask}
-            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-          >
-            <Tooltip title="Delete selected tasks" placement="right">
-              <Button
-                type="primary"
-                icon={<DeleteOutlined />}
-                danger
-                style={{
-                  background: "rgba(146, 43, 33, 1)",
-                  borderColor: "rgba(123, 36, 28, 1)",
-                }}
-              />
-            </Tooltip>
-          </Popconfirm>
-        ) : (
-          <>
             <div className="addTaskFooter__textContainer">
               <AutoComplete
                 allowClear={true}
@@ -110,47 +75,8 @@ export const ListFooter = observer(() => {
                 }
               />
             </div>
-          </>
-        )}
       </div>
       <div className="listFooter__rightContainer">
-        {taskStore.selectedTasks.length ? (
-          <>
-            {taskArrayArchived.includes(true) && (
-              <Tooltip title="Mark as undone">
-                <Button
-                  type="primary"
-                  icon={<CloseOutlined />}
-                  onClick={() => {
-                    taskStore.setTasksArchived(false);
-                  }}
-                  style={{
-                    background: "rgba(229, 152, 102, .9)",
-                    borderColor: "rgba(229, 152, 102, 1)",
-                  }}
-                />
-              </Tooltip>
-            )}
-            {taskArrayArchived.includes(false) && (
-              <>
-                &nbsp; &nbsp;
-                <Tooltip title="Mark as done" placement="left">
-                  <Button
-                    type="primary"
-                    icon={<CheckOutlined />}
-                    onClick={() => {
-                      taskStore.setTasksArchived(true);
-                    }}
-                    style={{
-                      background: "rgba(102, 187, 106,1)",
-                      borderColor: "rgba(76, 175, 80, 1)",
-                    }}
-                  />
-                </Tooltip>
-              </>
-            )}
-          </>
-        ) : (
           <Button
             type="primary"
             icon={!textNewTask && <PlusOutlined />}
@@ -161,7 +87,6 @@ export const ListFooter = observer(() => {
               (textNewTask ? <>Add Task &nbsp;</> : "New Task")}
             {textNewTask && <>&#9166;</>}
           </Button>
-        )}
       </div>
     </div>
   );

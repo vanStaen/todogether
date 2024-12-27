@@ -1,18 +1,18 @@
 import axios from "axios";
 
-export const archiveTaskInBulk = async (ids, archived) => {
+export const archiveTask = async (id, archived) => {
   const requestBody = {
     query: `
           mutation ($id: [ID!]!, $archived: Boolean!) {
-            archiveTaskInBulk (
+            archiveTask (
                 id: $id,
                 archived: $archived,
                 )
           }
           `,
           variables: {
-            id: ids,
-            archived: archived,
+            id,
+            archived,
           },
   };
 
@@ -26,5 +26,5 @@ export const archiveTaskInBulk = async (ids, archived) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.archiveTaskInBulk;
+  return response.data.data.archiveTask;
 };

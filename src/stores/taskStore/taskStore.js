@@ -1,18 +1,14 @@
 import { action, makeObservable, observable } from "mobx";
 import Cookies from 'universal-cookie';
 
-import { getLists } from "./getLists.js";
 import { getTasks } from "./getTasks.js";
-import { archiveTaskInBulk } from "./archiveTaskInBulk.js";
+import { archiveTask } from "./archiveTask.js";
 import { deleleTask } from "./deleteTask.js";
 
 const cookies = new Cookies();
+
 export class TaskStore {
-  showCompleted = false;
-  selectedTasks = [];
-  taskInEditMode = null;
-  showPictureGallery = false;
-  showActionBar = null;
+  showCompleted = true;
   tasks = [];
   taskAreLoading = true;
 
@@ -20,18 +16,11 @@ export class TaskStore {
     makeObservable(this, {
       showCompleted: observable,
       setShowCompleted: action,
-      selectedTasks: observable,
-      unselectAllTasks: action,
-      selectTask: action,
-      unselectTask: action,
-      showPictureGallery: observable,
-      setShowPictureGallery: action,
-      showActionBar: observable,
-      setShowActionBar: action,
       tasks: observable,
       setTasks: action,
       fetchTasks: action,
-      setTasksArchived: action,
+      archiveTask: action,
+      deleteTask: action,
       taskAreLoading: observable,
       setTaskAreLoading: action,
     });
@@ -39,40 +28,6 @@ export class TaskStore {
 
   setShowCompleted = (showCompleted) => {
     this.showCompleted = showCompleted;
-  };
-
-  unselectAllTasks = () => {
-    this.selectedTasks = [];
-  };
-
-  selectTask = (taskId) => {
-    const index = this.selectedTasks.indexOf(taskId);
-    if (index > -1) {
-      console.log("Error", "the task was already in the 'selectedTasks'-array");
-    } else {
-      this.selectedTasks = [...this.selectedTasks, taskId]
-    }
-  };
-
-  unselectTask = (taskId) => {
-    const index = this.selectedTasks.indexOf(taskId);
-    if (index === -1) {
-      console.log("Error", "the task was not in the 'selectedTasks'-array");
-    } else {
-      this.selectedTasks = this.selectedTasks.filter((id) => id !== taskId);
-    }
-  };
-
-  setListInEditMode = (listInEditMode) => {
-    this.listInEditMode = listInEditMode;
-  };
-
-  setShowPictureGallery = (showPictureGallery) => {
-    this.showPictureGallery = showPictureGallery;
-  };
-
-  setShowActionBar = (showActionBar) => {
-    this.showActionBar = showActionBar;
   };
 
   setTasks = (tasks) => {
@@ -91,9 +46,9 @@ export class TaskStore {
     }
   };
 
-  setTasksArchived = async (archived) => {
+  archiveTask = async (id, archived) => {
     try {
-      await archiveTaskInBulk(this.selectedTasks, archived);
+      await archiveTask(id, archived);
       const taskData = await getTasks();
       if (taskData) {
         this.setTasks(taskData);
@@ -103,9 +58,9 @@ export class TaskStore {
     }
   };
 
-  deleteSelectedTask = async () => {
+  deleteTask = async (id) => {
     try {
-      await deleleTask(this.selectedTasks);
+      await deleleTask(id);
       const taskData = await getTasks();
       if (taskData) {
         this.setTasks(taskData);

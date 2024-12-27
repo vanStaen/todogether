@@ -34,8 +34,7 @@ export const Home = observer(() => {
   }, [resetWindowInners]);
 
   const tasksRow = taskStore.tasks.map((task) => {
-    const isTaskSelected = taskStore.selectedTasks.includes(task.id);
-    if (taskStore.showCompleted === false && task.archived && !isTaskSelected) {
+    if (taskStore.showCompleted === false && task.archived) {
       return null;
     }
     return (
