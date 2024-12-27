@@ -1,4 +1,5 @@
 import { Task } from "../../models/Task.js";
+import { getTitleFromUrl } from "../../lib/getTitleFromUrl.js";
 
 export const taskResolver = {
   // getTask(taskId: Int!): Task
@@ -29,10 +30,16 @@ export const taskResolver = {
       throw new Error("Unauthorized!");
     }
     try {
+      let title = args.taskInput.title;
+      let desc = null;
+      if (args.taskInput.title.includes('http')) {
+        title = await getTitleFromUrl(args.taskInput.title);
+        desc = args.taskInput.title;
+      }
       const task = new Task({
         userId: req.userId,
-        title: args.taskInput.title,
-        desc: args.taskInput.desc,
+        title: title,
+        desc: desc,
         categoryIds: args.taskInput.categoryIds,
         positionInList: 0,
         favorited: false,

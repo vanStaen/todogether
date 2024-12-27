@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import { Tooltip, Button, Popconfirm, AutoComplete } from "antd";
-import {
-  DeleteOutlined,
-  CheckOutlined,
-  PlusOutlined,
-  CloseOutlined,
-  QuestionCircleOutlined,
-} from "@ant-design/icons";
+import { Button, AutoComplete } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
 import { addTask } from "./addTask";
