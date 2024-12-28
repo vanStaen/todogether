@@ -11,11 +11,13 @@
 }
 
 .App a:link, a:visited {
-  color: rgba(229, 152, 102, .75);
+  color:rgba(0, 0, 0, .75);
 }
 
 .App a:hover {
   color: rgba(229, 152, 102, .75);
+  text-decoration: none !important;
+
 }
 
 .link {

@@ -26,5 +26,35 @@ export const getTasks = async () => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getTasks;
+  return response.data.data.getTasks; 
+
+  /* 
+  // TODO: Mock up when no internet 
+  return [
+    {
+        "id": "1",
+        "title": "test,
+        "desc": "https://www.test.eu/",
+        "archived": false,
+        "deadline": null,
+        "assignedTo": 6
+    },
+    {
+        "id": "2",
+        "title": "test",
+        "desc": "https://www.test.eu/",
+        "archived": true,
+        "deadline": null,
+        "assignedTo": 6
+    },
+    {
+        "id": "3",
+        "title": "test",
+        "desc": null,
+        "archived": false,
+        "deadline": null,
+        "assignedTo": 6
+    },
+  ]
+  */
 };

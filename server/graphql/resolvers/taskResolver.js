@@ -20,7 +20,8 @@ export const taskResolver = {
     }
     return await Task.findAll({
       where: { userId: req.userId },
-      order: [["archived", "ASC"], ["id", "DESC"]],
+      order: [["id", "DESC"]],
+      //order: [["archived", "ASC"], ["id", "DESC"]],
     });
   },
 

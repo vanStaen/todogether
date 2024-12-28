@@ -5,34 +5,30 @@ import "./ListRow.less";
 
 export const ListRow = observer((props) => {
   const {task} = props;
+  const {archived, desc, id, title} = task;
   const [showActions, setShowActions] = useState(false);
 
   return (
     <div
-      className={`row ${task.archived ? "row__noBar" : "row__goldBar"}`}
+      className={`row ${archived ? "row__archived" : "row__active"}`}
     >
       <div
-        className="row__textContainer"
-        id={`row__textContainer${task.id}`}
+        className="row__container"
+        id={`row__container${id}`}
       >
-        <div className={`${task.archived && "row__completed"}`}>
-          <div
-            className={`row__text ${!task.desc && "row__noDesc"} ${
-              taskStore.showActionBar === task.id && "row__noDesc"
-            }`}
-          >
-            {task.title}
-          </div>
-          {taskStore.showActionBar !== task.id &&
-            (task.desc && task.desc.substring(0, 4) === "http" ? (
-              <div className="row__text row__linkDesc">
-                <a href={task.desc} target="_blank">
-                  {task.desc}
-                </a>
-              </div>
-            ) : (
-              <div className="row__text row__desc">{task.desc}</div>
-            ))}
+        <div className={`row__title ${!desc && "row__noDesc"}`}>
+          {title}
+        </div>
+        <div className="row__desc">
+          {task.desc && task.desc.substring(0, 4) === "http" ? (
+            <div className="row__linkDesc">
+              <a href={task.desc} target="_blank">
+                {task.desc}
+              </a>
+            </div>
+          ) : (
+            <div className="row__text row__desc">{task.desc}</div>
+          )}
         </div>
       </div>
     </div>
