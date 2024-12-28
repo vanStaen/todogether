@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { Checkbox } from "antd";
-
 import { taskStore } from "../../../stores/taskStore/taskStore";
-
-import "./ListRow.css";
+import "./ListRow.less";
 
 export const ListRow = observer((props) => {
   const {task} = props;
