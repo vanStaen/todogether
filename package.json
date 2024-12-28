@@ -20,10 +20,11 @@
     "prebuild": "rm -rf ./build",
     "build": "webpack --config webpack.config.prod.cjs --mode production",
     "deploy": "npm i; heroku git:remote -a todogether-cvs; git push heroku main",
+    "postdeploy": "rm -rf ./build",
     "log": "heroku logs --tail",
     "version": "heroku --version; git --version",
     "kill": "killall -9 node",
-    "eslint": "npx eslint src"
+    "eslint": "npx eslint --fix src"
   },
   "eslintConfig": {
     "extends": [
@@ -72,13 +73,15 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "css-loader": "^6.7.1",
-    "eslint": "^8.48.0",
-    "eslint-plugin-react": "^7.33.2",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.3",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "globals": "^15.14.0",
     "less-loader": "^12.2.0",
     "nodemon": "^3.1.9",
-    "prettier": "^2.8.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.0.1",

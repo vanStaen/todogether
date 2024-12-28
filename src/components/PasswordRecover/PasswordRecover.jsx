@@ -12,7 +12,7 @@ export const PasswordRecover = (props) => {
   const [emailDoNotExist, setEmailDoNotExist] = useState(undefined);
   const { t } = useTranslation();
 
-  const changeEmailHandler = async (e) => {
+  const changeEmailHandler = async () => {
     setEmailDoNotExist(undefined);
   };
 

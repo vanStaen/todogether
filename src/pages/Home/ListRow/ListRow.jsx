@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { taskStore } from "../../../stores/taskStore/taskStore";
+
 import "./ListRow.less";
 
 export const ListRow = observer((props) => {
   const {task} = props;
   const {archived, desc, id, title} = task;
-  const [showActions, setShowActions] = useState(false);
+  // const [showActions, setShowActions] = useState(false);
 
   return (
     <div
@@ -22,7 +22,7 @@ export const ListRow = observer((props) => {
         <div className="row__desc">
           {task.desc && task.desc.substring(0, 4) === "http" ? (
             <div className="row__linkDesc">
-              <a href={task.desc} target="_blank">
+              <a href={task.desc} target="_blank" rel="noreferrer">
                 {task.desc}
               </a>
             </div>

@@ -14,7 +14,7 @@ export const Welcome = (props) => {
     <div>
       <LanguageDropDown />
       <div className="welcome__alreadyMember">
-        <AlreadyMember showLogin={showLogin} setShowLogin={setShowLogin} />
+              <AlreadyMember showLogin={showLogin} setShowLogin={setShowLogin} />
       </div>
       <div className="welcome__container">
         {showLogin ? <LoginForm /> : <SignUpForm setShowLogin={setShowLogin} />}

@@ -1,5 +1,4 @@
 import React from "react";
-import { UnorderedListOutlined, EditOutlined } from "@ant-design/icons";
 
 import Logo from "../../../img/todogetherLogo.png";
 
@@ -10,7 +9,7 @@ export const Header = () => {
     <div className="header">
       <img className="header__logo" src={Logo} alt="logo" />
       <span className="header__title">Todogether.com</span>{" "}
-      <span className="header__motto"> | multiplayer-todolists</span>
+      <span className="header__motto"> | multiplayer-todolists</span>
     </div>
   );
 };

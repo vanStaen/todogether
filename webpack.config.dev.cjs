@@ -12,7 +12,7 @@ module.exports = {
     hot: true,
   },
   target: "web",
-  entry: { index: "./src/index.js", sw: "./src/sw.js" },
+  entry: { index: "./src/index.js" },
   mode: "development",
   output: {
     path: path.resolve(__dirname, "build"),

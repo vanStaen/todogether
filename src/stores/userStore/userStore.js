@@ -62,13 +62,13 @@ export class UserStore {
       this.setAvatar(userData.avatar);
       this.setCategories(userData.categories);
 
-      if (userData.emailSettings === null || userData.emailSettings === "{}") {
+      if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);
       } else {
         this.setEmailSettings(userData.emailSettings);
       }
 
-      if (userData.profilSettings === null || userData.profilSettings === "{}") {
+      if (userData.profilSettings === null || userData.profilSettings === "{}") {
         this.setProfilSettings(defaultProfilSettings);
       } else {
         this.setProfilSettings(userData.profilSettings);

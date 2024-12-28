@@ -9,7 +9,7 @@ import { postChangePassword } from "./postChangePassword";
 
 import "./NewPassword.css";
 
-export const NewPassword = (props) => {
+export const NewPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const { t } = useTranslation();

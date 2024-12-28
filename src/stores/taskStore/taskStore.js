@@ -1,11 +1,11 @@
 import { action, makeObservable, observable } from "mobx";
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 import { getTasks } from "./getTasks.js";
 import { archiveTask } from "./archiveTask.js";
 import { deleleTask } from "./deleteTask.js";
 
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
 export class TaskStore {
   showCompleted = true;

@@ -8,7 +8,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
-  entry: { index: "./src/index.js", sw: "./src/sw.js" },
+  entry: { index: "./src/index.js" },
   mode: "production",
   output: {
     path: path.resolve(__dirname, "build"),

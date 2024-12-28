@@ -10,8 +10,6 @@ import { taskStore } from "../../stores/taskStore/taskStore";
 import "./Home.css";
 
 export const Home = observer(() => {
-  const date = new Date();
-  const year = date.getFullYear();
   const [windowInnerHeight, setWindowInnerHeight] = useState(
     window.innerHeight
   );
