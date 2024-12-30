@@ -7,23 +7,20 @@ import eslintConfigPrettier from "eslint-config-prettier";
 export default [
   {
     ignores: ["node_modules/*"],
-  },
-  {
-    files: ["**/*.{js,mjs,cjs,jsx}"]
-  },
-  {
+    files: ["**/*.{js,mjs,cjs,jsx}"],
     settings: {
       react: {
         version: "detect",
       },
     },
-  },
-  {
+    plugins: {
+      pluginReact,
+    },
     languageOptions: 
-    { globals: globals.browser }},
+    { 
+      globals: globals.browser 
+    }
+  },
   pluginJs.configs.recommended,
-  pluginReact.configs.flat.recommended,
   eslintConfigPrettier,
 ];
-
-//"extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"]
