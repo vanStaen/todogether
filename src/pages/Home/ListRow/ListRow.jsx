@@ -58,7 +58,7 @@ export const ListRow = observer((props) => {
         </div>
         {showActions &&
           <div className="row__actions">
-            <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, true)}>Done</div>
+            <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>{archived ? 'unDone' : 'Done'}</div>
             <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>Delete</div>
           </div>}
       </div>
