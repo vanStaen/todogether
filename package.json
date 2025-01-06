@@ -19,12 +19,13 @@
     "start": "node server/index.js",
     "prebuild": "rm -rf ./build",
     "build": "webpack --config webpack.config.prod.cjs --mode production",
-    "deploy": "npm i; heroku git:remote -a todogether-cvs; git push heroku main",
+    "deploy": "npm i; heroku git:remote -a todogether-cvs; git push -f heroku master; openprodurl",
     "postdeploy": "rm -rf ./build",
     "log": "heroku logs --tail",
     "version": "heroku --version; git --version",
     "kill": "killall -9 node",
-    "eslint": "npx eslint --fix src"
+    "eslint": "npx eslint --fix src",
+    "openprodurl": "open https://www.todogether.com"
   },
   "eslintConfig": {
     "extends": [
