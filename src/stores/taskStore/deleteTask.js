@@ -1,15 +1,15 @@
 import axios from "axios";
 
-export const deleleTask = async (ids) => {
+export const deleteTask = async (id) => {
   const requestBody = {
     query: `
-          mutation ($id: [ID!]!) {
+          mutation ($id: ID!) {
             deleteTask (id: $id)
           }
           `,
-          variables: {
-            id: ids,
-          },
+    variables: {
+      id,
+    },
   };
 
   const response = await axios({
@@ -22,5 +22,5 @@ export const deleleTask = async (ids) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.archiveTaskInBulk;
+  return response.data.data.deleteTask;
 };

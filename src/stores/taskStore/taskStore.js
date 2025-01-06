@@ -3,7 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 
 import { getTasks } from "./getTasks.js";
 import { archiveTask } from "./archiveTask.js";
-import { deleleTask } from "./deleteTask.js";
+import { deleteTask } from "./deleteTask.js";
 
 // const cookies = new Cookies();
 
@@ -60,12 +60,11 @@ export class TaskStore {
 
   deleteTask = async (id) => {
     try {
-      await deleleTask(id);
+      await deleteTask(id);
       const taskData = await getTasks();
       if (taskData) {
         this.setTasks(taskData);
       }
-      this.unselectAllTasks();
     } catch (e) {
       console.log("error", e);
     }

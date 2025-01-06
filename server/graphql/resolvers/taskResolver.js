@@ -93,8 +93,8 @@ export const taskResolver = {
     }
   },
 
-  // archiveTaskInBulk(id: [ID!], archived: Boolean!): Boolean!
-  async archiveTaskInBulk(args, req) {
+  // archiveTask(id: ID!, archived: Boolean!): Boolean!
+  async archiveTask(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }

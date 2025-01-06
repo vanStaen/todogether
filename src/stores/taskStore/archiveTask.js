@@ -3,17 +3,17 @@ import axios from "axios";
 export const archiveTask = async (id, archived) => {
   const requestBody = {
     query: `
-          mutation ($id: [ID!]!, $archived: Boolean!) {
+          mutation ($id: ID!, $archived: Boolean!) {
             archiveTask (
                 id: $id,
                 archived: $archived,
                 )
           }
           `,
-          variables: {
-            id,
-            archived,
-          },
+    variables: {
+      id,
+      archived,
+    },
   };
 
   const response = await axios({

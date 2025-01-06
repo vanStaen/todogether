@@ -37,6 +37,6 @@ export const TaskQueries = `
 export const TaskMutations = `
     addTask(taskInput: TaskInputData!): Task!
     updateTask(id: ID!, taskInput: TaskInputData!): Task!
-    archiveTaskInBulk(id: [ID!]!, archived: Boolean!): Boolean!
-    deleteTask(id: [ID!]!): Boolean!
+    archiveTask(id: ID!, archived: Boolean!): Boolean!
+    deleteTask(id: ID!): Boolean!
 `;
