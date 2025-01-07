@@ -44,20 +44,25 @@ export const ListRow = observer((props) => {
           <div className="row__actions">
             <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>
               {archived ? <Button
-                type="default"
+                color="default"
+                variant="filled"
                 icon={<UndoOutlined />}
-                ghost
               /> : <Button
-                type="primary"
+                color="green"
+                variant="solid"
                 icon={<CheckOutlined />}
               />}
             </div>
             <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
-              <Button
-                type="primary"
+              {archived ? <Button
+                color="danger"
+                variant="filled"
                 icon={<DeleteOutlined />}
-                danger
-              />
+              /> : <Button
+                color="danger"
+                variant="solid"
+                icon={<DeleteOutlined />}
+              />}
             </div>
           </div>}
       </div>

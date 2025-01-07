@@ -1,5 +1,3 @@
-@import "~antd/dist/antd.css";
-
 .App {
   display: flex;
   flex-direction: column;
@@ -10,8 +8,9 @@
   background-color: #d9d6cb;
 }
 
-.App a:link, a:visited {
-  color:rgba(0, 0, 0, .75);
+.App a:link,
+a:visited {
+  color: rgba(0, 0, 0, .75);
 }
 
 .App a:hover {
@@ -23,9 +22,8 @@
 .link {
   color: rgba(229, 152, 102, 1);
   cursor: pointer;
-} 
+}
 
 .link:hover {
   color: rgba(229, 152, 102, .75);
 }
-
