@@ -19,7 +19,7 @@
   font-weight: 300;
 }
 
-.anticon svg {
+.languageDropdown .anticon svg {
   position: relative;
   top: -4px;
   font-size: 10px !important;
