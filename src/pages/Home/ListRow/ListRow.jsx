@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
+import { Button } from "antd";
+import { DeleteOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
 
 import { taskStore } from '../../../stores/taskStore/taskStore.js';
 
@@ -9,24 +11,6 @@ export const ListRow = observer((props) => {
   const { task } = props;
   const { archived, desc, id, title } = task;
   const [showActions, setShowActions] = useState(false);
-
-  const handleArchive = async () => {
-    try {
-      await archiveTask(id, true);
-      taskStore.fetchTasks();
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  const handleDelete = async () => {
-    try {
-      await deleteTask(id);
-      taskStore.fetchTasks();
-    } catch (e) {
-      console.error(e);
-    }
-  }
 
   return (
     <div
@@ -58,8 +42,23 @@ export const ListRow = observer((props) => {
         </div>
         {showActions &&
           <div className="row__actions">
-            <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>{archived ? 'unDone' : 'Done'}</div>
-            <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>Delete</div>
+            <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>
+              {archived ? <Button
+                type="default"
+                icon={<UndoOutlined />}
+                ghost
+              /> : <Button
+                type="primary"
+                icon={<CheckOutlined />}
+              />}
+            </div>
+            <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
+              <Button
+                type="primary"
+                icon={<DeleteOutlined />}
+                danger
+              />
+            </div>
           </div>}
       </div>
     </div>
