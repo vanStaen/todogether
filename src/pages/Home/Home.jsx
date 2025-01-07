@@ -38,7 +38,7 @@ export const Home = observer(() => {
     return (
       <ListRow
         key={task.id}
-        task={task} 
+        task={task}
       />
     );
   });
@@ -47,24 +47,10 @@ export const Home = observer(() => {
     <div>
       <div className="home__container" style={{ height: windowInnerHeight }}>
         <Header />
-        <div
-          className="home__main"
-          style={{
-            height: `calc(${
-              windowInnerHeight + (windowInnerWidth > 600 ? -5 : 5)
-            }px - ${windowInnerWidth > 600 ? "10rem" : "7rem"}`,
-          }}
-        >
+        <div className="home__main">
           {taskStore.taskAreLoading ? (
             <>
-              <div
-                className="home__taskCenterContainer"
-                style={{
-                  height: `calc(${windowInnerHeight}px - ${
-                    windowInnerWidth > 600 ? 70 : 60
-                  }px - ${windowInnerWidth > 600 ? "10rem" : "7rem"}`,
-                }}
-              >
+              <div className="home__taskCenterContainer">
                 <LoadingOutlined className="home__taskLoadingLogo" />
                 <div className="home__taskLoading">Task are loading</div>
               </div>
@@ -72,22 +58,15 @@ export const Home = observer(() => {
           ) : (
             <>
               {tasksRow.filter((value) => value !== null).length ? (
-                  <div
-                    className="home__rows"
-                    style={{
-                      height: `calc(${windowInnerHeight}px - ${
-                        windowInnerWidth > 600 ? 5 : 0
-                      }px - ${windowInnerWidth > 600 ? "10rem" : "7rem"}`,
-                    }}
-                  >
-                    {tasksRow}
-                  </div>
+                <div className="home__rows">
+                  {tasksRow}
+                </div>
               ) : (
                 <div className="home__taskCenterContainer">
                   <div className="home__taskNothing">
                     Nothing here
                     <br />
-                    Add a task
+                    <span style={{ opacity: .5 }}>Add a task </span>
                   </div>
                 </div>
               )}

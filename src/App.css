@@ -1,3 +1,14 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  line-height: 1.5715;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-variant: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: rgba(0, 0, 0, 0.85);
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -6,10 +17,12 @@
   font-size: calc(17px + 1vmin);
   letter-spacing: 1.5px;
   background-color: #d9d6cb;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
 }
 
 .App a:link,
 a:visited {
+  text-decoration: none !important;
   color: rgba(0, 0, 0, .75);
 }
 
@@ -22,6 +35,7 @@ a:visited {
 .link {
   color: rgba(229, 152, 102, 1);
   cursor: pointer;
+  text-decoration: none !;
 }
 
 .link:hover {

@@ -1,6 +1,6 @@
 .home__container {
   font-size: 0.75em;
-  width: 100vw;  
+  width: 100vw;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,36 +10,16 @@
 
 .home__main {
   position: fixed;
-  top: 3.8rem;
-  margin: 0 3.5rem 1rem 3.5rem;
+  top: 61px;
   background-color: rgba(255, 255, 255, 0.25);
-  width: calc(100vw - 7rem);
+  width: calc(100vw - 80px);
   border-radius: 0.3rem;
   max-width: 1600px;
 }
 
-.home__rows {  
+.home__rows {
   overflow: scroll;
-}
-
-.home__grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  align-content: flex-start;
-  padding: .5rem;  
-  height: calc(100% - 3.5rem - 65px - 70px - 3rem); /* header, listHeader, listFooter, margin-bottom  */  
-  overflow: scroll;
-}
-
-.menu__copyright {
-  position: fixed;
-  bottom: 0;
-  font-size: 0.75em;
-  opacity: .5;
-  margin-bottom: 1rem;
+  height: calc(100vh - 160px);
 }
 
 .home__taskCenterContainer {
@@ -47,17 +27,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 65px);
   opacity: .75;
+  height: calc(100vh - 160px);
 }
 
 .home__taskLoadingLogo {
   font-size: 4em;
-  width: 100%; 
+  width: 100%;
   color: rgb(229, 152, 102) !important;
 }
 
-.home__taskLoading{
+.home__taskLoading {
   font-size: .75em;
   width: 100%;
   text-align: center;
@@ -65,7 +45,7 @@
   margin-bottom: 1rem;
 }
 
-.home__taskLoading{
+.home__taskLoading {
   font-size: .75em;
   width: 100%;
   text-align: center;
@@ -86,6 +66,7 @@
     margin: 0;
     width: calc(100vw);
   }
+
   .menu__copyright {
     display: none;
   }

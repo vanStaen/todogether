@@ -7,7 +7,7 @@
 }
 
 .languageDropdown .ant-dropdown-link {
-  color: rgba(0,0,0,1);
+  color: rgba(0, 0, 0, 1);
 }
 
 .languageDropdown .ant-dropdown-link:hover {
@@ -17,4 +17,10 @@
 .languageDropdown__item {
   font-size: 17px;
   font-weight: 300;
+}
+
+.anticon svg {
+  position: relative;
+  top: -4px;
+  font-size: 10px !important;
 }

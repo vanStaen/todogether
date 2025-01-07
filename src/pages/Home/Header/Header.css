@@ -1,15 +1,17 @@
 .header {
     position: fixed;
     top: 0;
-    height: 3.8rem;
-    padding-top: 1rem;
+    height: 50px;
+    margin-top: 10px;
     border-bottom: 1px solid #bebbb2;
-    width: calc(100vw - 7rem);
+    width: calc(100vw - 80px);
     max-width: 1600px;
 }
 
 .header__logo {
-    margin: 0rem .5rem 0rem 1rem;
+    position: relative;
+    top: 5px;
+    margin: 0 10px;
     width: 25px;
     height: 25px;
     opacity: .5;
@@ -29,7 +31,8 @@
     .header {
         width: 100vw;
     }
+
     .header__motto {
-        display: none; 
+        display: none;
     }
 }
