@@ -49,11 +49,22 @@ export const ListRow = observer((props) => {
   const handleShowActionsMobile = () => {
     const actionsMobileDiv = document.getElementById(`row__actionsMobile${id}`);
     actionsMobileDiv.style.right = `${actionsMobileDiv.getBoundingClientRect().width}px`;
+
+    const allActionsMobileDiv = document.getElementsByClassName('row__actionsMobile');
+    if (allActionsMobileDiv.length) {
+      for (let i = 0; i < allActionsMobileDiv.length; i++) {
+        if (allActionsMobileDiv[i].id !== `row__actionsMobile${id}`) {
+          allActionsMobileDiv[i].style.right = 0;
+        };
+      }
+    }
   }
 
   const handleHideActionsMobile = () => {
     const actionsMobileDiv = document.getElementById(`row__actionsMobile${id}`);
-    actionsMobileDiv.style.right = 0;
+    if (actionsMobileDiv) {
+      actionsMobileDiv.style.right = 0;
+    }
   }
 
   return (
