@@ -1,7 +1,6 @@
 .row {
     border-bottom: 1px solid #d9d6cb;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
     font-weight: 300;
 
     &:hover {
@@ -37,10 +36,12 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-transform: capitalize;
         }
 
         .row__noDesc {
-            padding-top: .5rem;
+            padding-top: 5px;
+            font-size: 18px;
         }
 
         .row__desc {
@@ -73,8 +74,8 @@
 
 @media only screen and (max-width: 600px) {
     .row {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        font-weight: 400;
+        padding: 2px 0;
     }
 
     .row__archived,
