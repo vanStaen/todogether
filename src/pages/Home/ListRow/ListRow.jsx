@@ -8,7 +8,7 @@ import { taskStore } from '../../../stores/taskStore/taskStore.js';
 import "./ListRow.less";
 
 // the required distance between touchStart and touchEnd to be detected as a swipe
-const MIN_SWIPE_DISTANCE = 20;
+const MIN_SWIPE_DISTANCE = 50;
 
 export const ListRow = observer((props) => {
   const { key, task, windowInnerWidth } = props;
@@ -49,7 +49,6 @@ export const ListRow = observer((props) => {
   const handleShowActionsMobile = () => {
     const actionsMobileDiv = document.getElementById(`row__actionsMobile${id}`);
     actionsMobileDiv.style.right = `${actionsMobileDiv.getBoundingClientRect().width}px`;
-
     const allActionsMobileDiv = document.getElementsByClassName('row__actionsMobile');
     if (allActionsMobileDiv.length) {
       for (let i = 0; i < allActionsMobileDiv.length; i++) {
@@ -58,6 +57,7 @@ export const ListRow = observer((props) => {
         };
       }
     }
+    setShowActions(true);
   }
 
   const handleHideActionsMobile = () => {
@@ -65,6 +65,7 @@ export const ListRow = observer((props) => {
     if (actionsMobileDiv) {
       actionsMobileDiv.style.right = 0;
     }
+    setShowActions(false);
   }
 
   return (
@@ -90,18 +91,15 @@ export const ListRow = observer((props) => {
           {title}
         </div>
         <div className="row__desc">
-          {task.desc && task.desc.substring(0, 4) === "http" ? (
-            <div className="row__linkDesc">
-              <a href={task.desc} target="_blank" rel="noreferrer">
-                {task.desc}
-              </a>
-            </div>
-          ) : (
-            <div className="row__text row__desc">{task.desc}</div>
-          )}
+          {!showActions && task.desc && task.desc.substring(0, 4) === "http" ? (
+
+            <a href={task.desc} target="_blank" rel="noreferrer">
+              {task.desc}
+            </a>
+          ) : task.desc}
         </div>
-        {showActions &&
-          <div className="row__actions">
+        {showActions && windowInnerWidth >= 600 &&
+          < div className="row__actions">
             <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>
               {archived ? <Button
                 color="default"
@@ -126,7 +124,8 @@ export const ListRow = observer((props) => {
             </div>
           </div>}
       </div>
-      {windowInnerWidth < 600 &&
+      {
+        windowInnerWidth < 600 &&
         <div className="row__actionsMobile" id={`row__actionsMobile${id}`}>
           <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>
             {archived ? <Button
@@ -151,7 +150,8 @@ export const ListRow = observer((props) => {
               icon={<DeleteOutlined />}
             >Delete</Button>}
           </div>
-        </div>}
-    </div>
+        </div>
+      }
+    </div >
   );
 });
