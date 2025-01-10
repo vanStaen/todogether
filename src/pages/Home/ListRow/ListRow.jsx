@@ -62,6 +62,13 @@ export const ListRow = observer((props) => {
       }
     }
     setShowActions(true);
+    const allCategoryDiv = document.getElementsByClassName('row__category');
+    if (allCategoryDiv.length) {
+      for (let i = 0; i < allCategoryDiv.length; i++) {
+        allCategoryDiv[i].style.minWidth = '7px';
+      }
+    }
+    setShowCategory(false);
   }
 
   const handleHideActionsMobile = () => {
@@ -74,10 +81,8 @@ export const ListRow = observer((props) => {
 
   const handleShowCategory = () => {
     const categoryDiv = document.getElementById(`row__category${id}`);
-    const categoryNameDiv = document.getElementById(`row__categoryName${id}`);
-    console.log('categoryNameDiv.getBoundingClientRect()', categoryNameDiv.getBoundingClientRect());
-    // categoryDiv.style.minWidth = `${categoryNameDiv.getBoundingClientRect().width}px`;
-    categoryDiv.style.minWidth = `100px`;
+    const categoryNameDiv = document.getElementById(`row__categoryNameGhost${id}`);
+    categoryDiv.style.minWidth = `${categoryNameDiv.getBoundingClientRect().width}px`;
     const allCategoryDiv = document.getElementsByClassName('row__category');
     if (allCategoryDiv.length) {
       for (let i = 0; i < allCategoryDiv.length; i++) {
@@ -87,6 +92,13 @@ export const ListRow = observer((props) => {
       }
     }
     setShowCategory(true);
+    const allActionsMobileDiv = document.getElementsByClassName('row__actionsMobile');
+    if (allActionsMobileDiv.length) {
+      for (let i = 0; i < allActionsMobileDiv.length; i++) {
+        allActionsMobileDiv[i].style.right = 0;
+      }
+    }
+    setShowActions(false);
   }
 
   const handleHideCategory = () => {
@@ -102,6 +114,8 @@ export const ListRow = observer((props) => {
     handleHideCategory();
   }
 
+  const categoryName = task.category || 'Private';
+
   return (
     <div
       className={`row ${archived ? "row__archived" : "row__active"}`}
@@ -111,9 +125,12 @@ export const ListRow = observer((props) => {
       onTouchEnd={onTouchEnd}
     >
       <div className="row__category" id={`row__category${id}`}>
-        <div className="row__categoryName" id={`row__categoryName${id}`}>
-          {task.title.split(" ")[0]}
+        <div className="row__categoryName">
+          {categoryName}
         </div>
+      </div>
+      <div className="row__categoryNameGhost" id={`row__categoryNameGhost${id}`}>
+        {categoryName}
       </div>
       <div
         className="row__container"
