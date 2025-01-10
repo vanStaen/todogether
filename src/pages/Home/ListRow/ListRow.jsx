@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Button } from "antd";
 import { DeleteOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
@@ -116,6 +116,16 @@ export const ListRow = observer((props) => {
 
   const categoryName = task.category || 'Private';
 
+  useEffect(() => {
+    if (archived) {
+      const actionsMobileDiv = document.getElementById(`row__category${id}`);
+      if (actionsMobileDiv) {
+        actionsMobileDiv.style.backgroundColor = 'transparent';
+      }
+    }
+
+  }, [])
+
   return (
     <div
       className={`row ${archived ? "row__archived" : "row__active"}`}
@@ -124,7 +134,7 @@ export const ListRow = observer((props) => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <div className="row__category" id={`row__category${id}`}>
+      <div className="row__category" id={`row__category${id}`} onClick={showCategory ? handleHideCategory : handleShowCategory}>
         <div className="row__categoryName">
           {categoryName}
         </div>

@@ -1,6 +1,6 @@
 .row {
     border-bottom: 1px solid #d9d6cb;
-    padding: 0 10px;
+    padding: 0 10px 0 0;
     font-weight: 300;
     width: auto;
     overflow: hidden;
@@ -33,12 +33,15 @@
 
 .row__archived,
 .row__active {
+    display: inline-flex;
 
     .row__category {
         background-color: rgba(229, 152, 102, .75);
         transition: min-width .3s ease;
         min-width: 7px;
+        width: 12px;
         overflow: hidden;
+        cursor: pointer;
 
         .row__categoryName {
             padding: 12px 0 0 12px;
@@ -60,8 +63,7 @@
         vertical-align: top;
         cursor: pointer;
         position: relative;
-        width: calc(100% - 30px);
-        min-width: auto;
+        width: calc(100vw - 123px);
 
         .row__title {
             white-space: nowrap;
@@ -90,7 +92,7 @@
         .row__actions {
             position: absolute;
             top: 13px;
-            right: -5px;
+            right: 3px;
             display: inline-flex;
 
             .row__actionButtons {
@@ -113,6 +115,10 @@
     .row__archived,
     .row__active {
         display: inline-flex;
+
+        .row__category {
+            width: 7px;
+        }
 
         .row__container {
             min-width: calc(100vw - 30px);
