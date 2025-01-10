@@ -14,6 +14,8 @@ export const ListRow = observer((props) => {
   const { key, task, windowInnerWidth } = props;
   const { archived, desc, id, title } = task;
   const [showActions, setShowActions] = useState(false);
+  const [showCategory, setShowCategory] = useState(false);
+
 
   const touchStart = useRef(null);
   const touchEnd = useRef(null);
@@ -37,8 +39,10 @@ export const ListRow = observer((props) => {
       throttling.current = true;
       if (isLeftSwipe) {
         handleShowActionsMobile();
+        handleHideCategory();
       } else if (isRightSwipe) {
         handleHideActionsMobile();
+        handleShowCategory();
       }
       setTimeout(() => {
         throttling.current = false;
@@ -68,6 +72,36 @@ export const ListRow = observer((props) => {
     setShowActions(false);
   }
 
+  const handleShowCategory = () => {
+    const categoryDiv = document.getElementById(`row__category${id}`);
+    const categoryNameDiv = document.getElementById(`row__categoryName${id}`);
+    console.log('categoryNameDiv.getBoundingClientRect()', categoryNameDiv.getBoundingClientRect());
+    // categoryDiv.style.minWidth = `${categoryNameDiv.getBoundingClientRect().width}px`;
+    categoryDiv.style.minWidth = `100px`;
+    const allCategoryDiv = document.getElementsByClassName('row__category');
+    if (allCategoryDiv.length) {
+      for (let i = 0; i < allCategoryDiv.length; i++) {
+        if (allCategoryDiv[i].id !== `row__category${id}`) {
+          allCategoryDiv[i].style.minWidth = '7px';
+        };
+      }
+    }
+    setShowCategory(true);
+  }
+
+  const handleHideCategory = () => {
+    const actionsMobileDiv = document.getElementById(`row__category${id}`);
+    if (actionsMobileDiv) {
+      actionsMobileDiv.style.minWidth = '7px';
+    }
+    setShowCategory(false);
+  }
+
+  const handleCloseAllActions = () => {
+    handleHideActionsMobile();
+    handleHideCategory();
+  }
+
   return (
     <div
       className={`row ${archived ? "row__archived" : "row__active"}`}
@@ -76,6 +110,11 @@ export const ListRow = observer((props) => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
+      <div className="row__category" id={`row__category${id}`}>
+        <div className="row__categoryName" id={`row__categoryName${id}`}>
+          {task.title.split(" ")[0]}
+        </div>
+      </div>
       <div
         className="row__container"
         id={`row__container${id}`}
@@ -85,14 +124,13 @@ export const ListRow = observer((props) => {
         onMouseLeave={() => {
           windowInnerWidth >= 600 && setShowActions(false);
         }}
-        onClick={handleHideActionsMobile}
+        onClick={handleCloseAllActions}
       >
         <div className={`row__title ${!desc && "row__noDesc"}`}>
           {title}
         </div>
         <div className="row__desc">
-          {!showActions && task.desc && task.desc.substring(0, 4) === "http" ? (
-
+          {!showActions && !showCategory && task.desc && task.desc.substring(0, 4) === "http" ? (
             <a href={task.desc} target="_blank" rel="noreferrer">
               {task.desc}
             </a>

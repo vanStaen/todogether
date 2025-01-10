@@ -20,7 +20,6 @@
 }
 
 .row__archived {
-    border-left: .4rem solid transparent;
     background-color: rgba(255, 255, 255, .3);
     border-radius: 0rem;
     text-decoration: line-through;
@@ -28,13 +27,23 @@
 }
 
 .row__active {
-    border-left: .4rem solid rgba(229, 152, 102, .75);
     background-color: rgba(255, 255, 255, .9);
     border-radius: .3rem;
 }
 
 .row__archived,
 .row__active {
+
+    .row__category {
+        background-color: rgba(229, 152, 102, .75);
+        transition: min-width .3s ease;
+        min-width: 7px;
+        overflow: hidden;
+
+        .row__categoryName {
+            padding: 11px 0 0 6px;
+        }
+    }
 
     .row__container {
         padding: 5px 10px 6px 10px;
@@ -88,7 +97,7 @@
 @media only screen and (max-width: 600px) {
     .row {
         font-weight: 400;
-        padding: 2px 0;
+        padding: 0;
         width: calc(100vw - 6px);
     }
 
@@ -110,7 +119,7 @@
             top: 0;
             right: 0;
             display: inline-flex;
-            padding: 10px 15px 0 0;
+            padding: 11px 6px 0 0;
             transition: right .3s ease;
 
             .row__actionButtons {
