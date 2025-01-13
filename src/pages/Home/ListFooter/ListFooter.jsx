@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Button, AutoComplete } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
 import { addTask } from "./addTask";
@@ -10,6 +10,7 @@ import "./ListFooter.css";
 
 export const ListFooter = observer(() => {
   const [textNewTask, setTextNewTask] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.addEventListener("keydown", keyDownListener);
@@ -20,6 +21,7 @@ export const ListFooter = observer(() => {
 
   const saveNewTask = async () => {
     try {
+      setLoading(true);
       const taskInputData = {};
       taskInputData.title = textNewTask;
       const resultId = await addTask(taskInputData);
@@ -29,6 +31,7 @@ export const ListFooter = observer(() => {
     } catch (e) {
       console.log("error", e);
     }
+    setLoading(false);
   };
 
   const keyDownListener = (event) => {
@@ -51,36 +54,36 @@ export const ListFooter = observer(() => {
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
-            <div className="addTaskFooter__textContainer">
-              <AutoComplete
-                allowClear={true}
-                id="newTaskInput"
-                className="addTaskFooter__input"
-                bordered={false}
-                onSearch={onChangeInput}
-                onChange={onChangeInput}
-                value={textNewTask}
-                placeholder="Add a task"
-                options={optionsFormated}
-                filterOption={(inputValue, option) =>
-                  option.value
-                    .toUpperCase()
-                    .indexOf(inputValue.toUpperCase()) !== -1
-                }
-              />
-            </div>
+        <div className="addTaskFooter__textContainer">
+          <AutoComplete
+            allowClear={true}
+            id="newTaskInput"
+            className="addTaskFooter__input"
+            bordered={false}
+            onSearch={onChangeInput}
+            onChange={onChangeInput}
+            value={textNewTask}
+            placeholder="Add a task"
+            options={optionsFormated}
+            filterOption={(inputValue, option) =>
+              option.value
+                .toUpperCase()
+                .indexOf(inputValue.toUpperCase()) !== -1
+            }
+          />
+        </div>
       </div>
       <div className="listFooter__rightContainer">
-          <Button
-            type="primary"
-            icon={!textNewTask && <PlusOutlined />}
-            onClick={() => saveNewTask()}
-            disabled={!textNewTask}
-          >
-            {window.innerWidth > 600 &&
-              (textNewTask ? <>Add Task &nbsp;</> : "New Task")}
-            {textNewTask && <>&#9166;</>}
-          </Button>
+        <Button
+          type="primary"
+          icon={loading ? <LoadingOutlined spin /> : !textNewTask && <PlusOutlined />}
+          onClick={() => saveNewTask()}
+          disabled={!textNewTask || loading}
+        >
+          {!loading && window.innerWidth > 600 &&
+            (textNewTask ? <>Add Task &nbsp;</> : "New Task")}
+          {!loading && textNewTask && <>&#9166;</>}
+        </Button>
       </div>
     </div>
   );
