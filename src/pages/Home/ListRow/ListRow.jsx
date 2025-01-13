@@ -122,9 +122,11 @@ export const ListRow = observer((props) => {
       if (actionsMobileDiv) {
         actionsMobileDiv.style.backgroundColor = 'transparent';
       }
+    } else {
+      // TODO restore corrrect color
     }
 
-  }, [])
+  }, [archived])
 
   return (
     <div
@@ -157,7 +159,7 @@ export const ListRow = observer((props) => {
           {title}
         </div>
         <div className="row__desc">
-          {!showActions && !showCategory && task.desc && task.desc.substring(0, 4) === "http" ? (
+          {(windowInnerWidth > 600 || (!showActions && !showCategory)) && task.desc && task.desc.substring(0, 4) === "http" ? (
             <a href={task.desc} target="_blank" rel="noreferrer">
               {task.desc}
             </a>
