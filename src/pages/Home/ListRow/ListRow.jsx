@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { observer } from "mobx-react";
-import { Button } from "antd";
+import { Button, Dropdown } from "antd";
 import { DeleteOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
 
 import { taskStore } from '../../../stores/taskStore/taskStore.js';
+import { getMenuCategories } from "./categories.js";
 
 import "./ListRow.less";
 
@@ -115,6 +116,7 @@ export const ListRow = observer((props) => {
   }
 
   const categoryName = task.category || 'Private';
+  const items = getMenuCategories();
 
   useEffect(() => {
     if (archived) {
@@ -123,7 +125,7 @@ export const ListRow = observer((props) => {
         actionsMobileDiv.style.backgroundColor = 'transparent';
       }
     } else {
-      // TODO restore corrrect color
+      // TODO restore correct color
     }
 
   }, [archived])
@@ -137,8 +139,17 @@ export const ListRow = observer((props) => {
       onTouchEnd={onTouchEnd}
     >
       <div className="row__category" id={`row__category${id}`} onClick={showCategory ? handleHideCategory : handleShowCategory}>
-        <div className="row__categoryName">
-          {categoryName}
+        <div className="row__categoryName" >
+          <Dropdown
+            menu={{
+              items,
+            }}
+            trigger={['click']}
+          >
+            <div onClick={(e) => e.stopPropagation()}>
+              {categoryName}
+            </div>
+          </Dropdown>
         </div>
       </div>
       <div className="row__categoryNameGhost" id={`row__categoryNameGhost${id}`}>
