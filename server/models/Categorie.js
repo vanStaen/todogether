@@ -16,8 +16,12 @@ export const Categorie = sequelize.sequelize.define("categorie", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  color: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   sharedWith: {
-    type: DataTypes.ARRAY(DataTypes.NUMBER),
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
   },
 });

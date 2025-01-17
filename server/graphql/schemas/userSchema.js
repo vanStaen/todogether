@@ -4,13 +4,13 @@ type User {
     username: String!
     email: String!
     avatar: String    
-    categories: String
     emailSettings: String!
     profilSettings: String!
     lastActive: String!
     createdAt: String!
     updatedAt: String!
     tasks: [Task]
+    categories: [Categorie]
 }`;
 
 export const UserInputData = `

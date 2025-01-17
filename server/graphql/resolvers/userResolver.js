@@ -1,5 +1,7 @@
 import bcrypt from "bcryptjs";
 import { Task } from "../../models/Task.js";
+import { User } from "../../models/User.js";
+import { Categorie } from "../../models/Categorie.js";
 
 export const userResolver = {
   async getUser(_, req) {
@@ -8,7 +10,7 @@ export const userResolver = {
     }
     return await User.findOne({
       where: { id: req.userId },
-      include: [Task],
+      include: [Task, Categorie],
     });
   },
 
