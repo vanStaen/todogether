@@ -35,7 +35,7 @@ export const Task = sequelize.sequelize.define("task", {
   deadline: {
     type: DataTypes.STRING,
     allowNull: true,
-  },  
+  },
   categoryId: {
     type: DataTypes.STRING,
     allowNull: true,
