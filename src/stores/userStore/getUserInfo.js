@@ -8,16 +8,15 @@ export const getUserInfo = async () => {
                 username,
                 email,
                 avatar,
-                categories,
                 emailSettings,
                 profilSettings,
                 lastActive,
                 createdAt,
                 updatedAt,
-                lists {
+                categories {
                     id,
                     title,
-                    desc,
+                    color,
                 }
             }
           }

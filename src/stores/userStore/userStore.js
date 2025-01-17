@@ -45,7 +45,7 @@ export class UserStore {
   setCategories = (categories) => {
     this.categories = categories;
   };
- 
+
   setEmailSettings = (emailSettings) => {
     this.emailSettings = emailSettings;
   };

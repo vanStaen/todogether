@@ -1,4 +1,5 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
+import { Categorie } from "./Categorie.js";
 import { User } from "./User.js";
 
 export const Task = sequelize.sequelize.define("task", {
@@ -36,10 +37,6 @@ export const Task = sequelize.sequelize.define("task", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  categoryId: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
   assignedTo: {
     type: DataTypes.INTEGER,
     allowNull: true,
@@ -48,3 +45,6 @@ export const Task = sequelize.sequelize.define("task", {
 
 User.hasMany(Task);
 Task.belongsTo(User);
+
+Categorie.hasMany(Task);
+Task.belongsTo(Categorie);

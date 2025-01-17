@@ -4,7 +4,7 @@ import { Button, Dropdown } from "antd";
 import { DeleteOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
 
 import { taskStore } from '../../../stores/taskStore/taskStore.js';
-import { getMenuCategories } from "./categories.js";
+import { getMenuCategories } from "./Categories";
 
 import "./ListRow.less";
 
@@ -13,10 +13,9 @@ const MIN_SWIPE_DISTANCE = 50;
 
 export const ListRow = observer((props) => {
   const { key, task, windowInnerWidth } = props;
-  const { archived, desc, id, title } = task;
+  const { archived, desc, id, title, categorie } = task;
   const [showActions, setShowActions] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
-
 
   const touchStart = useRef(null);
   const touchEnd = useRef(null);

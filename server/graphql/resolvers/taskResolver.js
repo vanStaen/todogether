@@ -1,4 +1,5 @@
 import { Task } from "../../models/Task.js";
+import { Categorie } from "../../models/Categorie.js";
 import { getTitleFromUrl } from "../../lib/getTitleFromUrl.js";
 
 export const taskResolver = {
@@ -20,6 +21,7 @@ export const taskResolver = {
     }
     return await Task.findAll({
       where: { userId: req.userId },
+      include: [Categorie],
       order: [["id", "DESC"]],
       //order: [["archived", "ASC"], ["id", "DESC"]],
     });

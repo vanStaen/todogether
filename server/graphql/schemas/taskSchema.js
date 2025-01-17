@@ -9,11 +9,12 @@ type Task {
     archived: Boolean
     subTaskIds: [Int]
     deadline: String
-    categoryId: String
+    categorieId: String
     assignedTo: Int    
     createdAt: String!
     udpatedAt: String!
     user: User
+    categorie: Categorie
 }`;
 
 export const TaskInputData = `

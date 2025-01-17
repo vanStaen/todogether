@@ -6,6 +6,7 @@ import { Welcome } from "./pages/Welcome/Welcome";
 import { Home } from "./pages/Home/Home";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
+import { userStore } from "./stores/userStore/userStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { consoleGreetings } from "./helpers/consoleGreetings";
 
@@ -15,7 +16,8 @@ const App = observer(() => {
   useEffect(() => {
     consoleGreetings();
     authStore.checkAccess();
-  }, []);
+    authStore.hasAccess && userStore.fetchuserData();
+  }, [authStore.hasAccess]);
 
   return (
     <Router>

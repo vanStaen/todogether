@@ -11,6 +11,10 @@ export const getTasks = async () => {
                 archived, 
                 deadline,
                 assignedTo, 
+                categorie {
+                    title,
+                    color,
+                }
               }
           }
           `,
@@ -26,7 +30,7 @@ export const getTasks = async () => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getTasks; 
+  return response.data.data.getTasks;
 
   /* 
   // TODO: Mock up when no internet 
