@@ -19,14 +19,8 @@ input CategorieInputData {
     sharedWith: [Int]
 }`;
 
-export const CategorieQueries = `
-    getCategorie(categorieId: Int!): Categorie
-    getCategories: [Categorie]
-`;
-
 export const CategorieMutations = `
-    addCaategorie(categorieInput: CategorieInputData!): Categorie!
+    addCategorie(categorieInput: CategorieInputData!): Categorie!
     updateCategorie(id: ID!, categorieInput: CategorieInputData!): Categorie!
     archiveCategorie(id: ID!, archived: Boolean!): Boolean!
-    deleteCategorie(id: ID!): Boolean!
 `;

@@ -233,11 +233,11 @@ export const ListRow = observer((props) => {
               color="default"
               variant="filled"
               icon={<UndoOutlined />}
-            >Mark as undone</Button> : <Button
+            >Reopen</Button> : <Button
               color="green"
               variant="solid"
               icon={<CheckOutlined />}
-            >Mark as done</Button>}
+            >Done</Button>}
           </div>
           <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
             {archived ? <Button

@@ -24,6 +24,10 @@ export const Categorie = sequelize.sequelize.define("categorie", {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
   },
+  archived: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 User.hasMany(Categorie);
