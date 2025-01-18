@@ -6,8 +6,9 @@ import { SettingsModal } from "./Settings/SettingsModal";
 import { userStore } from "../../../stores/userStore/userStore";
 
 import "./Header.less";
+import { observer } from "mobx-react";
 
-export const Header = () => {
+export const Header = observer(() => {
   const [ settingsCatOpened, setSettingsCatOpened] = useState(false);
 
   return (
@@ -25,4 +26,4 @@ export const Header = () => {
       </div>
     </>
   );
-};
+});
