@@ -119,16 +119,18 @@ export const ListRow = observer((props) => {
   const items = getMenuCategories(id);
 
   useEffect(() => {
+    const actionsMobileDiv = document.getElementById(`row__category${id}`);
     if (archived) {
-      const actionsMobileDiv = document.getElementById(`row__category${id}`);
       if (actionsMobileDiv) {
         actionsMobileDiv.style.backgroundColor = 'transparent';
       }
     } else {
-      // TODO restore correct color
+      actionsMobileDiv.style.backgroundColor = task.categorie?.color;
     }
-
-  }, [archived])
+    if (showCategory) {
+      handleShowCategory();
+    }
+  }, [archived, task])
 
   const handleOpenModal = () => {
     (e) => e.stopPropagation();
@@ -143,7 +145,11 @@ export const ListRow = observer((props) => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <div className="row__category" id={`row__category${id}`} onClick={showCategory ? handleHideCategory : handleShowCategory}>
+      <div 
+        className="row__category" 
+        id={`row__category${id}`} 
+        onClick={showCategory ? handleHideCategory : handleShowCategory}
+        >
         <div className="row__categoryName" >
           {windowInnerWidth >= 600 ? <Dropdown
             menu={{

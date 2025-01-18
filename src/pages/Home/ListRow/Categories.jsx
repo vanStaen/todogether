@@ -7,10 +7,11 @@ import { taskStore } from "../../../stores/taskStore/taskStore";
 import "./Categories.less";
 
 export const getMenuCategories = (taskId) => {
-    const categoriesAsListItem = userStore.categories?.map((categorie, index) => {
 
-        const handleChangeCatergory = async () => {
-            (e) => e.stopPropagation()
+   return userStore.categories?.map((categorie, index) => {
+
+        const handleChangeCategory = async (event) => {
+            event.stopPropagation()
             await updateTask(taskId, { categorieId: parseInt(categorie.id) })
             taskStore.fetchTasks();
         }
@@ -18,38 +19,34 @@ export const getMenuCategories = (taskId) => {
         return {
             key: index,
             label: (
-                <div onClick={handleChangeCatergory} className="menuItemCategorie__Container">
-                    <div className="menuItemCategorie__Title">
-                        {categorie.title}
+                <div onClick={handleChangeCategory} className="menuItemCategorie__container">
+                    <div className="menuItemCategorie__color" style={{backgroundColor: categorie.color}}>
                     </div>
-                    <div className="menuItemCategorie__ColorPicker">
-                        <ColorPicker defaultValue={categorie.color} size="small" />
+                    <div className="menuItemCategorie__title">
+                        {categorie.title}
                     </div>
                 </div>
             ),
         }
     })
-
-    const inputNewCatAsListItem = {
-        key: userStore.categories?.length + 1,
-        label: (
-            <Input placeholder="New category" onClick={(e) => e.stopPropagation()} />
-        ),
-    }
-
-    categoriesAsListItem.push(inputNewCatAsListItem);
-    return categoriesAsListItem;
 }
 
 export const ModalCategories = (props) => {
     const { taskId, catModalOpened, setCatModalOpened } = props;
 
-    const categoriesAsHtmlItem = userStore.categories?.map((categorie, index) => {
-        return <div onClick={(e) => e.stopPropagation()} className="menuItemCategorie__ContainerMobile">
-            <div className="menuItemCategorie__Title">
+    const categoriesAsHtmlItem = userStore.categories?.map((categorie) => {
+
+        const handleChangeCategory = async (event) => {
+            event.stopPropagation();
+            await updateTask(taskId, { categorieId: parseInt(categorie.id) })
+            taskStore.fetchTasks();
+        }
+        
+        return <div onClick={handleChangeCategory} className="menuItemCategorie__modal">
+            <div className="menuItemCategorie__title">
                 {categorie.title}
             </div>
-            <div className="menuItemCategorie__ColorPicker">
+            <div className="menuItemCategorie__colorPicker">
                 <ColorPicker defaultValue={categorie.color} size="small" />
             </div>
         </div>
