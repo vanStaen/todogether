@@ -12,7 +12,7 @@ import "./ListRow.less";
 const MIN_SWIPE_DISTANCE = 50;
 
 export const ListRow = observer((props) => {
-  const { key, task, windowInnerWidth } = props;
+  const { task, windowInnerWidth } = props;
   const { archived, desc, id, title, categorie } = task;
   const [showActions, setShowActions] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
@@ -115,8 +115,8 @@ export const ListRow = observer((props) => {
     handleHideCategory();
   }
 
-  const categoryName = task.category || 'Private';
-  const items = getMenuCategories();
+  const categorieName = task.categorie ? task.categorie.title : 'Private';
+  const items = getMenuCategories(id);
 
   useEffect(() => {
     if (archived) {
@@ -138,7 +138,7 @@ export const ListRow = observer((props) => {
   return (
     <div
       className={`row ${archived ? "row__archived" : "row__active"}`}
-      key={key}
+      key={task.id}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -152,12 +152,17 @@ export const ListRow = observer((props) => {
             trigger={['click']}
           >
             <div onClick={(e) => e.stopPropagation()}>
-              {categoryName}
+              {categorieName}
             </div>
           </Dropdown> :
-            <><ModalCategories catModalOpened={catModalOpened} setCatModalOpened={setCatModalOpened} />
+            <>
+              <ModalCategories
+                catModalOpened={catModalOpened}
+                setCatModalOpened={setCatModalOpened}
+                taskId={id}
+              />
               <div onClick={handleOpenModal}>
-                {categoryName}
+                {categorieName}
               </div>
             </>
 
@@ -165,7 +170,7 @@ export const ListRow = observer((props) => {
         </div>
       </div>
       <div className="row__categoryNameGhost" id={`row__categoryNameGhost${id}`}>
-        {categoryName}
+        {categorieName}
       </div>
       <div
         className="row__container"

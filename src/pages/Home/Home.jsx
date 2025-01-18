@@ -37,7 +37,6 @@ export const Home = observer(() => {
     }
     return (
       <ListRow
-        key={task.id}
         task={task}
         windowInnerWidth={windowInnerWidth}
       />

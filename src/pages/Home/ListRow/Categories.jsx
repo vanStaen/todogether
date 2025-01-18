@@ -1,15 +1,24 @@
 import React from "react";
 import { Input, ColorPicker, Modal } from "antd";
 import { userStore } from "../../../stores/userStore/userStore";
+import { updateTask } from "../../../stores/taskStore/udpateTask";
+import { taskStore } from "../../../stores/taskStore/taskStore";
 
 import "./Categories.less";
 
-export const getMenuCategories = () => {
+export const getMenuCategories = (taskId) => {
     const categoriesAsListItem = userStore.categories?.map((categorie, index) => {
+
+        const handleChangeCatergory = async () => {
+            (e) => e.stopPropagation()
+            await updateTask(taskId, { categorieId: parseInt(categorie.id) })
+            taskStore.fetchTasks();
+        }
+
         return {
             key: index,
             label: (
-                <div onClick={(e) => e.stopPropagation()} className="menuItemCategorie__Container">
+                <div onClick={handleChangeCatergory} className="menuItemCategorie__Container">
                     <div className="menuItemCategorie__Title">
                         {categorie.title}
                     </div>
@@ -33,7 +42,7 @@ export const getMenuCategories = () => {
 }
 
 export const ModalCategories = (props) => {
-    const { catModalOpened, setCatModalOpened } = props;
+    const { taskId, catModalOpened, setCatModalOpened } = props;
 
     const categoriesAsHtmlItem = userStore.categories?.map((categorie, index) => {
         return <div onClick={(e) => e.stopPropagation()} className="menuItemCategorie__ContainerMobile">

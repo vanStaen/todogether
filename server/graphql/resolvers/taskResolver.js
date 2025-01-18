@@ -69,7 +69,7 @@ export const taskResolver = {
       "positionInList",
       "favorited",
       "archived",
-      "categoryIds",
+      "categorieId",
       "subTaskIds",
       "deadline",
       "assignedTo",

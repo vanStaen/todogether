@@ -25,7 +25,7 @@ input TaskInputData {
     favorited: Boolean
     archived: Boolean
     subTaskIds: [Int]
-    categoryIds: [Int]
+    categorieId: Int
     deadline: String    
     assignedTo: Int
 }`;
