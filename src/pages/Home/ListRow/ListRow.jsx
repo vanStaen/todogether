@@ -81,14 +81,23 @@ export const ListRow = observer((props) => {
   }
 
   const handleShowCategory = () => {
+    // expand category div
     const categoryDiv = document.getElementById(`row__category${id}`);
     const categoryNameDiv = document.getElementById(`row__categoryNameGhost${id}`);
     categoryDiv.style.minWidth = `${categoryNameDiv.getBoundingClientRect().width}px`;
+
+    // resize the main container div
+    const rowContainerDiv = document.getElementById(`row__container${id}`);
+    rowContainerDiv.style.width = `${rowContainerDiv.getBoundingClientRect().width - categoryNameDiv.getBoundingClientRect().width - 8}px`;
+
+    // retract all other category divs
     const allCategoryDiv = document.getElementsByClassName('row__category');
+    const allContainerDiv = document.getElementsByClassName('row__container');
     if (allCategoryDiv.length) {
       for (let i = 0; i < allCategoryDiv.length; i++) {
         if (allCategoryDiv[i].id !== `row__category${id}`) {
           allCategoryDiv[i].style.minWidth = '7px';
+          allContainerDiv[i].style.width = 'calc(100vw - 123px)';
         };
       }
     }
@@ -107,6 +116,8 @@ export const ListRow = observer((props) => {
     if (actionsMobileDiv) {
       actionsMobileDiv.style.minWidth = '7px';
     }
+    const rowContainerDiv = document.getElementById(`row__container${id}`);
+    rowContainerDiv.style.width = 'calc(100vw - 123px)';
     setShowCategory(false);
   }
 
