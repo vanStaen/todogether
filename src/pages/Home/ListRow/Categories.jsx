@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, ColorPicker, Modal } from "antd";
+import { Modal } from "antd";
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateTask } from "../../../stores/taskStore/udpateTask";
 import { taskStore } from "../../../stores/taskStore/taskStore";
@@ -40,26 +40,21 @@ export const ModalCategories = (props) => {
             event.stopPropagation();
             await updateTask(taskId, { categorieId: parseInt(categorie.id) })
             taskStore.fetchTasks();
+            setCatModalOpened(false);
         }
         
         return <div onClick={handleChangeCategory} className="menuItemCategorie__modal">
+            <div className="menuItemCategorie__color" style={{backgroundColor: categorie.color}}>
+            </div>
             <div className="menuItemCategorie__title">
                 {categorie.title}
-            </div>
-            <div className="menuItemCategorie__colorPicker">
-                <ColorPicker defaultValue={categorie.color} size="small" />
             </div>
         </div>
 
     })
 
-    const inputNewCatAsHtmlItem = <Input placeholder="New category" onClick={(e) => e.stopPropagation()} />
-
-    categoriesAsHtmlItem.push(inputNewCatAsHtmlItem);
-
     return (
         <Modal
-            title="Select a category"
             centered
             open={catModalOpened}
             onOk={() => setCatModalOpened(false)}

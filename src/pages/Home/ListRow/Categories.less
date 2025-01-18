@@ -20,27 +20,19 @@
 .menuItemCategorie__modal {
     width: 100%;
     display: inline-flex;
-    padding: 0 0 20px 3px;
+    padding: 10px 0 10px 3px;
+
+    .menuItemCategorie__color {
+        margin: 1px 10px 0 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 12px;
+    }
 
     .menuItemCategorie__title {
         text-transform: capitalize;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-
-    }
-
-    .menuItemCategorie__colorPicker {
-        position: absolute;
-        right: 25px;
-    }
-
-}
-
-.modalCategories__modal {
-    .ant-modal-title {
-        padding-bottom: 10px;
-        opacity: .15;
-        font-weight: 100;
     }
 }
