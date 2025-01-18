@@ -38,11 +38,15 @@ export const ModalCategories = (props) => {
 
         const handleChangeCategory = async (event) => {
             event.stopPropagation();
-            await updateTask(taskId, { categorieId: parseInt(categorie.id) })
-            taskStore.fetchTasks();
-            setCatModalOpened(false);
+            try {
+                await updateTask(taskId, { categorieId: parseInt(categorie.id) })
+                taskStore.fetchTasks();
+                setCatModalOpened(false);
+            } catch (e){
+                console.error(e);
+            }
         }
-        
+                    
         return <div onClick={handleChangeCategory} className="menuItemCategorie__modal">
             <div className="menuItemCategorie__color" style={{backgroundColor: categorie.color}}>
             </div>

@@ -17,6 +17,7 @@ export const getUserInfo = async () => {
                     id,
                     title,
                     color,
+                    archived,
                 }
             }
           }

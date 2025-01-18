@@ -7,7 +7,7 @@
     .settings__space {
         width: calc(100% - 10px);
 
-        .settings__dowpDownEdit {
+        .settings__dropDownEdit {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,11 +17,27 @@
             color: white;
         }
 
-        .settings__input {
-            text-transform: capitalize;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
+        .settings__inputContainer {
+            width: calc(100% - 10px);
+
+            .settings__input {
+                text-transform: capitalize;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                &:hover {
+                    border-color: #999;
+                }
+
+                .settings__inputDelete {
+                    cursor: pointer;
+
+                    &:hover {
+                        color: darkred;
+                    }
+                }
+            }
         }
 
     }
@@ -51,5 +67,9 @@
 
 .settings__inputNew {
     margin: 10px 0 0 0;
-    width: calc(100% - 5px);
+    width: calc(100% - 5px); 
+    
+    &:hover {
+        border-color: #999;
+    }
 }

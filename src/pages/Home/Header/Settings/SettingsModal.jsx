@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { Modal, Input } from "antd";
-import { CheckOutlined, LoadingOutlined, EnterOutlined } from '@ant-design/icons';
+import { LoadingOutlined, EnterOutlined } from '@ant-design/icons';
 
 import { CategoryRow } from "./CategoryRow";
 import { userStore } from "../../../../stores/userStore/userStore";
@@ -13,7 +13,7 @@ export const SettingsModal = observer((props) => {
     const [ newCategoryLoading, setNewCategoryLoading ] = useState(false);
       
     const categoriesRows = userStore.categories?.map((categorie) => {
-        return (<CategoryRow categorie={categorie} items={items}/>)
+        return (<CategoryRow categorie={categorie} />)
     })
 
     return (

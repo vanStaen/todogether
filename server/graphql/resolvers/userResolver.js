@@ -9,7 +9,10 @@ export const userResolver = {
     }
     return await User.findOne({
       where: { id: req.userId },
-      include: [Categorie],
+      include: {
+        model: Categorie,
+        where: { archived: false },
+      },
       order: [[Categorie, "id", "ASC"]],
     });
   },

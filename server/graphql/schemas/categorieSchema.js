@@ -8,6 +8,7 @@ type Categorie {
     sharedWith: [Int]
     createdAt: String!
     udpatedAt: String!
+    archived: Boolean!
     user: User
 }`;
 
