@@ -59,7 +59,7 @@ export const ModalCategories = (props) => {
             open={catModalOpened}
             onOk={() => setCatModalOpened(false)}
             onCancel={() => setCatModalOpened(false)}
-            className="modalCategories__modal"
+            style={{ maxWidth: 'calc(100vw - 40px)' }}
             footer={null}
         >
             {categoriesAsHtmlItem}

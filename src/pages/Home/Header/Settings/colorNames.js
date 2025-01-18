@@ -1,0 +1,16 @@
+export const colorNames = [
+    'LightCoral',
+    'Crimson',
+    'FireBrick',
+    'DarkRed',
+    'PaleVioletRed',
+    'Coral',
+    'Gold',
+    'RoyalBlue',
+    'CadetBlue',
+    'DeepSkyBlue',
+    'SlateBlue',
+    'DarkCyan',
+    'MediumSeaGreen',
+    'LightGreen',
+]
