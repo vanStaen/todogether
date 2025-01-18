@@ -4,7 +4,7 @@ import { Button, Dropdown } from "antd";
 import { DeleteOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
 
 import { taskStore } from '../../../stores/taskStore/taskStore.js';
-import { getMenuCategories } from "./Categories";
+import { getMenuCategories, ModalCategories } from "./Categories";
 
 import "./ListRow.less";
 
@@ -16,6 +16,7 @@ export const ListRow = observer((props) => {
   const { archived, desc, id, title, categorie } = task;
   const [showActions, setShowActions] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
+  const [catModalOpened, setCatModalOpened] = useState(false);
 
   const touchStart = useRef(null);
   const touchEnd = useRef(null);
@@ -129,6 +130,11 @@ export const ListRow = observer((props) => {
 
   }, [archived])
 
+  const handleOpenModal = () => {
+    (e) => e.stopPropagation();
+    setCatModalOpened(true);
+  }
+
   return (
     <div
       className={`row ${archived ? "row__archived" : "row__active"}`}
@@ -139,7 +145,7 @@ export const ListRow = observer((props) => {
     >
       <div className="row__category" id={`row__category${id}`} onClick={showCategory ? handleHideCategory : handleShowCategory}>
         <div className="row__categoryName" >
-          <Dropdown
+          {windowInnerWidth >= 600 ? <Dropdown
             menu={{
               items,
             }}
@@ -148,7 +154,14 @@ export const ListRow = observer((props) => {
             <div onClick={(e) => e.stopPropagation()}>
               {categoryName}
             </div>
-          </Dropdown>
+          </Dropdown> :
+            <><ModalCategories catModalOpened={catModalOpened} setCatModalOpened={setCatModalOpened} />
+              <div onClick={handleOpenModal}>
+                {categoryName}
+              </div>
+            </>
+
+          }
         </div>
       </div>
       <div className="row__categoryNameGhost" id={`row__categoryNameGhost${id}`}>
