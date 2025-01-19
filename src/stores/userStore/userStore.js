@@ -11,6 +11,7 @@ export class UserStore {
   categories = [];
   emailSettings = null;
   profilSettings = null;
+  joinedDate = null;
 
   constructor() {
     makeObservable(this, {
@@ -20,12 +21,14 @@ export class UserStore {
       categories: observable,
       emailSettings: observable,
       profilSettings: observable,
+      joinedDate: observable,
       setEmail: action,
       setUserName: action,
       setAvatar: action,
       setCategories: action,
       setEmailSettings: action,
       setProfilSettings: action,
+      setJoinedDate: action,
       fetchuserData: action,
     });
   }
@@ -54,6 +57,11 @@ export class UserStore {
     this.profilSettings = profilSettings;
   };
 
+  setJoinedDate = (joinedDate) => {
+    this.joinedDate = joinedDate;
+  };
+
+
   fetchuserData = async () => {
     const userData = await getUserInfo();
     if (userData) {
@@ -61,6 +69,7 @@ export class UserStore {
       this.setUserName(userData.username);
       this.setAvatar(userData.avatar);
       this.setCategories(userData.categories);
+      this.setJoinedDate(new Date(parseInt(userData.createdAt)));
 
       if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);

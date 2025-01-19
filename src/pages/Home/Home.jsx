@@ -6,6 +6,7 @@ import { Header } from "./Header/Header";
 import { ListRow } from "./ListRow/ListRow";
 import { ListFooter } from "./ListFooter/ListFooter";
 import { taskStore } from "../../stores/taskStore/taskStore";
+import { settingsStore } from "../../stores/settingsStore/settingsStore";
 
 import "./Home.css";
 
@@ -32,7 +33,7 @@ export const Home = observer(() => {
   }, [resetWindowInners]);
 
   const tasksRow = taskStore.tasks.map((task) => {
-    if (taskStore.showCompleted === false && task.archived) {
+    if (settingsStore.showCompleted === false && task.archived) {
       return null;
     }
     return (

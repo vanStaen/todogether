@@ -1,21 +1,15 @@
 import { action, makeObservable, observable } from "mobx";
-// import Cookies from 'universal-cookie';
 
 import { getTasks } from "./getTasks.js";
 import { archiveTask } from "./archiveTask.js";
 import { deleteTask } from "./deleteTask.js";
 
-// const cookies = new Cookies();
-
 export class TaskStore {
-  showCompleted = true;
   tasks = [];
   taskAreLoading = true;
 
   constructor() {
     makeObservable(this, {
-      showCompleted: observable,
-      setShowCompleted: action,
       tasks: observable,
       setTasks: action,
       fetchTasks: action,
@@ -25,10 +19,6 @@ export class TaskStore {
       setTaskAreLoading: action,
     });
   }
-
-  setShowCompleted = (showCompleted) => {
-    this.showCompleted = showCompleted;
-  };
 
   setTasks = (tasks) => {
     this.tasks = tasks;
