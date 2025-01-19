@@ -36,7 +36,7 @@ export const ListFooter = observer(() => {
 
   const keyDownListener = (event) => {
     const keyPressed = event.key.toLowerCase();
-    if (keyPressed === "enter") {
+    if (keyPressed === "enter" && textNewTask) {
       saveNewTask();
     }
   };
@@ -64,6 +64,7 @@ export const ListFooter = observer(() => {
             onChange={onChangeInput}
             value={textNewTask}
             placeholder="Add a task"
+            onPressEnter={()=> console.log('test')}
             options={optionsFormated}
             filterOption={(inputValue, option) =>
               option.value
