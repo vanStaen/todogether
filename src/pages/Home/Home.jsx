@@ -36,7 +36,7 @@ export const Home = observer(() => {
     if (settingsStore.showCompleted === false && task.archived) {
       return null;
     }
-    if (settingsStore.categorieFilter && task.categorie.id !== settingsStore.categorieFilter.id) {
+    if (settingsStore.categorieFilter && task.categorie?.id !== settingsStore.categorieFilter.id) {
       return null;
     }
     return (
