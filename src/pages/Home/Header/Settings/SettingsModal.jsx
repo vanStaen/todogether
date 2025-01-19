@@ -9,14 +9,32 @@ import { UserSettings } from "./UserSettings";
 import { userStore } from "../../../../stores/userStore/userStore";
 
 import "./SettingsModal.less";
+import { addCategorie } from "../../../../stores/userStore/addCategorie";
 
 export const SettingsModal = observer((props) => {
     const { settingsCatOpened, setSettingsCatOpened } = props;
     const [ newCategoryLoading, setNewCategoryLoading ] = useState(false);
+    const [ newCategoryName, setNewCategoryName ] = useState(null);
       
     const categoriesRows = userStore.categories?.map((categorie) => {
         return (<CategoryRow categorie={categorie} />)
     })
+
+    const handleCatInputChange = (event) => {
+        setNewCategoryName(event.target.value);
+    }
+
+    const handleCatInputPressEnter = async () => {
+        try {
+            setNewCategoryLoading(true);
+            await addCategorie({title: newCategoryName});
+            setNewCategoryName(null);
+            userStore.fetchuserData();
+        } catch (e) {
+            console.error(e);
+        }
+        setNewCategoryLoading(false);
+    }
 
     const tabsItems = [
         {
@@ -27,7 +45,10 @@ export const SettingsModal = observer((props) => {
             <Input 
                 className="settings__catInputNew" 
                 placeholder={'New category'} 
-                suffix={newCategoryLoading ? <LoadingOutlined /> : <EnterOutlined />}
+                suffix={newCategoryLoading ? <LoadingOutlined /> : <EnterOutlined onClick={handleCatInputPressEnter}/>}
+                value={newCategoryName}
+                onChange={handleCatInputChange }
+                onPressEnter={handleCatInputPressEnter}
             />
           </div>,
         },

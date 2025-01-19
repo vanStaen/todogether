@@ -11,6 +11,7 @@ export const categorieResolver = {
         userId: req.userId,
         title: args.categorieInput.title,
         archived: false,
+        color: 'Silver',
       });
       return await categorie.save();
     } catch (err) {
@@ -43,7 +44,7 @@ export const categorieResolver = {
         returning: true,
         plain: true,
       });
-      // updatedCategorie[0]: number or row udpated
+      // updatedCategorie[0]: number or row updated
       // updatedCategorie[1]: rows updated
       return updatedCategorie[1];
     } catch (err) {

@@ -7,7 +7,7 @@ type Categorie {
     color: String
     sharedWith: [Int]
     createdAt: String!
-    udpatedAt: String!
+    updatedAt: String!
     archived: Boolean!
     user: User
 }`;

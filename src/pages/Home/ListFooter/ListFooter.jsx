@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { Button, AutoComplete } from "antd";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
-import { addTask } from "./addTask";
+import { addTask } from "../../../stores/taskStore/addTask";
 
 import "./ListFooter.css";
 
@@ -12,33 +12,21 @@ export const ListFooter = observer(() => {
   const [textNewTask, setTextNewTask] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    document.addEventListener("keydown", keyDownListener);
-    return () => {
-      document.removeEventListener("keydown", keyDownListener);
-    };
-  }, [keyDownListener]);
-
   const saveNewTask = async () => {
     try {
-      setLoading(true);
-      const taskInputData = {};
-      taskInputData.title = textNewTask;
-      const resultId = await addTask(taskInputData);
-      console.log(`New Task #${resultId} added`);
-      setTextNewTask(null);
-      taskStore.fetchTasks();
+      if (textNewTask) {
+        setLoading(true);
+        const taskInputData = {};
+        taskInputData.title = textNewTask;
+        const resultId = await addTask(taskInputData);
+        console.log(`New Task #${resultId} added`);
+        setTextNewTask(null);
+        taskStore.fetchTasks();
+      }
     } catch (e) {
       console.log("error", e);
     }
     setLoading(false);
-  };
-
-  const keyDownListener = (event) => {
-    const keyPressed = event.key.toLowerCase();
-    if (keyPressed === "enter" && textNewTask) {
-      saveNewTask();
-    }
   };
 
   const onChangeInput = (value) => {
@@ -63,8 +51,7 @@ export const ListFooter = observer(() => {
             onSearch={onChangeInput}
             onChange={onChangeInput}
             value={textNewTask}
-            placeholder="Add a task"
-            onPressEnter={()=> console.log('test')}
+            placeholder="Add a task" 
             options={optionsFormated}
             filterOption={(inputValue, option) =>
               option.value

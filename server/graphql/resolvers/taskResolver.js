@@ -87,7 +87,7 @@ export const taskResolver = {
         returning: true,
         plain: true,
       });
-      // updatedTask[0]: number or row udpated
+      // updatedTask[0]: number or row updated
       // updatedTask[1]: rows updated
       return updatedTask[1];
     } catch (err) {

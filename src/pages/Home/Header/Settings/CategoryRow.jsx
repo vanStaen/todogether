@@ -5,7 +5,7 @@ import { CheckOutlined, EditOutlined, LoadingOutlined, DeleteOutlined } from '@a
 
 import { userStore } from "../../../../stores/userStore/userStore";
 import { archiveCategorie } from "../../../../stores/userStore/archiveCategorie.js"
-import { updateCategorie } from "../../../../stores/userStore/udpateCategorie.js"
+import { updateCategorie } from "../../../../stores/userStore/updateCategorie.js"
 import { colorNames } from "./colorNames.js";
 
 export const CategoryRow = observer((props) => {

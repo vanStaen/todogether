@@ -12,7 +12,7 @@ type Task {
     categorieId: String
     assignedTo: Int    
     createdAt: String!
-    udpatedAt: String!
+    updatedAt: String!
     user: User
     categorie: Categorie
 }`;

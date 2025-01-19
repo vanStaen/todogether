@@ -73,7 +73,7 @@ export const userResolver = {
         returning: true,
         plain: true,
       });
-      // updatedUser[0]: number or row udpated
+      // updatedUser[0]: number or row updated
       // updatedUser[1]: rows updated
       return updatedUser[1];
     } catch (err) {

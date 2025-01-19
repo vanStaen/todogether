@@ -14,7 +14,7 @@ export const Categorie = sequelize.sequelize.define("categorie", {
   },
   desc: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   color: {
     type: DataTypes.STRING,
@@ -22,7 +22,7 @@ export const Categorie = sequelize.sequelize.define("categorie", {
   },
   sharedWith: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
-    allowNull: false,
+    allowNull: true,
   },
   archived: {
     type: DataTypes.BOOLEAN,
