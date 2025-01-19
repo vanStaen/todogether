@@ -127,7 +127,7 @@ export const ListRow = observer((props) => {
   }
 
   const categorieName = task.categorie ? task.categorie.title : 'Private';
-  const items = getMenuCategories(id);
+  const items = getMenuCategories("update", id);
 
   useEffect(() => {
     const actionsMobileDiv = document.getElementById(`row__category${id}`);
@@ -162,7 +162,8 @@ export const ListRow = observer((props) => {
         onClick={showCategory ? handleHideCategory : handleShowCategory}
         >
         <div className="row__categoryName" >
-          {windowInnerWidth >= 600 ? <Dropdown
+          {windowInnerWidth >= 600 ? 
+          <Dropdown
             menu={{
               items,
             }}

@@ -14,6 +14,7 @@ export const getTasks = async () => {
                 categorie {
                     title,
                     color,
+                    id,
                 }
               }
           }

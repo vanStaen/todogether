@@ -5,21 +5,26 @@ import { updateTask } from "../../../stores/taskStore/udpateTask";
 import { taskStore } from "../../../stores/taskStore/taskStore";
 
 import "./Categories.less";
+import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 
-export const getMenuCategories = (taskId) => {
+export const getMenuCategories = (action, taskId = null) => {
 
    return userStore.categories?.map((categorie, index) => {
 
-        const handleChangeCategory = async (event) => {
+        const handleAction = async (event) => {
             event.stopPropagation()
-            await updateTask(taskId, { categorieId: parseInt(categorie.id) })
-            taskStore.fetchTasks();
+            if (action === 'update') {
+                await updateTask(taskId, { categorieId: parseInt(categorie.id) })
+                taskStore.fetchTasks();
+            } else if (action === 'filter') {
+                settingsStore.setCategorieFilter(categorie);
+            }
         }
 
         return {
             key: index,
             label: (
-                <div onClick={handleChangeCategory} className="menuItemCategorie__container">
+                <div onClick={handleAction} className="menuItemCategorie__container">
                     <div className="menuItemCategorie__color" style={{backgroundColor: categorie.color}}>
                     </div>
                     <div className="menuItemCategorie__title">
