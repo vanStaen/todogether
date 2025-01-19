@@ -32,7 +32,7 @@ export const Home = observer(() => {
     };
   }, [resetWindowInners]);
 
-  const tasksRow = taskStore.tasks.map((task) => {
+  const tasksRow = taskStore.tasks.map((task, index) => {
     if (settingsStore.showCompleted === false && task.archived) {
       return null;
     }
@@ -41,6 +41,7 @@ export const Home = observer(() => {
     }
     return (
       <ListRow
+        key={`listrow${index}`}
         task={task}
         windowInnerWidth={windowInnerWidth}
       />

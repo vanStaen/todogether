@@ -34,6 +34,7 @@ export const Header = observer(() => {
               menu={{
                 items,
               }}
+              placement="bottomRight"
               trigger={['click']}
             >
               <div onClick={(e) => e.stopPropagation()}>

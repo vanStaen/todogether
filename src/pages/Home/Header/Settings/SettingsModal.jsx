@@ -16,8 +16,8 @@ export const SettingsModal = observer((props) => {
     const [ newCategoryLoading, setNewCategoryLoading ] = useState(false);
     const [ newCategoryName, setNewCategoryName ] = useState(null);
       
-    const categoriesRows = userStore.categories?.map((categorie) => {
-        return (<CategoryRow categorie={categorie} />)
+    const categoriesRows = userStore.categories?.map((categorie, index) => {
+        return (<CategoryRow key={`categoryRow${index}`} categorie={categorie} />)
     })
 
     const handleCatInputChange = (event) => {
@@ -38,7 +38,7 @@ export const SettingsModal = observer((props) => {
 
     const tabsItems = [
         {
-          key: 1,
+          key: 'cat1',
           label: 'Categories',
           children: <div className='settings__containerMain'>
             {categoriesRows}
@@ -53,14 +53,14 @@ export const SettingsModal = observer((props) => {
           </div>,
         },
         {
-          key: 2,
+          key: 'task2',
           label: 'Tasks',
           children:  <div className='settings__containerMain'>
             <ShowCompletedTasks />
           </div>,
         },
         {
-            key: 3,
+            key: 'user3',
             label: 'User',
             children:  <div className='settings__containerMain'><UserSettings/></div>,
         },
