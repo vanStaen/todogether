@@ -4,6 +4,7 @@ import { Button, AutoComplete, Space } from "antd";
 import { LoadingOutlined, PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
+import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 import { addTask } from "../../../stores/taskStore/addTask";
 
 import "./ListFooter.css";
@@ -19,8 +20,8 @@ export const ListFooter = observer(() => {
         setLoading(true);
         const taskInputData = {};
         taskInputData.title = textNewTask;
+        taskInputData.categorieId = parseInt(settingsStore.categorieFilter.id);
         const resultId = await addTask(taskInputData);
-        console.log(`New Task #${resultId} added`);
         setTextNewTask(null);
         taskStore.fetchTasks();
       }
@@ -34,7 +35,10 @@ export const ListFooter = observer(() => {
     setTextNewTask(value);
   };
 
-  const options = taskStore.tasks.map((task) => task.title.trim());
+  const taskFiltered = (settingsStore.categorieFilter && taskStore.tasks.length ) 
+    ? taskStore.tasks.filter((task) => task.categorie?.id === settingsStore.categorieFilter?.id && task.archived) 
+    : taskStore.tasks;
+  const options = taskFiltered.map((task) => task.title.trim());
   const optionsUnique = [...new Set(options)];
   const optionsFormated = optionsUnique.map((option) => {
     return { value: option };

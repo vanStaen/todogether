@@ -43,7 +43,7 @@ export const taskResolver = {
         userId: req.userId,
         title: title,
         desc: desc,
-        categoryIds: args.taskInput.categoryIds,
+        categorieId: args.taskInput.categorieId,
         positionInList: 0,
         favorited: false,
         archived: false,
