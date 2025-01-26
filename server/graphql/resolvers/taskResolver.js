@@ -1,6 +1,7 @@
 import { Task } from "../../models/Task.js";
 import { Categorie } from "../../models/Categorie.js";
 import { getTitleFromUrl } from "../../lib/getTitleFromUrl.js";
+import { Op } from "sequelize";
 
 export const taskResolver = {
   // getTask(taskId: Int!): Task
@@ -15,12 +16,20 @@ export const taskResolver = {
   },
 
   // getTasks(): [Task]
-  async getTasks(_, req) {
+  async getTasks(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     return await Task.findAll({
-      where: { userId: req.userId },
+      where: {
+        [Op.or] : [
+        { userId: req.userId },
+         {
+           // TODO: pass array as arg
+           categorieId: { [Op.in]: [1, 35] },
+         },
+        ]
+      },
       include: [Categorie],
       order: [["id", "DESC"]],
       //order: [["archived", "ASC"], ["id", "DESC"]],
