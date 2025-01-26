@@ -16,9 +16,19 @@ export const Header = observer(() => {
 
   const items = getMenuCategories("filter");
 
-  const handleDeleteCategorieFilter = (e) => {
-    e.stopPropagation();
-    settingsStore.setCategorieFilter(null);
+  if (settingsStore.categorieFilter) {
+    items.push(
+      {
+        key: 'reset',
+        label: (
+            <div onClick={() => settingsStore.setCategorieFilter(null)} className="menuItemCategorie__container">
+                <div className="menuItemCategorie__showAllCat">
+                    Show all tasks
+                </div>
+            </div>
+        ),
+    }
+    )
   }
 
   return (
@@ -40,10 +50,7 @@ export const Header = observer(() => {
               <div onClick={(e) => e.stopPropagation()}>
                 { 
                   settingsStore.categorieFilter ? 
-                    <Space>
-                      <Tag color="#e6e4dd" onClick={handleDeleteCategorieFilter}><CloseOutlined style={{color: 'rgba(0,0,0,.25)'}}/></Tag>
                       <Tag color={settingsStore.categorieFilter.color}>{settingsStore.categorieFilter.title}</Tag>
-                    </ Space>
                     :
                     <Tag color="#e6e4dd" className={"header__noSelectionTag"}>All lists</Tag>
                 }
