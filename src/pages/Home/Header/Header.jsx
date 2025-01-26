@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { SettingOutlined, LoadingOutlined, UndoOutlined } from '@ant-design/icons';
+import { SettingOutlined, LoadingOutlined, CloseOutlined } from '@ant-design/icons';
 import { Dropdown, Tag, Space } from "antd";
 
 import Logo from "../../../img/todogetherLogo.png";
@@ -41,7 +41,7 @@ export const Header = observer(() => {
                 { 
                   settingsStore.categorieFilter ? 
                     <Space>
-                      <Tag color="#e6e4dd" onClick={handleDeleteCategorieFilter}><UndoOutlined style={{color: 'rgba(0,0,0,.25)'}}/></Tag>
+                      <Tag color="#e6e4dd" onClick={handleDeleteCategorieFilter}><CloseOutlined style={{color: 'rgba(0,0,0,.25)'}}/></Tag>
                       <Tag color={settingsStore.categorieFilter.color}>{settingsStore.categorieFilter.title}</Tag>
                     </ Space>
                     :

@@ -41,3 +41,7 @@ a:visited {
 .link:hover {
   color: rgba(229, 152, 102, .75);
 }
+
+.ant-dropdown-menu {
+  border-radius: 0;
+}
