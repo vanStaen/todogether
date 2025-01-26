@@ -22,7 +22,7 @@ export const userResolver = {
       throw new Error("Unauthorized!");
     }
     return await User.findAll({
-      attributes: ['id', 'username', 'avatar'],
+      attributes: ['id', 'username', 'avatar', 'active'],
       where: { active: true },
     });
   },

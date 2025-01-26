@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Modal, Input, Tabs } from "antd";
 import { LoadingOutlined, EnterOutlined } from '@ant-design/icons';
@@ -7,14 +7,19 @@ import { CategoryRow } from "./CategoryRow";
 import { ShowCompletedTasks } from "./ShowCompletedTasks";
 import { UserSettings } from "./UserSettings";
 import { userStore } from "../../../../stores/userStore/userStore";
+import { addCategorie } from "../../../../stores/userStore/addCategorie";
+import { settingsStore } from "../../../../stores/settingsStore/settingsStore";
 
 import "./SettingsModal.less";
-import { addCategorie } from "../../../../stores/userStore/addCategorie";
 
 export const SettingsModal = observer((props) => {
     const { settingsCatOpened, setSettingsCatOpened } = props;
     const [ newCategoryLoading, setNewCategoryLoading ] = useState(false);
     const [ newCategoryName, setNewCategoryName ] = useState(null);
+
+    useEffect(() => {
+        settingsStore.fetchAllUsers();
+    }, [])
       
     const categoriesRows = userStore.categories?.map((categorie, index) => {
         return (<CategoryRow key={`categoryRow${index}`} categorie={categorie} />)

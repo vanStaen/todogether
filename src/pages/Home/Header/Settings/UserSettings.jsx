@@ -6,13 +6,6 @@ import { userStore } from '../../../../stores/userStore/userStore';
 
 export const UserSettings = observer(() => {
 
-  const dateOptions = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-
     return (
       <Row>
         <Col span={24} style={{padding: '7px 20px'}}> 
