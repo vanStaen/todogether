@@ -18,6 +18,7 @@ export default buildSchema(`
     type RootQuery {
         ${userSchemas.UserQueries}
         ${taskSchemas.TaskQueries}
+        ${categorieSchemas.CategorieQueries}
     }
 
     type RootMutations {

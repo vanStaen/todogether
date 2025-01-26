@@ -1,21 +1,17 @@
 import axios from "axios";
 
-export const getUserInfo = async () => {
+export const getUserCategories = async () => {
     const requestBody = {
         query: `
         {
-            getUser {
-                username,
-                email,
-                avatar,
-                emailSettings,
-                profilSettings,
-                lastActive,
-                createdAt,
-                updatedAt,
+            getUserCategories {
+                id,
+                title,
+                color,
+                archived,
             }
-          }
-          `,
+        }
+        `,
     };
 
     const response = await axios({
@@ -28,5 +24,5 @@ export const getUserInfo = async () => {
         throw new Error("Unauthenticated!");
     }
 
-    return response.data.data.getUser;
+    return response.data.data.getUserCategories;
 };

@@ -18,7 +18,11 @@ input CategorieInputData {
     desc: String
     color: String
     sharedWith: [Int]
-}`;
+}`
+
+export const CategorieQueries = `
+    getUserCategories: [Categorie]
+`;
 
 export const CategorieMutations = `
     addCategorie(categorieInput: CategorieInputData!): Categorie!

@@ -1,4 +1,5 @@
 import { Categorie } from "../../models/Categorie.js";
+import { Op } from "sequelize";
 
 export const categorieResolver = {
   //addCategorie(categorieInput: CategorieInputData!): Categorie!
@@ -18,6 +19,24 @@ export const categorieResolver = {
       console.log(err);
     }
   },
+  
+  //getUserCategories: [Categorie]
+  async getUserCategories(_, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return await Categorie.findAll({
+      where: {
+       [Op.or] : [
+        { userId: req.userId },
+        {
+          sharedWith: { [Op.contains]: [req.userId] },
+        },
+       ]
+      }
+    });
+  },
+
 
   //updateCategorie(id: ID!, categorieInput: CategorieInputData!): Categorie!
   async updateCategorie(args, req) {

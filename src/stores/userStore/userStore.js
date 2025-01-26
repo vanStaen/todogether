@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import { getUserInfo } from "./getUserInfo.js";
 import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
+import { getUserCategories } from "./getUserCategories.js";
 
 export class UserStore {
   email = null;
@@ -64,11 +65,11 @@ export class UserStore {
 
   fetchuserData = async () => {
     const userData = await getUserInfo();
+    const userCategories = await getUserCategories();
     if (userData) {
       this.setEmail(userData.email);
       this.setUserName(userData.username);
       this.setAvatar(userData.avatar);
-      this.setCategories(userData.categories);
       this.setJoinedDate(new Date(parseInt(userData.createdAt)));
 
       if (userData.emailSettings === null || userData.emailSettings === "{}") {
@@ -82,7 +83,9 @@ export class UserStore {
       } else {
         this.setProfilSettings(userData.profilSettings);
       }
-
+    }
+    if (userCategories) {
+      this.setCategories(userCategories);
     }
   };
 }
