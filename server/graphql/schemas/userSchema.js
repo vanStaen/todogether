@@ -11,6 +11,7 @@ type User {
     updatedAt: String!
     tasks: [Task]
     categories: [Categorie]
+    active: Boolean,
 }`;
 
 export const UserInputData = `
@@ -26,6 +27,7 @@ input UserInputData {
 
 export const UserQueries = `
     getUser(id: Int): User
+    getAllUsers(): [User]
 `;
 
 export const UserMutations = `

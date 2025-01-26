@@ -17,6 +17,16 @@ export const userResolver = {
     });
   },
 
+  async getAllUsers(_, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return await User.findAll({
+      attributes: ['id', 'username', 'avatar'],
+      where: { active: true },
+    });
+  },
+
   // addUser(userInput: UserInputData!): User!
   async addUser(args, req) {
     const foundUser = await User.findOne({
