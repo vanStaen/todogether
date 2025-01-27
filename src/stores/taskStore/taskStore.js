@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import { getTasks } from "./getTasks.js";
 import { archiveTask } from "./archiveTask.js";
 import { deleteTask } from "./deleteTask.js";
+import { userStore } from "../userStore/userStore.js";
 
 export class TaskStore {
   tasks = [];
@@ -41,7 +42,7 @@ export class TaskStore {
   archiveTask = async (id, archived) => {
     try {
       await archiveTask(id, archived);
-      const taskData = await getTasks();
+      const taskData = await getTasks(userStore.categoriesId);
       if (taskData) {
         this.setTasks(taskData);
       }
