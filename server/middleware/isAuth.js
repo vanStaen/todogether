@@ -25,8 +25,8 @@ export default async (req, res, next) => {
   // Authorization: Bearer <token>
   const token = req.session.token;
   const refreshToken = req.session.refreshToken;
-  //console.log("token", token)
-  //console.log("refreshToken", refreshToken)
+  console.log("token", token)
+  console.log("refreshToken", refreshToken)
 
   // Check tokens are valid:
   if (!token || token === "undefined" || token === "") {
