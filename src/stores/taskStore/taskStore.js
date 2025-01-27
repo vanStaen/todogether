@@ -28,11 +28,13 @@ export class TaskStore {
     this.taskAreLoading = taskAreLoading;
   };
 
-  fetchTasks = async () => {
-    const taskData = await getTasks();
-    if (taskData) {
-      this.setTasks(taskData);
-      this.setTaskAreLoading(false);
+  fetchTasks = async (userCategories) => {
+    if (userCategories) {
+      const taskData = await getTasks(userCategories);
+      if (taskData) {
+        this.setTasks(taskData);
+        this.setTaskAreLoading(false);
+      }
     }
   };
 

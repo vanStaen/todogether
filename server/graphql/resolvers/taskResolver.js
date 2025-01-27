@@ -15,19 +15,19 @@ export const taskResolver = {
     });
   },
 
-  // getTasks(): [Task]
+  // getTasks(categoriesId: [Int]): [Task]
   async getTasks(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     return await Task.findAll({
       where: {
-        [Op.or] : [
-        { userId: req.userId },
-         {
-           // TODO: pass array as arg
-           categorieId: { [Op.in]: [1, 35] },
-         },
+        [Op.or]: [
+          { userId: req.userId },
+          {
+            // TODO: pass array as arg
+            categorieId: { [Op.in]: args.categoriesId },
+          },
         ]
       },
       include: [Categorie],

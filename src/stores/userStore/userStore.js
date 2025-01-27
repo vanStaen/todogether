@@ -4,12 +4,14 @@ import { getUserInfo } from "./getUserInfo.js";
 import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
 import { getUserCategories } from "./getUserCategories.js";
+import { taskStore } from "../taskStore/taskStore.js";
 
 export class UserStore {
   email = null;
   username = null;
   avatar = null;
   categories = [];
+  categoriesId = [];
   emailSettings = null;
   profilSettings = null;
   joinedDate = null;
@@ -20,6 +22,7 @@ export class UserStore {
       username: observable,
       avatar: observable,
       categories: observable,
+      categoriesId: observable,
       emailSettings: observable,
       profilSettings: observable,
       joinedDate: observable,
@@ -27,6 +30,7 @@ export class UserStore {
       setUserName: action,
       setAvatar: action,
       setCategories: action,
+      setCategoriesId: action,
       setEmailSettings: action,
       setProfilSettings: action,
       setJoinedDate: action,
@@ -48,6 +52,10 @@ export class UserStore {
 
   setCategories = (categories) => {
     this.categories = categories;
+  };
+
+  setCategoriesId = (categoriesId) => {
+    this.categoriesId = categoriesId;
   };
 
   setEmailSettings = (emailSettings) => {
@@ -86,6 +94,9 @@ export class UserStore {
     }
     if (userCategories) {
       this.setCategories(userCategories);
+      const catIds = userCategories.map(cat => parseInt(cat.id));
+      this.setCategoriesId(catIds);
+      taskStore.fetchTasks(catIds);
     }
   };
 }

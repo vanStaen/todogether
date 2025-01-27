@@ -3,19 +3,19 @@ import { Modal } from "antd";
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateTask } from "../../../stores/taskStore/udpateTask";
 import { taskStore } from "../../../stores/taskStore/taskStore";
+import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 
 import "./Categories.less";
-import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 
 export const getMenuCategories = (action, taskId = null) => {
 
-   return userStore.categories?.map((categorie, index) => {
+    return userStore.categories?.map((categorie, index) => {
 
         const handleAction = async (event) => {
             event.stopPropagation()
             if (action === 'update') {
                 await updateTask(taskId, { categorieId: parseInt(categorie.id) })
-                taskStore.fetchTasks();
+                taskStore.fetchTasks(userStore.categoriesId);
             } else if (action === 'filter') {
                 settingsStore.setCategorieFilter(categorie);
             }
@@ -25,7 +25,7 @@ export const getMenuCategories = (action, taskId = null) => {
             key: index,
             label: (
                 <div onClick={handleAction} className="menuItemCategorie__container">
-                    <div className="menuItemCategorie__color" style={{backgroundColor: categorie.color}}>
+                    <div className="menuItemCategorie__color" style={{ backgroundColor: categorie.color }}>
                     </div>
                     <div className="menuItemCategorie__title">
                         {categorie.title}
@@ -45,15 +45,15 @@ export const ModalCategories = (props) => {
             event.stopPropagation();
             try {
                 await updateTask(taskId, { categorieId: parseInt(categorie.id) })
-                taskStore.fetchTasks();
+                taskStore.fetchTasks(userStore.categoriesId);
                 setCatModalOpened(false);
-            } catch (e){
+            } catch (e) {
                 console.error(e);
             }
         }
-                    
+
         return <div onClick={handleChangeCategory} className="menuItemCategorie__modal">
-            <div className="menuItemCategorie__color" style={{backgroundColor: categorie.color}}>
+            <div className="menuItemCategorie__color" style={{ backgroundColor: categorie.color }}>
             </div>
             <div className="menuItemCategorie__title">
                 {categorie.title}

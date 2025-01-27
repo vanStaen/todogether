@@ -5,6 +5,7 @@ import { LoadingOutlined, PlusOutlined, EllipsisOutlined } from '@ant-design/ico
 
 import { taskStore } from "../../../stores/taskStore/taskStore";
 import { settingsStore } from "../../../stores/settingsStore/settingsStore";
+import { userStore } from "../../../stores/userStore/userStore";
 import { addTask } from "../../../stores/taskStore/addTask";
 
 import "./ListFooter.css";
@@ -23,7 +24,7 @@ export const ListFooter = observer(() => {
         taskInputData.categorieId = parseInt(settingsStore.categorieFilter.id);
         const resultId = await addTask(taskInputData);
         setTextNewTask(null);
-        taskStore.fetchTasks();
+        taskStore.fetchTasks(userStore.categoriesId);
       }
     } catch (e) {
       console.log("error", e);
@@ -35,8 +36,8 @@ export const ListFooter = observer(() => {
     setTextNewTask(value);
   };
 
-  const taskFiltered = (settingsStore.categorieFilter && taskStore.tasks.length ) 
-    ? taskStore.tasks.filter((task) => task.categorie?.id === settingsStore.categorieFilter?.id && task.archived) 
+  const taskFiltered = (settingsStore.categorieFilter && taskStore.tasks.length)
+    ? taskStore.tasks.filter((task) => task.categorie?.id === settingsStore.categorieFilter?.id && task.archived)
     : taskStore.tasks;
   const options = taskFiltered.map((task) => task.title.trim());
   const optionsUnique = [...new Set(options)];
@@ -56,7 +57,7 @@ export const ListFooter = observer(() => {
             onSearch={onChangeInput}
             onChange={onChangeInput}
             value={textNewTask}
-            placeholder="Add a task" 
+            placeholder="Add a task"
             options={optionsFormated}
             filterOption={(inputValue, option) =>
               option.value
@@ -67,28 +68,28 @@ export const ListFooter = observer(() => {
         </div>
       </div>
       <div className="listFooter__rightContainer">
-      <Space>
-        <Button
-          variant="solid"
-          icon={<EllipsisOutlined />}
-          onClick={() => setShowMoreDetailModal(true)}
-        />
-        {window.innerWidth > 600 ? 
+        <Space>
           <Button
             variant="solid"
-            icon={loading ? <LoadingOutlined spin /> : <PlusOutlined />}
-            onClick={() => saveNewTask()}
-            disabled={!textNewTask || loading}
-          >
-            {textNewTask ? "Add Task" : "New Task"}
-        </Button> :
-        <Button
-          variant="solid" 
-          icon={loading ? <LoadingOutlined spin /> : <PlusOutlined />}
-          onClick={() => saveNewTask()}
-          disabled={!textNewTask || loading}
-        />
-        }
+            icon={<EllipsisOutlined />}
+            onClick={() => setShowMoreDetailModal(true)}
+          />
+          {window.innerWidth > 600 ?
+            <Button
+              variant="solid"
+              icon={loading ? <LoadingOutlined spin /> : <PlusOutlined />}
+              onClick={() => saveNewTask()}
+              disabled={!textNewTask || loading}
+            >
+              {textNewTask ? "Add Task" : "New Task"}
+            </Button> :
+            <Button
+              variant="solid"
+              icon={loading ? <LoadingOutlined spin /> : <PlusOutlined />}
+              onClick={() => saveNewTask()}
+              disabled={!textNewTask || loading}
+            />
+          }
         </Space>
       </div>
     </div>

@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getTasks = async () => {
+export const getTasks = async (categoriesId) => {
   const requestBody = {
     query: `
-        {
-            getTasks {
+          query ($categoriesId: [Int]) {
+            getTasks (categoriesId: $categoriesId){
                 id,
                 title,
                 desc,    
@@ -19,6 +19,9 @@ export const getTasks = async () => {
               }
           }
           `,
+    variables: {
+      categoriesId,
+    },
   };
 
   const response = await axios({

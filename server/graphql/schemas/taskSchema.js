@@ -32,7 +32,7 @@ input TaskInputData {
 
 export const TaskQueries = `
     getTask(taskId: Int!): Task
-    getTasks: [Task]
+    getTasks(categoriesId: [Int]): [Task]
 `;
 
 export const TaskMutations = `

@@ -7,6 +7,7 @@ import { ListRow } from "./ListRow/ListRow";
 import { ListFooter } from "./ListFooter/ListFooter";
 import { taskStore } from "../../stores/taskStore/taskStore";
 import { settingsStore } from "../../stores/settingsStore/settingsStore";
+import { userStore } from "../../stores/userStore/userStore";
 
 import "./Home.css";
 
@@ -17,7 +18,7 @@ export const Home = observer(() => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    taskStore.fetchTasks();
+    taskStore.fetchTasks(userStore.categoriesId);
   }, []);
 
   const resetWindowInners = () => {
