@@ -13,7 +13,7 @@ const MIN_SWIPE_DISTANCE = 50;
 
 export const ListRow = observer((props) => {
   const { task, windowInnerWidth } = props;
-  const { archived, desc, id, title, categorie } = task;
+  const { archived, desc, id, title } = task;
   const [showActions, setShowActions] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
   const [catModalOpened, setCatModalOpened] = useState(false);
@@ -224,13 +224,13 @@ export const ListRow = observer((props) => {
                 icon={<CheckOutlined />}
               />}
             </div>
-            <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
+            <div className='row__actionButtons' onClick={() => console.log(id)}>
               {archived ? <Button
-                color="default"
+                color="blue"
                 variant="filled"
                 icon={<EditOutlined />}
               /> : <Button
-                color="default"
+                color="blue"
                 variant="solid"
                 icon={<EditOutlined />}
               />}
@@ -251,17 +251,16 @@ export const ListRow = observer((props) => {
               icon={<CheckOutlined />}
             >Done</Button>}
           </div>
-          <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
+          <div className='row__actionButtons' onClick={() => console.log(id)}>
             {archived ? <Button
-              color="default"
+              color="blue"
               variant="filled"
               icon={<EditOutlined />}
-            >Delete</Button> : <Button
-              color="default"
+            >Edit</Button> : <Button
+              color="blue"
               variant="solid"
-
               icon={<EditOutlined />}
-            >Delete</Button>}
+            >Edit</Button>}
           </div>
         </div>
       }

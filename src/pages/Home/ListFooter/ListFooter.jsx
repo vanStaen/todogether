@@ -73,6 +73,7 @@ export const ListFooter = observer(() => {
             variant="solid"
             icon={<EllipsisOutlined />}
             onClick={() => setShowMoreDetailModal(true)}
+            disabled={!textNewTask || loading}
           />
           {window.innerWidth > 600 ?
             <Button
