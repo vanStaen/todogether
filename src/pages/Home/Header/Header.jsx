@@ -6,7 +6,7 @@ import { Dropdown, Tag, Space } from "antd";
 import Logo from "../../../img/todogetherLogo.png";
 import { SettingsModal } from "./Settings/SettingsModal";
 import { userStore } from "../../../stores/userStore/userStore";
-import { getMenuCategories } from "../../../pages/Home/ListRow/Categories";
+import { useMenuCategories } from "../../../pages/Home/ListRow/Categories";
 
 import "./Header.less";
 import { settingsStore } from "../../../stores/settingsStore/settingsStore";
@@ -14,7 +14,7 @@ import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 export const Header = observer(() => {
   const [ settingsCatOpened, setSettingsCatOpened] = useState(false);
 
-  const items = getMenuCategories("filter");
+  const items = useMenuCategories("filter");
 
   if (settingsStore.categorieFilter) {
     items.push(

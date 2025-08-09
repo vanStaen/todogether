@@ -7,7 +7,7 @@ import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 
 import "./Categories.less";
 
-export const getMenuCategories = (action, taskId = null) => {
+export const useMenuCategories = (action, taskId = null) => {
 
     return userStore.categories?.map((categorie, index) => {
 
@@ -20,6 +20,8 @@ export const getMenuCategories = (action, taskId = null) => {
                 settingsStore.setCategorieFilter(categorie);
             }
         }
+
+        if (categorie.archived) return null;
 
         return {
             key: index,

@@ -6,6 +6,7 @@ import { LoadingOutlined, PlusOutlined, EllipsisOutlined } from '@ant-design/ico
 import { taskStore } from "../../../stores/taskStore/taskStore";
 import { settingsStore } from "../../../stores/settingsStore/settingsStore";
 import { userStore } from "../../../stores/userStore/userStore";
+import { authStore } from "../../../stores/authStore/authStore";
 import { addTask } from "../../../stores/taskStore/addTask";
 
 import "./ListFooter.css";
@@ -45,6 +46,14 @@ export const ListFooter = observer(() => {
     return { value: option };
   });
 
+  const onFocusHandler = async () => {
+    await authStore.checkAccess();
+    if (!authStore.hasAccess) {
+      console.error("No valid token, page will be reloaded");
+      window.location.reload();
+    }
+  }
+
   return (
     <div className="listFooter">
       <div className="listFooter__leftContainer">
@@ -54,6 +63,7 @@ export const ListFooter = observer(() => {
             id="newTaskInput"
             className="addTaskFooter__input"
             bordered={false}
+            onFocus={onFocusHandler}
             onSearch={onChangeInput}
             onChange={onChangeInput}
             value={textNewTask}

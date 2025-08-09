@@ -4,7 +4,7 @@ import { Button, Dropdown } from "antd";
 import { EditOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
 
 import { taskStore } from '../../../stores/taskStore/taskStore.js';
-import { getMenuCategories, ModalCategories } from "./Categories";
+import { useMenuCategories, ModalCategories } from "./Categories";
 
 import "./ListRow.less";
 
@@ -127,7 +127,7 @@ export const ListRow = observer((props) => {
   }
 
   const categorieName = task.categorie ? task.categorie.title : 'Private';
-  const items = getMenuCategories("update", id);
+  const items = useMenuCategories("update", id);
 
   useEffect(() => {
     const actionsMobileDiv = document.getElementById(`row__category${id}`);

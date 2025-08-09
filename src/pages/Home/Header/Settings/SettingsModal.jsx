@@ -22,6 +22,7 @@ export const SettingsModal = observer((props) => {
     }, [])
       
     const categoriesRows = userStore.categories?.map((categorie, index) => {
+        if (categorie.archived) return null; // Skip if categorie is null or undefined
         return (<CategoryRow key={`categoryRow${index}`} categorie={categorie} />)
     })
 
