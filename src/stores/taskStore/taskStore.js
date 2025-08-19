@@ -33,7 +33,10 @@ export class TaskStore {
     if (userCategories) {
       const taskData = await getTasks(userCategories);
       if (taskData) {
-        this.setTasks(taskData);
+        const taskDataSorted = taskData.sort((a, b) => {
+          return new Date(a.archived) - new Date(b.archived);
+        })
+        this.setTasks(taskDataSorted);
         this.setTaskAreLoading(false);
       }
     }
