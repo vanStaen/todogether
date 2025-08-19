@@ -56,7 +56,10 @@ export class TaskStore {
       // TODO: fix delete getTasks if not categoriesId defined
       const taskData = await getTasks(userStore.categoriesId);
       if (taskData) {
-        this.setTasks(taskData);
+        const taskDataSorted = taskData.sort((a, b) => {
+          return a.archived - b.archived;
+        })
+        this.setTasks(taskDataSorted);
       }
     } catch (e) {
       console.log("error", e);
