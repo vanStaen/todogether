@@ -42,10 +42,6 @@ export class TaskStore {
   archiveTask = async (id, archived) => {
     try {
       await archiveTask(id, archived);
-      const taskData = await getTasks(userStore.categoriesId);
-      if (taskData) {
-        this.setTasks(taskData);
-      }
     } catch (e) {
       console.log("error", e);
     }

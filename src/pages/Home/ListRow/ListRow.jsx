@@ -18,6 +18,7 @@ export const ListRow = observer((props) => {
   const [showCategory, setShowCategory] = useState(false);
   const [catModalOpened, setCatModalOpened] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [isArchived, setIsArchived] = useState(archived);
 
   const touchStart = useRef(null);
   const touchEnd = useRef(null);
@@ -127,12 +128,17 @@ export const ListRow = observer((props) => {
     handleHideCategory();
   }
 
+  const handleArchiveClick = () => {
+    taskStore.archiveTask(id, !isArchived);
+    setIsArchived(!isArchived);
+  }
+
   const categorieName = task.categorie ? task.categorie.title : 'Private';
   const items = useMenuCategories("update", id);
 
   useEffect(() => {
     const actionsMobileDiv = document.getElementById(`row__category${id}`);
-    if (archived) {
+    if (isArchived) {
       if (actionsMobileDiv) {
         actionsMobileDiv.style.backgroundColor = 'transparent';
       }
@@ -142,7 +148,7 @@ export const ListRow = observer((props) => {
     if (showCategory) {
       handleShowCategory();
     }
-  }, [archived, task])
+  }, [isArchived, task])
 
   const handleOpenModal = () => {
     (e) => e.stopPropagation();
@@ -151,7 +157,7 @@ export const ListRow = observer((props) => {
 
   return (
     <div
-      className={`row ${archived ? "row__archived" : "row__active"}`}
+      className={`row ${isArchived ? "row__archived" : "row__active"}`}
       key={task.id}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -227,8 +233,8 @@ export const ListRow = observer((props) => {
         </div>
         {showActions && windowInnerWidth >= 600 &&
           < div className="row__actions">
-            <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>
-              {archived ? <Button
+            <div className='row__actionButtons' onClick={() => handleArchiveClick()}>
+              {isArchived ? <Button
                 color="default"
                 variant="filled"
                 icon={<UndoOutlined />}
@@ -239,7 +245,7 @@ export const ListRow = observer((props) => {
               />}
             </div>
             <div className='row__actionButtons' onClick={() => setShowConfirmDelete(true)}>
-              {archived ? <Button
+              {isArchived ? <Button
                 color="red"
                 variant="solid"
                 icon={<DeleteOutlined />}
@@ -254,8 +260,8 @@ export const ListRow = observer((props) => {
       {
         windowInnerWidth < 600 &&
         <div className="row__actionsMobile" id={`row__actionsMobile${id}`}>
-          <div className='row__actionButtons' onClick={() => taskStore.archiveTask(id, !archived)}>
-            {archived ? <Button
+          <div className='row__actionButtons' onClick={() => handleArchiveClick()}>
+            {isArchived ? <Button
               color="default"
               variant="filled"
               icon={<UndoOutlined />}
@@ -265,8 +271,8 @@ export const ListRow = observer((props) => {
               icon={<CheckOutlined />}
             >Done</Button>}
           </div>
-          <div className='row__actionButtons' onClick={() => console.log(id)}>
-            {archived ? <Button
+          <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
+            {isArchived ? <Button
               color="red"
               variant="solid"
               icon={<DeleteOutlined />}
