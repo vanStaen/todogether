@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { observer } from "mobx-react";
-import { Button, Dropdown } from "antd";
-import { EditOutlined, CheckOutlined, UndoOutlined } from "@ant-design/icons";
+import { Button, Dropdown, Modal } from "antd";
+import { EditOutlined, CheckOutlined, UndoOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import { taskStore } from '../../../stores/taskStore/taskStore.js';
 import { useMenuCategories, ModalCategories } from "./Categories";
@@ -17,6 +17,7 @@ export const ListRow = observer((props) => {
   const [showActions, setShowActions] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
   const [catModalOpened, setCatModalOpened] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   const touchStart = useRef(null);
   const touchEnd = useRef(null);
@@ -156,6 +157,19 @@ export const ListRow = observer((props) => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
+      <Modal
+        title={`Delete this task?`}
+        centered
+        width={250}
+        open={showConfirmDelete}
+        okText="Delete"
+        onOk={() => {
+          taskStore.deleteTask(id);
+          setShowConfirmDelete(false)
+        }}
+        onCancel={() => setShowConfirmDelete(false)}
+      >
+      </Modal>
       <div
         className="row__category"
         id={`row__category${id}`}
@@ -224,11 +238,11 @@ export const ListRow = observer((props) => {
                 icon={<CheckOutlined />}
               />}
             </div>
-            <div className='row__actionButtons' onClick={() => console.log(id)}>
+            <div className='row__actionButtons' onClick={() => setShowConfirmDelete(true)}>
               {archived ? <Button
-                color="blue"
-                variant="filled"
-                icon={<EditOutlined />}
+                color="red"
+                variant="solid"
+                icon={<DeleteOutlined />}
               /> : <Button
                 color="blue"
                 variant="solid"
@@ -253,13 +267,13 @@ export const ListRow = observer((props) => {
           </div>
           <div className='row__actionButtons' onClick={() => console.log(id)}>
             {archived ? <Button
-              color="blue"
-              variant="filled"
-              icon={<EditOutlined />}
-            >Edit</Button> : <Button
+              color="red"
+              variant="solid"
+              icon={<DeleteOutlined />}
+            >Delete</Button> : <Button
               color="blue"
               variant="solid"
-              icon={<EditOutlined />}
+              icon={<DeleteOutlined />}
             >Edit</Button>}
           </div>
         </div>

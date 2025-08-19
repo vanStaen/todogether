@@ -54,7 +54,8 @@ export class TaskStore {
   deleteTask = async (id) => {
     try {
       await deleteTask(id);
-      const taskData = await getTasks();
+      // TODO: fix delete getTasks if not categoriesId defined
+      const taskData = await getTasks(userStore.categoriesId);
       if (taskData) {
         this.setTasks(taskData);
       }
