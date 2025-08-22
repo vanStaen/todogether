@@ -133,6 +133,13 @@ export const ListRow = observer((props) => {
     setIsArchived(!isArchived);
   }
 
+  const keypressHandler = (e) => {
+    if (showConfirmDelete && e.key === "Enter") {
+      taskStore.deleteTask(id);
+      setShowConfirmDelete(false)
+    }
+  }
+
   const categorieName = task.categorie ? task.categorie.title : 'Private';
   const items = useMenuCategories("update", id);
 
@@ -149,6 +156,13 @@ export const ListRow = observer((props) => {
       handleShowCategory();
     }
   }, [isArchived, task])
+
+  useEffect(() => {
+      window.addEventListener("keypress", keypressHandler);
+      return () => {
+        window.removeEventListener("keypress", keypressHandler);
+      };
+    }, [keypressHandler]);
 
   const handleOpenModal = () => {
     (e) => e.stopPropagation();
