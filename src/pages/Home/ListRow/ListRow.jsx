@@ -178,16 +178,32 @@ export const ListRow = observer((props) => {
       onTouchEnd={onTouchEnd}
     >
       <Modal
-        title={`Delete this task?`}
+        title={<div style={{marginBottom: 15}}>Delete this task?</div>}
         centered
         width={250}
         open={showConfirmDelete}
-        okText="Delete"
-        onOk={() => {
-          taskStore.deleteTask(id);
-          setShowConfirmDelete(false)
-        }}
-        onCancel={() => setShowConfirmDelete(false)}
+        footer={[
+          <Button 
+            key="cancel" 
+            type="default" 
+            onClick={() => setShowConfirmDelete(false)}
+            style={{width: 'calc(50% - 4px)'}}
+            >
+            Delete
+          </Button>,
+          <Button 
+            key="submit"
+            color="red"
+            variant="solid"
+            onClick={() => {
+              taskStore.deleteTask(id);
+              setShowConfirmDelete(false)
+            }}
+            style={{width: 'calc(50% - 5px)'}}
+            >
+            Delete
+          </Button>,
+        ]}
       >
       </Modal>
       <div
@@ -258,15 +274,17 @@ export const ListRow = observer((props) => {
                 icon={<CheckOutlined />}
               />}
             </div>
-            <div className='row__actionButtons' onClick={() => setShowConfirmDelete(true)}>
+            <div className='row__actionButtons'>
               {isArchived ? <Button
                 color="red"
                 variant="solid"
                 icon={<DeleteOutlined />}
+                onClick={() => setShowConfirmDelete(true)}
               /> : <Button
                 color="blue"
                 variant="solid"
                 icon={<EditOutlined />}
+                 onClick={() => console.log('edit', id)}
               />}
             </div>
           </div>}
