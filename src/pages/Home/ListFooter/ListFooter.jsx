@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Button, AutoComplete, Space } from "antd";
 import { LoadingOutlined, PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
@@ -53,6 +53,19 @@ export const ListFooter = observer(() => {
       window.location.reload();
     }
   }
+
+  const keypressHandler = (e) => {
+      if (e.key === "Enter" && textNewTask) {
+        saveNewTask()
+      }
+    }
+  
+  useEffect(() => {
+    window.addEventListener("keypress", keypressHandler);
+      return () => {
+        window.removeEventListener("keypress", keypressHandler);
+      };
+  }, [keypressHandler]);
 
   return (
     <div className="listFooter">
