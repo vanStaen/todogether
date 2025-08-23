@@ -10,6 +10,7 @@ import { useMenuCategories } from "../../../pages/Home/ListRow/Categories";
 
 import "./Header.less";
 import { settingsStore } from "../../../stores/settingsStore/settingsStore";
+import { CUR } from "aws-sdk";
 
 export const Header = observer(() => {
   const [ settingsCatOpened, setSettingsCatOpened] = useState(false);
@@ -31,6 +32,16 @@ export const Header = observer(() => {
     )
   }
 
+  const tagStyling = {
+    marginTop: 5,
+    paddingTop: 2,
+    paddingRight: 7,
+    paddingBottom: 2,
+    paddingLeft: 7,
+    fontSize: 14,
+    cursor: 'pointer',
+  };
+
   return (
     <>
       <SettingsModal settingsCatOpened={settingsCatOpened} setSettingsCatOpened={setSettingsCatOpened} />
@@ -50,9 +61,9 @@ export const Header = observer(() => {
               <div onClick={(e) => e.stopPropagation()}>
                 { 
                   settingsStore.categorieFilter ? 
-                      <Tag color={settingsStore.categorieFilter.color}>{settingsStore.categorieFilter.title}</Tag>
+                      <Tag style={tagStyling} color={settingsStore.categorieFilter.color}>{settingsStore.categorieFilter.title}</Tag>
                     :
-                    <Tag color="#e6e4dd" className={"header__noSelectionTag"}>All lists</Tag>
+                    <Tag style={tagStyling} color="#e6e4dd" className={"header__noSelectionTag"}>All lists</Tag>
                 }
               </div>
             </Dropdown>
