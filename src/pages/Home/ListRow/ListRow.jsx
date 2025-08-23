@@ -128,9 +128,11 @@ export const ListRow = observer((props) => {
     handleHideCategory();
   }
 
-  const handleArchiveClick = () => {
-    taskStore.archiveTask(id, !isArchived);
-    setIsArchived(!isArchived);
+  const handleArchiveClick = async () => {
+    await taskStore.archiveTask(id, !isArchived);
+    await setIsArchived(!isArchived);
+    const actionsMobileDiv = document.getElementById(`row__actionsMobile${id}`);
+    actionsMobileDiv.style.right = `${actionsMobileDiv.getBoundingClientRect().width}px`;
   }
 
   const categorieName = task.categorie ? task.categorie.title : 'Private';
@@ -284,7 +286,7 @@ export const ListRow = observer((props) => {
                 color="blue"
                 variant="solid"
                 icon={<EditOutlined />}
-                 onClick={() => console.log('edit', id)}
+                onClick={() => console.log('edit', id)}
               />}
             </div>
           </div>}
@@ -303,15 +305,17 @@ export const ListRow = observer((props) => {
               icon={<CheckOutlined />}
             >Done</Button>}
           </div>
-          <div className='row__actionButtons' onClick={() => taskStore.deleteTask(id)}>
+          <div className='row__actionButtons'>
             {isArchived ? <Button
               color="red"
               variant="solid"
               icon={<DeleteOutlined />}
+              onClick={() => taskStore.deleteTask(id)}
             >Delete</Button> : <Button
               color="blue"
               variant="solid"
-              icon={<DeleteOutlined />}
+              icon={<EditOutlined />}
+              onClick={() => console.log('edit', id)}
             >Edit</Button>}
           </div>
         </div>
