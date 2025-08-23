@@ -14,6 +14,7 @@ import "./ListFooter.css";
 export const ListFooter = observer(() => {
   const [textNewTask, setTextNewTask] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [options, setOptions] = useState([]);
   const [showMoreDetailModal, setShowMoreDetailModal] = useState(false);
 
   const saveNewTask = async () => {
@@ -33,19 +34,22 @@ export const ListFooter = observer(() => {
     setLoading(false);
   };
 
-  const onChangeInput = (value) => {
-    setTextNewTask(value);
-  };
-
   const taskFiltered = (settingsStore.categorieFilter && taskStore.tasks.length)
     ? taskStore.tasks.filter((task) => task.categorie?.id === settingsStore.categorieFilter?.id && task.archived)
     : taskStore.tasks;
-  const options = taskFiltered.map((task) => task.title.trim());
-  const optionsUnique = [...new Set(options)];
-  const optionsFormated = optionsUnique.map((option) => {
-    return { value: option };
-  });
+  const allOptions = [...new Set(taskFiltered.map((task) => task.title.trim()))];
 
+  const onChangeInput = (value) => {
+    const optionsFormated = allOptions.map((option) => {
+      if (!value || value.trim() === '') return null;
+       if (option.toLowerCase().includes(value.toLowerCase())) {
+          return { value: option };
+         }
+        return null;
+    }).filter((option) => option!== null);
+    setOptions(optionsFormated)
+    setTextNewTask(value);
+  };
   const onFocusHandler = async () => {
     await authStore.checkAccess();
     if (!authStore.hasAccess) {
@@ -75,18 +79,12 @@ export const ListFooter = observer(() => {
             allowClear={true}
             id="newTaskInput"
             className="addTaskFooter__input"
-            bordered={false}
             onFocus={onFocusHandler}
             onSearch={onChangeInput}
             onChange={onChangeInput}
             value={textNewTask}
             placeholder="Add a task"
-            options={optionsFormated}
-            filterOption={(inputValue, option) =>
-              option.value
-                .toUpperCase()
-                .indexOf(inputValue.toUpperCase()) !== -1
-            }
+            options={options}
           />
         </div>
       </div>
