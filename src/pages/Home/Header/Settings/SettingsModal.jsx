@@ -21,9 +21,9 @@ export const SettingsModal = observer((props) => {
         settingsStore.fetchAllUsers();
     }, [])
       
-    const categoriesRows = userStore.categories?.map((categorie, index) => {
+    const categoriesRows = userStore.categories?.map((categorie) => {
         if (categorie.archived) return null; // Skip if categorie is null or undefined
-        return (<CategoryRow key={`categoryRow${index}`} categorie={categorie} />)
+        return (<CategoryRow key={`categoryId${categorie.id}`} categorie={categorie} />)
     })
 
     const handleCatInputChange = (event) => {

@@ -51,7 +51,8 @@ export class UserStore {
   };
 
   setCategories = (categories) => {
-    this.categories = categories;
+    const sortedCategories = categories.sort((a, b) => a.id - b.id);
+    this.categories = sortedCategories;
   };
 
   setCategoriesId = (categoriesId) => {

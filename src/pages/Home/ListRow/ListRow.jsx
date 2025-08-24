@@ -131,8 +131,10 @@ export const ListRow = observer((props) => {
   const handleArchiveClick = async () => {
     await taskStore.archiveTask(id, !isArchived);
     await setIsArchived(!isArchived);
-    const actionsMobileDiv = document.getElementById(`row__actionsMobile${id}`);
-    actionsMobileDiv.style.right = `${actionsMobileDiv.getBoundingClientRect().width}px`;
+    if (windowInnerWidth <= 600) {
+      const actionsMobileDiv = document.getElementById(`row__actionsMobile${id}`);
+      actionsMobileDiv.style.right = `${actionsMobileDiv.getBoundingClientRect().width}px`;
+    }
   }
 
   const categorieName = task.categorie ? task.categorie.title : 'Private';
